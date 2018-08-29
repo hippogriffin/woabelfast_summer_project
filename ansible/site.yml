@@ -1,5 +1,1 @@
----
-- hosts: all
-  become: true
-  roles:
-    - common
+console.log('hello world');

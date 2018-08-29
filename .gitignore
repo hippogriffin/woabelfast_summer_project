@@ -6,6 +6,10 @@
 *.vagrant
 *.vagrant.*
 
+#Ansible
+*.retry
+*.retry.*
+
 # Local .terraform directories
 **/.terraform/*
 

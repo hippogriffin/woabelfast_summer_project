@@ -1,0 +1,4 @@
+---
+- name: install the epel
+  yum:
+    name: epel-release

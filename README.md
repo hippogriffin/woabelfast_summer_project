@@ -24,7 +24,7 @@ After cloning the repo find a folder called scripts
 Pre-hooks
 
 find a file called "pre-commit" move this file to your .git/hooks folder
-run the following command: chmod +x .git/hooks/pre-commi
+run the following command: chmod +x .git/hooks/pre-commit
 
 
 # Technologies

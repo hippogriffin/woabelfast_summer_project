@@ -21,7 +21,7 @@ If making changes to the ansible files, make sure to type "vagrant provision" to
 See link under 'Training and Resources' to view the ansible structure we have followed.
 
 
-#Git Setup
+# Git Setup
 
 After cloning the repo find a folder called scripts
 

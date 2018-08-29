@@ -1,0 +1,5 @@
+base_sudoer_groups:
+  - name: admins
+    groupid: 31000
+    sudo: true
+

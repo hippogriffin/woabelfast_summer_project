@@ -11,9 +11,10 @@ To start development on this project, clone this repo.
 Once you have cloned the repo you can start the environment by accessing the directory via terminal and running "vagrant up {server name}" or just "vagrant up" to create them all.
 
 Servers:
-proxy
-wordpress
-db
+
+- proxy
+- wordpress
+- db
 
 To connect to each individual machine use "vagrant ssh {server name}"
 If making changes to the ansible files, make sure to type "vagrant provision" to check the desired result has been achieved.

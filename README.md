@@ -24,3 +24,16 @@ See link under 'Training and Resources' to view the ansible structure we have fo
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 
 
+# Ansible Roles 
+
+This role manages the SSH configuration on our servers and was downloaded from ansible-galaxy... https://galaxy.ansible.com/willshersystems/sshd
+
+By default it configures the SSH daemon with the normal OS defaults. It...
+
+- Works across a variety of UNIX like distributions
+- Can be configured by dict or simple variables
+- Supports Match sets
+- Supports all sshd_config options. 
+- Tests the sshd_config before reloading sshd.
+
+This role is added to the project through including it in the site.yml file, under the roles heading. 

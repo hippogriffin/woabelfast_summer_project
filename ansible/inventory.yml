@@ -1,0 +1,22 @@
+---
+all:
+    children:
+        webservers:
+            hosts:
+                proxy.vagrant.local:
+        wordpress:
+            hosts:
+                wordpress.vagrant.local:
+        dbservers:
+            hosts:
+                db.vagrant.local:
+
+frontend:
+  hosts:
+    proxy.vagrant.local:
+backend:
+    hosts:
+        wordpress.vagrant.local:
+        db.vagrant.local:
+      
+

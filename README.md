@@ -30,9 +30,5 @@ Pre-hooks
 find a file called "pre-commit" move this file to your .git/hooks folder
 run the following command: chmod +x .git/hooks/pre-commit
 
-
-# Technologies
-
-
 # Training and Resources 
-
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

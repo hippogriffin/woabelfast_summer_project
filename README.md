@@ -59,6 +59,7 @@ By default it configures the SSH daemon with the normal OS defaults. It...
 
 This role is added to the project through including it in the site.yml file, under the roles heading. 
 
+
 # Sudoer Groups using Ansible 
 
 A sudo user stand for Super User Do. 
@@ -79,4 +80,5 @@ This can be edited in
 ```
 roles/common/defaults/main.yml
 ```
+
 

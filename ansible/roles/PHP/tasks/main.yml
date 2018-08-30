@@ -1,7 +1,10 @@
 ---
+<<<<<<< HEAD
 - name: Install epel-release
   yum: pkg=epel-release state=installed
 
+=======
+>>>>>>> master
 - name: Install PHP components
   yum: pkg=php-{{item}} state=installed
   with_items:
@@ -11,6 +14,7 @@
     - pecl-zendopcache
   when: "'wordpress_servers' in group_names"
 
+<<<<<<< HEAD
 - name: change cgi.fix_pathinfo= to value of 0 in /etc/php.ini
   lineinfile:
     path: "{{ php_ini_path }}"
@@ -37,3 +41,59 @@
     - { regexp: "^{{ opcache_memory_consumption_string }}", line: "{{ opcache_memory_consumption }}" }
     - { regexp: "^{{ opcache_interned_strings_buffer_string }}", line: "{{ opcache_interned_strings_buffer }}" }
     - { regexp: "^{{ opcache_fast_shutdown_string }}", line: "{{ opcache_fast_shutdown }}" }
+=======
+- name: change cgi.fix_pathinfo= to value 0 in /etc/php.ini
+  lineinfile:
+    path: /etc/php.ini
+    regexp: "^cgi.fix_pathinfo="
+    line: "cgi.fix_pathinfo=1"
+
+- name: check for default pm.min_spare_server values in /etc/php.ini
+  shell: grep "^pm.min_spare_servers = 5"
+  register: grep_ pm_min
+
+- name: check for default pm.ax_spare_server values in /etc/php.ini
+  shell: grep "^pm.max_spare_servers = 35"
+  register: grep_pm_max
+
+- name: Check whether pm.min_spare_servers is commented in /etc/php-fpm.d/www.conf and re-add it uncommented
+  lineinfile:
+    path: /etc/php-fpm.d/www.conf
+    regexp: ';pm.min_spare_servers = 5'
+    insertafter: ';pm.min_spare_servers = 5'
+    line: 'pm.min_spare_servers = 5'
+    state: present
+
+- name: remove the commented line
+  lineinfile:
+      path: /etc/php-fpm.d/www.conf
+      regexp: ';pm.min_spare_servers = 5'
+      state: absent
+
+- name: Check whether pm.max_spare_servers is commented in /etc/php-fpm.d/www.conf and re-add it uncommented
+  lineinfile:
+    path: /etc/php-fpm.d/www.conf
+    regexp: ';pm.max_spare_servers = 35'
+    insertafter: ';pm.max_spare_servers = 35'
+    line: 'pm.max_spare_servers = 35'
+    state: present
+
+- name: remove the commented line
+  lineinfile:
+      path: /etc/php-fpm.d/www.conf
+      regexp: ';pm.max_spare_servers = 35'
+      state: absent
+
+- name: update values in /etc/php.d/opcache.ini
+  lineinfile:
+    path: /etc/php.d/opcache.ini
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: "opcache.revalidate_freq=", line: "opcache.revalidate_freq=0" }
+    - { regexp: "opcache.validate_timestamps=", line: "opcache.validate_timestamps=0 " }
+    - { regexp: "opcache.max_accelerated_files=", line: "opcache.max_accelerated_files=20000" }
+    - { regexp: "opcache.memory_consumption=", line: "opcache.memory_consumption=128" }
+    - { regexp: "opcache.interned_strings_buffer=", line: "opcache.interned_strings_buffer=16" }
+    - { regexp: "opcache.fast_shutdown=", line: "opcache.fast_shutdown=1" }
+>>>>>>> master

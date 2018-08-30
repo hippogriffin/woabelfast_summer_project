@@ -1,0 +1,38 @@
+---
+php-fpm_conf_file: "/etc/php-fpm.d/www.conf"
+
+php-fpm_conf_dir: "/etc/php-fpm.d/"
+
+php_ini_path: "/etc/php.ini"
+php_ini_cgi_string: ";cgi.fix_pathinfo="
+php_ini_cgi_value: "0"
+php_ini_cgi: "{{ php_ini_cgi_string }}{{ php_ini_cgi_value }}"
+
+opache_conf_file: "/etc/php.d/opcache.ini"
+opcache_conf_dir: "/etc/php.d/"
+
+opcache_revalidate_freq_string: "opcache.revalidate_freq="
+opcache_validate_timestamps_string: "opcache.validate_timestamps="
+opcache_accelerated_files_string: "opcache.max_accelerated_files="
+opcache_memory_consumption_string: "opcache.memory_consumption="
+opcache_interned_strings_buffer_string: "opcache.interned_strings_buffer="
+opcache_fast_shutdown_string: "opcache.fast_shutdown="
+
+opcache_revalidate_freq_value: "0"
+opcache_validate_timestamps_value: "0"
+opcache_accelerated_files_value: "20000"
+opcache_memory_consumption_value: "128"
+opcache_interned_strings_buffer_value: "16"
+opcache_fast_shutdown_value: "1"
+
+opcache_revalidate_freq: "{{ opcache_revalidate_freq_string }}{{ opcache_revalidate_freq_value }}"
+opcache_validate_timestamps: "{{ opcache_validate_timestamps_string }}{{ opcache_validate_timestamps_value }}"
+opcache_accelerated_files: "{{ opcache_accelerated_files_string }}{{ opcache_accelerated_files_value }}"
+opcache_memory_consumption: "{{ opcache_memory_consumption_string }}{{ opcache_memory_consumption_value }}"
+opcache_interned_strings_buffer: "{{ opcache_interned_strings_buffer_string }}{{ opcache_interned_strings_buffer_value }}"
+opcache_fast_shutdown: "{{ opcache_fast_shutdown_string }}{{ opcache_fast_shutdown_value }}"
+
+
+
+
+

@@ -11,6 +11,7 @@
 #Ansible
 *.retry
 *.retry.*
+**/roles_galaxy/*
 
 # Local .terraform directories
 **/.terraform/*

@@ -41,11 +41,28 @@ run the following command:
 chmod +x .git/hooks/pre-commit
 ```
 
-# Training and Resources 
-https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
-
 
 # Ansible Roles 
+
+To install Ansible Roles make sure you include them in the requirements.yml file.
+Each role will consist of one or more of the following:
+- src
+- version
+- name
+- scm
+
+ please find an example below
+
+```
+# from galaxy
+- src: willshersystems.sshd
+  version: v0.6.2
+
+# Or to bring in a role from github
+- src: https://github.com/bennojoy/nginx
+  version: master
+  name: nginx_role
+```
 
 This role manages the SSH configuration on our servers and was downloaded from ansible-galaxy... https://galaxy.ansible.com/willshersystems/sshd
 
@@ -81,4 +98,15 @@ This can be edited in
 roles/common/defaults/main.yml
 ```
 
+# Installing Nginx
+
+The nginx role from ansible galaxy was installed using the following command:
+    
+    ansible-galaxy install geerlingguy.nginx -p roles
+
+Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
+
+
+# Training and Resources 
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 

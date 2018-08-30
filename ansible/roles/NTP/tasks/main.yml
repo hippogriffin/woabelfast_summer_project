@@ -49,5 +49,5 @@
     template:
       src: ntp.conf.j2
       dest: /etc/ntp.conf
-#    notify: restart_ntp
+    notify: restart_ntp
     when: ntp_manage_config

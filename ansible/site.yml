@@ -14,3 +14,9 @@
   become: true
   roles:
     - geerlingguy.nginx
+
+- name: configure wordpress
+  hosts: wordpress_servers
+  become: true
+  roles:
+    - PHP

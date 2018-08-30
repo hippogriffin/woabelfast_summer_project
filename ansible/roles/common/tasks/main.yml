@@ -1,4 +1,2 @@
 ---
-- name: install the epel
-  yum:
-    name: epel-release
+- include_tasks: sudoers.yml

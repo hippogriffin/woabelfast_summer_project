@@ -1,5 +1,5 @@
 ---
-#Configure NTP    
+#Configure NTP
   ntp_enable: true
 
 

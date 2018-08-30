@@ -35,7 +35,11 @@ After cloning the repo find a folder called scripts
 Pre-hooks
 
 find a file called "pre-commit" move this file to your .git/hooks folder
-run the following command: chmod +x .git/hooks/pre-commit
+run the following command:  
+
+```
+chmod +x .git/hooks/pre-commit
+```
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
@@ -54,3 +58,35 @@ By default it configures the SSH daemon with the normal OS defaults. It...
 - Tests the sshd_config before reloading sshd.
 
 This role is added to the project through including it in the site.yml file, under the roles heading. 
+
+
+# Sudoer Groups using Ansible 
+
+A sudo user stand for Super User Do. 
+
+When you run the sudo command it will 
+- Ask you for your password 
+
+- Then check the sudoers file to see what privileges you have 
+
+The System Admin / Root user can change the configuration file for different groups and different users giving everyone suitable access they may be able to run full commands like root or they may only have access to a small amount of commands.
+
+We will be changing the sudoer groups using 
+```
+base_sudoer_groups:
+```
+
+This can be edited in
+```
+roles/common/defaults/main.yml
+```
+
+# Installing Nginx
+
+The nginx role from ansible galaxy was installed using the following command:
+    
+    ansible-galaxy install geerlingguy.nginx -p roles
+
+Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
+
+

@@ -1,5 +1,4 @@
 ---
-
 - hosts: all
   become: true
   gather_facts: true
@@ -8,3 +7,9 @@
     - willshersystems.sshd
     - NTP
     - singleplatform-eng.users
+    
+- name: Install NGINX on proxy
+  hosts: webservers
+  become: true
+  roles:
+    - geerlingguy.nginx

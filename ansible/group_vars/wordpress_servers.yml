@@ -1,4 +1,4 @@
-#Group vars for  webservers
+#Group vars for wordpress servers
 
 #Firewall Config
 

@@ -4,3 +4,4 @@
   roles:
     - common
     - NTP
+    - geerlingguy.firewall

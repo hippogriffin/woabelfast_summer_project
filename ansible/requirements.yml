@@ -1,3 +1,10 @@
 # from galaxy
 - src: willshersystems.sshd
   version: v0.6.2
+
+- src: geerlingguy.nginx
+  verison: 2.6.0
+
+- src: https://github.com/singleplatform-eng/ansible-users
+  version: master
+  name: singleplatform-eng.users

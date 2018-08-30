@@ -6,4 +6,3 @@
     service:
       name: "{{ ntp_daemon }}"
       state: restarted
-

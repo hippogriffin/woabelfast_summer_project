@@ -119,6 +119,31 @@ The nginx role from ansible galaxy was installed using the following command:
 
 Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
 
+# Encryption
+
+The main tool we can use to encrypt ansible variables is ansible-vault.  This can encrypt any structured data files used by Ansible.
+
+If you want to create a new encrypted file, the command is:  ansible-vault create <filename>
+
+The user will then be prompted to enter a vault password which for our testing we set to: P@55word
+
+We typed the following command to move this password to its own file:
+
+	echo "P@55word" > vault_password
+	
+(ensure you're in the correct directory)
+
+To encrypt a particular string, we can type:
+	
+	ansible-vault encrypt_string <name_of_string> --ask-vault-pass
+
+We then used the yq parser for yml files.  This allows us decrypt.  Install using the following command:
+	
+    brew install yq
+
+There doesn't seem to be any easy way to decrypt a variable in a list, however when we moved the variable out of the list, the decryption worked using the following command
+
+    yq read <target_file_path> filename | ansible-vault --vault-password-file=<password_file_name> decrypt
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

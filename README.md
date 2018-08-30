@@ -81,4 +81,12 @@ This can be edited in
 roles/common/defaults/main.yml
 ```
 
+# Installing Nginx
+
+The nginx role from ansible galaxy was installed using the following command:
+    
+    ansible-galaxy install geerlingguy.nginx -p roles
+
+Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
+
 

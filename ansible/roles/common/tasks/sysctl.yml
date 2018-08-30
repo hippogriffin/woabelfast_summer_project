@@ -1,0 +1,6 @@
+- name: Add / Change Values for sysctl
+  template:
+    src: sysctl.j2
+    dest: /etc/sysctl.d/00-custom-kernel.conf
+  notify:
+    - load sysctl config

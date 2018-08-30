@@ -77,6 +77,7 @@ By default it configures the SSH daemon with the normal OS defaults. It...
 This role is added to the project through including it in the site.yml file, under the roles heading. 
 
 
+
 # Sudoer Groups using Ansible 
 
 A sudo user stand for Super User Do. 
@@ -97,6 +98,23 @@ This can be edited in
 ```
 roles/common/defaults/main.yml
 ```
+
+# Define sysctl configuration in Ansible
+
+Ansible already has pre-configured modules for editing sysctl files. However because this is for training purposes to gain a better understanding a custom template has been made.
+
+This would also be used in a real project when you are requiring different configurations for groups and machines.
+
+To add anything to sysctl just add it below <b>sysctl:</b>
+
+Example:
+
+```
+ sysctl:
+  net.ipv4.ip_forward: 1
+  add.your.line.here:value
+```
+
 
 # Installing Nginx
 

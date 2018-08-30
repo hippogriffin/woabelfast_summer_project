@@ -1,0 +1,3 @@
+---
+  - name: load sysctl config
+    command: sysctl -p /etc/sysctl.d/00-custom-kernel.conf

@@ -6,3 +6,9 @@
     - common
     - willshersystems.sshd
     - NTP
+
+- hosts: wordpress_servers
+  become: true
+  gather_facts: true
+  roles:
+    - PHP

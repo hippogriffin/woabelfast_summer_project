@@ -6,6 +6,7 @@
     - common
     - willshersystems.sshd
     - NTP
+    - geerlingguy.firewall
     - singleplatform-eng.users
     
 - name: Install NGINX on proxy

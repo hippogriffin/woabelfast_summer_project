@@ -1,2 +1,11 @@
 ---
+#Group vars for  webservers
+
+#Nginx Config
 nginx_vhosts: []
+
+#Firewall Config
+
+  firewall_allowed_tcp_ports:
+    - "22"
+    - "80"

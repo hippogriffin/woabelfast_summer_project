@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "ansible/site.yml"
         ansible.groups = groups
         ansible.galaxy_role_file = "ansible/requirements.yml"
-        ansible.galaxy_roles_path = 'ansible/roles'
+        ansible.galaxy_roles_path = 'ansible/roles_path'
 
       end
       c.vm.provider "virtualbox" do |vb|

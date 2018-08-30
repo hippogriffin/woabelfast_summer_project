@@ -5,6 +5,5 @@
 - src: geerlingguy.nginx
   verison: 2.6.0
 
-- src: https://github.com/singleplatform-eng/ansible-users
-  version: master
-  name: singleplatform-eng.users
+- src: singleplatform-eng.users
+  version: v1.2.5

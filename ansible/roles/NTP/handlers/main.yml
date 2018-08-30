@@ -5,4 +5,5 @@
   - name: restart_ntp
     service:
       name: "{{ ntp_daemon }}"
-      status: restart
+      status: restarted
+    when: ntp_enabled == true

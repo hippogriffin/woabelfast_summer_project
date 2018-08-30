@@ -1,0 +1,3 @@
+# from galaxy
+- src: willshersystems.sshd
+  version: v0.6.2

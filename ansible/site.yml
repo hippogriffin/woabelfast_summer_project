@@ -6,3 +6,9 @@
     - common
     - willshersystems.sshd
     - NTP
+
+- name: Install NGINX on proxy
+  hosts: webservers
+  become: true
+  roles:
+    - geerlingguy.nginx

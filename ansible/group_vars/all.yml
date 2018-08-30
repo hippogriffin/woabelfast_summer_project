@@ -1,0 +1,25 @@
+---
+
+users:
+  - username: jackk
+    name: Jack King
+    groups: ['webops_admins']
+    uid: 1001
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDpIu2nc2VMBU4+/TPNXlR+1lQygojMaGpPJDGhv3EXSmcekSkv1IgTLmUOxMomRZEz3lfQm/M5RSJm8foZw4dXRHyfIx8bgc+ErFIZwl8DDdLH/t7fOibjpFCMO0WcIVFkhzuFuAuSB3KuyVMdET0Wi4mBqEJagmTvX+mWjxDEG7QWCyS06sMYc2x4Vi/Ds5GP9NxoVbVUvJBVyXAiuRVEUrF+ZjBjBC4ALQCySucXIqlAACNEZPDQ6sgwnKOjfLlDhTI94aVX+ipTE+AliotPCMrUoxlgIsjdut0ttFeio9h2dGsukJKnkfiJKOWIk9KpAI2rYqoEw0imhkcMoR92nSLqlsaQfcBMKeXe5zZwszELjFln13fLAQqpWAgjW+u4qpbwG3hD0caLdpRWfycNmpDDsYis5U9Zz5sG+4kmWJLogJd2f6yjIb+HbGGNUx2cShPa2IeK4ZQcNxp07nRmiQHjkVMrSGjAIW2TeE5C06t4DR5zFPT0uQcJfzZtw1AqhJpY7aZlwLW20XjEhSGFaas2FH1DJpNAOXOh96nMvKXiLIk70k8/JLFUjdvEHPCBbOujvqhKotlX9vcNLQTBA4PZIRTRexdOm+kFqZrRo79eaKJDxyFl0bdK0+OukElUlEoWUMQK4W3+KzDaBO8wbQh08sSrBJ7atS9eF0ZPQ== First Key"
+  - username: brianmc
+    name: Brian McGowan
+    groups: ['webops_admins']
+    uid: 1002
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBk9XrJqxYrC7H+yxwwIbC695Abh35cz5DQ9DVzb+RZYfhJstKYSKnLaa8et9esVhcQB9Ycf8C00Ibh+IcxUA2npeZrJL7RM48WKEjGS958Skmp2YjBIUWcWO81b51pFU6LYutnfsIOt3FFc4pT/qKWNln9/GODdAcIdDp3Qxiwd/WHqZm4ca70pQJ9NrswCYqh95jmLHw9VGKOfjO3+D+tIcAr23ayjudeJRNTjMsW4CNwkWHjp0X7VDKztHVgY2iq5pL2kDJKCvygg3BZ1MuagbERxcvrH2zo+6Je5//W+SWZIueoEkg5ATWm/n+NAqo/gmohXn8yFl78Z2Em/3HmqvZ67/Qm4aUY8F/F7WX05wE+v50gYiZ2LClKGwEKZ84DE4O925INhns4/Jx4EDnd2igfhyGCoVlccmHWEtokJU/17mEuneSyj0ys/Eh97zXHcCejvom1YyKYdEK/UnxzLIHOdLSxqK721QN4XoUDPHa6Iv6VKTfj9sWe19lxfkLlpBR7OEHwAFsO2bAJMkWC/SPs8A2zFXLHOjlSWBa4zYa31wtHcStqzOEGgQKD0FpcKWK0JwKJBHwiy6wJoG4HI+WsfEdTnmKYsESw0ccHQ/HXpB3UatzMwLhkn5hyZgO5MH1ylnUSr+NPiEpDBGQ7BXAhFyyP6FKMAzoNheWmQ== brianmc@kainos.com"
+
+
+groups_to_create: 
+  - name: webops_admins
+    gid: 10000
+
+users_deleted: []
+  # - username: example
+  #  name: example User
+  #  uid: 1002

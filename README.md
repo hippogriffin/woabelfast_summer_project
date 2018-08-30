@@ -64,6 +64,8 @@ Each role will consist of one or more of the following:
   name: nginx_role
 ```
 
+## willshersystems.sshd
+
 This role manages the SSH configuration on our servers and was downloaded from ansible-galaxy... https://galaxy.ansible.com/willshersystems/sshd
 
 By default it configures the SSH daemon with the normal OS defaults. It...
@@ -75,9 +77,9 @@ By default it configures the SSH daemon with the normal OS defaults. It...
 - Tests the sshd_config before reloading sshd.
 
 This role is added to the project through including it in the site.yml file, under the roles heading. 
+## Common 
 
-
-# Sudoer Groups using Ansible 
+### Sudoer Groups using Ansible 
 
 A sudo user stand for Super User Do. 
 
@@ -97,6 +99,17 @@ This can be edited in
 ```
 roles/common/defaults/main.yml
 ```
+
+## singleplatform-eng.users
+
+This role is for managing users on our system. 
+
+Downloaded from: https://galaxy.ansible.com/singleplatform-eng/users
+  
+    ansible-galaxy install singleplatform-eng.users
+
+Once included in the site.yml file, an all.yml file was created within the group_vars folder to add all of the users. In this file a group was created called 'webops_admins' where the users would be assigned. The users relevant data is declared here including their ssh keys, uid, and the groups they are a part of. 
+
 
 # Installing Nginx
 

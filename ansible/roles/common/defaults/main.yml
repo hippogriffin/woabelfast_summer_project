@@ -1,0 +1,4 @@
+---
+base_sudoer_groups:
+  - name: examplegroup
+    sudo: true

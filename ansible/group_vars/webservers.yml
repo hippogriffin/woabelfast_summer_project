@@ -1,4 +1,8 @@
+---
 #Group vars for  webservers
+
+#Nginx Config
+nginx_vhosts: []
 
 #Firewall Config
 

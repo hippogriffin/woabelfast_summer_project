@@ -1,7 +1,16 @@
 ---
 - hosts: all
   become: true
+  gather_facts: true
   roles:
     - common
+    - willshersystems.sshd
     - NTP
     - geerlingguy.firewall
+    - singleplatform-eng.users
+    
+- name: Install NGINX on proxy
+  hosts: webservers
+  become: true
+  roles:
+    - geerlingguy.nginx

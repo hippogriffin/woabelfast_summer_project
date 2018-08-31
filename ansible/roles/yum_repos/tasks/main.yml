@@ -1,0 +1,13 @@
+---
+# tasks file for yum_repos
+
+#Adding YUM repository for Ansible
+ 
+- name: create .repo files
+  yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.state }}"
+  with_items: "{{ yum_repo_files }}"

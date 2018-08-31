@@ -79,13 +79,7 @@ By default it configures the SSH daemon with the normal OS defaults. It...
 This role is added to the project through including it in the site.yml file, under the roles heading. 
 ## Common 
 
-<<<<<<< HEAD
-
-
-# Sudoer Groups using Ansible 
-=======
 ### Sudoer Groups using Ansible 
->>>>>>> f868f2e65133bc70b5ad094bcdf20430a2148bb6
 
 A sudo user stand for Super User Do. 
 
@@ -106,7 +100,7 @@ This can be edited in
 roles/common/defaults/main.yml
 ```
 
-<<<<<<< HEAD
+
 # Define sysctl configuration in Ansible
 
 Ansible already has pre-configured modules for editing sysctl files. However because this is for training purposes to gain a better understanding a custom template has been made.
@@ -122,8 +116,8 @@ Example:
   net.ipv4.ip_forward: 1
   add.your.line.here:value
 ```
-=======
-## singleplatform-eng.users
+
+# singleplatform-eng.users
 
 This role is for managing users on our system. 
 
@@ -132,7 +126,6 @@ Downloaded from: https://galaxy.ansible.com/singleplatform-eng/users
     ansible-galaxy install singleplatform-eng.users
 
 Once included in the site.yml file, an all.yml file was created within the group_vars folder to add all of the users. In this file a group was created called 'webops_admins' where the users would be assigned. The users relevant data is declared here including their ssh keys, uid, and the groups they are a part of. 
->>>>>>> f868f2e65133bc70b5ad094bcdf20430a2148bb6
 
 
 # Installing Nginx

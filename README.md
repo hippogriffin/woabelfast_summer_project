@@ -107,6 +107,39 @@ The nginx role from ansible galaxy was installed using the following command:
 Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
 
 
+# Configuring Firewalls
+
+Firewalls are configured using the Ansible role geerlingguy.firewall
+
+This can be configured using group_vars.
+
+Configurable variables can be found in:
+roles_galaxy/geerlingguy.firewall/defaults/main.yml
+
+### Example
+    firewall_allowed_tcp_port:
+      - "22"
+      - "80"
+
+
+# Adding Yum Repositories
+
+Yum repositories can be adde using the yum_repos role.
+
+These are created using the variable yum_repo_files wihch can be configured in vars.
+
+### Example
+    yum_repo_files:
+      - name: nginx
+        description: nginx repo
+        baseurl: http://nginx.org/packages/centos/$release/$basearch/
+        enabled: yes
+        state: present
+
+Additional repositories can be added with a new list.
+
+This will create a repo file for nginx. A populated example can be found in defaults/main.yml
+
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 

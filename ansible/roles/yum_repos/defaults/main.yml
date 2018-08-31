@@ -1,0 +1,16 @@
+---
+# defaults file for yum_repos
+
+# Example Configuragtion of Variables
+
+yum_repo_files: []
+#  - name: nginx
+#    description: "Repository for installing nginx for CentOS"
+#    baseurl: http://nginx.org/packages/centos/$release/$basearch/
+#    enabled: yes
+#    state: present
+#  - name: jenkins
+#    description: "Repository for installing jenkin for CentOS"
+#    baseurl: https://pkg.jenkins.io/redhat/jenkins-2.140-1.1.noarch.rpm
+#    enabled: yes
+#    state: present

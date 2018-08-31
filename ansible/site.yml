@@ -8,9 +8,11 @@
     - NTP
     - geerlingguy.firewall
     - singleplatform-eng.users
+    - yum_repos
     
 - name: Install NGINX on proxy
   hosts: webservers
   become: true
   roles:
     - geerlingguy.nginx
+    - yum_repos

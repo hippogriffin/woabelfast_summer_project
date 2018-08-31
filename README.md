@@ -100,7 +100,24 @@ This can be edited in
 roles/common/defaults/main.yml
 ```
 
-## singleplatform-eng.users
+
+# Define sysctl configuration in Ansible
+
+Ansible already has pre-configured modules for editing sysctl files. However because this is for training purposes to gain a better understanding a custom template has been made.
+
+This would also be used in a real project when you are requiring different configurations for groups and machines.
+
+To add anything to sysctl just add it below <b>sysctl:</b>
+
+Example:
+
+```
+ sysctl:
+  net.ipv4.ip_forward: 1
+  add.your.line.here:value
+```
+
+# singleplatform-eng.users
 
 This role is for managing users on our system. 
 

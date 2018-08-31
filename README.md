@@ -63,6 +63,8 @@ Each role will consist of one or more of the following:
   version: master
   name: nginx_role
 ```
+## sshd
+OpenSSH SSH deamon configuration
 
 ## willshersystems.sshd
 
@@ -78,6 +80,38 @@ By default it configures the SSH daemon with the normal OS defaults. It...
 
 This role is added to the project through including it in the site.yml file, under the roles heading. 
 ## Common 
+
+## Installing Nginx
+
+The nginx role from ansible galaxy was installed using the following command:
+    
+    ansible-galaxy install geerlingguy.nginx -p roles
+
+Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
+
+## mysql 
+
+We installed a MySQL role from ansible galaxy: 
+https://galaxy.ansible.com/geerlingguy/mysql
+
+This role installs and configures MySQL or MariaDB server on RHEL/CentOS or Debian/Ubuntu servers.
+
+This role was then included in the requirements.yml file to be installed on the db servers. All of the roles that appear in this file can be installed using...
+
+    ansible-galaxy install -r requirements.yml -p roles_galaxy
+
+We then built on this role by updating the db_servers.yml file within the group_vars folder to create users, set the admin password, and create a Database. 
+
+When we ssh onto the db server we can log on as MySQL root user using: 
+
+    mysql -u root -p
+
+We can then check our users or databases by using one of the following commands...
+
+    SELECT User, Host, Password FROM mysql.user;
+or
+    
+     SHOW DATABASES; 
 
 ### Sudoer Groups using Ansible 
 
@@ -99,7 +133,6 @@ This can be edited in
 ```
 roles/common/defaults/main.yml
 ```
-
 
 # Define sysctl configuration in Ansible
 
@@ -128,13 +161,6 @@ Downloaded from: https://galaxy.ansible.com/singleplatform-eng/users
 Once included in the site.yml file, an all.yml file was created within the group_vars folder to add all of the users. In this file a group was created called 'webops_admins' where the users would be assigned. The users relevant data is declared here including their ssh keys, uid, and the groups they are a part of. 
 
 
-# Installing Nginx
-
-The nginx role from ansible galaxy was installed using the following command:
-    
-    ansible-galaxy install geerlingguy.nginx -p roles
-
-Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
 
 # Encryption
 

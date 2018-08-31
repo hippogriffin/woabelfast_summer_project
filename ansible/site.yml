@@ -15,12 +15,17 @@
   become: true
   roles:
     - geerlingguy.nginx
-    - yum_repos
-
 
 - name: configure wordpress
   hosts: wordpress_servers
   become: true
   roles:
     - PHP
+    
+- name: Install and Configure mySQl on DB server
+  hosts: db_servers
+  become: true
+  roles: 
+    - geerlingguy.mysql
+
 

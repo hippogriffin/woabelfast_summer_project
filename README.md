@@ -66,6 +66,8 @@ Each role will consist of one or more of the following:
 ## sshd
 OpenSSH SSH deamon configuration
 
+## willshersystems.sshd
+
 This role manages the SSH configuration on our servers and was downloaded from ansible-galaxy... https://galaxy.ansible.com/willshersystems/sshd
 
 By default it configures the SSH daemon with the normal OS defaults. It...
@@ -77,6 +79,7 @@ By default it configures the SSH daemon with the normal OS defaults. It...
 - Tests the sshd_config before reloading sshd.
 
 This role is added to the project through including it in the site.yml file, under the roles heading. 
+## Common 
 
 ## Installing Nginx
 
@@ -110,7 +113,7 @@ or
     
      SHOW DATABASES; 
 
-# Sudoer Groups using Ansible 
+### Sudoer Groups using Ansible 
 
 A sudo user stand for Super User Do. 
 
@@ -131,8 +134,92 @@ This can be edited in
 roles/common/defaults/main.yml
 ```
 
+# Define sysctl configuration in Ansible
+
+Ansible already has pre-configured modules for editing sysctl files. However because this is for training purposes to gain a better understanding a custom template has been made.
+
+This would also be used in a real project when you are requiring different configurations for groups and machines.
+
+To add anything to sysctl just add it below <b>sysctl:</b>
+
+Example:
+
+```
+ sysctl:
+  net.ipv4.ip_forward: 1
+  add.your.line.here:value
+```
+
+# singleplatform-eng.users
+
+This role is for managing users on our system. 
+
+Downloaded from: https://galaxy.ansible.com/singleplatform-eng/users
+  
+    ansible-galaxy install singleplatform-eng.users
+
+Once included in the site.yml file, an all.yml file was created within the group_vars folder to add all of the users. In this file a group was created called 'webops_admins' where the users would be assigned. The users relevant data is declared here including their ssh keys, uid, and the groups they are a part of. 
 
 
+
+# Encryption
+
+The main tool we can use to encrypt ansible variables is ansible-vault.  This can encrypt any structured data files used by Ansible.
+
+If you want to create a new encrypted file, the command is:  ansible-vault create <filename>
+
+The user will then be prompted to enter a vault password which for our testing we set to: P@55word
+
+We typed the following command to move this password to its own file:
+
+	echo "P@55word" > vault_password
+	
+(ensure you're in the correct directory)
+
+To encrypt a particular string, we can type:
+	
+	ansible-vault encrypt_string <name_of_string> --ask-vault-pass
+
+We then used the yq parser for yml files.  This allows us decrypt.  Install using the following command:
+	
+    brew install yq
+
+There doesn't seem to be any easy way to decrypt a variable in a list, however when we moved the variable out of the list, the decryption worked using the following command
+
+    yq read <target_file_path> filename | ansible-vault --vault-password-file=<password_file_name> decrypt
+
+# Configuring Firewalls
+
+Firewalls are configured using the Ansible role geerlingguy.firewall
+
+This can be configured using group_vars.
+
+Configurable variables can be found in:
+roles_galaxy/geerlingguy.firewall/defaults/main.yml
+
+### Example
+    firewall_allowed_tcp_port:
+      - "22"
+      - "80"
+
+
+# Adding Yum Repositories
+
+Yum repositories can be adde using the yum_repos role.
+
+These are created using the variable yum_repo_files wihch can be configured in vars.
+
+### Example
+    yum_repo_files:
+      - name: nginx
+        description: nginx repo
+        baseurl: http://nginx.org/packages/centos/$release/$basearch/
+        enabled: yes
+        state: present
+
+Additional repositories can be added with a new list.
+
+This will create a repo file for nginx. A populated example can be found in defaults/main.yml
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

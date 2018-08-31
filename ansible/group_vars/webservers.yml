@@ -9,10 +9,3 @@ nginx_vhosts: []
 firewall_allowed_tcp_ports:
   - "22"
   - "80"
-
-yum_repo_files:
-  - name: nginx
-    description: "Repository for installing nginx for CentOS"
-    baseurl: http://nginx.org/packages/centos/$release/$basearch/
-    enabled: yes
-    state: present

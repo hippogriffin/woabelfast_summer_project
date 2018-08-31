@@ -5,3 +5,15 @@
   firewall_allowed_tcp_ports:
     - "22"
     - "80"
+
+#PHP.ini config
+  
+  php_ini_cgi_value: "0"
+
+#PHP Opcache config
+  opcache_revalidate_freq_value: "0"
+  opcache_validate_timestamps_value: "0"
+  opcache_accelerated_files_value: "20000"
+  opcache_memory_consumption_value: "128"
+  opcache_interned_strings_buffer_value: "16"
+  opcache_fast_shutdown_value: "1"

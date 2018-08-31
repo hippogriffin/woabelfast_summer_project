@@ -23,10 +23,3 @@ users_deleted: []
   # - username: example
   #  name: example User
   #  uid: 1002
-
-yum_repo_files:
-  - name: jenkins
-    description: "Repository for installing jenkins for CentOS"
-    baseurl: https://pkg.jenkins.io/redhat/jenkins-2.140-1.1.noarch.rpm
-    enabled: yes
-    state: present

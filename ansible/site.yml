@@ -8,14 +8,12 @@
     - NTP
     - geerlingguy.firewall
     - singleplatform-eng.users
-    - yum_repos
     
 - name: Install NGINX on proxy
   hosts: webservers
   become: true
   roles:
     - geerlingguy.nginx
-    - yum_repos
 
 
 - name: configure wordpress
@@ -23,4 +21,10 @@
   become: true
   roles:
     - PHP
-
+    
+- name: configure jenkins
+  hosts: jenkins_servers
+  become: true
+  roles:
+    - geerlingguy.java
+    - geerlingguy.jenkins

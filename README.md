@@ -88,11 +88,14 @@ Inside site.yml,  the role was applied to the webservers group which contains th
 
 ## mysql 
 
-Installs and configures MySQL or MariaDB server on RHEL/CentOS or Debian/Ubuntu servers.
+We installed a MySQL role from ansible galaxy: 
+https://galaxy.ansible.com/geerlingguy/mysql
 
-    ansible-galaxy install geerlingguy.mysql
+This role installs and configures MySQL or MariaDB server on RHEL/CentOS or Debian/Ubuntu servers.
 
-This role was then included in the site.yml file and only installed on the db servers. 
+This role was then included in the requirements.yml file to be installed on the db servers. All of the roles that appear in this file can be installed using...
+
+    ansible-galaxy install -r requirements.yml -p roles_galaxy
 
 We then built on this role by updating the db_servers.yml file within the group_vars folder to create users, set the admin password, and create a Database. 
 

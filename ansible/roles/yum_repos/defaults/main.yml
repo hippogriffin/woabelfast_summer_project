@@ -1,8 +1,8 @@
 ---
 # defaults file for yum_repos
 
-# Example Configuragtion of Variables
 
+# Example Configuragtion of Variables
 yum_repo_files: []
 #  - name: nginx
 #    description: "Repository for installing nginx for CentOS"

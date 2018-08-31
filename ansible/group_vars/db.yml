@@ -1,8 +1,0 @@
-#Group vars for db servers group
-
-#Firewall configuration
-
-  firewall_allowed_tcp_ports:
-    - "22"
-    - "3306"
-    - "33060"

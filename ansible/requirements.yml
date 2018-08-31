@@ -16,3 +16,7 @@
 
 - src: geerlingguy.jenkins
   version: 3.5.1
+
+- src: geerlingguy.mysql
+  version: 2.9.0
+

@@ -15,7 +15,6 @@
   roles:
     - geerlingguy.nginx
 
-
 - name: configure wordpress
   hosts: wordpress_servers
   become: true
@@ -28,3 +27,9 @@
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
+
+- name: Install and Configure mySQl on DB server
+  hosts: db_servers
+  become: true
+  roles: 
+    - geerlingguy.mysql

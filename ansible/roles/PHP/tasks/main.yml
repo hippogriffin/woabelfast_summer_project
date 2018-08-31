@@ -1,0 +1,39 @@
+---
+- name: Install epel-release
+  yum: pkg=epel-release state=installed
+
+- name: Install PHP components
+  yum: pkg=php-{{item}} state=installed
+  with_items:
+    - fpm
+    - mysql
+    - cli
+    - pecl-zendopcache
+  when: "'wordpress_servers' in group_names"
+
+- name: change cgi.fix_pathinfo= to value of 0 in /etc/php.ini
+  lineinfile:
+    path: "{{ php_ini_path }}"
+    regexp: "^{{ php_ini_cgi_string }}"
+    line: "{{ php_ini_cgi }}"
+
+- name: check for pm.min_spare_servers line in /etc/php-fpm.d/www.conf
+  command: grep "^pm.min_spare_servers" /etc/php-fpm.d/www.conf
+  register: grep_ pm_min
+
+- name: check for pm.ax_spare_servers line in /etc/php-fpm.d/www.conf
+  command: grep "^pm.max_spare_servers" /etc/php-fpm.d/www.conf
+  register: grep_pm_max
+
+- name: update values in /etc/php.d/opcache.ini
+  lineinfile:
+    path: "{{ opache_conf_file }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: "^{{ opcache_revalidate_freq_string }}", line: "{{ opcache_revalidate_freq }}" }
+    - { regexp: "^{{ opcache_validate_timestamps_string }}", line: "{{ opcache_validate_timestamps }}" }
+    - { regexp: "^{{ opcache_accelerated_files_string }}", line: "{{ opcache_accelerated_files }}" }
+    - { regexp: "^{{ opcache_memory_consumption_string }}", line: "{{ opcache_memory_consumption }}" }
+    - { regexp: "^{{ opcache_interned_strings_buffer_string }}", line: "{{ opcache_interned_strings_buffer }}" }
+    - { regexp: "^{{ opcache_fast_shutdown_string }}", line: "{{ opcache_fast_shutdown }}" }

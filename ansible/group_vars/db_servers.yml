@@ -1,0 +1,24 @@
+#Group vars for db servers group
+
+#Firewall configuration
+  firewall_allowed_tcp_ports:
+    - "22"
+    - "3306"
+    - "33060"
+
+# Create Users
+  mysql_users:  
+    - name: brian
+      password: 12345
+      priv: '*.*:ALL'
+      state: present
+
+# Set Root Password
+  mysql_root_password: 12345
+
+# Create Databases
+  mysql_databases: 
+    - name: wordpress
+      collation: utf8_general_ci
+      encoding: utf8
+      replicate: 1

@@ -63,6 +63,8 @@ Each role will consist of one or more of the following:
   version: master
   name: nginx_role
 ```
+## sshd
+OpenSSH SSH deamon configuration
 
 This role manages the SSH configuration on our servers and was downloaded from ansible-galaxy... https://galaxy.ansible.com/willshersystems/sshd
 
@@ -76,6 +78,34 @@ By default it configures the SSH daemon with the normal OS defaults. It...
 
 This role is added to the project through including it in the site.yml file, under the roles heading. 
 
+## Installing Nginx
+
+The nginx role from ansible galaxy was installed using the following command:
+    
+    ansible-galaxy install geerlingguy.nginx -p roles
+
+Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
+
+## mysql 
+
+Installs and configures MySQL or MariaDB server on RHEL/CentOS or Debian/Ubuntu servers.
+
+    ansible-galaxy install geerlingguy.mysql
+
+This role was then included in the site.yml file and only installed on the db servers. 
+
+We then built on this role by updating the db_servers.yml file within the group_vars folder to create users, set the admin password, and create a Database. 
+
+When we ssh onto the db server we can log on as MySQL root user using: 
+
+    mysql -u root -p
+
+We can then check our users or databases by using one of the following commands...
+
+    SELECT User, Host, Password FROM mysql.user;
+or
+    
+     SHOW DATABASES; 
 
 # Sudoer Groups using Ansible 
 
@@ -98,13 +128,7 @@ This can be edited in
 roles/common/defaults/main.yml
 ```
 
-# Installing Nginx
 
-The nginx role from ansible galaxy was installed using the following command:
-    
-    ansible-galaxy install geerlingguy.nginx -p roles
-
-Inside site.yml,  the role was applied to the webservers group which contains the proxy VM
 
 
 # Training and Resources 

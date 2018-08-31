@@ -14,3 +14,10 @@
   become: true
   roles:
     - geerlingguy.nginx
+
+
+- name: Install and Configure mySQl on DB server
+  hosts: db_servers
+  become: true
+  roles: 
+    - geerlingguy.mysql

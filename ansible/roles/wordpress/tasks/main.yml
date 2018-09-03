@@ -1,0 +1,88 @@
+- name: Install pre-requisite packages for wordpress
+  yum: pkg={{item}} state=installed
+  with_items:
+    - mariadb
+    - mariadb-server
+    - MySQL-python
+  notify: restart_mariadb
+
+- name: disable selinux
+  selinux:
+    state: disabled
+
+- name: Create phpinfo conf file
+  template:
+    src: "{{ php_conf_template }}"
+    dest: "{{ php_conf }}"
+    force: yes
+  become: yes
+  notify: "restart nginx and php-fpm"
+
+- name: Create wordpress root and logs directories
+  file: path="{{ item }}" state=directory
+  with_items:
+    - "{{ wordpress_root }}"
+    - "{{ wordpress_logs }}"
+  notify: "restart nginx and php-fpm"
+
+- include: mysql.yml
+
+- name: update /etc/hosts with server name
+  template:
+    src: "{{ hosts_template }}"
+    dest: /etc/hosts
+    force: yes
+  become: yes
+  notify: "restart nginx and php-fpm"
+
+- name: download wordpress
+  get_url:
+    url: https://wordpress.org/latest.tar.gz
+    dest: /tmp/wordpress.tar.gz
+    validate_certs: no
+  become: true
+
+- name: extract wordpress archive
+  unarchive:
+    src: /tmp/wordpress.tar.gz
+    dest: "{{ wordpress_root }}"
+    copy: no
+    extra_opts: [--strip-components=1]
+  become: true
+
+- name: Add group "wordpress"
+  group: name=wordpress
+
+- name: Add user "wordpress"
+  user: name=wordpress group=wordpress home="{{ wordpress_root }}"
+
+- name: Fetch random salts for WordPress config
+  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
+  register: "wp_salt"
+  become: no
+
+- name: create and configure wordpress.conf
+  template:
+    src: "{{ wordpress_conf_template }}"
+    dest: "{{ wordpress_conf_dest }}"
+    force: yes
+    owner: wordpress
+    group: wordpress
+    mode: 0644
+
+- name: create wp-config.php
+  template:
+    src: "{{ wordpress_db_conf_template }}"
+    dest: "{{ wordpress_db_conf }}"
+    force: yes
+    owner: wordpress
+    group: wordpress
+    mode: 0644
+
+- name: Copy WordPress config file
+  template: src=wp-config.php dest="{{ wordpress_root }}"
+
+- name: Change ownership of WordPress installation
+  file: path="{{ wordpress_root }}" owner=wordpress group=wordpress state=directory recurse=yes
+
+- include: services.yml

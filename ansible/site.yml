@@ -8,7 +8,7 @@
     - NTP
     - geerlingguy.firewall
     - singleplatform-eng.users
-    
+
 - name: Install NGINX on proxy
   hosts: webservers
   become: true
@@ -19,4 +19,7 @@
   hosts: wordpress_servers
   become: true
   roles:
+    - geerlingguy.nginx
     - PHP
+    - wordpress
+

@@ -1,0 +1,20 @@
+- name: enable nginx at boot
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+  become: true
+
+- name: enable php-fpm at boot
+  systemd:
+    name: php-fpm
+    state: started
+    enabled: yes
+  become: true
+
+- name: enabled mariadb at boot
+  systemd:
+    name: mariadb
+    state: started
+    enabled: yes
+  become: true

@@ -1,0 +1,31 @@
+server {
+        listen   {{ listen_port }};
+        server_name {{ phpmyadmin_server_name }};
+        root {{ phpmyadmin_root }};
+
+location / {
+        index  index.php;
+}
+
+## Images and static content is treated different
+        location ~* ^.+.(jpg|jpeg|gif|css|png|js|ico|xml)$ {
+        access_log        off;
+        expires           30d;
+}
+
+location ~ /\.ht {
+        deny  all;
+}
+
+location ~ /(libraries|setup/frames|setup/libs) {
+        deny all;
+        return 404;
+}
+
+location ~ \.php$ {
+        include {{ phpmyadmin_fastcgi_params }};
+        fastcgi_pass {{ phpmyadmin_fastcgi }};
+        fastcgi_index {{ phpmyadmin_fastcgi_index }};
+        fastcgi_param SCRIPT_FILENAME {{ phpmyadmin_root }}$fastcgi_script_name;
+}
+}

@@ -1,3 +1,6 @@
+- name: restart_mariadb
+  service: name=mariadb state=restarted
+
 - name: restart_nginx
   service: name=nginx state=restarted
   listen: "restart nginx and php-fpm"
@@ -5,8 +8,3 @@
 - name: restart_php-fpm
   service: name=php-fpm state=restarted
   listen: "restart nginx and php-fpm"
-
-- name: yum-clean-metadata
-  command: yum clean metadata
-  args:
-    warn: no

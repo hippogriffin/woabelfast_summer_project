@@ -8,7 +8,7 @@
     - NTP
     - geerlingguy.firewall
     - singleplatform-eng.users
-    
+
 - name: Install NGINX on proxy
   hosts: webservers
   become: true
@@ -20,3 +20,9 @@
   become: true
   roles:
     - PHP
+
+- hosts: jenkins
+  become: yes
+  roles:
+    - geerlingguy.java
+    - geerlingguy.jenkins

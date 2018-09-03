@@ -113,6 +113,13 @@ or
     
      SHOW DATABASES; 
 
+## yum_packages
+This role has two main tasks within it, one for installing common yum packages across all servers, and one for installing custom yum packages across specific servers. 
+
+To install a yum package on all hosts, go to group_vars/all.yml and include the package name under 'common yum installs'. 
+
+To install a yum package on a specific host, go to group_vars/"group name".yml and include the package name under 'custom yum installs'. 
+
 ### Sudoer Groups using Ansible 
 
 A sudo user stand for Super User Do. 

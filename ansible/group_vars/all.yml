@@ -23,3 +23,9 @@ users_deleted: []
   # - username: example
   #  name: example User
   #  uid: 1002
+
+
+common_yum_installs: 
+  - epel-release
+
+

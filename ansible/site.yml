@@ -22,4 +22,16 @@
     - geerlingguy.nginx
     - PHP
     - wordpress
+    
+- name: configure jenkins
+  hosts: jenkins_servers
+  become: true
+  roles:
+    - geerlingguy.java
+    - geerlingguy.jenkins
 
+- name: Install and Configure mySQl on DB server
+  hosts: db_servers
+  become: true
+  roles: 
+    - geerlingguy.mysql

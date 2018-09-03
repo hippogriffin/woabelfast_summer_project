@@ -2,3 +2,8 @@
 base_sudoer_groups:
   - name: examplegroup
     sudo: true
+
+sysctl:
+  net.ipv4.ip_forward: 1
+
+

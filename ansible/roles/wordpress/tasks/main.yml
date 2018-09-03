@@ -1,8 +1,8 @@
 - name: Install pre-requisite packages for wordpress
   yum: pkg={{item}} state=installed
   with_items:
-    - mariadb
-    - mariadb-server
+#    - mariadb
+#    - mariadb-server
     - MySQL-python
   notify: restart_mariadb
 
@@ -24,8 +24,6 @@
     - "{{ wordpress_root }}"
     - "{{ wordpress_logs }}"
   notify: "restart nginx and php-fpm"
-
-- include: mysql.yml
 
 - name: update /etc/hosts with server name
   template:

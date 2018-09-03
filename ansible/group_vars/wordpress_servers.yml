@@ -2,105 +2,140 @@
 
 #Firewall Config
 
-  firewall_allowed_tcp_ports:
-    - "22"
-    - "80"
+firewall_allowed_tcp_ports:
+  - "22"
+  - "80"
 
 #PHP.ini config
-  
-  php_ini_cgi_value: "0"
+
+php_ini_cgi_value: "0"
 
 #PHP Opcache config
-  opcache_revalidate_freq_value: "0"
-  opcache_validate_timestamps_value: "0"
-  opcache_accelerated_files_value: "20000"
-  opcache_memory_consumption_value: "128"
-  opcache_interned_strings_buffer_value: "16"
-  opcache_fast_shutdown_value: "1"
+opcache_revalidate_freq_value: "0"
+opcache_validate_timestamps_value: "0"
+opcache_accelerated_files_value: "20000"
+opcache_memory_consumption_value: "128"
+opcache_interned_strings_buffer_value: "16"
+opcache_fast_shutdown_value: "1"
 
 #Nginx vhosts config
-  nginx_conf_dir: /etc/nginx/conf.d/
-  nginx_vhosts_conf: /etc/nginx/conf.d/wordpress.conf
-  nginx_fastcgi_params: /etc/nginx/fastcgi_params
-  server_name_redirect: "wordpress.example.com"
+nginx_conf_dir: /etc/nginx/conf.d/
+nginx_vhosts_conf: /etc/nginx/conf.d/wordpress.conf
+nginx_fastcgi_params: /etc/nginx/fastcgi_params
+server_name_redirect: "wordpress.example.com"
 
 ##php-fpm config
-  php_server_name: server.example.com
-  php_root: /usr/share/nginx/html/example.com
-  php_index_files: index index.html index.htm index.php
-  php_conf_template: virtual.conf.j2
-  php_conf: /etc/nginx/conf.d/virtual.conf
-  phpfpm_path: /usr/share/nginx/html/example.com/
-  phpfpm_dest: /usr/share/nginx/html/example.com/index.php
-  phpfpm_template: phpfpm.conf.j2
+php_server_name: server.example.com
+php_root: /usr/share/nginx/html/example.com
+php_index_files: index index.html index.htm index.php
+php_conf_template: virtual.conf.j2
+php_conf: /etc/nginx/conf.d/virtual.conf
+phpfpm_path: /usr/share/nginx/html/example.com/
+phpfpm_dest: /usr/share/nginx/html/example.com/index.php
+phpfpm_template: phpfpm.conf.j2
 
 #phpMyadmin config
-  phpmyadmin_server_name: phpmyadmin.example.com
-  phpmyadmin_root: /usr/share/phpMyAdmin
-  phpmyadmin_dest: /etc/nginx/conf.d/phpMyAdmin.conf
-  phpmyadmin_index: index  index.php
-  phpmyadmin_conf_template: phpmyadmin.conf.j2
-  phpmyadmin_fastcgi_params: /etc/nginx/fastcgi_params
-  phpmyadmin_fastcgi: 127.0.0.1:9000
-  phpmyadmin_fastcgi_index: index.php
+phpmyadmin_server_name: phpmyadmin.example.com
+phpmyadmin_root: /usr/share/phpMyAdmin
+phpmyadmin_dest: /etc/nginx/conf.d/phpMyAdmin.conf
+phpmyadmin_index: index  index.php
+phpmyadmin_conf_template: phpmyadmin.conf.j2
+phpmyadmin_fastcgi_params: /etc/nginx/fastcgi_params
+phpmyadmin_fastcgi: 127.0.0.1:9000
+phpmyadmin_fastcgi_index: index.php
 
 #wordpress config
-  wordpress_conf: /etc/nginx/conf.d/
-  wordpress_conf_dest: /etc/nginx/conf.d/wordpress.conf
-  wordpress_conf_template: wordpress.conf.j2
-  listen_port: 80
-  wordpress_server_name: wordpress.example.com
-  wordpress_access_log: /usr/share/nginx/wordpress.example.com/logs/access.log
-  wordpress_error_log: /usr/share/nginx/wordpress.example.com/logs/error.log
-  wordpress_root: /usr/share/nginx/wordpress.example.com
-  wordpress_logs: /usr/share/nginx/wordpress.example.com/logs
-  wordpress_index: index index.php index.html index.htm
-  wordpress_fastcgi_pass: localhost:9000
-  modify_hostname: true
-  wordpress_parent_path: /usr/share/nginx/
-  wordpress_owner: nginx
-  wordpress_group: nginx
+wordpress_conf: /etc/nginx/conf.d/
+wordpress_conf_dest: /etc/nginx/conf.d/wordpress.example.conf
+wordpress_conf_template: wordpress.conf.j2
+listen_port: 80
+wordpress_server_name: wordpress.example.com
+wordpress_access_log: /usr/share/nginx/wordpress.example.com/logs/access.log
+wordpress_error_log: /usr/share/nginx/wordpress.example.com/logs/error.log
+wordpress_root: /usr/share/nginx/wordpress.example.com
+wordpress_logs: /usr/share/nginx/wordpress.example.com/logs
+wordpress_index: index index.php index.html index.htm
+wordpress_fastcgi_pass: localhost:9000
+modify_hostname: true
+wordpress_parent_path: /usr/share/nginx/
+wordpress_owner: nginx
+wordpress_group: nginx
 
-  #wordpress db config
-  wordpress_db_host: localhost
-  wp_db_name: wordpress
-  wp_db_user: wpuser
-  wp_db_password: wppassword
-  wordpress_db_conf_template: "wp-config.php"
-  wordpress_db_conf: "/usr/share/nginx/wordpress.example.com/wp-config.php"
-  wordpress_db_sample: "/usr/share/nginx/wordpress.example.com/wp-config-sample.php"
-  
-  #mysql / mariadb authentication file template
-  cnf_template: my.cnf.j2
+#wordpress db config
+wp_db_host: 10.120.0.4
+wp_db_name: wordpress
+wp_db_user: wpuser
+wp_db_password: 12345
+wordpress_db_conf_template: "wp-config.php"
+wordpress_db_conf: "/usr/share/nginx/wordpress.example.com/wp-config.php"
+wordpress_db_sample: "/usr/share/nginx/wordpress.example.com/wp-config-sample.php"
 
-  #/etc/hosts template
-  hosts_template: hosts.j2
+#mysql / mariadb authentication file template
+cnf_template: my.cnf.j2
+
+#/etc/hosts template
+hosts_template: hosts.j2
 
 #epel-release config
-  epel_repo_path: /etc/yum.repos.d/epel.repo
-  epel_repo_url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-  epel_repo_gpg_key_url: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
-  epel_repo: epel-release
+epel_repo_path: /etc/yum.repos.d/epel.repo
+epel_repo_url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+epel_repo_gpg_key_url: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+epel_repo: epel-release
 
 # Variables listed here are applicable to all host groups
-  wp_version: 4.6
-  wp_sha256sum: c1856cf969b1e73025ba2c681491908c3a4a6c5a2333f4531bf9bfb90f634380
+wp_version: 4.6
+wp_sha256sum: c1856cf969b1e73025ba2c681491908c3a4a6c5a2333f4531bf9bfb90f634380
 
 # MySQL settings
-  mysqlservice: mysqld
-  mysql_port: 3306
+mysqlservice: mysqld
+mysql_port: 3306
 
 # This is used for the nginx server configuration, but access to the
 # WordPress site is not restricted by a named host.
-  nginx_port: 80
-  server_hostname: server.example.com
+nginx_port: 80
+server_hostname: server.example.com
 
 # Disable All Updates
 # By default automatic updates are enabled, set this value to true to disable all automatic updates
-  auto_up_disable: false
+auto_up_disable: false
 
 #Define Core Update Level
 # true  = Development, minor, and major updates are all enabled
 # false = Development, minor, and major updates are all disabled
 # minor = Minor updates are enabled, development, and major updates are disabled
-  core_update_level: true
+core_update_level: true
+
+nginx_vhosts: []
+listen: "80"
+server_name: "wordpress.example.com" # default: N/A
+root: "/usr/share/nginx/wordpress.example.com" # default: N/A
+index: "index.php index.html index.htm" # default: "index.html index.htm"
+filename: "wordpress.example.conf" # Can be used to set the filename of the vhost file.
+
+# Properties that are only added if defined:
+access_log: "/var/log/nginx/wordpress_access.log"
+error_log: "/var/log/nginx/wordpress_error.log"
+state: "present" # To remove the vhost configuration.
+extra_parameters: | 
+    location / {
+    root /usr/share/nginx/wordpress.example.com;
+    index index.php index.html index.htm;
+
+    if (-f $request_filename) {
+            expires 30d;
+            break;
+    }
+
+    if (!-e $request_filename) {
+            rewrite ^(.+)$ /index.php?q=$1 last;
+            }
+    }
+
+    location ~ .php$ {
+            fastcgi_pass   localhost:9000;  # port where FastCGI processes were spawned
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME   /usr/share/nginx/wordpress.example.com$fastcgi_script_name;  # same path as above
+            fastcgi_param PATH_INFO               $fastcgi_script_name;
+            include /etc/nginx/fastcgi_params;
+            }
+    }

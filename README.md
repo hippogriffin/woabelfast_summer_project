@@ -30,15 +30,14 @@ On the command line, type ansible-lint and then tab to your site.yml file.  Ansi
 
 # Git Setup
 
-After cloning the repo find a folder called scripts
-
-Pre-hooks
-
-find a file called "pre-commit" move this file to your .git/hooks folder
-run the following command:  
+After cloning the repo run the following commands
 
 ```
-chmod +x .git/hooks/pre-commit
+pre-commit autoupdate
+```
+
+```
+pre-commit install
 ```
 
 

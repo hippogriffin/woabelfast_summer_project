@@ -8,6 +8,7 @@
     - NTP
     - geerlingguy.firewall
     - singleplatform-eng.users
+    - yum_packages
     
 - name: Install NGINX on proxy
   hosts: webservers
@@ -40,3 +41,4 @@
   roles:
     - geerlingguy.nginx
     - selinux
+

@@ -1,0 +1,6 @@
+---
+# defaults file for yum_packages
+
+common_yum_installs: []
+
+custom_yum_installs: []

@@ -37,5 +37,5 @@ selinux_boolean:
     state: yes
 
 custom_yum_installs:
-  - name: libselinux-python
-  - name: libsemanage-python
+  - libselinux-python
+  - libsemanage-python

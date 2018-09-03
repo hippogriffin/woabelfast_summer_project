@@ -29,6 +29,7 @@ Firstly, use the workon command to switch to your virtual environment.  Type the
 On the command line, type ansible-lint and then tab to your site.yml file.  Ansible-lint will check your yaml code for indentation and syntax errors.
 
 # Git Setup
+Ensure you are running your virtual enviroment (Using Virtual Wrapper before following these steps)
 
 After cloning the repo run the following commands
 

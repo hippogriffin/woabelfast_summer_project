@@ -12,7 +12,10 @@
   version: 2.4.0
 
 - src: geerlingguy.java
-  verison: 1.9.0
+  version: 1.9.0
 
 - src: geerlingguy.jenkins
-  verison: 3.5.1
+  version: 3.5.1
+
+- src: geerlingguy.mysql
+  version: 2.9.0

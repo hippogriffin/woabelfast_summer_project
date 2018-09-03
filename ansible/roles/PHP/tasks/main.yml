@@ -18,12 +18,10 @@
     line: "{{ php_ini_cgi }}"
 
 - name: check for pm.min_spare_servers line in /etc/php-fpm.d/www.conf
-  when:
   command: grep "^pm.min_spare_servers" /etc/php-fpm.d/www.conf
   register: grep_ pm_min
 
 - name: check for pm.ax_spare_servers line in /etc/php-fpm.d/www.conf
-  when:
   command: grep "^pm.max_spare_servers" /etc/php-fpm.d/www.conf
   register: grep_pm_max
 

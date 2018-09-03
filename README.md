@@ -33,6 +33,10 @@ On the command line, type ansible-lint and then tab to your site.yml file.  Ansi
 After cloning the repo run the following commands
 
 ```
+sudo -H pip install pre-commit
+```
+
+```
 pre-commit autoupdate
 ```
 

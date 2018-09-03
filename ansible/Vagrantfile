@@ -13,7 +13,7 @@ groups = {
     "wordpress_servers" => ["wordpress"],
     "db_servers" => ["db"],
     "jenkins_servers" => ["jenkins"],
-    "bastion_servers" => ["jumpbox"]
+    "bastion_servers" => ["jumpbox"],
 
     "frontend:children" => ["webservers"],
     "backend:children" => ['db',"wordpress_servers"]
@@ -42,3 +42,5 @@ Vagrant.configure("2") do |config|
   end
 end
   
+
+

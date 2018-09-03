@@ -1,0 +1,16 @@
+---
+# tasks file for installing common & custom yum packages
+
+
+- name: common yum installs
+  yum:
+    update_cache: true
+    name: "{{ item }}"
+  with_items: "{{ common_yum_installs }}"
+
+- name: custom yum installs
+  yum:
+    update_cache: true
+    name: "{{ item }}"
+  with_items: "{{ custom_yum_installs }}"
+

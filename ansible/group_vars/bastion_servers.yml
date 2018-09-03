@@ -35,3 +35,7 @@ selinux_boolean:
   - name: httpd_can_network_connect
     persistent: yes
     state: yes
+
+custom_yum_installs:
+  - name: libselinux-python
+  - name: libsemanage-python

@@ -30,15 +30,14 @@ On the command line, type ansible-lint and then tab to your site.yml file.  Ansi
 
 # Git Setup
 
-After cloning the repo find a folder called scripts
-
-Pre-hooks
-
-find a file called "pre-commit" move this file to your .git/hooks folder
-run the following command:  
+After cloning the repo run the following commands
 
 ```
-chmod +x .git/hooks/pre-commit
+pre-commit autoupdate
+```
+
+```
+pre-commit install
 ```
 
 
@@ -112,6 +111,13 @@ We can then check our users or databases by using one of the following commands.
 or
     
      SHOW DATABASES; 
+
+## yum_packages
+This role has two main tasks within it, one for installing common yum packages across all servers, and one for installing custom yum packages across specific servers. 
+
+To install a yum package on all hosts, go to group_vars/all.yml and include the package name under 'common yum installs'. 
+
+To install a yum package on a specific host, go to group_vars/"group name".yml and include the package name under 'custom yum installs'. 
 
 ### Sudoer Groups using Ansible 
 

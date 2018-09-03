@@ -34,3 +34,10 @@
   become: true
   roles: 
     - geerlingguy.mysql
+
+- name: configure bastion servers
+  hosts: bastion_servers
+  become: true
+  roles:
+    - geerlingguy.nginx
+    - selinux

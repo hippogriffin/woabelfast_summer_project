@@ -347,10 +347,10 @@ Example
 
     locals {
         wp_server_host_name { 
-        "0" = "${var.environment}_${var.wp_server_name}_00"
-        "1" = "${var.environment}_${var.wp_server_name}_01"
+        "0" = "${var.environment}_${var.wp_server_name}_01"
+        "1" = "${var.environment}_${var.wp_server_name}_02"
         ------------------------
-        "2" = "${var.environment}_${var.wp_server_name}_02"
+        "2" = "${var.environment}_${var.wp_server_name}_03"
         }
     }
 

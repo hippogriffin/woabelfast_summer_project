@@ -1,6 +1,6 @@
 #configure management security group
 resource "aws_security_group" "${var.woabelfast_security-group}" {
-    vpc_id = "${woabelfast_vpc.id}"
+    vpc_id = "${aws_vpc.woabelfast_vpc.id}"
 
 ingress {
     from_port   = 22

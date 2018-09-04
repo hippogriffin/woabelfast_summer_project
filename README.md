@@ -260,6 +260,11 @@ Add the following to the variables.tf file of each Environment:
 
 # DMZ
 
+
+## Internet Gateway
+
+An Internet Gateway has been created for the DMZ environment
+
 ## DMZ Subnet
 
 The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet.
@@ -315,6 +320,39 @@ Additional inbound rules can be added by including new ingress rules in security
 
 This group should be applied to all wordpress servers.
 
+
+## Wordpress Instance
+
+Wordpress instances are configured in the */instance.tf file
+
+Variables for these instances are stored in the */variables.tf file
+
+All instances should be added to the *_wordpress subnet
+
+.* = environment (preview/preprod/production)
+
+To add more servers, edit the variables.tf file and add a new line to the wp_server_ips variable and the wp_server_host_name local
+
+Example
+
+    variable "wp_servers_ips" {
+        default {
+            "0" = "10.122.2.10"
+            "1" = "10.122.2.11"
+            --------------
+            "2" = "10.122.2.12"
+        }
+    }
+.
+
+    locals {
+        wp_server_host_name { 
+        "0" = "${var.environment}_${var.wp_server_name}_01"
+        "1" = "${var.environment}_${var.wp_server_name}_02"
+        ------------------------
+        "2" = "${var.environment}_${var.wp_server_name}_03"
+        }
+    }
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

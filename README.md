@@ -232,6 +232,30 @@ Additional repositories can be added with a new list.
 
 This will create a repo file for nginx. A populated example can be found in defaults/main.yml
 
+# Creating VPC Resources
+Under Environments & within dmz, management & preview folders, add the following to the vpc.tf file of each, making changes where appropriate:
+
+### Example
+    # Preview VPC 
+    resource "aws_vpc" "preview_vpc" {
+        cidr_block = "10.122.0.0/24"
+
+        enable_dns_support = true
+        enable_dns_hostnames = true
+
+        tags {
+	        Name = "${var.environment}"
+        }
+    }
+
+Add the following to the variables.tf file of each Environment:
+
+### Example
+
+    variable "environment" {
+    default = "dmz"
+    }
+    
 # Terraform
 
 ## DMZ Subnet
@@ -252,7 +276,6 @@ This group should be applied to all jumpboxes.
 ## Private DNS 
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
-
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

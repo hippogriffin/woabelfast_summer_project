@@ -10,6 +10,7 @@ resource "aws_subnet" "preview_wordpress" {
         environment = "preview"
         terraform = "true"
     }
+}
 # Preview Subnet 
 
 resource "aws_subnet" "preview_webserver_subnet" {

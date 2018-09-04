@@ -248,6 +248,12 @@ Additional inbound/outbound rules can be added by including new ingress/egress r
 
 This group should be applied to all jumpboxes.
 
+
+## Private DNS 
+
+Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
+
+
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 

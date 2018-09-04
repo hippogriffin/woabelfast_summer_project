@@ -44,7 +44,7 @@ variable "wp_server_name" {
 }
 
 variable "ami" {
-  default = "ami-00846a67"
+  default = "ami-3548444c"
 }
 
 variable "instance_type" {

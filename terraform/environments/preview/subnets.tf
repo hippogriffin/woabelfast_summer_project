@@ -16,6 +16,5 @@ resource "aws_subnet" "preview_db_subnet" {
 
   tags {
     Name = "Preview DB"
-    terraform = "true"
   }
 }

@@ -8,6 +8,11 @@ variable "dmz_subnet" {
     default = "10.120.0.0/24"
 }
 
+#DB Server
+variable "db_security_group" {
+    default = "db_rds_sg"
+}
+
 
 #Proxy Servers
 
@@ -27,6 +32,6 @@ variable "preview_webserver_cidr" {
     default = "10.120.1.0/24"
 }
 
-variable "db_security_group" {
-    default = "db_rds_sg"
+variable "preview_db_cidr" {
+    default = "10.120.1.0/24"
 }

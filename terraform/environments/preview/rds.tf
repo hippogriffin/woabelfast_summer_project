@@ -5,7 +5,7 @@ resource "aws_db_instance" "preview_rds" {
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
   name                 = "${var.preview_rds}"
-  username             = "wpusers"
+  username             = "wpuser"
   password             = "12345"
   parameter_group_name = "default.mysql5.7"
 }

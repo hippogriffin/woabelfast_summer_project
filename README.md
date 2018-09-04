@@ -29,16 +29,20 @@ Firstly, use the workon command to switch to your virtual environment.  Type the
 On the command line, type ansible-lint and then tab to your site.yml file.  Ansible-lint will check your yaml code for indentation and syntax errors.
 
 # Git Setup
+Ensure you are running your virtual enviroment (Using Virtual Wrapper before following these steps)
 
-After cloning the repo find a folder called scripts
-
-Pre-hooks
-
-find a file called "pre-commit" move this file to your .git/hooks folder
-run the following command:  
+After cloning the repo run the following commands
 
 ```
-chmod +x .git/hooks/pre-commit
+sudo -H pip install pre-commit
+```
+
+```
+pre-commit autoupdate
+```
+
+```
+pre-commit install
 ```
 
 
@@ -112,6 +116,13 @@ We can then check our users or databases by using one of the following commands.
 or
     
      SHOW DATABASES; 
+
+## yum_packages
+This role has two main tasks within it, one for installing common yum packages across all servers, and one for installing custom yum packages across specific servers. 
+
+To install a yum package on all hosts, go to group_vars/all.yml and include the package name under 'common yum installs'. 
+
+To install a yum package on a specific host, go to group_vars/"group name".yml and include the package name under 'custom yum installs'. 
 
 ### Sudoer Groups using Ansible 
 
@@ -188,7 +199,7 @@ There doesn't seem to be any easy way to decrypt a variable in a list, however w
 
     yq read <target_file_path> filename | ansible-vault --vault-password-file=<password_file_name> decrypt
 
-# Configuring Firewalls
+## Configuring Firewalls
 
 Firewalls are configured using the Ansible role geerlingguy.firewall
 
@@ -203,7 +214,7 @@ roles_galaxy/geerlingguy.firewall/defaults/main.yml
       - "80"
 
 
-# Adding Yum Repositories
+## Adding Yum Repositories
 
 Yum repositories can be adde using the yum_repos role.
 
@@ -221,6 +232,52 @@ Additional repositories can be added with a new list.
 
 This will create a repo file for nginx. A populated example can be found in defaults/main.yml
 
+# Creating VPC Resources
+Under Environments & within dmz, management & preview folders, add the following to the vpc.tf file of each, making changes where appropriate:
+
+### Example
+    # Preview VPC 
+    resource "aws_vpc" "preview_vpc" {
+        cidr_block = "10.122.0.0/24"
+
+        enable_dns_support = true
+        enable_dns_hostnames = true
+
+        tags {
+	        Name = "${var.environment}"
+        }
+    }
+
+Add the following to the variables.tf file of each Environment:
+
+### Example
+
+    variable "environment" {
+    default = "dmz"
+    }
+    
+# Terraform
+
+## DMZ Subnet
+
+The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet.
+
+## DMZ Security Group
+
+This Security group allows traffic from Kainos to the jumpbox, and from the jumpbox to our other environments. Allowed traffic can be seen in the securitygroups.tf file.
+
+CIDR ranges for environments have been defined in the variables.tf file
+
+Additional inbound/outbound rules can be added by including new ingress/egress rules in securitygroups.tf
+
+This group should be applied to all jumpboxes.
+
+
+## Private DNS 
+
+Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
+
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 
+https://www.terraform.io/docs

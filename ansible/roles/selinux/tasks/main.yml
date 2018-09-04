@@ -1,0 +1,6 @@
+- name: Editing SELinux boolean values
+  seboolean:
+    name: "{{ item.name }}"
+    persistent: "{{ item.persistent }}"
+    state: "{{ item.state }}"
+  with_items: "{{ selinux_boolean }}"

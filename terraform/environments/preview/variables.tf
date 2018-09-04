@@ -4,6 +4,10 @@ variable "environment" {
     default = "preview"
 }
 
+
+variable "preview_wordpress_cidr" {
+    default = "10.122.0.0/24"
+
 variable "dmz_subnet" {
     default = "10.120.0.0/24"
 }

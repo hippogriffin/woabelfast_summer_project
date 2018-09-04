@@ -303,6 +303,9 @@ All instances should be added to the management subnet
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
 
+## Wordpress Subnet
+
+The subnet for the wordpress server in the preview environment is called preview_wordpress.  The default CIDR block for this subnet is specified within preview/variables.tf
 
 ## Wordpress Security Group
 

@@ -20,7 +20,7 @@ variable "db_security_group" {
 #Proxy Servers
 
 variable "proxy_subnet" {
-  default = "10.122.0.0/16"
+  default = "10.122.1.0/24"
 }
 
 #Wordpress Servers
@@ -31,17 +31,17 @@ variable "wp_servers_security_group" {
 
 #Preview Cidr
 variable "preview_webserver_cidr" {
-  default = "10.120.1.0/24"
+  default = "10.122.1.0/24"
 }
 
 variable "preview_db_cidr" {
-    default = "10.120.3.0/24"
+    default = "10.122.3.0/24"
 }
 
 #EC2 instance variables
 
 variable "ami" {
-    default = "ami-00846a67"
+    default = "ami-3548444c"
 }
 
 variable "instance_type" {
@@ -51,12 +51,12 @@ variable "instance_type" {
 
 variable "webservers_ips" {
   default = {
-    "0" = "10.0.2.10"
-    "1" = "10.0.2.11"
-    "2" = "10.0.2.12"
-    "3" = "10.0.2.13"
-    "4" = "10.0.2.14"
-    "5" = "10.0.2.15"
+    "0" = "10.122.1.10"
+    "1" = "10.122.1.11"
+    "2" = "10.122.1.12"
+    "3" = "10.122.1.13"
+    "4" = "10.122.1.14"
+    "5" = "10.122.1.15"
   }
 }
 

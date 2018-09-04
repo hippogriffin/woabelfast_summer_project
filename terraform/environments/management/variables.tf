@@ -6,7 +6,7 @@ variable "environment" {
 
 #EC2 instance variables
 
-variable "jenkins_ami" {
+variable "ami" {
     default = "ami-00846a67"
 }
 

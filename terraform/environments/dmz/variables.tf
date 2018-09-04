@@ -13,3 +13,8 @@ variable "mgmt_cidr" {
 variable "security_group_name" {
     default = "dmz_sg"
 }
+
+variable "environment" {
+    default = "dmz"
+}
+

@@ -1,3 +1,5 @@
+#Variables for the Management Environment
+
 variable "environment" {
     default = "mgmt"
 }
@@ -12,4 +14,18 @@ variable "dmz_cidr" {
 
 variable "preview_cidr" {
   default = "10.122.0.0/16"
+}
+=======
+#EC2 instance variables
+
+variable "ami" {
+    default = "ami-00846a67"
+}
+
+variable "jenkins_instance_type" {
+    default = "t2.micro"
+}
+
+variable "jenkins_name" {
+    default = "jenkins"
 }

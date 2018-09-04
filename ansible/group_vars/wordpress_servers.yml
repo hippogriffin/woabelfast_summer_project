@@ -113,10 +113,8 @@ auto_up_disable: false
 # minor = Minor updates are enabled, development, and major updates are disabled
 core_update_level: true
 
-nginx_vhosts: []
-
         #nginx_vhosts for wordpress
-        - listen: "80"
+- listen: "80"
         server_name: "{{ wordpress_server_name }}" # default: N/A
         root: "{{ wordpress_root }}" # default: N/A
         index: "{{ wordpress_index }}" # default: "index.html index.htm"
@@ -151,7 +149,7 @@ nginx_vhosts: []
         }
 
         #nginx vhosts for php
-        - listen: "80"
+- listen: "80"
         server_name: "{{ php_server_name }}" # default: N/A
         root: "{{ php_root }}" # default: N/A
         index: "{{ php_index }}" # default: "index.html index.htm"
@@ -186,7 +184,7 @@ nginx_vhosts: []
         }
 
         #nginx vhosts for phpmyadmin
-        - listen: "80"
+- listen: "80"
         server_name: "{{ phpmyadmin_server_name }}" # default: N/A
         root: "{{ phpmyadmin_root }}" # default: N/A
         index: "{{ phpmyadmin_index_files }}" # default: "index.html index.htm"

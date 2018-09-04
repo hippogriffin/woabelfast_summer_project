@@ -14,6 +14,7 @@ resource "aws_instance" "wordpress" {
         Environment = "${var.environment}"
     }
 }
+
 resource "aws_instance" "proxy-servers" {
 ami = "${var.ami}"
 count = 2

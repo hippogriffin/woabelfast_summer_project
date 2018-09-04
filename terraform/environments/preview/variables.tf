@@ -63,13 +63,14 @@ variable "instance_count" {
 }
 
 
-
 locals {
     wp_server_host_name { 
       "0" = "${var.environment}_${var.wp_server_name}_00"
       "1" = "${var.environment}_${var.wp_server_name}_01"
       }
 }
+
+
 #EC2 instance variables
 
 variable "ami" {
@@ -108,4 +109,7 @@ variable "webservers_names" {
 # Web Servers
 variable "preview_web_servers_security_group" {
     default = "preview_web_servers"
+
 }
+
+

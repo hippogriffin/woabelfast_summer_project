@@ -1,15 +1,42 @@
 ---
-- name: Install epel-release
-  yum: pkg=epel-release state=installed
-
-- name: Install PHP components
+- name: install PHP components
   yum: pkg=php-{{item}} state=installed
   with_items:
     - fpm
     - mysql
     - cli
-    - pecl-zendopcache
-  when: "'wordpress_servers' in group_names"
+    - pear
+
+- name: check if epel is installed
+  stat: path=/etc/yum.repos.d/epel.repo
+  register: epel_repofile_result
+
+- name: install epel if not already installed
+  yum:
+    name: "{{ epel_repo_url }}"
+    state: present
+  register: result
+  when: not epel_repofile_result.stat.exists
+
+- name: import epel gpg key
+  rpm_key:
+    key: "{{ epel_repo_gpg_key_url }}"
+    state: present
+  when: not epel_repofile_result.stat.exists
+
+- name: install php, phpmyadmin and zendopcache components from epel
+  yum: pkg={{item}} state=installed
+  enablerepo: epel
+  with_items:
+    - php
+    - phpmyadmin
+    - php-pecl-zendopcache
+
+- name: Remove epel repo
+  yum_repository:
+    name: epel-release
+    state: absent
+  notify: yum-clean-metadata
 
 - name: change cgi.fix_pathinfo= to value of 0 in /etc/php.ini
   lineinfile:
@@ -17,13 +44,14 @@
     regexp: "^{{ php_ini_cgi_string }}"
     line: "{{ php_ini_cgi }}"
 
-- name: check for pm.min_spare_servers line in /etc/php-fpm.d/www.conf
-  command: grep "^pm.min_spare_servers" /etc/php-fpm.d/www.conf
-  register: grep_ pm_min
+- name: create example.com directory
+  file: path=/usr/share/nginx/html/example.com state=directory
 
-- name: check for pm.ax_spare_servers line in /etc/php-fpm.d/www.conf
-  command: grep "^pm.max_spare_servers" /etc/php-fpm.d/www.conf
-  register: grep_pm_max
+- name: create php info page
+  lineinfile:
+    path: "{{ phpfpm_dest }}"
+    line: <?php phpinfo(); ?>
+  notify: "restart nginx and php-fpm"
 
 - name: update values in /etc/php.d/opcache.ini
   lineinfile:

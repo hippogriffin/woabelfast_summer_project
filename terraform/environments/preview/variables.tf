@@ -6,6 +6,6 @@ variable "environment" {
 
 #Wordpress Servers
 
-variable "wp_servers_security_groups" {
+variable "wp_servers_security_group" {
     default = "wp_servers"
 }

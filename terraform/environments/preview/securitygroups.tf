@@ -5,6 +5,7 @@
   ingress {
     cidr = "10.0.0.0/24"
   }
+ }
 
 #Security Groups for the Preview Environment
 

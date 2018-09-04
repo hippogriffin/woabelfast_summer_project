@@ -47,11 +47,10 @@
 - name: create example.com directory
   file: path=/usr/share/nginx/html/example.com state=directory
 
-- name: create and configure index.php
-  template:
-    src: "{{ phpfpm_template }}"
-    dest: "{{ phpfpm_dest }}"
-    force: yes
+- name: create php info page
+  lineinfile:
+    path: "{{ phpfpm_dest }}"
+    line: <?php phpinfo(); ?>
   notify: "restart nginx and php-fpm"
 
 - name: update values in /etc/php.d/opcache.ini

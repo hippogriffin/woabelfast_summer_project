@@ -8,14 +8,6 @@
   selinux:
     state: disabled
 
-- name: Create phpinfo conf file
-  template:
-    src: "{{ php_conf_template }}"
-    dest: "{{ php_conf }}"
-    force: yes
-  become: yes
-  notify: "restart nginx and php-fpm"
-
 - name: Create wordpress root and logs directories
   file: path="{{ item }}" state=directory
   with_items:
@@ -23,12 +15,10 @@
     - "{{ wordpress_logs }}"
   notify: "restart nginx and php-fpm"
 
-- name: update /etc/hosts with server name
-  template:
-    src: "{{ hosts_template }}"
-    dest: /etc/hosts
-    force: yes
-  become: yes
+- name:  update /etc/hosts with server name
+  lineinfile:
+    path: "{{ hosts_file }}"
+    line: "^{{ ansible_host }} {{ inventory_hostname }}"
   notify: "restart nginx and php-fpm"
 
 - name: download wordpress

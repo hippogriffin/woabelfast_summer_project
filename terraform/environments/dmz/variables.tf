@@ -24,10 +24,6 @@ variable "instance_type" {
     default = "t2.micro"
 }
 
-variable "domain_name" {
-    default = "woabelfast.co.uk"
-}
-
 variable "instance_name" {
-    default = "jumpbox.woabelfast.co.uk"
+    default = "dmz_jumpbox.woabelfast.local"
 }

@@ -18,6 +18,10 @@ variable "proxy_subnet" {
 
 #Wordpress Servers
 
-variable "wp_servers_security_groups" {
+variable "wp_servers_security_group" {
     default = "wp_servers"
+}
+
+variable "db_security_group" {
+    default = "db_rds_sg"
 }

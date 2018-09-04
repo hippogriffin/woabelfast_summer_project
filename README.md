@@ -253,6 +253,9 @@ This group should be applied to all jumpboxes.
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
 
+## Wordpress Subnet
+
+The subnet for the wordpress server in the preview environment is called preview_wordpress.  The default CIDR block for this subnet is specified within preview/variables.tf
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

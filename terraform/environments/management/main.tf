@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "eu-west-1"
+}
+
 #configure management security group
 resource "aws_security_group" "${var.woabelfast_security-group}" {
     vpc_id = "${aws_vpc.woabelfast_vpc.id}"

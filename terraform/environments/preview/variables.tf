@@ -1,18 +1,23 @@
-variable "credentials_file" {
-    default = "$HOME/.aws/credentials/aws-secret"
+#Variables for Preview Environment
+
+variable "environment" {
+    default = "preview"
 }
 
-variable "region" {
-  default = "eu-west-1"
-}
-variable "ami" {
-    default = "ami-3548444c"
+variable "dmz_subnet" {
+    default = "10.120.0.0/24"
 }
 
-variable "instance_type" {
-    default = "t2.micro"
+
+#Proxy Servers
+
+variable "proxy_subnet" {
+    default = "10.122.0.0/16"
 }
 
-variable "domain_name" {
-    default = "example.com"
+
+#Wordpress Servers
+
+variable "wp_servers_security_groups" {
+    default = "wp_servers"
 }

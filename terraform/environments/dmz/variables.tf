@@ -16,3 +16,11 @@ variable "instance_type" {
 variable "domain_name" {
     default = "woabelfast.co.uk"
 }
+
+variable "environment_name" {
+    default = "dmz"
+}
+
+variable "server_role" {
+    default = "jumpbox"
+}

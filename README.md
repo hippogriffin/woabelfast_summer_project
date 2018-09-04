@@ -258,6 +258,8 @@ Add the following to the variables.tf file of each Environment:
     
 # Terraform
 
+# DMZ
+
 ## DMZ Subnet
 
 The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet.
@@ -284,6 +286,17 @@ This Security group allows traffic from Kainos to the jumpbox.
 Additional inbound rules can be added by including new ingress rules in securitygroups.tf
 
 This group should be applied to all jumpboxes.
+
+
+# Management
+
+## Management Instances
+
+Management instances are configured in the management/instance.tf file
+
+Variables for these instances are stored in the management/variables.tf file
+
+All instances should be added to the management subnet
 
 
 ## Private DNS 

@@ -1,3 +1,16 @@
+
+resource "aws_security_group" "preview_db" {
+  name        = "${var.db_security_group}"
+  vpc_id      = "${aws_vpc.preview_vpc.id}"
+
+   ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 #Security Groups for the Preview Environment
 
 resource "aws_security_group" "wp_servers" {

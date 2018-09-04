@@ -315,6 +315,24 @@ Additional inbound rules can be added by including new ingress rules in security
 
 This group should be applied to all wordpress servers.
 
+## RDS Preview
+
+Provides an RDS instance resource. Created a rds.tf file as below.
+
+### Example
+
+    resource "aws_db_instance" "preview_rds" {
+    allocated_storage    = 10
+    storage_type         = "gp2"
+    engine               = "mysql"
+    engine_version       = "5.7"
+    instance_class       = "db.t2.micro"
+    name                 = "${var.preview_rds}"
+    username             = "wpuser"
+    password             = "12345"
+    parameter_group_name = "default.mysql5.7"
+    }
+
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

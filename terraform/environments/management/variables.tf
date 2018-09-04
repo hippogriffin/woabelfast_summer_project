@@ -15,7 +15,8 @@ variable "dmz_cidr" {
 variable "preview_cidr" {
   default = "10.122.0.0/16"
 }
-=======
+
+
 #EC2 instance variables
 
 variable "ami" {

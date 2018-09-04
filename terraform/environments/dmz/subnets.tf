@@ -5,7 +5,7 @@ resource "aws_subnet" "dmz_subnet" {
     cidr_block = "${var.dmz_cidr}"
 
     tags {
-        name = "dmz_subnet"
+        Name = "dmz_subnet"
         terraform = "true"
     }
 }

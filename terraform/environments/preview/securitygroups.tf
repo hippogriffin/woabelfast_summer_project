@@ -40,7 +40,7 @@ resource "aws_security_group" "wp_servers" {
     }
 
     tags {
-        name = "${var.wp_servers_security_group}"
+        Name = "${var.wp_servers_security_group}"
         terraform = "true"
     }
 }

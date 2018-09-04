@@ -315,6 +315,9 @@ Additional inbound rules can be added by including new ingress rules in security
 
 This group should be applied to all wordpress servers.
 
+## DMZ Key Pair
+
+The public key to be used for all hosts in the DMZ environment is found in keypair.tf.  
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

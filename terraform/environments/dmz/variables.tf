@@ -14,5 +14,5 @@ variable "instance_type" {
 }
 
 variable "domain_name" {
-    default = "example.com"
+    default = "woabelfast.co.uk"
 }

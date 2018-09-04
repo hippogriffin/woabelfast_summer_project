@@ -5,5 +5,3 @@ base_sudoer_groups:
 
 sysctl:
   net.ipv4.ip_forward: 1
-
-

@@ -8,7 +8,8 @@
     - NTP
     - geerlingguy.firewall
     - singleplatform-eng.users
-
+    - yum_packages
+    
 - name: Install NGINX on proxy
   hosts: webservers
   become: true
@@ -35,3 +36,10 @@
   become: true
   roles: 
     - geerlingguy.mysql
+
+- name: configure bastion servers
+  hosts: bastion_servers
+  become: true
+  roles:
+    - geerlingguy.nginx
+    - selinux

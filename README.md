@@ -258,9 +258,26 @@ Add the following to the variables.tf file of each Environment:
     
 # Terraform
 
+# DMZ
+
 ## DMZ Subnet
 
 The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet.
+
+## Preview Subnet
+
+### Example
+    # Preview Subnet
+
+    resource "aws_subnet" "preview_subnet" {
+    vpc_id     = "${aws_vpc.preview_vpc.id}"
+    cidr_block = "${var.preview_cidr}"
+
+    tags {
+        Name = "Preview Web Server"
+        terraform = "true"
+    }
+    }   
 
 ## DMZ Security Group
 
@@ -271,10 +288,24 @@ Additional inbound rules can be added by including new ingress rules in security
 This group should be applied to all jumpboxes.
 
 
+# Management
+
+## Management Instances
+
+Management instances are configured in the management/instance.tf file
+
+Variables for these instances are stored in the management/variables.tf file
+
+All instances should be added to the management subnet
+
+
 ## Private DNS 
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
 
+## Wordpress Subnet
+
+The subnet for the wordpress server in the preview environment is called preview_wordpress.  The default CIDR block for this subnet is specified within preview/variables.tf
 
 ## Wordpress Security Group
 

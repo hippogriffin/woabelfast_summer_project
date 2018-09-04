@@ -232,6 +232,30 @@ Additional repositories can be added with a new list.
 
 This will create a repo file for nginx. A populated example can be found in defaults/main.yml
 
+# Creating VPC Resources
+Under Environments & within dmz, management & preview folders, add the following to the vpc.tf file of each, making changes where appropriate:
+
+### Example
+    # Preview VPC 
+    resource "aws_vpc" "preview_vpc" {
+        cidr_block = "10.122.0.0/24"
+
+        enable_dns_support = true
+        enable_dns_hostnames = true
+
+        tags {
+	        Name = "${var.environment}"
+        }
+    }
+
+Add the following to the variables.tf file of each Environment:
+
+### Example
+
+    variable "environment" {
+    default = "dmz"
+    }
+    
 # Terraform
 
 ## DMZ Subnet

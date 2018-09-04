@@ -17,13 +17,14 @@ variable "db_security_group" {
   default = "db_rds_sg"
 }
 
-#Proxy Servers
+# Proxy Servers
 
 variable "proxy_subnet" {
   default = "10.122.0.0/16"
 }
 
-#Wordpress Servers
+
+# Wordpress Servers
 
 variable "wp_servers_security_group" {
   default = "wp_servers"
@@ -70,4 +71,10 @@ variable "webservers_names" {
     "5" = "proxy-6"
   }
 
+}
+
+
+# Web Servers
+variable "preview_web_servers_security_group" {
+    default = "preview_web_servers"
 }

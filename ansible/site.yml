@@ -20,7 +20,9 @@
   hosts: wordpress_servers
   become: true
   roles:
+    - geerlingguy.nginx
     - PHP
+    - wordpress
     
 - name: configure jenkins
   hosts: jenkins_servers

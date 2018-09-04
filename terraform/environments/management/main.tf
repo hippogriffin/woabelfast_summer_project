@@ -6,14 +6,14 @@ ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = "${var.woabelfast_dmz-subnet}"
+    cidr_blocks = "${aws_subnet.dmz_subnet.id}"
   }
 
   egress {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    cidr_blocks     = "${var.woabelfast_dmz-subnet}"
+    cidr_blocks     = "${aws_subnet.dmz_subnet.id}"
 
 tags {
     Name = "Allow SSH from ${var.woabelfast_mgmt-subnet} to/from ${var.woabelfast_dmz-subnet}"

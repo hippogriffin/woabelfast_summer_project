@@ -11,6 +11,6 @@ variable "wp_servers_security_groups" {
 }
 
 #Preview Cidr
-variable "preview_cidr" {
+variable "preview_webserver_cidr" {
     default = "10.120.1.0/24"
 }

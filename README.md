@@ -232,6 +232,12 @@ Additional repositories can be added with a new list.
 
 This will create a repo file for nginx. A populated example can be found in defaults/main.yml
 
+# Terraform
+
+## Private DNS 
+
+Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
+
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 

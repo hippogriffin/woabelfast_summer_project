@@ -33,5 +33,5 @@ variable "preview_webserver_cidr" {
 }
 
 variable "preview_db_cidr" {
-    default = "10.120.1.0/24"
+    default = "10.120.3.0/24"
 }

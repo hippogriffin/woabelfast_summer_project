@@ -266,11 +266,9 @@ The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder.
 
 ## DMZ Security Group
 
-This Security group allows traffic from Kainos to the jumpbox, and from the jumpbox to our other environments. Allowed traffic can be seen in the securitygroups.tf file.
+This Security group allows traffic from Kainos to the jumpbox.
 
-CIDR ranges for environments have been defined in the variables.tf file
-
-Additional inbound/outbound rules can be added by including new ingress/egress rules in securitygroups.tf
+Additional inbound rules can be added by including new ingress rules in securitygroups.tf
 
 This group should be applied to all jumpboxes.
 
@@ -289,6 +287,16 @@ All instances should be added to the management subnet
 ## Private DNS 
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
+
+
+## Wordpress Security Group
+
+This security group allows ssh traffic from the dmz subnet and allows web traffic from the proxy subnet.
+
+Additional inbound rules can be added by including new ingress rules in securitygroups.tf
+
+This group should be applied to all wordpress servers.
+
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

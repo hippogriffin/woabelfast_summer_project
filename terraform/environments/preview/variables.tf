@@ -9,14 +9,14 @@ variable "dmz_subnet" {
 }
 
 
-#Proxy Servers
+# Proxy Servers
 
 variable "proxy_subnet" {
     default = "10.122.0.0/16"
 }
 
 
-#Wordpress Servers
+# Wordpress Servers
 
 variable "wp_servers_security_group" {
     default = "wp_servers"
@@ -24,4 +24,10 @@ variable "wp_servers_security_group" {
 
 variable "db_security_group" {
     default = "db_rds_sg"
+}
+
+
+# Web Servers
+variable "preview_web_servers_security_group" {
+    default = "preview_web_servers"
 }

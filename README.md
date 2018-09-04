@@ -232,26 +232,85 @@ Additional repositories can be added with a new list.
 
 This will create a repo file for nginx. A populated example can be found in defaults/main.yml
 
+# Creating VPC Resources
+Under Environments & within dmz, management & preview folders, add the following to the vpc.tf file of each, making changes where appropriate:
+
+### Example
+    # Preview VPC 
+    resource "aws_vpc" "preview_vpc" {
+        cidr_block = "10.122.0.0/24"
+
+        enable_dns_support = true
+        enable_dns_hostnames = true
+
+        tags {
+	        Name = "${var.environment}"
+        }
+    }
+
+Add the following to the variables.tf file of each Environment:
+
+### Example
+
+    variable "environment" {
+    default = "dmz"
+    }
+    
 # Terraform
+
+# DMZ
 
 ## DMZ Subnet
 
 The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet.
 
+## Preview Subnet
+
+### Example
+    # Preview Subnet
+
+    resource "aws_subnet" "preview_subnet" {
+    vpc_id     = "${aws_vpc.preview_vpc.id}"
+    cidr_block = "${var.preview_cidr}"
+
+    tags {
+        Name = "Preview Web Server"
+        terraform = "true"
+    }
+    }   
+
 ## DMZ Security Group
 
-This Security group allows traffic from Kainos to the jumpbox, and from the jumpbox to our other environments. Allowed traffic can be seen in the securitygroups.tf file.
+This Security group allows traffic from Kainos to the jumpbox.
 
-CIDR ranges for environments have been defined in the variables.tf file
-
-Additional inbound/outbound rules can be added by including new ingress/egress rules in securitygroups.tf
+Additional inbound rules can be added by including new ingress rules in securitygroups.tf
 
 This group should be applied to all jumpboxes.
+
+
+# Management
+
+## Management Instances
+
+Management instances are configured in the management/instance.tf file
+
+Variables for these instances are stored in the management/variables.tf file
+
+All instances should be added to the management subnet
 
 
 ## Private DNS 
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
+
+
+## Wordpress Security Group
+
+This security group allows ssh traffic from the dmz subnet and allows web traffic from the proxy subnet.
+
+Additional inbound rules can be added by including new ingress rules in securitygroups.tf
+
+This group should be applied to all wordpress servers.
 
 
 # Training and Resources 

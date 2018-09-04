@@ -43,14 +43,6 @@ variable "wp_server_name" {
     default = "wordpress"
 }
 
-variable "ami" {
-  default = "ami-3548444c"
-}
-
-variable "instance_type" {
-  default = "t2.micro"
-}
-
 variable "wp_servers_ips" {
   default {
     "0" = "10.122.2.10"
@@ -74,7 +66,7 @@ locals {
 #EC2 instance variables
 
 variable "ami" {
-    default = "ami-00846a67"
+    default = "ami-3548444c"
 }
 
 variable "instance_type" {

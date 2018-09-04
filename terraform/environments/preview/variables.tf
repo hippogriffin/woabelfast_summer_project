@@ -5,7 +5,7 @@ variable "environment" {
 }
 
 variable "preview_wordpress_cidr" {
-  default = "10.122.0.0/24"
+  default = "10.122.2.0/24"
 }
 
 variable "dmz_subnet" {
@@ -20,7 +20,7 @@ variable "db_security_group" {
 #Proxy Servers
 
 variable "proxy_subnet" {
-  default = "10.122.0.0/16"
+  default = "10.122.1.0/24"
 }
 
 #Wordpress Servers
@@ -50,7 +50,22 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
+variable "wp_servers_ips" {
+  default {
+    "0" = "10.122.2.10"
+    "1" = "10.122.2.11"
+  }
+}
+
+variable "instance_count" {
+  default = "2"
+}
+
+
+
 locals {
-    wp_server_host_name = "${var.environment}_${var.wp_server_name}"
-  default = "10.120.3.0/24"
+    wp_server_host_name { 
+      "0" = "${var.environment}_${var.wp_server_name}_00"
+      "1" = "${var.environment}_${var.wp_server_name}_01"
+      }
 }

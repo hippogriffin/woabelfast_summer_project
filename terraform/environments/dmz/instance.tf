@@ -5,7 +5,7 @@ resource "aws_instance" "jumpbox" {
     subnet_id = "${aws_subnet.dmz_subnet.id}"
     security_groups = ["${aws_security_group.dmz_sg.id}"]
 
-   tags {
-       Name = "${var.instance_name}"
-   }
+    tags {
+        Name = "${var.environment}"
+    }
 }

@@ -21,3 +21,7 @@ variable "preprod_cidr" {
 variable "production_cidr" {
     default = "10.124.0.0/24"
 }
+
+variable "security_group_name" {
+    default = "dmz_sg"
+}

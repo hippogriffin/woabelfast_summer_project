@@ -316,6 +316,16 @@ Additional inbound rules can be added by including new ingress rules in security
 This group should be applied to all wordpress servers.
 
 
+## Wordpress Instance
+
+Wordpress instances are configured in the */instance.tf file
+
+Variables for these instances are stored in the */variables.tf file
+
+All instances should be added to the *_wordpress subnet
+
+.* = environment (preview/preprod/production)
+
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 

@@ -42,6 +42,14 @@ variable "wp_server_name" {
     default = "wordpress"
 }
 
+variable "ami" {
+  default = "ami-00846a67"
+}
+
+variable "instance_type" {
+  default = "t2.micro"
+}
+
 locals {
     wp_server_host_name = "${var.environment}_${var.wp_server_name}"
   default = "10.120.3.0/24"

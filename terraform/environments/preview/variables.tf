@@ -25,6 +25,7 @@ variable "proxy_subnet" {
 
 variable "wp_servers_security_group" {
     default = "wp_servers"
+
 }
 
 #Preview Cidr

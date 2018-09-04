@@ -275,7 +275,7 @@ This group should be applied to all jumpboxes.
 
 # Management
 
-# Management Instances
+## Management Instances
 
 Management instances are configured in the management/instance.tf file
 

@@ -1,11 +1,15 @@
 
- resource "aws_db_security_group" "preview" {
-  name = "preview_rds_sg"
+resource "aws_security_group" "db" {
+  name        = "${var.db_security_group}"
+  description = "Allow all inbound traffic"
+  vpc_id      = "${aws_vpc.preview_vpc.id}"
 
   ingress {
-    cidr = "10.0.0.0/24"
+    from_port   = 1433
+    to_port     = 1433
+    protocol    = "tcp"
   }
- }
+}
 
 #Security Groups for the Preview Environment
 

@@ -28,6 +28,6 @@ variable "domain_name" {
     default = "woabelfast.co.uk"
 }
 
-variable "server_role" {
+variable "instance_name" {
     default = "jumpbox.woabelfast.co.uk"
 }

@@ -48,10 +48,24 @@ variable "instance_type" {
 }
 
 
-variable "instance_ips" {
+variable "webservers_ips" {
   default = {
     "0" = "10.0.2.0"
     "1" = "10.0.2.1"
     "2" = "10.0.2.2"
+    "3" = "10.0.2.3"
+    "4" = "10.0.2.4"
+    "5" = "10.0.2.5"
+  }
+}
+
+variable "webservers_names" {
+  default = {
+    "0" = "proxy-1"
+    "1" = "proxy-2"
+    "2" = "proxy-3"
+    "3" = "proxy-4"
+    "4" = "proxy-5"
+    "5" = "proxy-6"
   }
 }

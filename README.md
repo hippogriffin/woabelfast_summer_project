@@ -199,7 +199,7 @@ There doesn't seem to be any easy way to decrypt a variable in a list, however w
 
     yq read <target_file_path> filename | ansible-vault --vault-password-file=<password_file_name> decrypt
 
-# Configuring Firewalls
+## Configuring Firewalls
 
 Firewalls are configured using the Ansible role geerlingguy.firewall
 
@@ -214,7 +214,7 @@ roles_galaxy/geerlingguy.firewall/defaults/main.yml
       - "80"
 
 
-# Adding Yum Repositories
+## Adding Yum Repositories
 
 Yum repositories can be adde using the yum_repos role.
 
@@ -234,10 +234,27 @@ This will create a repo file for nginx. A populated example can be found in defa
 
 # Terraform
 
+## DMZ Subnet
+
+The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet.
+
+## DMZ Security Group
+
+This Security group allows traffic from Kainos to the jumpbox, and from the jumpbox to our other environments. Allowed traffic can be seen in the securitygroups.tf file.
+
+CIDR ranges for environments have been defined in the variables.tf file
+
+Additional inbound/outbound rules can be added by including new ingress/egress rules in securitygroups.tf
+
+This group should be applied to all jumpboxes.
+
+
 ## Private DNS 
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
 
+
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 
+https://www.terraform.io/docs

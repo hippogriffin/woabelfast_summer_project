@@ -4,9 +4,21 @@ variable "environment" {
   default = "preview"
 }
 
+#VPC Peer Name
+
+variable "vpc_peer_name" {
+  default = "vpc_peer_preview_to_mgmt"
+}
+
+
 variable "dmz_subnet" {
   default = "10.120.0.0/24"
 }
+
+variable "mgmt_subnet" {
+  default = "10.121.0.0/24"
+}
+
 
 #DB Server
 variable "db_security_group" {

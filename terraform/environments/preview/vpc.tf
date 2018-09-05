@@ -10,4 +10,3 @@ resource "aws_vpc" "preview_vpc" {
     Name = "${var.environment}"
   }
 }
-

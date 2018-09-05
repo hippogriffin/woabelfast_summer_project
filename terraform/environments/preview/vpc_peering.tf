@@ -11,7 +11,8 @@ data "terraform_remote_state" "woa-belfast-mgmt" {
 
 resource "aws_vpc_peering_connection" "mgmt_to_preview" {
     vpc_id = "${aws_vpc.preview_vpc.id}"
-    peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}" 
+    peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}"
+    auto_accept = "true"
 
     accepter {
         allow_remote_vpc_dns_resolution = true

@@ -1,7 +1,8 @@
 data "terraform_remote_state" "woa-belfast" {
   backend = "woa-belfast"
   config {
-    name = "dmz/vpc"
+    bucket = "dmz/vpc"
+    key = "dmz/terraform.tfstate"
   }
 }
 

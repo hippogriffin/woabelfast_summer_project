@@ -9,7 +9,7 @@ resource "aws_db_instance" "preview_rds" {
   password               = "12345"
   parameter_group_name   = "default.mysql5.7"
   db_subnet_group_name   = "${aws_db_subnet_group.preview_rds_subnet_group.id}" 
-  vpc_security_group_ids = ["${aws_security_group.wp_servers.id}"]
+  vpc_security_group_ids = ["${aws_security_group.preview_db.id}","${aws_security_group.preview_db_backup.id}"]
 }
 
 resource "aws_db_subnet_group" "preview_rds_subnet_group" {

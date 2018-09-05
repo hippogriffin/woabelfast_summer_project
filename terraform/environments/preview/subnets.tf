@@ -26,8 +26,19 @@ resource "aws_subnet" "preview_webserver_subnet" {
 resource "aws_subnet" "preview_db_subnet" {
   vpc_id     = "${aws_vpc.preview_vpc.id}"
   cidr_block = "${var.preview_db_cidr}"
+  availability_zone = "${var.avail_zone_a}"
 
   tags {
     Name = "Preview DB"
+  }
+}
+
+resource "aws_subnet" "preview_db_subnet_backup" {
+  vpc_id     = "${aws_vpc.preview_vpc.id}"
+  cidr_block = "${var.preview_db_cidr_bkup}"
+  availability_zone = "${var.avail_zone_b}"
+
+  tags {
+    Name = "Preview Backup DB"
   }
 }

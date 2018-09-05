@@ -17,6 +17,10 @@ variable "db_security_group" {
   default = "db_rds_sg"
 }
 
+variable "db_security_group_bkup" {
+  default = "db_rds_sg_bkup"
+}
+
 #Proxy Servers
 
 variable "proxy_subnet" {
@@ -38,7 +42,20 @@ variable "preview_db_cidr" {
   default = "10.120.3.0/24"
 }
 
+variable "preview_db_cidr_bkup" {
+  default = "10.120.4.0/24"
+}
+
 #Preview RDS
 variable "preview_rds" {
   default = "wordpress"
+}
+
+#Availability Zones
+variable "avail_zone_a" {
+  default = "eu-west-1a"
+}
+
+variable "avail_zone_b" {
+  default = "eu-west-1b"
 }

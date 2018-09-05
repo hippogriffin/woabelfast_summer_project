@@ -13,6 +13,19 @@ resource "aws_security_group" "preview_db" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+resource "aws_security_group" "preview_db_backup" {
+  name        = "${var.db_security_group_bkup}"
+  vpc_id      = "${aws_vpc.preview_vpc.id}"
+
+   ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+#Security Groups for the Preview Environment
   tags
   {
     Name = "${var.db_security_group}"
@@ -72,5 +85,3 @@ resource "aws_security_group" "preview_web_servers" {
         terraform = "true"
     }
 }
-
-

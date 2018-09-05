@@ -15,6 +15,11 @@ variable "dmz_subnet" {
   default = "10.120.0.0/24"
 }
 
+variable "mgmt_subnet" {
+  default = "10.121.0.0/24"
+}
+
+
 #DB Server
 variable "db_security_group" {
   default = "db_rds_sg"

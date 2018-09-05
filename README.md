@@ -292,6 +292,12 @@ Additional inbound rules can be added by including new ingress rules in security
 
 This group should be applied to all jumpboxes.
 
+## DMZ to Management VPC Peering Connection
+
+vpcpeering.tf contains code to create peering connections between DMZ and Management VPCs in both directions.
+
+Route tables also updated / created to define routes between the two VPCs i.e. traffic from DMZ to Management subnet goes to the VPC Peer and vice versa.
+
 
 # Management
 

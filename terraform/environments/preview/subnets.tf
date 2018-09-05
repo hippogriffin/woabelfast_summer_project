@@ -31,13 +31,3 @@ resource "aws_subnet" "preview_db_subnet" {
     Name = "Preview DB"
   }
 }
-
-resource "aws_subnet" "public_subnet_eu_west_1a" {
-  vpc_id     = "${aws_vpc.preview_vpc.id}"
-  cidr_block              = "172.31.1.0/24"
-  map_public_ip_on_launch = true
-  availability_zone = "eu-west-1a"
-  tags = {
-  	Name =  "public subnet"
-  }
-}

@@ -5,6 +5,5 @@ resource "aws_nat_gateway" "gw" {
 
 resource "aws_eip" "new_eip" {
   vpc      = true
-  depends_on = ["aws_internet_gateway.gw"]
 }
 

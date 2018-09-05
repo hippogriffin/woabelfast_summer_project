@@ -267,22 +267,7 @@ An Internet Gateway has been created for the DMZ environment
 
 ## DMZ Subnet
 
-The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet.
-
-## Preview Subnet
-
-### Example
-    # Preview Subnet
-
-    resource "aws_subnet" "preview_subnet" {
-    vpc_id     = "${aws_vpc.preview_vpc.id}"
-    cidr_block = "${var.preview_cidr}"
-
-    tags {
-        Name = "Preview Web Server"
-        terraform = "true"
-    }
-    }   
+The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet. 
 
 ## DMZ Security Group
 
@@ -291,6 +276,14 @@ This Security group allows traffic from Kainos to the jumpbox.
 Additional inbound rules can be added by including new ingress rules in securitygroups.tf
 
 This group should be applied to all jumpboxes.
+
+## DMZ Key Pair
+
+The public key to be used for all hosts in the DMZ environment is found in keypair.tf.  
+
+## Private DNS 
+
+Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
 
 
 # Management
@@ -303,10 +296,7 @@ Variables for these instances are stored in the management/variables.tf file
 
 All instances should be added to the management subnet
 
-
-## Private DNS 
-
-Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
+# Preview
 
 ## Wordpress Subnet
 
@@ -387,6 +377,40 @@ Example
         "2" = "${var.environment}_${var.wp_server_name}_03"
         }
     }
+
+## VPC Peering
+
+There is a VPC peering connection between Preview and Management. This has been configured using vpc_peering.tf.
+
+In order for this to work, Management __MUST__ be applied first.
+
+The VPC_ID of the Management environment comes from the Management remote state file. This has been configured using terraform_remote_state
+
+First, take an output of the VPC ID from Management
+
+    ### __IN MANAGEMENT__
+    output "mgmt_vpc_id" {
+        value = "${aws_vpc.mgmt_vpc.id}"
+    }
+
+The next time a terraform apply is ran on the Management environment, this output will be stored in the remote state file.
+
+Now, Preview must be configured to load Management's remote state.
+
+    ### __IN PREVIEW__
+    data "terraform_remote_state" "woa-belfast-mgmt" {
+    backend = "s3"
+    config {
+        bucket = "woa-belfast"
+        key = "management/woa.tfstate"
+        region = "eu-west-1"
+        }
+    }
+
+You can now use data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id to get the VPC ID from the Management environment
+
+    ### __IN VPC_PEERING CONFIG__
+    peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}"
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

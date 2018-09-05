@@ -7,3 +7,7 @@
 
 # Added Subnet for DB
 - No real config as of yet
+
+# Instances
+
+- Two Instances added with private ip's.

@@ -16,10 +16,11 @@ variable "preview_cidr" {
   default = "10.122.0.0/16"
 }
 
+
 #EC2 instance variables
 
 variable "ami" {
-  default = "ami-00846a67"
+  default = "ami-3548444c"
 }
 
 variable "jenkins_instance_type" {
@@ -27,5 +28,5 @@ variable "jenkins_instance_type" {
 }
 
 variable "jenkins_name" {
-  default = "jenkins"
+    default = "jenkins"
 }

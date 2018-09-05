@@ -41,13 +41,7 @@ variable "wp_servers_security_group" {
 
 
 #Preview Cidr
-variable "preview_webserver_cidr" {
-  default = "10.122.1.0/24"
-}
 
-variable "preview_db_cidr" {
-    default = "10.122.3.0/24"
-}
 
 variable "wp_server_name" {
     default = "wordpress"

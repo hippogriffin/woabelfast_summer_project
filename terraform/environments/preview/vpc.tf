@@ -18,6 +18,6 @@ resource "aws_vpc_peering_connection" "DMZ" {
   auto_accept   = true
 
   tags {
-    Name = "VPC Peering between DMZ and Preview environments"
+    Name = "DMZ-to-Preview_Peer"
   }
 }

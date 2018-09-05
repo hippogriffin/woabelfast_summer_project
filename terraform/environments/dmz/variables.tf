@@ -35,3 +35,8 @@ variable "igw_name" {
 variable "route_table_name" {
     default = "dmz_route_table"
 }
+
+
+variable "dmz_key_name" {
+    default = "dmz_key"
+}

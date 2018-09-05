@@ -27,3 +27,11 @@ variable "instance_type" {
 variable "instance_name" {
     default = "dmz_jumpbox.woabelfast.local"
 }
+
+variable "igw_name" {
+    default = "dmz_igw"
+}
+
+variable "route_table_name" {
+    default = "dmz_route_table"
+}

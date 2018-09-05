@@ -8,5 +8,5 @@ resource "aws_vpc" "dmz_vpc" {
 
   tags {
     Name = "${var.environment}"
-}
+  }
 }

@@ -310,6 +310,41 @@ Additional inbound rules can be added by including new ingress rules in security
 
 This group should be applied to all wordpress servers.
 
+## RDS Preview
+
+Provides an RDS instance resource. Created a rds.tf file as below.
+- In securitygroups.tf duplicate the security group & rename as backup.
+- In subnets.tf duplicate the subnet group & rename as backup, adding an availability zone to both.
+
+### Example
+
+    resource "aws_db_instance" "preview_rds" {
+        allocated_storage      = 10
+        storage_type           = "gp2"
+        engine                 = "mysql"
+        engine_version         = "5.7"
+        instance_class         = "db.t2.micro"
+        name                   = "${var.preview_rds}"
+        username               = "wpuser"
+        password               = "12345"
+        parameter_group_name   = "default.mysql5.7"
+        db_subnet_group_name   = "${aws_db_subnet_group.preview_rds_subnet_group.id}" 
+        vpc_security_group_ids = ["${aws_security_group.wp_servers.id}"]
+        }
+
+        resource "aws_db_subnet_group" "preview_rds_subnet_group" {
+        name       = "main"
+        subnet_ids = ["${aws_subnet.preview_db_subnet.id}", "${aws_subnet.preview_db_subnet_backup.id}"]
+
+        tags {
+            Name = "RDS Subnet Group"
+            }
+        }
+
+## DMZ Key Pair
+
+The public key to be used for all hosts in the DMZ environment is found in keypair.tf.  
+
 ## Wordpress Instance
 
 Wordpress instances are configured in the */instance.tf file

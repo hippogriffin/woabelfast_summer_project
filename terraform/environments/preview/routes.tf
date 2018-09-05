@@ -12,12 +12,7 @@ resource "aws_route" "private_route" {
 	nat_gateway_id = "${aws_nat_gateway.gw.id}"
 }
 
-# Creating a route for vpc_peering between Preview and Management
-resource "aws_route" "preview_to_mgmt" {
-  route_table_id            = "${aws_route_table.private_route_table.id}"
-  destination_cidr_block    = "${var.mgmt_subnet}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.mgmt_to_preview.id}"
-}
+
 
 # Associate subnet private_1_subnet_eu_west_1a to private route table
 resource "aws_route_table_association" "pr_1_subnet_eu_west_1a_association" {

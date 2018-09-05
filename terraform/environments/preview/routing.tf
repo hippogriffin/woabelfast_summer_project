@@ -1,9 +1,9 @@
-# Create a route table
+# Creating a Routing Table of Preview
 resource "aws_route_table" "preview_rt" {
   vpc_id = "${aws_vpc.preview_vpc.id}"
 }
 
-# Create a route
+# Creating a route for vpc_peering between Preview and Management
 resource "aws_route" "preview_to_mgmt" {
   route_table_id            = "${aws_route_table.preview_rt.id}"
   destination_cidr_block    = "${var.mgmt_subnet}"

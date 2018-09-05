@@ -33,10 +33,6 @@ variable "preview_wordpress_cidr" {
   default = "10.122.2.0/24"
 }
 
-variable "preview_db_cidr" {
-    default = "10.122.3.0/24"
-}
-
 # Wordpress Servers
 
 variable "wp_servers_security_group" {
@@ -61,8 +57,12 @@ variable "instance_count" {
   default = "2"
 }
 
+variable "preview_db_cidr" {
+    default = "10.122.3.0/24"
+}
+
 variable "preview_db_cidr_bkup" {
-  default = "10.120.4.0/24"
+  default = "10.122.4.0/24"
 }
 
 #Preview RDS

@@ -26,7 +26,7 @@ resource "aws_security_group" "dmz_sg" {
     }
 
     tags {
-        name = "${var.security_group_name}"
+        Name = "${var.security_group_name}"
         terraform = "true"
     }
 }

@@ -11,6 +11,7 @@ resource "aws_vpc" "preview_vpc" {
   }
 }
 
+
 # DMZ VPC Peering Connection
 resource "aws_vpc_peering_connection" "DMZ" {
   peer_vpc_id   = "${data.terraform_remote_state.dmz_remote_state.dmz_vpc_id}"
@@ -21,3 +22,4 @@ resource "aws_vpc_peering_connection" "DMZ" {
     Name = "DMZ-to-Preview_Peer"
   }
 }
+

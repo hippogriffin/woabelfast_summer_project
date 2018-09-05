@@ -39,6 +39,10 @@ variable "wp_servers_security_group" {
   default = "wp_servers"
 }
 
+
+#Preview Cidr
+
+
 variable "wp_server_name" {
     default = "wordpress"
 }
@@ -76,12 +80,12 @@ variable "instance_type" {
 
 variable "webservers_ips" {
   default = {
-    "0" = "10.0.2.10"
-    "1" = "10.0.2.11"
-    "2" = "10.0.2.12"
-    "3" = "10.0.2.13"
-    "4" = "10.0.2.14"
-    "5" = "10.0.2.15"
+    "0" = "10.122.1.10"
+    "1" = "10.122.1.11"
+    "2" = "10.122.1.12"
+    "3" = "10.122.1.13"
+    "4" = "10.122.1.14"
+    "5" = "10.122.1.15"
   }
 }
 

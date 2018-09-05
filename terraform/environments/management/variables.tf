@@ -20,7 +20,7 @@ variable "preview_cidr" {
 #EC2 instance variables
 
 variable "ami" {
-  default = "ami-00846a67"
+  default = "ami-3548444c"
 }
 
 variable "jenkins_instance_type" {

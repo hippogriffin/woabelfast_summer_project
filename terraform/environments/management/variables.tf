@@ -4,14 +4,25 @@ variable "environment" {
   default = "mgmt"
 }
 
+#Internet gateway variables
+variable "igw_name" {
+  default = "mgmt_igw"
+}
+
+#NAT gateway variables
+variable "natgw_name" {
+  default = "mgmt_nat_gw"
+}
+
+#Private route table variables
+variable "route_table_name" {
+  default = "mgmt_private_route_table"
+}
+
 #VPC Peer Name
 
 variable "vpc_peer_name" {
   default = "vpc_peer_mgmt_to_preview"
-}
-
-variable "security_group_name" {
-  default = "mgmt_sg"
 }
 
 variable "dmz_cidr" {
@@ -38,4 +49,10 @@ variable "jenkins_instance_type" {
 
 variable "jenkins_name" {
     default = "jenkins"
+}
+
+### Better naming convention required
+
+variable "security_group_name" {
+  default = "mgmt_sg"
 }

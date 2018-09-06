@@ -8,5 +8,7 @@ resource "aws_vpc" "mgmt_vpc" {
 
   tags {
     Name = "${var.environment}"
+    Terraform = "true"
+    Environment = "${var.environment}"
   }
 }

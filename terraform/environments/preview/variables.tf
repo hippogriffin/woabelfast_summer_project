@@ -18,6 +18,10 @@ variable "mgmt_sub" {
   default = "10.121.0.0/24"
 }
 
+variable "preview_public_sub" {
+  default = "10.122.4./24"
+}
+
 #DB Server
 variable "preview_db_sg" {
   default = "db_rds_sg"
@@ -53,13 +57,6 @@ variable "preview_wp_server_name" {
   default = "wordpress"
 }
 
-variable "preview_wp_servers_ips" {
-  default {
-    "0" = "10.122.2.10"
-    "1" = "10.122.2.11"
-  }
-}
-
 variable "instance_count" {
   default = "2"
 }
@@ -86,12 +83,14 @@ variable "avail_zone_b" {
   default = "eu-west-1b"
 }
 
-locals {
-  wp_server_host_name {
-    "0" = "${var.environment}_${var.preview_wp_server_name}_01"
-    "1" = "${var.environment}_${var.preview_wp_server_name}_02"
-  }
+locals  {
+  preview_wp_server_names = "${var.environment}_${var.preview_wp_server_name}_%02d"
+  preview_wp_server_ips = "10.122.2.%02d"
+  preview_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d"
+  preview_webserver_ips = "10.122.1.%02d"
+  preview_webserver_elb = "${var.environment}-webserver-elb"
 }
+
 
 #EC2 instance variables
 
@@ -99,30 +98,16 @@ variable "ami" {
   default = "ami-3548444c"
 }
 
-variable "instance_type" {
+variable "proxy_instance_type" {
   default = "t2.micro"
 }
 
-variable "webservers_ips" {
-  default = {
-    "0" = "10.122.1.10"
-    "1" = "10.122.1.11"
-    "2" = "10.122.1.12"
-    "3" = "10.122.1.13"
-    "4" = "10.122.1.14"
-    "5" = "10.122.1.15"
-  }
+variable "wordpress_instance_type" {
+  default = "t2.micro"
 }
 
-variable "webservers_names" {
-  default = {
-    "0" = "proxy-1"
-    "1" = "proxy-2"
-    "2" = "proxy-3"
-    "3" = "proxy-4"
-    "4" = "proxy-5"
-    "5" = "proxy-6"
-  }
+variable "preview_webserver_name" {
+  default = "proxy"
 }
 
 # Web Servers

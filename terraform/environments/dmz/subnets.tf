@@ -6,6 +6,7 @@ resource "aws_subnet" "dmz_subnet" {
 
     tags {
         Name = "dmz_subnet"
-        terraform = "true"
+        Terraform = "true"
+        Environment = "${var.environment}"
     }
 }

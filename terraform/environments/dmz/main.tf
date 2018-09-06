@@ -7,5 +7,7 @@ resource "aws_route53_zone" "private_dns" {
   vpc_id  = "${aws_vpc.dmz_vpc.id}"
   tags {
     Name = "private_zone"
+    Terraform = "true"
+    Environment = "${var.environment}"
   }
 }

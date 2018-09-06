@@ -154,8 +154,3 @@ variable "avail_zone_a" {
 variable "avail_zone_b" {
   default = "eu-west-1b"
 }
-
-#Keypair
-variable "preview_key" {
-  default = "Preview Key"
-}

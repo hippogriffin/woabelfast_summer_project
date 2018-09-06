@@ -9,8 +9,8 @@ resource "aws_route_table" "dmz_route_table" {
     }
 
     tags {
-        name = "${var.route_table_name}"
-        terraform = "true"
+        Name = "${var.route_table_name}"
+        Terraform = "true"
         Environment = "${var.environment}"
     }
 }

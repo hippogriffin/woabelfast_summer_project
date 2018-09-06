@@ -8,7 +8,7 @@ data "terraform_remote_state" "woa-belfast" {
 }
 
 resource "aws_vpc_peering_connection" "dmz_mgmt_vpc_peer" {
-  peer_vpc_id   = "${data.terraform_remote_state.woa-belfast.dmz_vpc_id.id}"
+  peer_vpc_id   = "${data.terraform_remote_state.woa-belfast.dmz_vpc_id}"
   vpc_id        = "${aws_vpc.mgmt_vpc.id}"
   auto_accept   = true
 

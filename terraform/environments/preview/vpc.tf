@@ -1,4 +1,4 @@
-# Preview VPC 
+# Preview VPC
 
 resource "aws_vpc" "preview_vpc" {
   cidr_block = "10.122.0.0/16"

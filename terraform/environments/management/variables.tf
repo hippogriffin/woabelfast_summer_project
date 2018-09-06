@@ -19,16 +19,6 @@ variable "route_table_name" {
   default = "mgmt_private_route_table"
 }
 
-#Private route variables
-variable "route_name" {
-  default = "mgmt_private_route"
-}
-
-#Private route table association variables
-variable "route_table_associatation" {
-  default = "mgmt_private_route_table_associatation"
-}
-
 #VPC Peer Name
 
 variable "vpc_peer_name" {

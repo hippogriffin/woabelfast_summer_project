@@ -19,6 +19,6 @@ resource "aws_nat_gateway" "mgmt_nat_gw" {
     tags {
         Name = "${var.natgw_name}"
         Terraform = "true"
-        Environment = "${var.Environment}"
+        Environment = "${var.environment}"
     }
 }

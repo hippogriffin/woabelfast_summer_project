@@ -5,6 +5,6 @@ resource "aws_subnet" "mgmt_subnet" {
     tags {
         Name = "mgmt_subnet"
         Terraform = "true"
-        Environment = "${var.Environment}"
+        Environment = "${var.environment}"
     }
 }

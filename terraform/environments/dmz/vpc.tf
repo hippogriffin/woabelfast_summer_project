@@ -11,8 +11,6 @@ resource "aws_vpc" "dmz_vpc" {
   }
 }
 
-}
-
 output "dmz_vpc_id" {
   value = "${aws_vpc.dmz_vpc.id}"
 }

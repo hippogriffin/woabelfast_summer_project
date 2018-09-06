@@ -91,6 +91,7 @@ locals {
     "0" = "${var.environment}_${var.preview_wp_server_name}_01"
     "1" = "${var.environment}_${var.preview_wp_server_name}_02"
   }
+  preview_webserver_elb = "${var.environment}-webserver-elb"
 }
 
 #EC2 instance variables

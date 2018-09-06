@@ -2,7 +2,9 @@ resource "aws_route_table" "private_route_table" {
     vpc_id = "${aws_vpc.preview_vpc.id}"
 
     tags {
-        Name = "Private route table"
+        Name = "Preview Private Route table"
+        Environment = "${var.environment}"
+        terraform = "true"
     }
 }
 
@@ -15,7 +17,7 @@ resource "aws_route" "private_route" {
 # Creating a route for vpc_peering between Preview and Management
 resource "aws_route" "preview_to_mgmt" {
   route_table_id            = "${aws_route_table.private_route_table.id}"
-  destination_cidr_block    = "${var.mgmt_subnet}"
+  destination_cidr_block    = "${var.mgmt_sub}"
   vpc_peering_connection_id = "${aws_vpc_peering_connection.mgmt_to_preview.id}"
 }
 

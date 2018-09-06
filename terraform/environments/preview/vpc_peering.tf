@@ -25,8 +25,8 @@ resource "aws_vpc_peering_connection" "mgmt_to_preview" {
 
   tags {
     Name        = "${var.vpc_peer_name}"
-    Terraform   = "true"
     Environment = "${var.environment}"
+    Terraform   = "true"
   }
 }
 
@@ -38,5 +38,7 @@ resource "aws_vpc_peering_connection" "DMZ" {
 
   tags {
     Name = "DMZ-to-Preview_Peer"
+    Environment = "${var.environment}"
+    Terraform   = "true"
   }
 }

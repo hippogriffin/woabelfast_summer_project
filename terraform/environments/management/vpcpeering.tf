@@ -19,7 +19,7 @@ resource "aws_vpc_peering_connection" "dmz_mgmt_vpc_peer" {
   tags {
     Name = "dmz_mgmt_vpc_peer"
     Terraform = "true"
-    environment = "${var.environment}"
+    Environment = "${var.environment}"
   }
 }
 

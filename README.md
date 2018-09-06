@@ -285,6 +285,8 @@ The public key to be used for all hosts in the DMZ environment is found in keypa
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
 
+This has since been changed.  A file called dns.tf was created containing the hosted zone and the private DNS record.
+
 
 # Management
 

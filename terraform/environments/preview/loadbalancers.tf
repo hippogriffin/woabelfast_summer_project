@@ -9,8 +9,7 @@ resource "aws_elb" "preview_webserver_elb" {
     connection_draining         = true
     connection_draining_timeout = 400
     security_groups = ["${aws_security_group.preview_web_servers.id}"]
-    
-    listener {
+
         instance_port     = 80
         instance_protocol = "http"
         lb_port           = 80
@@ -39,3 +38,4 @@ resource "aws_elb" "preview_webserver_elb" {
       Environment = "${var.environment}"
     }
 } 
+

@@ -1,7 +1,7 @@
 #configure management security group
 resource "aws_security_group" "mgmt_sg" {
     name = "${var.security_group_name}"
-    description = "Allows SSH to and from dmz subnet and preview subnet"
+    description = "Allows SSH traffic between dmz subnet and preview subnet"
     vpc_id = "${aws_vpc.mgmt_vpc.id}"
 
     ingress {
@@ -20,6 +20,7 @@ resource "aws_security_group" "mgmt_sg" {
 
     tags {
         Name = "${var.security_group_name}"
-        terraform = "true"
+        Terraform = "true"
+        Environment = "${var.environment}"
         }
 }

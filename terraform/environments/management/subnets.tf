@@ -3,7 +3,8 @@ resource "aws_subnet" "mgmt_subnet" {
     cidr_block = "${var.mgmt_cidr}"
 
     tags {
-        name = "mgmt_subnet"
-        terraform = "true"
+        Name = "mgmt_subnet"
+        Terraform = "true"
+        Environment = "${var.Environment}"
     }
 }

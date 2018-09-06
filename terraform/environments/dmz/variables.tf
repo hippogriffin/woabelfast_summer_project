@@ -28,9 +28,16 @@ variable "bastion_name" {
     default = "jumpbox"
 }
 
+variable "private_domain" {
+    default = "woabelfast.local"
+}
+
+
 locals {
   bastion_host_name = "${var.environment}_${var.bastion_name}"
   bastion_eip_name  = "${local.bastion_host_name}_eip"
+  jumpbox_dns_record = "${var.bastion_name}.${var.private_domain}"
+
 }
 
 ### Better Naming convention required

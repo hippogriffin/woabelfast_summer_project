@@ -3,7 +3,6 @@ resource "aws_instance" "jumpbox" {
     ami = "${var.ami}"
     instance_type = "${var.instance_type}"
     subnet_id = "${aws_subnet.dmz_subnet.id}"
-    key_name = "${var.dmz_key_name}"
     user_data = "${file("scripts/init.cfg")}"
     associate_public_ip_address = true
     vpc_security_group_ids = ["${aws_security_group.dmz_sg.id}"]
@@ -20,8 +19,8 @@ resource "aws_eip" "jumpbox_eip" {
     vpc = true
 
     tags {
-        Name = "jumpbox_eip"
+        Name = "${local.bastion_eip_name}"
         Terraform = "true"
-        environment = "${var.environment}"
+        Environment = "${var.environment}"
     }
 }

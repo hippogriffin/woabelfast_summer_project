@@ -5,7 +5,7 @@ resource "aws_internet_gateway" "dmz_igw" {
 
     tags {
         Name = "${var.igw_name}"
-        terraform = "true"
+        Terraform = "true"
         Environment = "${var.environment}"
     }
 }

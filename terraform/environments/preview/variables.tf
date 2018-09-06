@@ -10,25 +10,25 @@ variable "vpc_peer_name" {
   default = "vpc_peer_preview_to_mgmt"
 }
 
-variable "dmz_subnet" {
+variable "dmz_sub" {
   default = "10.120.0.0/24"
 }
 
-variable "mgmt_subnet" {
+variable "mgmt_sub" {
   default = "10.121.0.0/24"
 }
 
 #DB Server
-variable "db_security_group" {
+variable "preview_db_sg" {
   default = "db_rds_sg"
 }
 
-variable "db_security_group_bkup" {
+variable "preview_db_sg_bkup" {
   default = "db_rds_sg_bkup"
 }
 
 #Proxy Servers
-variable "proxy_subnet" {
+variable "preview_proxy_sub" {
   default = "10.122.1.0/24"
 }
 
@@ -43,17 +43,17 @@ variable "preview_wordpress_cidr" {
 
 # Wordpress Servers
 
-variable "wp_servers_security_group" {
+variable "preview_wp_servers_sg" {
   default = "wp_servers"
 }
 
 #Preview Cidr
 
-variable "wp_server_name" {
+variable "preview_wp_server_name" {
   default = "wordpress"
 }
 
-variable "wp_servers_ips" {
+variable "preview_wp_servers_ips" {
   default {
     "0" = "10.122.2.10"
     "1" = "10.122.2.11"
@@ -88,8 +88,8 @@ variable "avail_zone_b" {
 
 locals {
   wp_server_host_name {
-    "0" = "${var.environment}_${var.wp_server_name}_01"
-    "1" = "${var.environment}_${var.wp_server_name}_02"
+    "0" = "${var.environment}_${var.preview_wp_server_name}_01"
+    "1" = "${var.environment}_${var.preview_wp_server_name}_02"
   }
 }
 
@@ -126,6 +126,6 @@ variable "webservers_names" {
 }
 
 # Web Servers
-variable "preview_web_servers_security_group" {
+variable "preview_web_servers_sg" {
   default = "preview_web_servers"
 }

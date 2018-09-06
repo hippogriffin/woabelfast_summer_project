@@ -296,6 +296,12 @@ Variables for these instances are stored in the management/variables.tf file
 
 All instances should be added to the management subnet
 
+## DMZ to Management VPC Peering Connection
+
+vpcpeering.tf contains code to create peering connections between DMZ and Management VPCs in both directions.
+
+Route tables also updated / created to define routes between the two VPCs i.e. traffic from DMZ to Management subnet goes to the VPC Peer and vice versa.
+
 # Preview
 
 ## Wordpress Subnet

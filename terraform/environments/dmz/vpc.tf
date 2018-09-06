@@ -10,3 +10,6 @@ resource "aws_vpc" "dmz_vpc" {
     Name = "${var.environment}"
   }
 }
+
+output "dmz_vpc_id" {
+  value = "${aws_vpc.dmz_vpc.id}"

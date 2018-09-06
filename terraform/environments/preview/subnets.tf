@@ -19,6 +19,7 @@ resource "aws_subnet" "preview_webserver_subnet" {
 
   tags {
     Name = "Preview Web Server"
+    environment = "preview"
     terraform = "true"
   }
 }
@@ -29,7 +30,9 @@ resource "aws_subnet" "preview_db_subnet" {
   availability_zone = "${var.avail_zone_a}"
 
   tags {
-    Name = "Preview DB"
+    Name = "Preview DB Subnet"
+    environment = "preview"
+    terraform = "true"
   }
 }
 
@@ -39,6 +42,8 @@ resource "aws_subnet" "preview_db_subnet_backup" {
   availability_zone = "${var.avail_zone_b}"
 
   tags {
-    Name = "Preview Backup DB"
+    Name = "Preview DB Subnet Backup"
+    environment = "preview"
+    terraform = "true"
   }
 }

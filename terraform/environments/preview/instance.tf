@@ -5,7 +5,7 @@ resource "aws_instance" "wordpress" {
     count = "${var.instance_count}"
     instance_type = "${var.instance_type}"
     subnet_id = "${aws_subnet.preview_wordpress.id}"
-    vpc_security_groups = ["${aws_security_group.wp_servers.id}"]
+    vpc_security_group_ids = ["${aws_security_group.wp_servers.id}"]
     private_ip = "${lookup(var.wp_servers_ips, count.index)}"
     key_name = "${aws_key_pair.preview_key.key_name}"
 
@@ -22,7 +22,7 @@ ami = "${var.ami}"
 count = 2
 instance_type = "${var.instance_type}"
 subnet_id = "${aws_subnet.preview_webserver_subnet.id}"
-vpc_security_groups = ["${aws_security_group.preview_web_servers.id}"]
+vpc_security_group_ids = ["${aws_security_group.preview_web_servers.id}"]
 private_ip = "${lookup(var.webservers_ips, count.index)}"
 key_name = "${aws_key_pair.preview_key.key_name}"
 

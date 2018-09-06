@@ -61,6 +61,11 @@ variable "jenkins_name" {
     default = "jenkins"
 }
 
+#Environment variables
+variable "environment" {
+    default = "mgmt"
+}
+
 ### Better naming convention required
 
 variable "security_group_name" {

@@ -10,7 +10,6 @@ variable "vpc_peer_name" {
   default = "vpc_peer_preview_to_mgmt"
 }
 
-
 variable "dmz_subnet" {
   default = "10.120.0.0/24"
 }
@@ -18,7 +17,6 @@ variable "dmz_subnet" {
 variable "mgmt_subnet" {
   default = "10.121.0.0/24"
 }
-
 
 #DB Server
 variable "db_security_group" {
@@ -29,12 +27,10 @@ variable "db_security_group_bkup" {
   default = "db_rds_sg_bkup"
 }
 
-
 #Proxy Servers
 variable "proxy_subnet" {
   default = "10.122.1.0/24"
 }
-
 
 #Preview Cidr
 variable "preview_webserver_cidr" {
@@ -51,11 +47,10 @@ variable "wp_servers_security_group" {
   default = "wp_servers"
 }
 
-
 #Preview Cidr
 
 variable "wp_server_name" {
-    default = "wordpress"
+  default = "wordpress"
 }
 
 variable "wp_servers_ips" {
@@ -70,7 +65,7 @@ variable "instance_count" {
 }
 
 variable "preview_db_cidr" {
-    default = "10.122.3.0/24"
+  default = "10.122.3.0/24"
 }
 
 variable "preview_db_cidr_bkup" {
@@ -92,23 +87,21 @@ variable "avail_zone_b" {
 }
 
 locals {
-    wp_server_host_name { 
-      "0" = "${var.environment}_${var.wp_server_name}_01"
-      "1" = "${var.environment}_${var.wp_server_name}_02"
-      }
+  wp_server_host_name {
+    "0" = "${var.environment}_${var.wp_server_name}_01"
+    "1" = "${var.environment}_${var.wp_server_name}_02"
+  }
 }
-
 
 #EC2 instance variables
 
 variable "ami" {
-    default = "ami-3548444c"
+  default = "ami-3548444c"
 }
 
 variable "instance_type" {
-    default = "t2.micro"
+  default = "t2.micro"
 }
-
 
 variable "webservers_ips" {
   default = {
@@ -134,23 +127,5 @@ variable "webservers_names" {
 
 # Web Servers
 variable "preview_web_servers_security_group" {
-    default = "preview_web_servers"
-}
-
-variable "preview_db_cidr_bkup" {
-  default = "10.120.4.0/24"
-}
-
-#Preview RDS
-variable "preview_rds" {
-  default = "wordpress"
-}
-
-#Availability Zones
-variable "avail_zone_a" {
-  default = "eu-west-1a"
-}
-
-variable "avail_zone_b" {
-  default = "eu-west-1b"
+  default = "preview_web_servers"
 }

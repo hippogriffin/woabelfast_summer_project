@@ -40,3 +40,11 @@ variable "route_table_name" {
 variable "dmz_key_name" {
     default = "dmz_key"
 }
+
+variable "bastion_name" {
+    default = "jumpbox"
+}
+
+locals {
+  bastion_host_name = "${var.environment}_${var.bastion_name}"
+}

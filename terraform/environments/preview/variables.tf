@@ -83,6 +83,7 @@ variable "avail_zone_b" {
   default = "eu-west-1b"
 }
 
+
 locals  {
   preview_wp_server_names = "${var.environment}_${var.preview_wp_server_name}_%02d"
   preview_wp_server_ips = "10.122.2.%02d"

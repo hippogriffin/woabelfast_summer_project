@@ -93,6 +93,7 @@ locals {
   }
   preview_webserver_elb = "${var.environment}-webserver-elb"
   preview_wp_server_elb = "${var.environment}-wp-server-elb"
+  preview_rds_server_elb = "${var.environment}-rds-elb"
 }
 
 #EC2 instance variables
@@ -130,4 +131,9 @@ variable "webservers_names" {
 # Web Servers
 variable "preview_web_servers_sg" {
   default = "preview_web_servers"
+}
+
+#Preview RDS
+variable "preview_rds_elb" {
+  default = "preview_rds"
 }

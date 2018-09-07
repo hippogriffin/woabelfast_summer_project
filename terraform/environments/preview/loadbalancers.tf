@@ -2,7 +2,7 @@
 resource "aws_elb" "preview_webserver_elb" {
     
     name               = "${local.preview_webserver_elb}"
-    subnets = ["${aws_subnet.preview_webserver_subnet.id}", "${aws_subnet.preview_public_subnet.id}"]
+    subnets = ["${aws_subnet.preview_public_subnet.id}"]
     instances                   = ["${aws_instance.proxy-servers.*.id}"]
     cross_zone_load_balancing   = true
     idle_timeout                = 400
@@ -10,7 +10,7 @@ resource "aws_elb" "preview_webserver_elb" {
     connection_draining_timeout = 400
     security_groups = ["${aws_security_group.preview_web_servers.id}"]
 
-    listenr {
+    listener {
         instance_port     = 80
         instance_protocol = "http"
         lb_port           = 80
@@ -39,4 +39,3 @@ resource "aws_elb" "preview_webserver_elb" {
       Environment = "${var.environment}"
     }
 } 
-

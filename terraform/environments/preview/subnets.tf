@@ -47,3 +47,15 @@ resource "aws_subnet" "preview_db_subnet_backup" {
     terraform = "true"
   }
 }
+
+resource "aws_subnet" "preview_public_subnet" {
+  vpc_id = "${aws_vpc.preview_vpc.id}"
+  cidr_block = "${var.preview_public_sub}"
+  map_public_ip_on_launch = true
+
+  tags {
+    Name = "Preview Public Subnet"
+    environment = "preview"
+    terraform = "true"
+  }
+}

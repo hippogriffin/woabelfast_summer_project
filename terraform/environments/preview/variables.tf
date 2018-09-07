@@ -71,7 +71,7 @@ variable "preview_db_cidr_bkup" {
 
 #Preview RDS
 variable "preview_rds" {
-  default = "preview_db"
+  default = "wordpress"
 }
 
 #Availability Zones

@@ -1,7 +1,7 @@
 #DNS Entries for preview environment
 
 resource "aws_route53_zone_association" "preview_private_zone" {
-  zone_id = "${data.terraform_remote_state.woa-belfast.private_zone_id}"
+  zone_id = "${data.terraform_remote_state.dmz_remote_state.private_zone_id}"
   vpc_id  = "${aws_vpc.preview_vpc.id}"
 }
 

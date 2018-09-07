@@ -79,7 +79,7 @@ resource "aws_elb" "preview_webserver_elb" {
       Terraform = "true"
       Environment = "${var.environment}"
     }
-}
+} 
 
 # ELB for RDS
 resource "aws_elb" "preview_rds_elb" {

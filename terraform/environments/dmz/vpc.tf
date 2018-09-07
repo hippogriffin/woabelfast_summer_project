@@ -10,3 +10,4 @@ resource "aws_vpc" "dmz_vpc" {
     Name = "${var.environment}"
   }
 }
+

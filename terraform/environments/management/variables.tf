@@ -56,3 +56,7 @@ variable "jenkins_name" {
 variable "security_group_name" {
   default = "mgmt_sg"
 }
+
+variable "mgmt_key_name" {
+  default = "mgmt_key"
+}

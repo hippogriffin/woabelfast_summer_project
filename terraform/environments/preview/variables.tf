@@ -19,7 +19,7 @@ variable "mgmt_sub" {
 }
 
 variable "preview_public_sub" {
-  default = "10.122.4./24"
+  default = "10.122.100.0/24"
 }
 
 #DB Server
@@ -71,7 +71,7 @@ variable "preview_db_cidr_bkup" {
 
 #Preview RDS
 variable "preview_rds" {
-  default = "wordpress"
+  default = "preview_db"
 }
 
 #Availability Zones

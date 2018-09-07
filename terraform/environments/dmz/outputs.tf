@@ -3,3 +3,7 @@
 output "dmz_vpc_id" {
   value = "${aws_vpc.dmz_vpc.id}"
 }
+
+output "private_zone_id" {
+  value = "${aws_route53_zone.private_dns.id}"
+}

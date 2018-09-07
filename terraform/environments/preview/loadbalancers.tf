@@ -1,6 +1,5 @@
 
-# Create a load balancer for the wordpress servers 
-# This will send traffic to both servers - increasing availability 
+# ELB for WordPress Servers 
 
 resource "aws_elb" "preview_wordpress_elb" {
   name      = "preview-wordpress-elb"
@@ -18,14 +17,6 @@ resource "aws_elb" "preview_wordpress_elb" {
     lb_protocol       = "http"
   }
 
-  listener {
-    instance_port      = 8000
-    instance_protocol  = "http"
-    lb_port            = 443
-    lb_protocol        = "https"
-    ssl_certificate_id = "arn:aws:iam::123456789012:server-certificate/certName"
-  }
-
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2
@@ -41,11 +32,12 @@ resource "aws_elb" "preview_wordpress_elb" {
   connection_draining_timeout = 400
 
   tags {
-    Name = "${var.environment}-wordpress-elb"
-    terraform = "true"
+    Name        = "${local.preview_wp_server_elb}"
+    terraform   = "true"
     Environment = "${var.environment}"
   }
 }
+
 
 # ELB for webservers
 resource "aws_elb" "preview_webserver_elb" {

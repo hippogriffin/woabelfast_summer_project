@@ -79,5 +79,43 @@ resource "aws_elb" "preview_webserver_elb" {
       Terraform = "true"
       Environment = "${var.environment}"
     }
-} 
+}
 
+# ELB for RDS
+resource "aws_elb" "preview_rds_elb" {
+    name     = "preview-rds-elb"
+    internal = true
+    subnets  = ["${aws_subnet.preview_db_subnet.id}", "${aws_subnet.preview_db_subnet_backup.id}"]
+    
+    access_logs {
+      bucket   = "woa-belfast"
+      interval = 60
+    }
+
+    listener {
+      instance_port     = 3306
+      instance_protocol = "TCP"
+      lb_port           = 3306
+      lb_protocol       = "TCP"
+    }
+
+    health_check {
+      healthy_threshold   = 2
+      unhealthy_threshold = 2
+      timeout             = 3
+      target              = "TCP:3306/"
+      interval            = 30
+    }
+
+    instances                   = ["${aws_db_instance.preview_rds.id}"]
+    cross_zone_load_balancing   = true
+    idle_timeout                = 400
+    connection_draining         = true
+    connection_draining_timeout = 400
+
+    tags {
+      Name = "${local.preview_rds_server_elb}"
+      terraform   = "true"
+      Environment = "${var.environment}"
+    }
+}

@@ -1,4 +1,5 @@
 resource "aws_db_instance" "preview_rds" {
+  identifier             = "preview-rds"
   allocated_storage      = 10
   storage_type           = "gp2"
   engine                 = "mysql"
@@ -13,8 +14,8 @@ resource "aws_db_instance" "preview_rds" {
   skip_final_snapshot    = true
 
   tags {
-    Name = "preview_rds"
-    Terraform = "true"
+    Name        = "preview_rds"
+    Terraform   = "true"
     Environment = "${var.environment}"
   }
 }

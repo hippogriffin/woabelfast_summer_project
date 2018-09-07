@@ -10,7 +10,7 @@ resource "aws_elb" "preview_webserver_elb" {
     connection_draining_timeout = 400
     security_groups = ["${aws_security_group.preview_web_servers.id}"]
 
-    listenr {
+    listener {
         instance_port     = 80
         instance_protocol = "http"
         lb_port           = 80

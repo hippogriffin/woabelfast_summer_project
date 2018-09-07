@@ -90,6 +90,8 @@ locals  {
   preview_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d"
   preview_webserver_ips = "10.122.1.%02d"
   preview_webserver_elb = "${var.environment}-webserver-elb"
+  preview_wp_server_elb = "${var.environment}-wp-server-elb"
+  preview_rds_server_elb = "${var.environment}-rds-elb"
 }
 
 
@@ -114,4 +116,9 @@ variable "preview_webserver_name" {
 # Web Servers
 variable "preview_web_servers_sg" {
   default = "preview_web_servers"
+}
+
+#Preview RDS
+variable "preview_rds_elb" {
+  default = "preview_rds"
 }

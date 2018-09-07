@@ -89,16 +89,16 @@ resource "aws_elb" "preview_rds_elb" {
 
     listener {
       instance_port     = 3306
-      instance_protocol = "http"
-      lb_port           = 80
-      lb_protocol       = "http"
+      instance_protocol = "TCP"
+      lb_port           = 3306
+      lb_protocol       = "TCP"
     }
 
     health_check {
       healthy_threshold   = 2
       unhealthy_threshold = 2
       timeout             = 3
-      target              = "HTTP:3306/"
+      target              = "TCP:3306/"
       interval            = 30
     }
 

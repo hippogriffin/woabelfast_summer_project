@@ -8,6 +8,7 @@ resource "aws_instance" "wordpress" {
     vpc_security_group_ids = ["${aws_security_group.wp_servers.id}"]
     private_ip = "${format("${local.preview_wp_server_ips}", count.index + 10)}"
     key_name = "${aws_key_pair.preview_key.key_name}"
+    user_data = "${file("scripts/init.cfg")}"
 
     tags {
         Name = "${format("${local.preview_wp_server_names}", count.index + 1)}"

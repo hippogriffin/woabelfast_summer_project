@@ -1,14 +1,8 @@
-
-# ELB for WordPress Servers 
+# ELB for WordPress Servers
 
 resource "aws_elb" "preview_wordpress_elb" {
-  name      = "preview-wordpress-elb"
-  subnets   = ["${aws_instance.wordpress.*.subnet_id}"]
-
-  access_logs {
-    bucket            = "woa-belfast"
-    interval          = 60
-  }
+  name    = "preview-wordpress-elb"
+  subnets = ["${aws_instance.wordpress.*.subnet_id}"]
 
   listener {
     instance_port     = 80
@@ -38,7 +32,6 @@ resource "aws_elb" "preview_wordpress_elb" {
   }
 }
 
-
 # ELB for webservers
 resource "aws_elb" "preview_webserver_elb" {
     
@@ -65,19 +58,16 @@ resource "aws_elb" "preview_webserver_elb" {
 #        lb_protocol        = "https"
 #        ssl_certificate_id = ""
 #     }
-
-    health_check {
-        healthy_threshold   = 2
-        unhealthy_threshold = 2
-        timeout             = 3
-        target              = "HTTP:80/"
-        interval            = 30
-    }
-
-    tags {
-      Name = "${local.preview_webserver_elb}"
-      Terraform = "true"
-      Environment = "${var.environment}"
-    }
-} 
-
+  health_check {
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 3
+    target              = "HTTP:80/"
+    interval            = 30
+  }
+  tags {
+    Name        = "${local.preview_webserver_elb}"
+    Terraform   = "true"
+    Environment = "${var.environment}"
+  }
+}

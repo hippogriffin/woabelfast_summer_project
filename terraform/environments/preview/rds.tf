@@ -1,4 +1,5 @@
 resource "aws_db_instance" "preview_rds" {
+  identifier             = "preview-rds"
   allocated_storage      = 10
   storage_type           = "gp2"
   engine                 = "mysql"
@@ -11,6 +12,12 @@ resource "aws_db_instance" "preview_rds" {
   db_subnet_group_name   = "${aws_db_subnet_group.preview_rds_subnet_group.id}"
   vpc_security_group_ids = ["${aws_security_group.preview_db.id}", "${aws_security_group.preview_db_backup.id}"]
   skip_final_snapshot    = true
+
+  tags {
+    Name        = "preview_rds"
+    Terraform   = "true"
+    Environment = "${var.environment}"
+  }
 }
 
 resource "aws_db_subnet_group" "preview_rds_subnet_group" {

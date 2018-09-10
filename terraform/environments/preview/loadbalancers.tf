@@ -43,7 +43,7 @@ resource "aws_elb" "preview_wordpress_elb" {
 resource "aws_elb" "preview_webserver_elb" {
     
     name               = "${local.preview_webserver_elb}"
-    subnets = ["${aws_subnet.preview_public_subnet.id}"]
+    subnets = ["${aws_subnet.preview_webserver_subnet.id}"]
     instances                   = ["${aws_instance.proxy-servers.*.id}"]
     cross_zone_load_balancing   = true
     idle_timeout                = 400

@@ -8,6 +8,7 @@ To start development on this project clone this repo.
 - Ensure you have Vagrant installed
 - Ensure you have Ansible installed
 - Ensure you have Ansible Lint installed
+- Ensure you have the boto python package installed 
 
 Once you have cloned the repo you can start the environment by accessing the directory via terminal and running "vagrant up {server name}" or just "vagrant up" to create them all.
 
@@ -419,6 +420,17 @@ You can now use data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id to get 
 
     ### __IN VPC_PEERING CONFIG__
     peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}"
+
+# Dynamic Inventory Management 
+Ansible can pull inventory information from dynamic sources, including cloud sources. 
+The inventory scripts 'ec2.py' and 'ec2.ini' were added to the project. These query AWS for your running Amazon EC2 instances info.
+
+Note: The ‘boto’ library is a requirement for the two scripts to run. 
+
+Use the ansible-inventory command below to generate all the relevant info about our hosts...
+
+        ansible-inventory --inventory-file=ec2.py --list
+
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

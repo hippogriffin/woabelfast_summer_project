@@ -69,19 +69,13 @@ resource "aws_route" "public_route" {
   gateway_id             = "${aws_internet_gateway.gw.id}"
 }
 
-resource "aws_route53_zone" "preview" {
-  name = "preview.woabelfast.co.uk"
-  vpc_id = "${aws_vpc.preview_vpc.id}"
-
-
-  tags {
-    Environment = "preview"
-  }
+data "aws_route53_zone" "selected" {
+  name         = "woabelfast.co.uk"
 }
 
 resource "aws_route53_record" "www-preview" {
-  zone_id = "${aws_route53_zone.preview.zone_id}"
-  name    = "www"
+  zone_id = "${data.aws_route53_zone.selected.zone_id}"
+  name    = "preview.woabelfast.co.uk"
   type    = "CNAME"
   ttl     = "5"
 
@@ -90,5 +84,5 @@ resource "aws_route53_record" "www-preview" {
   }
 
   set_identifier = "preview"
-  records        = ["preview.woabelfast.co.uk"]
+  records        = ["${aws_elb.preview_webserver_elb.dns_name}"] //use load balancer
 }

@@ -1,0 +1,2 @@
+[bastion_servers]
+ec2-52-208-253-62.eu-west-1.compute.amazonaws.com ansible_port=22

@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
         ansible.galaxy_role_file = "requirements.yml"
         ansible.galaxy_roles_path = 'roles_galaxy'
         ansible.extra_vars = {
-          wp_db_host: 10.120.0.6
+          wp_db_host: 10.122.3.6
           wp_db_name: wordpress
           wp_db_user: wpuser
           wp_db_password: 123456789

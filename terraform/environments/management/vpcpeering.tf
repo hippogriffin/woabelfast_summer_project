@@ -25,8 +25,8 @@ resource "aws_route" "dmz_mgmt_vpc_peer_route" {
   vpc_peering_connection_id = "${aws_vpc_peering_connection.dmz_mgmt_vpc_peer.id}"
 }
 
-resource "aws_route" "mgmt_dmz_vpc_peer_route" {
-  route_table_id = "${aws_vpc.mgmt_vpc.main_route_table_id}"
-  destination_cidr_block = "${data.terraform_remote_state.woa-belfast.dmz_vpc_cidr}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.dmz_mgmt_vpc_peer.id}"
-}
+#resource "aws_route" "mgmt_dmz_vpc_peer_route" {
+#  route_table_id = "${aws_vpc.mgmt_vpc.main_route_table_id}"
+#  destination_cidr_block = "${data.terraform_remote_state.woa-belfast.dmz_vpc_cidr}"
+#  vpc_peering_connection_id = "${aws_vpc_peering_connection.dmz_mgmt_vpc_peer.id}"
+#}

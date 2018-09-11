@@ -1,5 +1,4 @@
 # Grabbing data from the DMZ Remote State file 
-
 data "terraform_remote_state" "dmz_remote_state" {
   backend = "s3"
   config {

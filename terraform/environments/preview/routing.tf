@@ -68,3 +68,27 @@ resource "aws_route" "public_route" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_internet_gateway.gw.id}"
 }
+
+resource "aws_route53_zone" "preview" {
+  name = "preview.woabelfast.co.uk"
+  vpc_id = "${aws_vpc.preview_vpc.id}"
+
+
+  tags {
+    Environment = "preview"
+  }
+}
+
+resource "aws_route53_record" "www-preview" {
+  zone_id = "${aws_route53_zone.preview.zone_id}"
+  name    = "www"
+  type    = "CNAME"
+  ttl     = "5"
+
+  weighted_routing_policy {
+    weight = 10
+  }
+
+  set_identifier = "preview"
+  records        = ["preview.woabelfast.co.uk"]
+}

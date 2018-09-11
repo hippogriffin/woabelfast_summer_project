@@ -31,6 +31,13 @@ resource "aws_security_group" "preview_db_backup" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   #Security Groups for the Preview Environment
   tags {
     Name      = "${var.preview_db_sg}"

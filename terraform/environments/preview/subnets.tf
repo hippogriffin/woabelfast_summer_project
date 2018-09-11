@@ -48,13 +48,25 @@ resource "aws_subnet" "preview_db_subnet_backup" {
   }
 }
 
-resource "aws_subnet" "preview_public_subnet" {
+resource "aws_subnet" "preview_public_subnet-1b" {
   vpc_id = "${aws_vpc.preview_vpc.id}"
-  cidr_block = "${var.preview_public_sub}"
-  map_public_ip_on_launch = true
+  cidr_block = "${var.preview_public_sub_1b}"
+  availability_zone = "${var.avail_zone_b}"
 
   tags {
-    Name = "Preview Public Subnet"
+    Name = "Preview Public Subnet 1b"
+    environment = "preview"
+    terraform = "true"
+  }
+}
+
+resource "aws_subnet" "preview_public_subnet-1a" {
+  vpc_id = "${aws_vpc.preview_vpc.id}"
+  cidr_block = "${var.preview_public_sub_1a}"
+  availability_zone = "${var.avail_zone_a}"
+
+  tags {
+    Name = "Preview Public Subnet 1a"
     environment = "preview"
     terraform = "true"
   }

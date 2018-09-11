@@ -19,12 +19,12 @@ resource "aws_iam_user_policy" "jenkins" {
     "Statement":[
     {
         "Action": [
-            "ec2:*"
-            "iam:*"
-            "efs:*"
-            "rds:*"
-            "elb:*"
-            "route53:*"
+            "ec2:*",
+            "iam:*",
+            "efs:*",
+            "rds:*",
+            "elb:*",
+            "route53:*",
             "acm:*"
         ],
         "Effect": "Allow",

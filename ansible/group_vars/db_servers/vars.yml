@@ -8,19 +8,20 @@ firewall_allowed_tcp_ports:
 
 # Create Users
 mysql_users:  
-- name: "wpuser"
-  password: 12345
+- name: "{{ vault_mysql_user}}"
+  password: "{{ vault_mysql_password }}"
   priv: '*.*:ALL'
   state: present
   host: "%"
+  no_log: False
 
 # Set Root Password
-mysql_root_password: 12345
+mysql_root_password: "{{ vault_mysql_password }}"
 
 # Create Databases
 
 mysql_databases: 
-- name: wordpress
+- name: "{{ vault_mysql_dbname }}"
   collation: utf8_general_ci
   encoding: utf8
   replicate: 1
@@ -29,3 +30,5 @@ mysql_databases:
 custom_yum_installs: 
   - httpd
   - phpmyadmin
+
+vault_mysql_password: vault.yml

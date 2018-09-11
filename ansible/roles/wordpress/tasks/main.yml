@@ -47,13 +47,13 @@
   register: "wp_salt"
   become: no
 
-- name: create and configure wordpress.conf
-  template:
-    src: "{{ wordpress_conf_template }}"
+- name: ensure wordpress.conf file exists
+  copy:
+    content: ""
     dest: "{{ wordpress_conf_dest }}"
-    force: yes
-    owner: wordpress
+    force: no
     group: wordpress
+    owner: wordpress
     mode: 0644
 
 - name: create wp-config.php

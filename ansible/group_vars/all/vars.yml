@@ -1,0 +1,65 @@
+---
+
+users:
+  - username: jackk
+    name: Jack King
+    groups: ['webops_admins']
+    uid: 1005
+    ssh_key:
+      - "{{ vault_jackk_ssh }}"
+  
+  - username: brianmc
+    name: Brian McGowan
+    groups: ['webops_admins']
+    uid: 1006
+    ssh_key:
+      - "{{ vault_brianmc_ssh }}"
+
+  - username: endak
+    name: Enda Kelly
+    groups: ['webops_admins']
+    uid: 1007
+    ssh_key:
+      - "{{ vault_endak_ssh }}"
+
+  - username: jamesni
+    name: James Nicholl
+    groups: ['webops_admins']
+    uid: 1008
+    ssh_key:
+      - "{{ vault_jamesni_ssh }}"
+
+  - username: camerons
+    name: Cameron Sharp
+    groups: ['webops_admins']
+    uid: 1009
+    ssh_key:
+      - "{{ vault_camerons_ssh }}"
+
+  - username: march
+    name: Marc Hughes
+    groups: ['webops_admins']
+    uid: 1010
+    ssh_key:
+      - "{{ vault_march_ssh }}"
+
+groups_to_create: 
+  - name: webops_admins
+    gid: 10000
+    sudo: true
+
+users_deleted: []
+  # - username: example
+  #  name: example User
+  #  uid: 1002
+
+
+common_yum_installs: 
+  - epel-release
+
+vault_jackk_ssh: vault.yml
+vault_brianmc_ssh: vault.yml
+vault_endak_ssh: vault.yml
+vault_jamesni_ssh: vault.yml
+vault_camerons_ssh: vault.yml
+vault_march_ssh: vault.yml

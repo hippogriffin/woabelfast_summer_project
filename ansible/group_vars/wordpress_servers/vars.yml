@@ -208,3 +208,6 @@ nginx_vhosts:
             include /etc/nginx/fastcgi_params;
             }
 
+vault_mysql_user: vault.yml
+vault_mysql_password: vault.yml
+vault_mysql_dbname: vault.yml

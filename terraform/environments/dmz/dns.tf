@@ -15,6 +15,3 @@ resource "aws_route53_record" "dmz_dns_record" {
   ttl     = "300"
   records = ["${aws_instance.jumpbox.private_ip}"]
 }
-
-
-

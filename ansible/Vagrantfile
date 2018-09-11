@@ -1,22 +1,48 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 hosts = [
-    {name: 'proxy', ip: '10.120.0.2', memory: '512', cpu: '2', hostname: 'proxy.vagrant.local'},
-    {name: 'wordpress', ip: '10.120.0.3', memory: '512', cpu: '2', hostname: 'wordpress.vagrant.local'},
-    {name: 'db', ip: '10.120.0.4', memory: '512', cpu: '2', hostname: 'db.vagrant.local'},
-    {name: 'jumpbox', ip: '10.120.0.5', memory: '512', cpu: '2', hostname: 'jumpbox.vagrant.local'},
-    {name: 'jenkins', ip: '10.120.0.6', memory: '512', cpu: '2', hostname: 'jenkins.vagrant.local'}
+    # Preview
+    {name: 'preview_proxy_01', ip: '10.122.1.2', memory: '512', cpu: '2', hostname: 'preview_proxy01.woabelfast.local'},
+    {name: 'preview_proxy_02', ip: '10.122.1.3', memory: '512', cpu: '2', hostname: 'preview_proxy02.woabelfast.local'},
+    {name: 'preview_wordpress_01', ip: '10.122.2.4', memory: '512', cpu: '2', hostname: 'preview_wordpress01.woabelfast.local'},
+    {name: 'preview_wordpress_02', ip: '10.122.2.5', memory: '512', cpu: '2', hostname: 'preview_wordpress02.woabelfast.local'},
+
+    # Pre-prod
+    {name: 'preprod_proxy_01', ip: '10.132.1.2', memory: '512', cpu: '2', hostname: 'preprod_proxy01.woabelfast.local'},
+    {name: 'preprod_proxy_02', ip: '10.132.1.3', memory: '512', cpu: '2', hostname: 'preprod_proxy02.woabelfast.local'},
+    {name: 'preprod_wordpress_01', ip: '10.132.2.4', memory: '512', cpu: '2', hostname: 'preprod_wordpress01.woabelfast.local'},
+    {name: 'preprod_wordpress_02', ip: '10.132.2.5', memory: '512', cpu: '2', hostname: 'preprod_wordpress02.woabelfast.local'},
+
+    # Production
+    {name: 'production_proxy_01', ip: '10.142.1.2', memory: '512', cpu: '2', hostname: 'production_proxy01.woabelfast.local'},
+    {name: 'production_proxy_02', ip: '10.142.1.3', memory: '512', cpu: '2', hostname: 'production_proxy02.woabelfast.local'},
+    {name: 'production_wordpress_01', ip: '10.142.2.4', memory: '512', cpu: '2', hostname: 'production_wordpress01.woabelfast.local'},
+    {name: 'production_wordpress_02', ip: '10.142.2.5', memory: '512', cpu: '2', hostname: 'production_wordpress02.woabelfast.local'},
+
+    {name: 'db', ip: '10.122.3.6', memory: '512', cpu: '2', hostname: 'db.woabelfast.local'},
+    {name: 'dmz_jumpbox', ip: '10.120.0.7', memory: '512', cpu: '2', hostname: 'dmz_jumpbox.woabelfast.local'},
+    {name: 'management_jenkins', ip: '10.121.0.8', memory: '512', cpu: '2', hostname: 'management_jenkins.woabelfast.local'}
 ]
 
-groups = {
-    "webservers" => ["proxy"],
-    "wordpress_servers" => ["wordpress"],
+groups = {  
+    "bastion_servers" => ["dmz_jumpbox"],
+    "jenkins_servers" => ["management_jenkins"],
     "db_servers" => ["db"],
-    "jenkins_servers" => ["jenkins"],
-    "bastion_servers" => ["jumpbox"],
 
-    "frontend:children" => ["webservers"],
-    "backend:children" => ['db',"wordpress_servers"]
+    "preview_webservers" => ["preview_proxy_01", "preview_proxy_02"],
+    "preview_wordpress" => ["preview_wordpress_01", "preview_wordpress_02"],
+    "preview:children" => ["preview_wordpress", "preview_webservers"],
+
+    "preprod_webservers" => ["preprod_proxy_01", "preprod_proxy_02"],
+    "preprod_wordpress" => ["preprod_wordpress_01", "preprod_wordpress_02"],
+    "preprod:children" => ["preprod_wordpress", "preprod_webservers"]
+
+    "production_webservers" => ["preview_proxy_01", "preview_proxy_02"],
+    "production_wordpress" => ["preview_wordpress_01", "preview_wordpress_02"],
+    "production:children" => ["preview_wordpress", "preview_webservers"],
+
+    "webservers:children" => ["preview_webservers", "preprod_webservers", "production_webservers"],
+    "wordpress_servers:children" => ["preview_wordpress", "preprod_wordpress", "production_wordpress"]
 }
 
 

@@ -5,7 +5,6 @@ resource "aws_route53_zone_association" "preview_private_zone" {
   vpc_id  = "${aws_vpc.preview_vpc.id}"
 }
 
-
 resource "aws_route53_record" "preview_private_dns_records_webserver" {
   zone_id = "${aws_route53_zone_association.preview_private_zone.zone_id}"
   name = "${format("${local.preview_webserver_names}", count.index + 1)}"
@@ -46,7 +45,8 @@ resource "aws_route53_record" "preview_wordpress_elb" {
   name = "${local.preview_wp_server_elb}"
   type = "CNAME"
   ttl = "300"
-   records = [
+
+  records = [
     "${aws_elb.preview_wordpress_elb.dns_name}",
   ]
-} 
+}

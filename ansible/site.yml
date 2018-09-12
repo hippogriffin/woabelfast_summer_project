@@ -17,7 +17,7 @@
     - geerlingguy.nginx
 
 - name: configure wordpress
-  hosts: wordpress_servers
+  hosts: wordpress-servers
   become: true
   roles:
     - geerlingguy.nginx
@@ -25,20 +25,20 @@
     - wordpress
     
 - name: configure jenkins
-  hosts: jenkins_servers
+  hosts: jenkins-servers
   become: true
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
 
 - name: Install and Configure mySQl on DB server
-  hosts: db_servers
+  hosts: db-servers
   become: true
   roles: 
     - geerlingguy.mysql
 
 - name: configure bastion servers
-  hosts: bastion_servers
+  hosts: bastion-servers
   become: true
   roles:
     - geerlingguy.nginx

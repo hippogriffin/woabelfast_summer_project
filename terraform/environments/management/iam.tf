@@ -5,10 +5,6 @@ resource "aws_iam_user" "jenkins" {
     path = "/system/"
 }
 
-resource "aws_iam_access_key" "jenkins" {
-    user = "${aws_iam_user.jenkins.name}"
-}
-
 resource "aws_iam_user_policy" "jenkins" {
     name = "jenkins_policy"
     user = "${aws_iam_user.jenkins.name}"

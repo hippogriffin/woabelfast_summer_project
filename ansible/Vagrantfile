@@ -21,12 +21,12 @@ hosts = [
 
     {name: 'db', ip: '10.122.3.6', memory: '512', cpu: '2', hostname: 'db.woabelfast.local'},
     {name: 'dmz_jumpbox', ip: '10.120.0.7', memory: '512', cpu: '2', hostname: 'dmz_jumpbox.woabelfast.local'},
-    {name: 'management_jenkins', ip: '10.121.0.8', memory: '512', cpu: '2', hostname: 'management_jenkins.woabelfast.local'}
+    {name: 'management-jenkins', ip: '10.121.0.8', memory: '512', cpu: '2', hostname: 'management-jenkins.woabelfast.local'}
 ]
 
 groups = {  
     "bastion_servers" => ["dmz_jumpbox"],
-    "jenkins_servers" => ["management_jenkins"],
+    "jenkins_servers" => ["management-jenkins"],
     "db_servers" => ["db"],
 
     "preview_webservers" => ["preview_proxy_01", "preview_proxy_02"],
@@ -35,7 +35,7 @@ groups = {
 
     "preprod_webservers" => ["preprod_proxy_01", "preprod_proxy_02"],
     "preprod_wordpress" => ["preprod_wordpress_01", "preprod_wordpress_02"],
-    "preprod:children" => ["preprod_wordpress", "preprod_webservers"]
+    "preprod:children" => ["preprod_wordpress", "preprod_webservers"],
 
     "production_webservers" => ["preview_proxy_01", "preview_proxy_02"],
     "production_wordpress" => ["preview_wordpress_01", "preview_wordpress_02"],
@@ -59,11 +59,11 @@ Vagrant.configure("2") do |config|
         ansible.galaxy_role_file = "requirements.yml"
         ansible.galaxy_roles_path = 'roles_galaxy'
         ansible.extra_vars = {
-          wp_db_host: 10.122.3.6
-          wp_db_name: wordpress
-          wp_db_user: wpuser
-          wp_db_password: 123456789
-    } 
+          wp_db_host: "10.122.3.6",
+          wp_db_name: "wordpress",
+          wp_db_user: "wpuser",
+          wp_db_password: "123456789",
+        } 
 
       end
       c.vm.provider "virtualbox" do |vb|

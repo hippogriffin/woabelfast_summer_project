@@ -25,9 +25,9 @@ hosts = [
 ]
 
 groups = {  
-    "bastion_servers" => ["dmz_jumpbox"],
-    "jenkins_servers" => ["management-jenkins"],
-    "db_servers" => ["db"],
+    "bastion-servers" => ["dmz_jumpbox"],
+    "jenkins-servers" => ["management-jenkins"],
+    "db-servers" => ["db"],
 
     "preview-webservers" => ["preview-proxy-01", "preview-proxy-02"],
     "preview-wordpress" => ["preview-wordpress-01", "preview-wordpress-02"],
@@ -42,7 +42,7 @@ groups = {
     "production:children" => ["preview-wordpress", "preview-webservers"],
 
     "webservers:children" => ["preview-webservers", "preprod-webservers", "production-webservers"],
-    "wordpress_servers:children" => ["preview-wordpress", "preprod-wordpress", "production-wordpress"]
+    "wordpress-servers:children" => ["preview-wordpress", "preprod-wordpress", "production-wordpress"]
 }
 
 

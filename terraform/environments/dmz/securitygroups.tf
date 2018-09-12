@@ -25,6 +25,13 @@ resource "aws_security_group" "dmz_sg" {
         cidr_blocks = ["${var.kainos_cidr}"]
     }
 
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
     tags {
         Name = "${var.security_group_name}"
         Terraform = "true"

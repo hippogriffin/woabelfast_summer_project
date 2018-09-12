@@ -21,7 +21,13 @@ variable "mgmt_sub" {
 variable "preview_public_sub" {
   default = "10.122.100.0/24"
 }
+variable "preview_public_sub_1a" {
+  default = "10.122.102.0/24"
+}
 
+variable "preview_public_sub_1b" {
+  default = "10.122.101.0/24"
+}
 #DB Server
 variable "preview_db_sg" {
   default = "db_rds_sg"

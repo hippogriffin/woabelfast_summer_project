@@ -55,7 +55,7 @@
     group: nginx
     owner: nginx
     mode: 0644
-
+    
 - name: create php info page
   lineinfile:
     path: "{{ phpfpm_dest }}"

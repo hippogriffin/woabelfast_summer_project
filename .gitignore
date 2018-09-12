@@ -12,6 +12,7 @@
 *.retry
 *.retry.*
 **/roles_galaxy/*
+*.vault_pass
 
 # Local .terraform directories
 **/.terraform/*

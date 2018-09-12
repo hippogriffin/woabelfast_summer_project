@@ -8,6 +8,16 @@ resource "aws_route_table" "private_route_table" {
     }
 }
 
+resource "aws_route_table" "public_route_table" {
+    vpc_id = "${aws_vpc.preview_vpc.id}"
+
+    tags {
+        Name = "Public Route table"
+        Environment = "${var.environment}"
+        terraform = "true"
+    }
+}
+
 resource "aws_route" "private_route" {
 	route_table_id  = "${aws_route_table.private_route_table.id}"
 	destination_cidr_block = "0.0.0.0/0"
@@ -31,4 +41,48 @@ resource "aws_route_table_association" "pr_1_subnet_eu_west_1a_association" {
 resource "aws_route_table_association" "pr_2_subnet_eu_west_1a_association" {
     subnet_id = "${aws_subnet.preview_webserver_subnet.id}"
     route_table_id = "${aws_route_table.private_route_table.id}"
+}
+
+resource "aws_route_table_association" "public_subnet_eu_west_1a_association" {
+    subnet_id = "${aws_subnet.preview_public_subnet-1a.id}"
+    route_table_id         = "${aws_route_table.public_route_table.id}"
+}
+
+resource "aws_route_table_association" "public_subnet_eu_west_1b_association" {
+    subnet_id = "${aws_subnet.preview_public_subnet-1b.id}"
+    route_table_id         = "${aws_route_table.public_route_table.id}"
+}
+
+resource "aws_route_table_association" "private_db_association_1" {
+    subnet_id = "${aws_subnet.preview_db_subnet.id}"
+    route_table_id = "${aws_route_table.private_route_table.id}"
+}
+resource "aws_route_table_association" "private_db_association_2" {
+    subnet_id = "${aws_subnet.preview_db_subnet_backup.id}"
+    route_table_id = "${aws_route_table.private_route_table.id}"
+}
+
+
+resource "aws_route" "public_route" {
+  route_table_id         = "${aws_route_table.public_route_table.id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = "${aws_internet_gateway.gw.id}"
+}
+
+data "aws_route53_zone" "selected" {
+  name         = "woabelfast.co.uk"
+}
+
+resource "aws_route53_record" "www-preview" {
+  zone_id = "${data.aws_route53_zone.selected.zone_id}"
+  name    = "preview.woabelfast.co.uk"
+  type    = "CNAME"
+  ttl     = "5"
+
+  weighted_routing_policy {
+    weight = 10
+  }
+
+  set_identifier = "preview"
+  records        = ["${aws_elb.preview_webserver_elb.dns_name}"] //use load balancer
 }

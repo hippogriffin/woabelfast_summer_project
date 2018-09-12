@@ -1,0 +1,58 @@
+---
+
+users:
+  - username: jackk
+    name: Jack King
+    groups: ['webops_admins']
+    uid: 1005
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDpIu2nc2VMBU4+/TPNXlR+1lQygojMaGpPJDGhv3EXSmcekSkv1IgTLmUOxMomRZEz3lfQm/M5RSJm8foZw4dXRHyfIx8bgc+ErFIZwl8DDdLH/t7fOibjpFCMO0WcIVFkhzuFuAuSB3KuyVMdET0Wi4mBqEJagmTvX+mWjxDEG7QWCyS06sMYc2x4Vi/Ds5GP9NxoVbVUvJBVyXAiuRVEUrF+ZjBjBC4ALQCySucXIqlAACNEZPDQ6sgwnKOjfLlDhTI94aVX+ipTE+AliotPCMrUoxlgIsjdut0ttFeio9h2dGsukJKnkfiJKOWIk9KpAI2rYqoEw0imhkcMoR92nSLqlsaQfcBMKeXe5zZwszELjFln13fLAQqpWAgjW+u4qpbwG3hD0caLdpRWfycNmpDDsYis5U9Zz5sG+4kmWJLogJd2f6yjIb+HbGGNUx2cShPa2IeK4ZQcNxp07nRmiQHjkVMrSGjAIW2TeE5C06t4DR5zFPT0uQcJfzZtw1AqhJpY7aZlwLW20XjEhSGFaas2FH1DJpNAOXOh96nMvKXiLIk70k8/JLFUjdvEHPCBbOujvqhKotlX9vcNLQTBA4PZIRTRexdOm+kFqZrRo79eaKJDxyFl0bdK0+OukElUlEoWUMQK4W3+KzDaBO8wbQh08sSrBJ7atS9eF0ZPQ== First Key"
+  
+  - username: brianmc
+    name: Brian McGowan
+    groups: ['webops_admins']
+    uid: 1006
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBk9XrJqxYrC7H+yxwwIbC695Abh35cz5DQ9DVzb+RZYfhJstKYSKnLaa8et9esVhcQB9Ycf8C00Ibh+IcxUA2npeZrJL7RM48WKEjGS958Skmp2YjBIUWcWO81b51pFU6LYutnfsIOt3FFc4pT/qKWNln9/GODdAcIdDp3Qxiwd/WHqZm4ca70pQJ9NrswCYqh95jmLHw9VGKOfjO3+D+tIcAr23ayjudeJRNTjMsW4CNwkWHjp0X7VDKztHVgY2iq5pL2kDJKCvygg3BZ1MuagbERxcvrH2zo+6Je5//W+SWZIueoEkg5ATWm/n+NAqo/gmohXn8yFl78Z2Em/3HmqvZ67/Qm4aUY8F/F7WX05wE+v50gYiZ2LClKGwEKZ84DE4O925INhns4/Jx4EDnd2igfhyGCoVlccmHWEtokJU/17mEuneSyj0ys/Eh97zXHcCejvom1YyKYdEK/UnxzLIHOdLSxqK721QN4XoUDPHa6Iv6VKTfj9sWe19lxfkLlpBR7OEHwAFsO2bAJMkWC/SPs8A2zFXLHOjlSWBa4zYa31wtHcStqzOEGgQKD0FpcKWK0JwKJBHwiy6wJoG4HI+WsfEdTnmKYsESw0ccHQ/HXpB3UatzMwLhkn5hyZgO5MH1ylnUSr+NPiEpDBGQ7BXAhFyyP6FKMAzoNheWmQ== brianmc@kainos.com"
+
+  - username: endak
+    name: Enda Kelly
+    groups: ['webops_admins']
+    uid: 1007
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNQu4HLZrt6OyXnr57Nrp0pZPWkGMoSaseo800lKiAGTavrY4x02k14GwtLeuD1MiQi8wzNsEJ/zYtUTjKMkhjr9mlGjW4ID8dpDPn6NxWn/bFsJoVX8DOvlRnVOPFArXZgqp2K7jugVw29dbszD9M2wUsggGZl/r8VDjDYUfZT2E+DKWI7XJnfuoY0BzCAVFhkYxyA/x/tsUB7Ey4Vq913/C4jbForGoUGknY08wI/57HnegUJpSF+owQc2e877fJPpfaMpMZeFa8vluFrMsby5lt4kwJTBFDLVo3DzFDTEHp3p5vInsbfM0CnvnEbA1j4uwaZiVOZAbW9d/uuGJ6xbVLxTnM4hGtFqo9+skZewfDIFqo2rWwLUPswHhcWFbIjJse7k5im/CmwT49OhDEYrA/TG1BP04FDQp4fRAoMgnIXUCtNBUo4OrLrHiLwVLQNGjc7gYWr8xtfTh6KZLLfuBjOjJTaXOZ6bFtivHo5aG0rqfy1pVLgjSfqV12nSFs8JKKWvhwZOFmV7xLnRYtmDn/5UVoFyMe5t3NrK9U2csyx7WMNfBO859h80yZIXt9mm7b3c9Sjgq6BW39il5tBWKNYUGUgBZ6c22TJX0KNixG7T6IFTFbpn1RLXvhynS6YlmSGlPMpAerWbvucsVfsLyborTaWc+bROkgJTZV1w== Enda Kelly WebOps"
+
+  - username: jamesni
+    name: James Nicholl
+    groups: ['webops_admins']
+    uid: 1008
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDkJCJdhHRA7HFBBGtYM4hHKYjfSwC3YeJk4kPdp35ibCAJmX0Xtq+EqAzrSJ+6v63dM41YQNfPZvakZeAAZadKHJMVqFkypFU5tOaVoUAYvnQEtddECA1TqwaQvNkHFkP6tSKg+8xPG1Md5Vrs4ZTfUntecUndA+l7lpDe+RiLfn3pXhbriedMa+nsWvZOf+kHKDgsVw95DCy/Ivz6IhBuHAMH7r0QmbQhG4bYsIIIWKE1cNKVnZmDQ2aOO7Vq/FdeGpHmsjSrsp77Y3rvTkl1DUfWfOcLxdsuhrAVrxO1yCqZqcaQdNWZtvmwZxryC15OC5dXRe2aNrVHYRBecutTvBilb893KvsiHWlhMx7pDoHq2qNMlGhRb7sqlTGI+H5cZymjIdSIUIsCUm5ahYNPQchEMl7SbgJqgTIAub5ayfx4yYUYoze+shL8ptOo8+H3+Di1EVmO5B64NGAafpzo0xe2kNbVd04JbBpPAgcwiV5+QnQ0x26fPoi8KZBkUdFy6XgjNpw52YzILmPCnzjrn4OJNXq70Fhd+R8Tr527UfoTfPf8boY2MzUUNNLymbURLdLHcMEhTGUNEApRgEr7P2jHt86aoGxEhyIlAGkQoYnsjvG77abe6vYxtB3QPyeEB6+zlbCj93eE3sca1Qq8Iyf1gR1l3CbMvYGL9y2AzQ== WOA2018"
+
+  - username: camerons
+    name: Cameron Sharp
+    groups: ['webops_admins']
+    uid: 1009
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwJQMrRv62lHHZ/HVXmpE0uWYWkVcbp5Gf1b6JiZqh3JcSCKkS6KIv/o6iz3S4pDojEaUp4k63xETDoGPTB/ttwsBQEpf+8w6CwDUgpiy8dMLcfrqI/4tF9A+BwaxePl4bLAG917xxElrT1pvjLYax2nqFC5KPqTFha3rtYcwCECWHUryAgml4oZ1l+KRze4bn5TamayIwSB23D7BqS+qclTwVHgBAMjMPArBfTVJwrChOGCE8DesZvz1zwrRhNTm6pD0dTcoXduhJkIp0oFoOj9vwK2xnqlcMP0dhNvdmgFZRrMUQOpPFS+IEyv+MgS2muwZu/0oyBTxAt6/0L3BH camerons@Phoenicia.local"
+
+  - username: march
+    name: Marc Hughes
+    groups: ['webops_admins']
+    uid: 1010
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbud7rESEJZskDeW4f1Wz6V6sj5kkKcy8nwbM7ELebRKwKlpAJGoDg/t2O5gLlHg0ghketEWYxa74XwNHt2twHdh2teVCcUkAEtQdxnJ1IjHVshNwvKOgNIRQ5bRJusiXugz4DyqE4APuQdvVFDvksc3V2YYztbkyGd7DR0MVRTWFKraERzPNjayLrqxvlMaZAC9xlL7VKJ7bA4pakZhL+2mZbS7wHC3V6bsQ0u8AjVZox49DoEY4R+bFMslaRKOKHzImPk840dqKWy8fOaJn3Yud6mcJVkkg6SH1tFAb32MMmr15n4Q7nDIsm6qLAkvoN+3MNIiuhf0tTo4ZChJtn march@audi.local"
+
+groups_to_create: 
+  - name: webops_admins
+    gid: 10000
+    sudo: true
+
+users_deleted: []
+  # - username: example
+  #  name: example User
+  #  uid: 1002
+
+
+common_yum_installs: 
+  - epel-release

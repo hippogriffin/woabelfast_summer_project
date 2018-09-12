@@ -14,7 +14,7 @@ resource "aws_eip" "mgmt_nat_gw_eip" {
 
 resource "aws_nat_gateway" "mgmt_nat_gw" {
     allocation_id = "${aws_eip.mgmt_nat_gw_eip.id}"
-    subnet_id = "${aws_subnet.mgmt_subnet.id}"
+    subnet_id = "${aws_subnet.mgmt_public_subnet.id}"
 
     tags {
         Name = "${var.natgw_name}"

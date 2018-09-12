@@ -68,3 +68,21 @@ resource "aws_route" "public_route" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_internet_gateway.gw.id}"
 }
+
+data "aws_route53_zone" "selected" {
+  name         = "woabelfast.co.uk"
+}
+
+resource "aws_route53_record" "www-preview" {
+  zone_id = "${data.aws_route53_zone.selected.zone_id}"
+  name    = "preview.woabelfast.co.uk"
+  type    = "CNAME"
+  ttl     = "5"
+
+  weighted_routing_policy {
+    weight = 10
+  }
+
+  set_identifier = "preview"
+  records        = ["${aws_elb.preview_webserver_elb.dns_name}"] //use load balancer
+}

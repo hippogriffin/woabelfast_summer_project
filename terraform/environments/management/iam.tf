@@ -11,8 +11,8 @@ resource "aws_iam_user_policy" "jenkins" {
 
     policy = <<EOF
 {
-    "Version": "2018-09-07",
-    "Statement":[
+    "Version": "2012-10-17",
+    "Statement": [
     {
         "Action": [
             "ec2:*",

@@ -48,6 +48,9 @@ groups = {
 
 Vagrant.configure("2") do |config|
 
+  config.landrush.enabled = true
+  config.landrush.tld = 'woabelfast.local'
+
   hosts.each do |host|
     config.vm.define host[:name] do |c|
       c.vm.box = "centos/7"

@@ -1,4 +1,4 @@
-{% for item in base_sudoer_groups %}
+{% for item in groups_to_create %}
 {% if item.sudo %}
 %{{ item.name }} ALL=(ALL:ALL) NOPASSWD:ALL
 {% endif %}

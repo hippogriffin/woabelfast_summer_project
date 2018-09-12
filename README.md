@@ -138,13 +138,23 @@ The System Admin / Root user can change the configuration file for different gro
 
 We will be changing the sudoer groups using 
 ```
-base_sudoer_groups:
+groups_to_create:
 ```
 
 This can be edited in
 ```
-roles/common/defaults/main.yml
+group_vars/all.yml
 ```
+
+Insted of having multiple separate lists for groups to create and grant sudo permissions, add them all to this one list. 
+ The following example creates two groups, one will have sudoer permissions, one will not:
+ groups_to_create: 
+  - name: webops_admins
+    gid: 10000
+    sudo: true
+  - name: webops_users
+    gid: 10001
+    sudo: false
 
 # Define sysctl configuration in Ansible
 

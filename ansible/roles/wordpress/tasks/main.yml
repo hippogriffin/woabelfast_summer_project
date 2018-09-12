@@ -47,26 +47,14 @@
   register: "wp_salt"
   become: no
 
-- name: create and configure wordpress.conf
-  template:
-    src: "{{ wordpress_conf_template }}"
+- name: ensure wordpress.conf file exists
+  copy:
+    content: ""
     dest: "{{ wordpress_conf_dest }}"
-    force: yes
+    force: no
     owner: wordpress
     group: wordpress
     mode: 0644
-
-- name: create wp-config.php
-  template:
-    src: "{{ wordpress_db_conf_template }}"
-    dest: "{{ wordpress_db_conf }}"
-    force: yes
-    owner: wordpress
-    group: wordpress
-    mode: 0644
-
-- name: Copy WordPress config file
-  template: src=wp-config.php dest="{{ wordpress_root }}"
 
 - name: Change ownership of WordPress installation
   file: path="{{ wordpress_root }}" owner=wordpress group=wordpress state=directory recurse=yes

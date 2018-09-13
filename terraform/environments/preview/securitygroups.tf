@@ -9,7 +9,7 @@ resource "aws_security_group" "preview_db" {
   ingress {
     from_port   = "0"
     to_port     = "0"
-    protocol    = "tcp"
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -27,7 +27,7 @@ resource "aws_security_group" "preview_db_backup" {
   ingress {
     from_port   = 0
     to_port     = 0
-    protocol    = "tcp"
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -96,7 +96,7 @@ resource "aws_security_group" "preview_web_servers" {
   ingress {
     from_port   = 0
     to_port     = 0
-    protocol    = "tcp"
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 

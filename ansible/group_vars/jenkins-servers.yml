@@ -1,0 +1,37 @@
+#Variables for the jenkins_server group
+
+jenkins_plugins:
+  - ansible-plugin
+  - cloudbees-folder-plugin
+  - categorized-view-plugin
+  - dashboard-view-plugin
+  - greenballs-plugin
+  - disable-failed-job-plugin
+  - job-configuration-history-plugin
+  - configuration-slicing-plugin
+
+jenkins_admin_username: !vault |
+                        $ANSIBLE_VAULT;1.1;AES256
+                        32613435623238643734303130376131626131613838346234386333646461613765636537623939
+                        3833343431636565626639373065623333323839653832370a346136613733343938346339393561
+                        61623261643830653831653461626433636530633334373165396138393561653635653330353939
+                        6631336234343438370a363361323533373637623139626461643132303839396163366537646166
+                        6236
+jenkins_admin_password: !vault |
+                        $ANSIBLE_VAULT;1.1;AES256
+                        32613435623238643734303130376131626131613838346234386333646461613765636537623939
+                        3833343431636565626639373065623333323839653832370a346136613733343938346339393561
+                        61623261643830653831653461626433636530633334373165396138393561653635653330353939
+                        6631336234343438370a363361323533373637623139626461643132303839396163366537646166
+                        6236
+
+firewall_allowed_tcp_ports:
+  - "22"
+  - "8080"
+
+java_packages: "java-1.8.0-openjdk.x86_64"
+
+custom_yum_installs:
+  - ansible
+  - python
+  - python-pip

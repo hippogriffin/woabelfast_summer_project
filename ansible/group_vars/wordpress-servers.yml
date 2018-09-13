@@ -9,7 +9,7 @@ firewall_allowed_tcp_ports:
 #PHP.ini config
 
 php_ini_cgi_value: "0"
-php_ini_path: etc/php.ini
+php_ini_path: /etc/php.ini
 php_ini_cgi_string: ;cgi.fix_pathinfo=1
 php_ini_cgi: ;cgi.fix_pathinfo=0
 
@@ -30,9 +30,9 @@ server_name_redirect: "wordpress.example.com"
 ##php-fpm config
 php_server_name: server.example.com
 php_root: /usr/share/nginx/html/example.com
-php_index_files: index index.html index.htm index.php
+php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2
-php_conf: /etc/nginx/conf.d/virtual.conf
+php_conf: virtual.conf
 phpfpm_path: /usr/share/nginx/html/example.com/
 phpfpm_dest: /usr/share/nginx/html/example.com/index.php
 phpfpm_template: phpfpm.conf.j2
@@ -43,11 +43,11 @@ php_error_log: /var/log/nginx/php_error.log
 phpmyadmin_server_name: phpmyadmin.example.com
 phpmyadmin_root: /usr/share/phpMyAdmin
 phpmyadmin_dest: /etc/nginx/conf.d/phpMyAdmin.conf
-phpmyadmin_index: index  index.php
+phpmyadmin_index: "index  index.php"
 phpmyadmin_conf_template: phpmyadmin.conf.j2
-phpmyadmin_fastcgi_params: /etc/nginx/fastcgi_params
+phpmyadmin_fastcgi_params: "/etc/nginx/fastcgi_params"
 phpmyadmin_fastcgi: 127.0.0.1:9000
-phpmyadmin_fastcgi_index: index.php
+phpmyadmin_fastcgi_index: "index.php"
 phpmyadmin_conf: phpMyAdmin.conf
 phpmyadmin_access_log: /var/log/nginx/phpmyadmin_access.log
 phpmyadmin_error_log: /var/log/nginx/phpmyadmin_error.log
@@ -70,7 +70,6 @@ wordpress_owner: nginx
 wordpress_group: nginx
 
 #wordpress db config
-
 wordpress_db_conf_template: "wp-config.php"
 wordpress_db_conf: "/usr/share/nginx/wordpress.example.com/wp-config.php"
 wordpress_db_sample: "/usr/share/nginx/wordpress.example.com/wp-config-sample.php"

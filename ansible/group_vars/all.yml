@@ -46,6 +46,7 @@ users:
 groups_to_create: 
   - name: webops_admins
     gid: 10000
+    sudo: true
 
 users_deleted: []
   # - username: example
@@ -55,5 +56,3 @@ users_deleted: []
 
 common_yum_installs: 
   - epel-release
-
-

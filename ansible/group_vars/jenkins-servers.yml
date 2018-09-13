@@ -9,6 +9,7 @@ jenkins_plugins:
   - disable-failed-job-plugin
   - job-configuration-history-plugin
   - configuration-slicing-plugin
+  - credentials
 
 jenkins_admin_username: !vault |
                         $ANSIBLE_VAULT;1.1;AES256
@@ -25,8 +26,6 @@ jenkins_admin_password: !vault |
                         6631336234343438370a363361323533373637623139626461643132303839396163366537646166
                         6236
 
-firewall_allowed_tcp_ports:
-  - "22"
-  - "8080"
-
-java_packages: "java-1.8.0-openjdk.x86_64"
+custom_yum_installs:
+  - "terraform"
+  - "git"

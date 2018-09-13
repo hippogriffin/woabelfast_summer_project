@@ -21,7 +21,8 @@ resource "aws_iam_user_policy" "jenkins" {
             "rds:*",
             "elb:*",
             "route53:*",
-            "acm:*"
+            "acm:*",
+            "s3:*"
         ],
         "Effect": "Allow",
         "Resource": "*"

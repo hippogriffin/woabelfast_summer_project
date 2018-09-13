@@ -25,8 +25,11 @@ resource "aws_instance" "proxy-servers" {
     vpc_security_group_ids = ["${aws_security_group.preview_web_servers.id}"]
     private_ip = "${format("${local.preview_webserver_ips}", count.index + 10)}"
     key_name = "${aws_key_pair.preview_key.key_name}"
+    user_data = "${file("scripts/init.cfg")}"
 
     tags {
         Name = "${format("${local.preview_webserver_names}", count.index + 1)}"
+        terraform = "true"
+        Environment = "${var.environment}"
     }
 }

@@ -30,10 +30,15 @@ resource "aws_iam_role_policy" "ec2_policy" {
   "Statement": [
     {
       "Action": [
-        "ec2:Describe*"
+        "ec2:Describe*",
+        "route53:ListHostedZones",
+        "route53:ListResourceRecordSets",
+        "rds:Describe*",
+        "elasticache:Describe*"
       ],
       "Effect": "Allow",
       "Resource": "*"
+      
     }
   ]
 }
@@ -69,7 +74,8 @@ resource "aws_iam_user_policy" "jenkins" {
             "rds:*",
             "elb:*",
             "route53:*",
-            "acm:*"
+            "acm:*",
+            "s3:*"
         ],
         "Effect": "Allow",
         "Resource": "*"

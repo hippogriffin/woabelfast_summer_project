@@ -2,22 +2,22 @@
 # vi: set ft=ruby :
 hosts = [
     # Preview
-    {name: 'preview-proxy-01', ip: '10.122.1.2', memory: '512', cpu: '2', hostname: 'preview-proxy01.woabelfast.local', disk: "false"},
-    {name: 'preview-proxy-02', ip: '10.122.1.3', memory: '512', cpu: '2', hostname: 'preview-proxy02.woabelfast.local', disk: "false"},
-    {name: 'preview-wordpress-01', ip: '10.122.2.4', memory: '512', cpu: '2', hostname: 'preview-wordpress01.woabelfast.local', disk: "true"}, 
-    {name: 'preview-wordpress-02', ip: '10.122.2.5', memory: '512', cpu: '2', hostname: 'preview-wordpress02.woabelfast.local', disk: "true"},
+    {name: 'preview-proxy01', ip: '10.122.1.2', memory: '512', cpu: '2', hostname: 'preview-proxy01.woabelfast.local', disk: "false"},
+    {name: 'preview-proxy02', ip: '10.122.1.3', memory: '512', cpu: '2', hostname: 'preview-proxy02.woabelfast.local', disk: "false"},
+    {name: 'preview-wordpress01', ip: '10.122.2.4', memory: '512', cpu: '2', hostname: 'preview-wordpress01.woabelfast.local', disk: "true"}, 
+    {name: 'preview-wordpress02', ip: '10.122.2.5', memory: '512', cpu: '2', hostname: 'preview-wordpress02.woabelfast.local', disk: "true"},
 
     # Pre-prod
-    {name: 'preprod-proxy-01', ip: '10.132.1.2', memory: '512', cpu: '2', hostname: 'preprod-proxy01.woabelfast.local', disk: "false"},
-    {name: 'preprod-proxy-02', ip: '10.132.1.3', memory: '512', cpu: '2', hostname: 'preprod-proxy02.woabelfast.local', disk: "false"},
-    {name: 'preprod-wordpress-01', ip: '10.132.2.4', memory: '512', cpu: '2', hostname: 'preprod-wordpress01.woabelfast.local', disk: "true"}, 
-    {name: 'preprod-wordpress-02', ip: '10.132.2.5', memory: '512', cpu: '2', hostname: 'preprod-wordpress02.woabelfast.local', disk: "true"},
+    {name: 'preprod-proxy01', ip: '10.132.1.2', memory: '512', cpu: '2', hostname: 'preprod-proxy01.woabelfast.local', disk: "false"},
+    {name: 'preprod-proxy02', ip: '10.132.1.3', memory: '512', cpu: '2', hostname: 'preprod-proxy02.woabelfast.local', disk: "false"},
+    {name: 'preprod-wordpress01', ip: '10.132.2.4', memory: '512', cpu: '2', hostname: 'preprod-wordpress01.woabelfast.local', disk: "true"}, 
+    {name: 'preprod-wordpress02', ip: '10.132.2.5', memory: '512', cpu: '2', hostname: 'preprod-wordpress02.woabelfast.local', disk: "true"},
 
     # Production
-    {name: 'production-proxy-01', ip: '10.142.1.2', memory: '512', cpu: '2', hostname: 'production-proxy01.woabelfast.local', disk: "false"},
-    {name: 'production-proxy-02', ip: '10.142.1.3', memory: '512', cpu: '2', hostname: 'production-proxy02.woabelfast.local', disk: "false"},
-    {name: 'production-wordpress-01', ip: '10.142.2.4', memory: '512', cpu: '2', hostname: 'production-wordpress01.woabelfast.local', disk: "true"},
-    {name: 'production-wordpress-02', ip: '10.142.2.5', memory: '512', cpu: '2', hostname: 'production-wordpress02.woabelfast.local', disk: "true"},
+    {name: 'production-proxy01', ip: '10.142.1.2', memory: '512', cpu: '2', hostname: 'production-proxy01.woabelfast.local', disk: "false"},
+    {name: 'production-proxy02', ip: '10.142.1.3', memory: '512', cpu: '2', hostname: 'production-proxy02.woabelfast.local', disk: "false"},
+    {name: 'production-wordpress01', ip: '10.142.2.4', memory: '512', cpu: '2', hostname: 'production-wordpress01.woabelfast.local', disk: "true"},
+    {name: 'production-wordpress02', ip: '10.142.2.5', memory: '512', cpu: '2', hostname: 'production-wordpress02.woabelfast.local', disk: "true"},
 
     {name: 'db', ip: '10.122.3.6', memory: '512', cpu: '2', hostname: 'db.woabelfast.local', disk: "false"},
     {name: 'dmz-jumpbox', ip: '10.120.0.7', memory: '512', cpu: '2', hostname: 'dmz-jumpbox.woabelfast.local', disk: "false"},
@@ -29,16 +29,16 @@ groups = {
     "jenkins-servers" => ["management-jenkins"],
     "db-servers" => ["db"],
 
-    "preview-webservers" => ["preview-proxy-01", "preview-proxy-02"],
-    "preview-wordpress" => ["preview-wordpress-01", "preview-wordpress-02"],
+    "preview-webservers" => ["preview-proxy01", "preview-proxy02"],
+    "preview-wordpress" => ["preview-wordpress01", "preview-wordpress02"],
     "preview:children" => ["preview-wordpress", "preview-webservers"],
 
-    "preprod-webservers" => ["preprod-proxy-01", "preprod-proxy-02"],
-    "preprod-wordpress" => ["preprod-wordpress-01", "preprod-wordpress-02"],
+    "preprod-webservers" => ["preprod-proxy01", "preprod-proxy02"],
+    "preprod-wordpress" => ["preprod-wordpress01", "preprod-wordpress02"],
     "preprod:children" => ["preprod-wordpress", "preprod-webservers"],
 
-    "production-webservers" => ["preview-proxy_01", "preview-proxy-02"],
-    "production-wordpress" => ["preview-wordpress_01", "preview-wordpress-02"],
+    "production-webservers" => ["preview-proxy01", "preview-proxy02"],
+    "production-wordpress" => ["preview-wordpress01", "preview-wordpress02"],
     "production:children" => ["preview-wordpress", "preview-webservers"],
 
     "webservers:children" => ["preview-webservers", "preprod-webservers", "production-webservers"],

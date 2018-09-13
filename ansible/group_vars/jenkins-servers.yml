@@ -11,6 +11,7 @@ jenkins_plugins:
   - ssh-credentials
   - ssh
   - greenballs
+  - credentials
 
 jenkins_admin_username: !vault |
                         $ANSIBLE_VAULT;1.1;AES256
@@ -37,4 +38,3 @@ custom_yum_installs:
   - ansible
   - python
   - python-pip
-  

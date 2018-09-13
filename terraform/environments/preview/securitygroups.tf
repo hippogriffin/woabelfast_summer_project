@@ -7,8 +7,22 @@ resource "aws_security_group" "preview_db" {
   vpc_id      = "${aws_vpc.preview_vpc.id}"
 
   ingress {
-    from_port   = "0"
-    to_port     = "0"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${var.dmz_sub}", "${var.mgmt_sub}"]
+  }
+
+  ingress {
+    from_port = 3306
+    to_port = 3306
+    protocol = "tcp"
+    cidr_blocks = ["${var.preview_wordpress_cidr}", "${var.preview_db_cidr_backup}"]
+  }
+
+  egress {
+    from_port = 0
+    to_port = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -25,10 +39,17 @@ resource "aws_security_group" "preview_db_backup" {
   vpc_id = "${aws_vpc.preview_vpc.id}"
 
   ingress {
-    from_port   = 0
-    to_port     = 0
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${var.dmz_sub}", "${var.mgmt_sub}"]
+  }
+
+  ingress {
+    from_port = 3306
+    to_port = 3306
+    cidr_blocks = ["${var.preview_wordpress_cidr}", "${var.preview_db_cidr}"]
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -53,31 +74,38 @@ resource "aws_security_group" "wp_servers" {
   vpc_id      = "${aws_vpc.preview_vpc.id}"
 
   ingress {
-    from_port   = "22"
-    to_port     = "22"
+    from_port   = 22
+    to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["${var.dmz_sub}"]
   }
 
   ingress {
-    from_port   = "80"
-    to_port     = "80"
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["${var.preview_proxy_sub}"]
   }
 
    ingress {
-    from_port   = "2049"
-    to_port     = "2049"
+    from_port   = 2049
+    to_port     = 2049
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = "443"
-    to_port     = "443"
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["${var.preview_proxy_sub}"]
+  }
+
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags {
@@ -94,6 +122,34 @@ resource "aws_security_group" "preview_web_servers" {
   vpc_id      = "${aws_vpc.preview_vpc.id}"
 
   ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${var.dmz_sub}", "${var.mgmt_sub}"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
+  }
+
+  egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"

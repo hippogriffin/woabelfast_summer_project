@@ -23,7 +23,7 @@ resource "aws_security_group" "preview_db" {
   egress {
     from_port = 0
     to_port = 0
-    protocol = "-1"
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -48,8 +48,8 @@ resource "aws_security_group" "preview_db_backup" {
   ingress {
     from_port = 3306
     to_port = 3306
-    protocol = "tcp"
     cidr_blocks = ["${var.preview_wordpress_cidr}", "${var.preview_db_cidr}"]
+    protocol    = "-1"
   }
 
   egress {
@@ -150,9 +150,9 @@ resource "aws_security_group" "preview_web_servers" {
   }
 
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 

@@ -25,7 +25,7 @@ variable "instance_type" {
 }
 
 variable "bastion_name" {
-    default = "jumpbox"
+    default = "bastion"
 }
 
 variable "private_domain" {

@@ -12,8 +12,9 @@ resource "aws_instance" "wordpress" {
 
     tags {
         Name = "${format("${local.preview_wp_server_names}", count.index + 1)}"
-        terraform = "true"
         Environment = "${var.environment}"
+        Role = "${var.preview_wp_server_name}"
+        EnvRole = "${local.preview_env_role}"
     }
 }
 

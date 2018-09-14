@@ -98,6 +98,7 @@ locals  {
   preview_webserver_elb = "${var.environment}-webserver-elb"
   preview_wp_server_elb = "${var.environment}-wp-server-elb"
   preview_rds_server_elb = "${var.environment}-rds-elb"
+  preview_env_role = "${var.environment}_${var.preview_wp_server_name}"
 }
 
 

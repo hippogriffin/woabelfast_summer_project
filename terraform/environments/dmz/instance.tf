@@ -11,6 +11,9 @@ resource "aws_instance" "jumpbox" {
 
     tags {
         Name = "${local.bastion_host_name}"
+        Environment = "${var.environment}"
+        Role = "${var.bastion_name}"
+        EnvRole = "${local.bastion_host_name}"
     }
 }
 

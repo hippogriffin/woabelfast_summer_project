@@ -77,7 +77,7 @@ resource "aws_security_group" "wp_servers" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.dmz_sub}"]
+    cidr_blocks = ["${var.dmz_sub}", "${var.mgmt_sub}"]
   }
 
   ingress {

@@ -9,6 +9,9 @@ resource "aws_instance" "wordpress" {
     private_ip = "${format("${local.preview_wp_server_ips}", count.index + 10)}"
     key_name = "${aws_key_pair.preview_key.key_name}"
     user_data = "${file("scripts/init.cfg")}"
+     lifecycle {
+  ignore_changes = ["user_data"]
+}
 
     tags {
         Name = "${format("${local.preview_wp_server_names}", count.index + 1)}"

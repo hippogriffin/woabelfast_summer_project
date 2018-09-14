@@ -12,8 +12,9 @@ resource "aws_instance" "Jenkins" {
     iam_instance_profile = "${aws_iam_instance_profile.ec2_iam_profile.name}"
 
     tags {
-        Name = "${var.jenkins_name}"
-        Terraform = "true"
+        Name = "${local.jenkins_host_name}"
         Environment = "${var.environment}"
+        Role = "${var.jenkins_name}"
+        EnvRole = "${local.jenkins_host_name}"
     }
 }

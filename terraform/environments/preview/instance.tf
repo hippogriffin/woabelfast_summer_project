@@ -11,6 +11,13 @@ resource "aws_instance" "wordpress" {
     user_data = "${file("scripts/init.cfg")}"
     lifecycle {
         ignore_changes = ["user_data"]
+      }
+
+    tags {
+        Name = "${format("${local.preview_wp_server_names}", count.index + 1)}"
+        Environment = "${var.environment}"
+        Role = "${var.preview_wp_server_name}"
+        EnvRole = "${local.preview_env_role}"
     }
 
 
@@ -22,6 +29,7 @@ resource "aws_instance" "wordpress" {
 }
 
 resource "aws_instance" "proxy-servers" {
+
   ami                    = "${var.ami}"
   count                  = "${var.instance_count}"
   instance_type          = "${var.proxy_instance_type}"
@@ -33,9 +41,11 @@ resource "aws_instance" "proxy-servers" {
   lifecycle {
         ignore_changes = ["user_data"]
   }
-  tags {
-    Name        = "${format("${local.preview_webserver_names}", count.index + 1)}"
-    terraform   = "true"
-    Environment = "${var.environment}"
-  }
+
+    tags {
+        Name = "${format("${local.preview_webserver_names}", count.index + 1)}"
+        Environment = "${var.environment}"
+        Role = "${var.preview_webserver_name}"
+        EnvRole = "${local.preview_proxy_env_role}"
+    }
 }

@@ -40,12 +40,11 @@ resource "aws_elb" "preview_webserver_elb" {
     
     name                        = "${local.preview_webserver_elb}"
     subnets                     = ["${aws_subnet.preview_public_subnet-1a.id}","${aws_subnet.preview_public_subnet-1b.id}"]
-    instances                   = ["${aws_instance.proxy-servers.*.id}"]
     cross_zone_load_balancing   = true
     idle_timeout                = 400
     connection_draining         = true
     connection_draining_timeout = 400
-    security_groups             = ["${aws_security_group.preview_web_servers.id}"]
+
 
     listener {
           instance_port     = 80
@@ -77,3 +76,10 @@ resource "aws_elb" "preview_webserver_elb" {
     Environment = "${var.environment}"
   }
 }
+
+resource "aws_elb_attachment" "proxy_elb" {
+  elb = "${aws_elb.preview_webserver_elb.id}",
+  instance = "${aws_instance.proxy-servers.*.id}"
+
+}
+

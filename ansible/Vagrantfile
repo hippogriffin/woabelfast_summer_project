@@ -41,8 +41,8 @@ groups = {
     "tag_EnvRole_production_wordpress" => ["preview-wordpress01", "preview-wordpress02"],
     "tag_Environment_production:children" => ["preview-wordpress", "preview-webservers"],
 
-    "tag_Role_webservers:children" => ["preview-webservers", "preprod-webservers", "production-webservers"],
-    "tag_Role_wordpress_servers:children" => ["preview-wordpress", "preprod-wordpress", "production-wordpress"]
+    "tag_Role_webserver:children" => ["preview-webservers", "preprod-webservers", "production-webservers"],
+    "tag_Role_wordpress:children" => ["preview-wordpress", "preprod-wordpress", "production-wordpress"]
 }
 
 

@@ -14,23 +14,23 @@ resource "aws_security_group" "preview_db" {
   }
 
   ingress {
-    from_port = 3306
-    to_port = 3306
-    protocol = "tcp"
-    cidr_blocks = ["${var.preview_wordpress_cidr}", "${var.preview_db_cidr_backup}"]
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["${var.preview_wordpress_cidr}", "${var.preview_db_cidr_bkup}"]
   }
 
   egress {
-    from_port = 0
-    to_port = 0
+    from_port   = 0
+    to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags {
-    Name      = "${var.preview_wp_servers_sg}"
+    Name        = "${var.preview_db_sg}"
     Environment = "${var.environment}"
-    terraform = "true"
+    terraform   = "true"
   }
 }
 
@@ -46,24 +46,24 @@ resource "aws_security_group" "preview_db_backup" {
   }
 
   ingress {
-    from_port = 3306
-    to_port = 3306
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
     cidr_blocks = ["${var.preview_wordpress_cidr}", "${var.preview_db_cidr}"]
-    protocol    = "-1"
   }
 
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   #Security Groups for the Preview Environment
   tags {
-    Name      = "${var.preview_db_sg}"
+    Name        = "${var.preview_db_sg_bkup}"
     Environment = "${var.environment}"
-    terraform = "true"
+    terraform   = "true"
   }
 }
 
@@ -77,7 +77,7 @@ resource "aws_security_group" "wp_servers" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.dmz_sub}"]
+    cidr_blocks = ["${var.dmz_sub}", "${var.mgmt_sub}"]
   }
 
   ingress {
@@ -87,7 +87,7 @@ resource "aws_security_group" "wp_servers" {
     cidr_blocks = ["${var.preview_proxy_sub}"]
   }
 
-   ingress {
+  ingress {
     from_port   = 2049
     to_port     = 2049
     protocol    = "tcp"
@@ -102,16 +102,16 @@ resource "aws_security_group" "wp_servers" {
   }
 
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags {
-    Name      = "${var.preview_wp_servers_sg}"
+    Name        = "${var.preview_wp_servers_sg}"
     Environment = "${var.environment}"
-    terraform = "true"
+    terraform   = "true"
   }
 }
 
@@ -132,21 +132,14 @@ resource "aws_security_group" "preview_web_servers" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
+    cidr_blocks = ["${var.preview_public_sub_1a}", "${var.preview_public_sub_1b}"]
   }
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
-  }
-
-  ingress {
-    from_port   = 443
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
+    cidr_blocks = ["${var.preview_public_sub_1a}", "${var.preview_public_sub_1b}"]
   }
 
   egress {
@@ -157,8 +150,8 @@ resource "aws_security_group" "preview_web_servers" {
   }
 
   tags {
-    Name      = "${var.preview_web_servers_sg}" 
+    Name        = "${var.preview_web_servers_sg}"
     Environment = "${var.environment}"
-    terraform = "true"
+    terraform   = "true"
   }
 }

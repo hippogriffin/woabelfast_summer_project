@@ -17,7 +17,7 @@ resource "aws_security_group" "preview_db" {
     from_port = 3306
     to_port = 3306
     protocol = "tcp"
-    cidr_blocks = ["${var.preview_wordpress_cidr}", "${var.preview_db_cidr_backup}"]
+    cidr_blocks = ["${var.preview_wordpress_cidr}", "${var.preview_db_cidr_bkup}"]
   }
 
   egress {
@@ -132,21 +132,21 @@ resource "aws_security_group" "preview_web_servers" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
+    security_groups = ["${aws_elb.preview_webserver_elb.source_security_group_id}"]
   }
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
+    security_groups = ["${aws_elb.preview_webserver_elb.source_security_group_id}"]
   }
 
   ingress {
     from_port   = 443
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["${aws_elb.preview_webserver_elb.ip}"]
+    security_groups = ["${aws_elb.preview_webserver_elb.source_security_group_id}"]
   }
 
   egress {

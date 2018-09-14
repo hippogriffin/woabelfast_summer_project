@@ -1,7 +1,7 @@
 #Variables for the jenkins_server group
 
 jenkins_plugins:
-  - ansible-plugin
+  - ansible
   - cloudbees-folder-plugin
   - categorized-view-plugin
   - dashboard-view-plugin

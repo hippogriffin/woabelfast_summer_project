@@ -59,7 +59,7 @@ phpmyadmin_error_log: /var/log/nginx/phpmyadmin_error.log
 domain: woabelfast.co.uk
 wordpress_conf: /etc/nginx/conf.d/
 listen_port: 80
-wordpress_server_name: "{{ environment }}".{{ domain }}
+wordpress_server_name: "{{ environment }}.{{ domain }}"
 wordpress_root: /usr/share/nginx/woabelfast/"{{ wordpress_server_name }}"
 wordpress_logs: /usr/share/nginx/woabelfast/"{{ wordpress_server_name }}"
 wordpress_conf_dest: /etc/nginx/conf.d/"{{ wordpress_server_name }}"

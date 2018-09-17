@@ -60,3 +60,8 @@ variable "security_group_name" {
 variable "mgmt_key_name" {
   default = "mgmt_key"
 }
+
+locals {
+  jenkins_host_name = "${var.environment}_${var.jenkins_name}"
+
+}

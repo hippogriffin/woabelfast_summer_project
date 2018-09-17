@@ -1,11 +1,10 @@
 #Variables for the jenkins_server group
 
 jenkins_plugins:
-  - ansible-plugin
+  - ansible
   - cloudbees-folder-plugin
   - categorized-view-plugin
   - dashboard-view-plugin
-  - greenballs-plugin
   - disable-failed-job-plugin
   - job-configuration-history-plugin
   - configuration-slicing-plugin
@@ -14,6 +13,12 @@ jenkins_plugins:
   - slack
   - git
   - text-finder-run-condition
+  - ssh-credentials
+  - ssh
+  - greenballs
+  - credentials
+
+
 
 jenkins_admin_username: !vault |
                         $ANSIBLE_VAULT;1.1;AES256
@@ -35,3 +40,8 @@ firewall_allowed_tcp_ports:
   - "8080"
 
 java_packages: "java-1.8.0-openjdk.x86_64"
+
+custom_yum_installs:
+  - ansible
+  - python
+  - python-pip

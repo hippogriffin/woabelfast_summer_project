@@ -3,8 +3,8 @@ nginx_vhosts:
 
 - listen: "80"
   server_name: "{{ wordpress_server_name }}" # default: N/A
-  root: {{ wordpress_root }} # default: N/A
-  index: {{ wordpress_index }} # default: "index.html index.htm"
+  root: "{{ wordpress_root }}" # default: N/A
+  index: "{{ wordpress_index }}" # default: "index.html index.htm"
   filename: "{{ wordpress_conf_name }}" # Can be used to set the filename of the vhost file.
   access_log: "{{ wordpress_access_log }}"
   error_log: "{{ wordpress_error_log }}"

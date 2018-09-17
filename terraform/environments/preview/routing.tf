@@ -31,6 +31,29 @@ resource "aws_route" "preview_to_mgmt" {
   vpc_peering_connection_id = "${aws_vpc_peering_connection.mgmt_to_preview.id}"
 }
 
+# ################################################################
+# Creating a route for vpc_peering between Management and Preview
+resource "aws_route" "mgmt_to_preview" {
+  route_table_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_route_table_id}"
+  destination_cidr_block    = "${aws_vpc.preview_vpc.cidr_block}"
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.mgmt_to_preview.id}"   
+}
+
+# Creating a route for vpc_peering between Preview and DMZ
+resource "aws_route" "preview_to_dmz" {
+  route_table_id            = "${aws_route_table.private_route_table.id}"
+  destination_cidr_block    = "${var.dmz_sub}"
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.DMZ.id}"
+}
+
+
+resource "aws_route" "dmz_to_preview" {
+  route_table_id            = "${data.terraform_remote_state.dmz_remote_state.dmz_route_table_id}"
+  destination_cidr_block    = "${aws_vpc.preview_vpc.cidr_block}"
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.DMZ.id}"
+}
+
+
 # Associate subnet private_1_subnet_eu_west_1a to private route table
 resource "aws_route_table_association" "pr_1_subnet_eu_west_1a_association" {
     subnet_id = "${aws_subnet.preview_wordpress.id}"

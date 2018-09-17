@@ -15,6 +15,14 @@ Run terraform plan to preview proposed changes
 
 Run terraform apply to apply proposed changes when the changes have been merged into master.
 
+## All environments
+
+SSH public key was added to all instances to allow SSH access for all users. 
+
+This key was initially an ED25519 key but this is not compatible with Jenkins so has been reverted back to RSA. Both public ssh keys are present in user_data attribute inside instance.tf for each environment.
+
+The lifecycle parameter was added to all instance.tf files to prevent the instances from being destroyed during a terraform apply.
+
 ## DMZ
 
 Resources that will be created in terraform apply:
@@ -39,6 +47,8 @@ Resources that will be created in terraform apply:
 - elastic ip for nat gateway
 - aws route table for internet gateway
 - aws route table for nat gateway
+
+Deployment user created for Jenkins. Private key added to Jenkins to enable running of ansible jobs against environments.
 
 ### Management security group
 

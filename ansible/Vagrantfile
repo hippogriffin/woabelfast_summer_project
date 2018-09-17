@@ -4,13 +4,13 @@ hosts = [
     # Preview
     {name: 'preview-proxy01', ip: '10.122.1.2', memory: '512', cpu: '2', hostname: 'preview-proxy01.woabelfast.local', disk: "false"},
     {name: 'preview-proxy02', ip: '10.122.1.3', memory: '512', cpu: '2', hostname: 'preview-proxy02.woabelfast.local', disk: "false"},
-    {name: 'preview-wordpress01', ip: '10.122.2.4', memory: '512', cpu: '2', hostname: 'preview-wordpress01.woabelfast.local', disk: "true"}, 
+    {name: 'preview-wordpress01', ip: '10.122.2.4', memory: '512', cpu: '2', hostname: 'preview-wordpress01.woabelfast.local', disk: "true"},
     {name: 'preview-wordpress02', ip: '10.122.2.5', memory: '512', cpu: '2', hostname: 'preview-wordpress02.woabelfast.local', disk: "true"},
 
     # Pre-prod
     {name: 'preprod-proxy01', ip: '10.132.1.2', memory: '512', cpu: '2', hostname: 'preprod-proxy01.woabelfast.local', disk: "false"},
     {name: 'preprod-proxy02', ip: '10.132.1.3', memory: '512', cpu: '2', hostname: 'preprod-proxy02.woabelfast.local', disk: "false"},
-    {name: 'preprod-wordpress01', ip: '10.132.2.4', memory: '512', cpu: '2', hostname: 'preprod-wordpress01.woabelfast.local', disk: "true"}, 
+    {name: 'preprod-wordpress01', ip: '10.132.2.4', memory: '512', cpu: '2', hostname: 'preprod-wordpress01.woabelfast.local', disk: "true"},
     {name: 'preprod-wordpress02', ip: '10.132.2.5', memory: '512', cpu: '2', hostname: 'preprod-wordpress02.woabelfast.local', disk: "true"},
 
     # Production
@@ -24,25 +24,25 @@ hosts = [
     {name: 'management-jenkins', ip: '10.121.0.8', memory: '512', cpu: '2', hostname: 'management-jenkins.woabelfast.local', disk: "false"}
 ]
 
-groups = {  
-    "bastion-servers" => ["dmz-jumpbox"],
-    "jenkins-servers" => ["management-jenkins"],
-    "db-servers" => ["db"],
+groups = {
+    "tag_Role_bastion" => ["dmz-jumpbox"],
+    "tag_Role_jenkins" => ["management-jenkins"],
+    "tag_Role_db" => ["db"],
 
-    "preview-webservers" => ["preview-proxy01", "preview-proxy02"],
-    "preview-wordpress" => ["preview-wordpress01", "preview-wordpress02"],
-    "preview:children" => ["preview-wordpress", "preview-webservers"],
+    "tag_EnvRole_preview_webserver" => ["preview-proxy01", "preview-proxy02"],
+    "tag_EnvRole_preview_wordpress" => ["preview-wordpress01", "preview-wordpress02"],
+    "tag_Environment_preview:children" => ["preview-wordpress", "preview-webservers"],
 
-    "preprod-webservers" => ["preprod-proxy01", "preprod-proxy02"],
-    "preprod-wordpress" => ["preprod-wordpress01", "preprod-wordpress02"],
-    "preprod:children" => ["preprod-wordpress", "preprod-webservers"],
+    "tag_EnvRole_preprod_webserver" => ["preprod-proxy01", "preprod-proxy02"],
+    "tag_EnvRole_preprod_wordpress" => ["preprod-wordpress01", "preprod-wordpress02"],
+    "tag_Environment_preprod:children" => ["preprod-wordpress", "preprod-webservers"],
 
-    "production-webservers" => ["preview-proxy01", "preview-proxy02"],
-    "production-wordpress" => ["preview-wordpress01", "preview-wordpress02"],
-    "production:children" => ["preview-wordpress", "preview-webservers"],
+    "tag_EnvRole_production_webserver" => ["preview-proxy01", "preview-proxy02"],
+    "tag_EnvRole_production_wordpress" => ["preview-wordpress01", "preview-wordpress02"],
+    "tag_Environment_production:children" => ["preview-wordpress", "preview-webservers"],
 
-    "webservers:children" => ["preview-webservers", "preprod-webservers", "production-webservers"],
-    "wordpress-servers:children" => ["preview-wordpress", "preprod-wordpress", "production-wordpress"]
+    "tag_Role_webserver:children" => ["preview-webservers", "preprod-webservers", "production-webservers"],
+    "tag_Role_wordpress:children" => ["preview-wordpress", "preprod-wordpress", "production-wordpress"]
 }
 
 
@@ -76,7 +76,6 @@ Vagrant.configure("2") do |config|
           mount_source: "/dev/sda2",
           filesystem: "ext3",
         } 
-      
       end
       c.vm.provider "virtualbox" do |vb|
         vb.memory = host[:memory]
@@ -89,6 +88,18 @@ Vagrant.configure("2") do |config|
           end
         end
       end
+      if host[:disk] == "true"
+        disk = "#{host[:name]}.vdi"
+            if File.exist?(disk)
+                c.trigger.after :destroy do |trigger|
+                    trigger.warn = "Deleting provisioned disk on destroy:"
+                    trigger.run = {inline: "rm -f #{disk}"}
+                    trigger.info = "Disk deleted for #{host[:name]}"
+                end
+            else
+                puts "#{host[:name]} has no disk to delete"
+            end
+        end
     end
   end
 end

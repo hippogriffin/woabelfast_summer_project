@@ -11,13 +11,13 @@
     - yum_packages
     
 - name: Install NGINX on proxy
-  hosts: webservers
+  hosts: tag_Role_webservers
   become: true
   roles:
     - geerlingguy.nginx
 
 - name: configure wordpress
-  hosts: wordpress-servers
+  hosts: tag_Role_wordpress
   become: true
   roles:
     - yum_packages
@@ -27,20 +27,20 @@
     - wordpress
     
 - name: configure jenkins
-  hosts: jenkins-servers
+  hosts: tag_Role_jenkins
   become: true
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
 
 - name: Install and Configure mySQl on DB server
-  hosts: db-servers
+  hosts: tag_Role_db
   become: true
   roles: 
     - geerlingguy.mysql
 
 - name: configure bastion servers
-  hosts: bastion-servers
+  hosts: tag_Role_bastion
   become: true
   roles:
     - geerlingguy.nginx

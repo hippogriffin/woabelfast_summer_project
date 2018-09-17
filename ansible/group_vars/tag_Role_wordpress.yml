@@ -63,7 +63,7 @@ wordpress_server_name: "{{ environment }}.{{ domain }}"
 wordpress_root: /usr/share/nginx/woabelfast/"{{ wordpress_server_name }}"
 wordpress_logs: /usr/share/nginx/woabelfast/"{{ wordpress_server_name }}"
 wordpress_conf_dest: /etc/nginx/conf.d/"{{ wordpress_server_name }}"
-wordpress_conf_name: "{{ wordpress_server_name }}".conf
+wordpress_conf_name: "{{ wordpress_server_name }}.conf"
 wordpress_db_conf: /usr/share/nginx/"{{ wordpress_server_name }}"/wp-config.php
 wordpress_db_sample: /usr/share/nginx/"{{ wordpress_server_name }}"/wp-config-sample.php
 server_hostname: "{{ wordpress_server_name }}"

@@ -20,7 +20,9 @@
   hosts: wordpress-servers
   become: true
   roles:
+    - yum_packages
     - geerlingguy.nginx
+    - mount_folder
     - PHP
     - wordpress
     

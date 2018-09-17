@@ -1,5 +1,9 @@
 #Group vars for wordpress servers
 
+custom_yum_installs:
+  - nfs-utils
+  - nfs-utils-lib
+
 #Firewall Config
 
 firewall_allowed_tcp_ports:
@@ -60,12 +64,12 @@ listen_port: 80
 wordpress_server_name: wordpress.example.com
 wordpress_access_log: /var/log/nginx/wordpress_access.log
 wordpress_error_log: /var/log/nginx/wordpress_error.log
-wordpress_root: /usr/share/nginx/wordpress.example.com
-wordpress_logs: /usr/share/nginx/wordpress.example.com/logs
+wordpress_root: /usr/share/nginx/woabelfast/wordpress.example.com
+wordpress_logs: /usr/share/nginx//woabelfastwordpress.example.com/logs
 wordpress_index: index index.php index.html index.htm
 wordpress_fastcgi_pass: localhost:9000
 modify_hostname: true
-wordpress_parent_path: /usr/share/nginx/
+wordpress_parent_path: /usr/share/nginx/woabelfast
 wordpress_owner: nginx
 wordpress_group: nginx
 

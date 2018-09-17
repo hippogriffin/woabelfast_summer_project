@@ -9,6 +9,11 @@ jenkins_plugins:
   - disable-failed-job-plugin
   - job-configuration-history-plugin
   - configuration-slicing-plugin
+  - cloudbees-credentials
+  - ansicolor
+  - slack
+  - git
+  - text-finder-run-condition
 
 jenkins_admin_username: !vault |
                         $ANSIBLE_VAULT;1.1;AES256

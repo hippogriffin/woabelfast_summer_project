@@ -25,24 +25,24 @@ hosts = [
 ]
 
 groups = {  
-    "bastion-servers" => ["dmz-jumpbox"],
-    "jenkins-servers" => ["management-jenkins"],
-    "db-servers" => ["db"],
+    "tag_Role_bastion" => ["dmz-jumpbox"],
+    "tag_Role_jenkins" => ["management-jenkins"],
+    "tag_Role_db" => ["db"],
 
-    "preview-webservers" => ["preview-proxy01", "preview-proxy02"],
-    "preview-wordpress" => ["preview-wordpress01", "preview-wordpress02"],
-    "preview:children" => ["preview-wordpress", "preview-webservers"],
+    "tag_EnvRole_preview_webserver" => ["preview-proxy01", "preview-proxy02"],
+    "tag_EnvRole_preview_wordpress" => ["preview-wordpress01", "preview-wordpress02"],
+    "tag_Environment_preview:children" => ["preview-wordpress", "preview-webservers"],
 
-    "preprod-webservers" => ["preprod-proxy01", "preprod-proxy02"],
-    "preprod-wordpress" => ["preprod-wordpress01", "preprod-wordpress02"],
-    "preprod:children" => ["preprod-wordpress", "preprod-webservers"],
+    "tag_EnvRole_preprod_webserver" => ["preprod-proxy01", "preprod-proxy02"],
+    "tag_EnvRole_preprod_wordpress" => ["preprod-wordpress01", "preprod-wordpress02"],
+    "tag_Environment_preprod:children" => ["preprod-wordpress", "preprod-webservers"],
 
-    "production-webservers" => ["preview-proxy01", "preview-proxy02"],
-    "production-wordpress" => ["preview-wordpress01", "preview-wordpress02"],
-    "production:children" => ["preview-wordpress", "preview-webservers"],
+    "tag_EnvRole_production_webserver" => ["preview-proxy01", "preview-proxy02"],
+    "tag_EnvRole_production_wordpress" => ["preview-wordpress01", "preview-wordpress02"],
+    "tag_Environment_production:children" => ["preview-wordpress", "preview-webservers"],
 
-    "webservers:children" => ["preview-webservers", "preprod-webservers", "production-webservers"],
-    "wordpress-servers:children" => ["preview-wordpress", "preprod-wordpress", "production-wordpress"]
+    "tag_Role_webserver:children" => ["preview-webservers", "preprod-webservers", "production-webservers"],
+    "tag_Role_wordpress:children" => ["preview-wordpress", "preprod-wordpress", "production-wordpress"]
 }
 
 

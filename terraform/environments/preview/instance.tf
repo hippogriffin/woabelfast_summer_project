@@ -19,13 +19,6 @@ resource "aws_instance" "wordpress" {
         Role = "${var.preview_wp_server_name}"
         EnvRole = "${local.preview_wp_env_role}"
     }
-
-
-  tags {
-    Name        = "${format("${local.preview_wp_server_names}", count.index + 1)}"
-    terraform   = "true"
-    Environment = "${var.environment}"
-  }
 }
 
 resource "aws_instance" "proxy-servers" {

@@ -450,6 +450,9 @@ The service Azure Database for MySQL will take incremental backup’s every 5 mi
 
 There is an option for Azure Database for Maria DB, relatively new to azure this should be similar to what developers would use on their local machines,Maria DB is a drop-in replacement for MySQL and all functions are compatible through both database systems. 
 
+# Preview Environment in Azure
+
+In Azure/preview, the resource group (rg.tf) and vnet have been set up with initial configuration.  These reference variables outlined in variables.tf.
 
 
 # Training and Resources 

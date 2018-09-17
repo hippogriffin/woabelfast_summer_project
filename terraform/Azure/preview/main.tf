@@ -1,2 +1,3 @@
 # Configure the Azure Provider
-provider "azurerm" {}
+provider "azurerm" { }
+

@@ -28,22 +28,22 @@ opcache_fast_shutdown_value: "1"
 nginx_conf_dir: /etc/nginx/conf.d/
 nginx_vhosts_conf: /etc/nginx/conf.d/wordpress.conf
 nginx_fastcgi_params: /etc/nginx/fastcgi_params
-server_name_redirect: "{{ environment }}"."{{ domain }}"
+server_name_redirect: "{{ environment }}.{{ domain }}"
 
 ##php-fpm config
-php_server_name: "{{ environment }}"."{{ domain }}"
-php_root: /mnt/efs/woabelfast/"{{ environment }}"."{{ domain }}"
+php_server_name: "{{ environment }}.{{ domain }}"
+php_root: /mnt/efs/woabelfast/"{{ php_server_name }}"
 php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2
 php_conf: virtual.conf
-phpfpm_path: /mnt/efs/woabelfast/"{{ environment }}"."{{ domain }}"/
-phpfpm_dest: /mnt/efs/woabelfast/"{{ environment }}"."{{ domain }}"/index.php
+phpfpm_path: /mnt/efs/woabelfast/"{{ php_server_name }}"/
+phpfpm_dest: /mnt/efs/woabelfast/"{{ php_server_name }}"/index.php
 phpfpm_template: phpfpm.conf.j2
 php_access_log: /var/log/nginx/php_access.log
 php_error_log: /var/log/nginx/php_error.log
 
 #phpMyadmin config
-phpmyadmin_server_name: "{{ environment }}"."{{ domain }}"
+phpmyadmin_server_name: "{{ php_server_name }}"
 phpmyadmin_root: /usr/share/phpMyAdmin
 phpmyadmin_dest: /etc/nginx/conf.d/phpMyAdmin.conf
 phpmyadmin_index: "index  index.php"
@@ -59,11 +59,11 @@ phpmyadmin_error_log: /var/log/nginx/phpmyadmin_error.log
 domain: woabelfast.co.uk
 wordpress_conf: /etc/nginx/conf.d/
 listen_port: 80
-wordpress_server_name: "{{ environment }}".{{ domain }}
+wordpress_server_name: "{{ environment }}.{{ domain }}"
 wordpress_root: /usr/share/nginx/woabelfast/"{{ wordpress_server_name }}"
 wordpress_logs: /usr/share/nginx/woabelfast/"{{ wordpress_server_name }}"
 wordpress_conf_dest: /etc/nginx/conf.d/"{{ wordpress_server_name }}"
-wordpress_conf_name: "{{ wordpress_server_name }}".conf
+wordpress_conf_name: "{{ wordpress_server_name }}.conf"
 wordpress_db_conf: /usr/share/nginx/"{{ wordpress_server_name }}"/wp-config.php
 wordpress_db_sample: /usr/share/nginx/"{{ wordpress_server_name }}"/wp-config-sample.php
 server_hostname: "{{ wordpress_server_name }}"

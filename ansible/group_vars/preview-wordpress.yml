@@ -7,6 +7,15 @@ filesystem: nfs4
  # present/mounted/absent/unmounted
 state: mounted
 
+wordpress_server_name: preview.woabelfast.co.uk
+wordpress_root: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk
+wordpress_logs: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk
+wordpress_conf_dest: /etc/nginx/conf.d/preview.woabelfast.co.ukf
+wordpress_conf_name: preview.woabelfast.co.ukf
+wordpress_db_conf: "/usr/share/nginx/preview.woabelfast.co.uk/wp-config.php"
+wordpress_db_sample: "/usr/share/nginx/preview.woabelfast.co.uk/wp-config-sample.php"
+server_hostname: preview.woabelfast.co.uk
+
 nginx_vhosts:
 
   - listen: "80"

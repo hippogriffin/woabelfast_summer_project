@@ -57,14 +57,9 @@ phpmyadmin_error_log: /var/log/nginx/phpmyadmin_error.log
 
 #wordpress config
 wordpress_conf: /etc/nginx/conf.d/
-wordpress_conf_dest: /etc/nginx/conf.d/preview.woabelfast.co.ukf
-wordpress_conf_name: preview.woabelfast.co.ukf
 listen_port: 80
-wordpress_server_name: preview.woabelfast.co.uk
 wordpress_access_log: /var/log/nginx/wordpress_access.log
 wordpress_error_log: /var/log/nginx/wordpress_error.log
-wordpress_root: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk
-wordpress_logs: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk
 wordpress_index: index index.php index.html index.htm
 wordpress_fastcgi_pass: localhost:9000
 modify_hostname: true
@@ -74,8 +69,6 @@ wordpress_group: nginx
 
 #wordpress db config
 wordpress_db_conf_template: "wp-config.php"
-wordpress_db_conf: "/usr/share/nginx/preview.woabelfast.co.uk/wp-config.php"
-wordpress_db_sample: "/usr/share/nginx/preview.woabelfast.co.uk/wp-config-sample.php"
 
 #mysql / mariadb authentication file template
 cnf_template: my.cnf.j2
@@ -100,7 +93,6 @@ mysql_port: 3306
 # This is used for the nginx server configuration, but access to the
 # WordPress site is not restricted by a named host.
 nginx_port: 80
-server_hostname: preview.woabelfast.co.uk
 
 # Disable All Updates
 # By default automatic updates are enabled, set this value to true to disable all automatic updates

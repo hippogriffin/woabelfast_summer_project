@@ -20,7 +20,9 @@
   hosts: tag_Role_wordpress
   become: true
   roles:
+    - yum_packages
     - geerlingguy.nginx
+    - mount_folder
     - PHP
     - wordpress
     

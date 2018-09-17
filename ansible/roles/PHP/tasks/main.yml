@@ -44,8 +44,8 @@
     regexp: "^{{ php_ini_cgi_string }}"
     line: "{{ php_ini_cgi }}"
 
-- name: create example.com directory
-  file: path=/usr/share/nginx/html/example.com state=directory
+- name: create woabelfast.co.uk directory
+  file: path=/mnt/efs/woabelfast/"{{ server_hostname }}" state=directory
 
 - name: ensure index.php file exists
   copy:

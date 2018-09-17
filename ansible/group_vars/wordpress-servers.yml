@@ -29,22 +29,22 @@ opcache_fast_shutdown_value: "1"
 nginx_conf_dir: /etc/nginx/conf.d/
 nginx_vhosts_conf: /etc/nginx/conf.d/wordpress.conf
 nginx_fastcgi_params: /etc/nginx/fastcgi_params
-server_name_redirect: "wordpress.example.com"
+server_name_redirect: "preview.woabelfast.co.uk"
 
 ##php-fpm config
-php_server_name: server.example.com
-php_root: /usr/share/nginx/html/example.com
+php_server_nampreview.woabelfast.co.uk
+php_root: /usr/share/npreview.woabelfast.co.uk
 php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2
 php_conf: virtual.conf
-phpfpm_path: /usr/share/nginx/html/example.com/
-phpfpm_dest: /usr/share/nginx/html/example.com/index.php
+phpfpm_path: /usr/share/npreview.woabelfast.co.uk/
+phpfpm_dest: /usr/share/npreview.woabelfast.co.uk/index.php
 phpfpm_template: phpfpm.conf.j2
 php_access_log: /var/log/nginx/php_access.log
 php_error_log: /var/log/nginx/php_error.log
 
 #phpMyadmin config
-phpmyadmin_server_name: phpmyadmin.example.com
+phpmyadmin_server_name: ppreview.woabelfast.co.uk
 phpmyadmin_root: /usr/share/phpMyAdmin
 phpmyadmin_dest: /etc/nginx/conf.d/phpMyAdmin.conf
 phpmyadmin_index: "index  index.php"
@@ -58,14 +58,13 @@ phpmyadmin_error_log: /var/log/nginx/phpmyadmin_error.log
 
 #wordpress config
 wordpress_conf: /etc/nginx/conf.d/
-wordpress_conf_dest: /etc/nginx/conf.d/wordpress.example.conf
-wordpress_conf_name: wordpress.example.conf
+wordpress_conf_dest: /etc/nginx/conf.d/preview.woabelfast.co.ukf
+wordpress_conf_name: preview.woabelfast.co.ukf
 listen_port: 80
-wordpress_server_name: wordpress.example.com
+wordpress_server_name: preview.woabelfast.co.uk
 wordpress_access_log: /var/log/nginx/wordpress_access.log
 wordpress_error_log: /var/log/nginx/wordpress_error.log
-wordpress_root: /usr/share/nginx/woabelfast/wordpress.example.com
-wordpress_logs: /usr/share/nginx//woabelfastwordpress.example.com/logs
+wordpress_root: /usr/share/nginx/woabelfast/preview.woablefast.co.ukdpress_logs: /usr/share/nginx/woabelfast/preview.woabelfast.co.uks
 wordpress_index: index index.php index.html index.htm
 wordpress_fastcgi_pass: localhost:9000
 modify_hostname: true
@@ -75,8 +74,8 @@ wordpress_group: nginx
 
 #wordpress db config
 wordpress_db_conf_template: "wp-config.php"
-wordpress_db_conf: "/usr/share/nginx/wordpress.example.com/wp-config.php"
-wordpress_db_sample: "/usr/share/nginx/wordpress.example.com/wp-config-sample.php"
+wordpress_db_conf: "/usr/share/nginx/preview.woabelfast.co.uk/wp-config.php"
+wordpress_db_sample: "/usr/share/nginx/preview.woabelfast.co.uk/wp-config-sample.php"
 
 #mysql / mariadb authentication file template
 cnf_template: my.cnf.j2
@@ -101,7 +100,7 @@ mysql_port: 3306
 # This is used for the nginx server configuration, but access to the
 # WordPress site is not restricted by a named host.
 nginx_port: 80
-server_hostname: server.example.com
+server_hostnampreview.woabelfast.co.uk
 
 # Disable All Updates
 # By default automatic updates are enabled, set this value to true to disable all automatic updates

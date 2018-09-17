@@ -28,7 +28,7 @@ opcache_fast_shutdown_value: "1"
 nginx_conf_dir: /etc/nginx/conf.d/
 nginx_vhosts_conf: /etc/nginx/conf.d/wordpress.conf
 nginx_fastcgi_params: /etc/nginx/fastcgi_params
-server_name_redirect: "{{ environment }}"."{{ domain }}"
+server_name_redirect: "{{ environment }}.{{ domain }}"
 
 ##php-fpm config
 php_server_name: "{{ environment }}"."{{ domain }}"

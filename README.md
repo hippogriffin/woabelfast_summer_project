@@ -442,6 +442,16 @@ Use the ansible-inventory command below to generate all the relevant info about 
         ansible-inventory --inventory-file=ec2.py --list
 
 
+# MySQL options for Azure
+
+The two most commonly used database systems for MySQL that are available on Azure are MariaDB and Azure Database for MySQL
+
+The service Azure Database for MySQL will take incremental backup’s every 5 minutes and a full back up every hour. Helping you keep peace of mind for your data.
+
+There is an option for Azure Database for Maria DB, relatively new to azure this should be similar to what developers would use on their local machines,Maria DB is a drop-in replacement for MySQL and all functions are compatible through both database systems. 
+
+
+
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 

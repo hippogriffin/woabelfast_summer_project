@@ -63,3 +63,9 @@ Allows SSH traffic from dmz subnet to management subnet
 
 ### Added Subnet for DB
 - No real config as of yet
+
+# Azure 
+
+## Adding Security Group
+
+Allows SSH connection from Kainos IP. 

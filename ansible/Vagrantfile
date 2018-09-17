@@ -4,13 +4,13 @@ hosts = [
     # Preview
     {name: 'preview-proxy01', ip: '10.122.1.2', memory: '512', cpu: '2', hostname: 'preview-proxy01.woabelfast.local', disk: "false"},
     {name: 'preview-proxy02', ip: '10.122.1.3', memory: '512', cpu: '2', hostname: 'preview-proxy02.woabelfast.local', disk: "false"},
-    {name: 'preview-wordpress01', ip: '10.122.2.4', memory: '512', cpu: '2', hostname: 'preview-wordpress01.woabelfast.local', disk: "true"}, 
+    {name: 'preview-wordpress01', ip: '10.122.2.4', memory: '512', cpu: '2', hostname: 'preview-wordpress01.woabelfast.local', disk: "true"},
     {name: 'preview-wordpress02', ip: '10.122.2.5', memory: '512', cpu: '2', hostname: 'preview-wordpress02.woabelfast.local', disk: "true"},
 
     # Pre-prod
     {name: 'preprod-proxy01', ip: '10.132.1.2', memory: '512', cpu: '2', hostname: 'preprod-proxy01.woabelfast.local', disk: "false"},
     {name: 'preprod-proxy02', ip: '10.132.1.3', memory: '512', cpu: '2', hostname: 'preprod-proxy02.woabelfast.local', disk: "false"},
-    {name: 'preprod-wordpress01', ip: '10.132.2.4', memory: '512', cpu: '2', hostname: 'preprod-wordpress01.woabelfast.local', disk: "true"}, 
+    {name: 'preprod-wordpress01', ip: '10.132.2.4', memory: '512', cpu: '2', hostname: 'preprod-wordpress01.woabelfast.local', disk: "true"},
     {name: 'preprod-wordpress02', ip: '10.132.2.5', memory: '512', cpu: '2', hostname: 'preprod-wordpress02.woabelfast.local', disk: "true"},
 
     # Production
@@ -24,7 +24,7 @@ hosts = [
     {name: 'management-jenkins', ip: '10.121.0.8', memory: '512', cpu: '2', hostname: 'management-jenkins.woabelfast.local', disk: "false"}
 ]
 
-groups = {  
+groups = {
     "tag_Role_bastion" => ["dmz-jumpbox"],
     "tag_Role_jenkins" => ["management-jenkins"],
     "tag_Role_db" => ["db"],
@@ -67,8 +67,8 @@ Vagrant.configure("2") do |config|
           wp_db_name: "wordpress",
           wp_db_user: "wpuser",
           wp_db_password: "123456789",
-        } 
-      
+        }
+
       end
       c.vm.provider "virtualbox" do |vb|
         vb.memory = host[:memory]
@@ -77,10 +77,22 @@ Vagrant.configure("2") do |config|
           disk = "#{host[:name]}.vdi"
           unless File.exist?(disk)
             vb.customize ['createhd', '--filename', disk, '--size', 1 * 1024]
-            vb.customize ['storageattach', :id, '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
+            vb.customize ['storageattach', :id, '--storagectl', 'IDE', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
           end
         end
       end
+      if host[:disk] == "true"
+        disk = "#{host[:name]}.vdi"
+            if File.exist?(disk)
+                c.trigger.after :destroy do |trigger|
+                    trigger.warn = "Deleting provisioned disk on destroy:"
+                    trigger.run = {inline: "rm -f #{disk}"}
+                    trigger.info = "Disk deleted for #{host[:name]}"
+                end
+            else
+                puts "#{host[:name]} has no disk to delete"
+            end
+        end
     end
   end
 end

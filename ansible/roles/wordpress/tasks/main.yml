@@ -54,7 +54,6 @@
     force: no
     owner: wordpress
     group: wordpress
-    owner: wordpress
     mode: 0644
 
 - name: Change ownership of WordPress installation

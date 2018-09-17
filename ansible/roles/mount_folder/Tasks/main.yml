@@ -1,39 +1,35 @@
-# woabelfast folder
-  - name: Check if woablefast exists
+#woabelfast folder
+  - name: Check if woabelfast exists
     stat: path=/usr/share/nginx/woabelfast
-    register: dir
+    register: woa
+
   - file:
-      - name: Creating nginx dir
-        path: /usr/share/nginx/
-        state: directory
-        mode: 0755
-      - name: Creating woabelfast dir
-        path: /usr/share/nginx/woabelfast
-        state: directory
-        mode: 0755
-    when: dir.stat.exists == false
+      path: /usr/share/nginx/woabelfast
+      state: directory
+      mode: 0755
+    when: woa.stat.exists == false
 
 # mnt/efs folder
   - name: Check if efs exists
     stat: path=/mnt/efs
     register: efs
+    
   - file:
-      - name: Creating efs dir
-        path: /mnt/efs/
-        state: directory
-        mode: 0755
+      path: /mnt/efs/
+      state: directory
+      mode: 0755
+    when: efs.stat.exists == false
 
 # Creating Symbolic Link
-  - file:
-      name: Creating Symbolic Link
-      src: /mnt/efs/
-      dest: /usr/share/nginx/woabelfast/
+  - file: 
+      dest: /usr/share/nginx/woabelfast
+      src: /mnt/efs
       state: link 
+      force: yes
 # Mount drives
   - name: Mounting Device
     mount:
       path: "{{ mount_path }}"
       src: "{{ mount_source }}"
       fstype: "{{ filesystem }}"
-      opts: "{{ mount_options }}"
       state: "{{ state }}" 

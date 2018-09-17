@@ -2,7 +2,6 @@
 
 custom_yum_installs:
   - nfs-utils
-  - nfs-utils-lib
 
 #Firewall Config
 
@@ -32,13 +31,13 @@ nginx_fastcgi_params: /etc/nginx/fastcgi_params
 server_name_redirect: "preview.woabelfast.co.uk"
 
 ##php-fpm config
-php_server_nampreview.woabelfast.co.uk
-php_root: /usr/share/npreview.woabelfast.co.uk
+php_server_name: preview.woabelfast.co.uk
+php_root: /mnt/efs/woabelfast/preview.woabelfast.co.uk
 php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2
 php_conf: virtual.conf
-phpfpm_path: /usr/share/npreview.woabelfast.co.uk/
-phpfpm_dest: /usr/share/npreview.woabelfast.co.uk/index.php
+phpfpm_path: /mnt/efs/woabelfast/preview.woabelfast.co.uk/
+phpfpm_dest: /mnt/efs/woabelfast/preview.woabelfast.co.uk/index.php
 phpfpm_template: phpfpm.conf.j2
 php_access_log: /var/log/nginx/php_access.log
 php_error_log: /var/log/nginx/php_error.log
@@ -64,7 +63,8 @@ listen_port: 80
 wordpress_server_name: preview.woabelfast.co.uk
 wordpress_access_log: /var/log/nginx/wordpress_access.log
 wordpress_error_log: /var/log/nginx/wordpress_error.log
-wordpress_root: /usr/share/nginx/woabelfast/preview.woablefast.co.ukdpress_logs: /usr/share/nginx/woabelfast/preview.woabelfast.co.uks
+wordpress_root: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk
+wordpress_logs: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk
 wordpress_index: index index.php index.html index.htm
 wordpress_fastcgi_pass: localhost:9000
 modify_hostname: true
@@ -100,7 +100,7 @@ mysql_port: 3306
 # This is used for the nginx server configuration, but access to the
 # WordPress site is not restricted by a named host.
 nginx_port: 80
-server_hostnampreview.woabelfast.co.uk
+server_hostname: preview.woabelfast.co.uk
 
 # Disable All Updates
 # By default automatic updates are enabled, set this value to true to disable all automatic updates

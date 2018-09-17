@@ -1,5 +1,8 @@
 #Group vars for wordpress servers
 
+custom_yum_installs:
+  - nfs-utils
+
 #Firewall Config
 
 firewall_allowed_tcp_ports:
@@ -25,22 +28,22 @@ opcache_fast_shutdown_value: "1"
 nginx_conf_dir: /etc/nginx/conf.d/
 nginx_vhosts_conf: /etc/nginx/conf.d/wordpress.conf
 nginx_fastcgi_params: /etc/nginx/fastcgi_params
-server_name_redirect: "wordpress.example.com"
+server_name_redirect: "{{ environment }}"."{{ domain }}"
 
 ##php-fpm config
-php_server_name: server.example.com
-php_root: /usr/share/nginx/html/example.com
+php_server_name: "{{ environment }}"."{{ domain }}"
+php_root: /mnt/efs/woabelfast/"{{ environment }}"."{{ domain }}"
 php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2
 php_conf: virtual.conf
-phpfpm_path: /usr/share/nginx/html/example.com/
-phpfpm_dest: /usr/share/nginx/html/example.com/index.php
+phpfpm_path: /mnt/efs/woabelfast/"{{ environment }}"."{{ domain }}"/
+phpfpm_dest: /mnt/efs/woabelfast/"{{ environment }}"."{{ domain }}"/index.php
 phpfpm_template: phpfpm.conf.j2
 php_access_log: /var/log/nginx/php_access.log
 php_error_log: /var/log/nginx/php_error.log
 
 #phpMyadmin config
-phpmyadmin_server_name: phpmyadmin.example.com
+phpmyadmin_server_name: "{{ environment }}"."{{ domain }}"
 phpmyadmin_root: /usr/share/phpMyAdmin
 phpmyadmin_dest: /etc/nginx/conf.d/phpMyAdmin.conf
 phpmyadmin_index: "index  index.php"
@@ -53,26 +56,28 @@ phpmyadmin_access_log: /var/log/nginx/phpmyadmin_access.log
 phpmyadmin_error_log: /var/log/nginx/phpmyadmin_error.log
 
 #wordpress config
+domain: woabelfast.co.uk
 wordpress_conf: /etc/nginx/conf.d/
-wordpress_conf_dest: /etc/nginx/conf.d/wordpress.example.conf
-wordpress_conf_name: wordpress.example.conf
 listen_port: 80
-wordpress_server_name: wordpress.example.com
+wordpress_server_name: "{{ environment }}".{{ domain }}
+wordpress_root: /usr/share/nginx/woabelfast/"{{ wordpress_server_name }}"
+wordpress_logs: /usr/share/nginx/woabelfast/"{{ wordpress_server_name }}"
+wordpress_conf_dest: /etc/nginx/conf.d/"{{ wordpress_server_name }}"
+wordpress_conf_name: "{{ wordpress_server_name }}".conf
+wordpress_db_conf: /usr/share/nginx/"{{ wordpress_server_name }}"/wp-config.php
+wordpress_db_sample: /usr/share/nginx/"{{ wordpress_server_name }}"/wp-config-sample.php
+server_hostname: "{{ wordpress_server_name }}"
 wordpress_access_log: /var/log/nginx/wordpress_access.log
 wordpress_error_log: /var/log/nginx/wordpress_error.log
-wordpress_root: /usr/share/nginx/wordpress.example.com
-wordpress_logs: /usr/share/nginx/wordpress.example.com/logs
 wordpress_index: index index.php index.html index.htm
 wordpress_fastcgi_pass: localhost:9000
 modify_hostname: true
-wordpress_parent_path: /usr/share/nginx/
+wordpress_parent_path: /usr/share/nginx/woabelfast
 wordpress_owner: nginx
 wordpress_group: nginx
 
 #wordpress db config
 wordpress_db_conf_template: "wp-config.php"
-wordpress_db_conf: "/usr/share/nginx/wordpress.example.com/wp-config.php"
-wordpress_db_sample: "/usr/share/nginx/wordpress.example.com/wp-config-sample.php"
 
 #mysql / mariadb authentication file template
 cnf_template: my.cnf.j2
@@ -97,7 +102,6 @@ mysql_port: 3306
 # This is used for the nginx server configuration, but access to the
 # WordPress site is not restricted by a named host.
 nginx_port: 80
-server_hostname: server.example.com
 
 # Disable All Updates
 # By default automatic updates are enabled, set this value to true to disable all automatic updates

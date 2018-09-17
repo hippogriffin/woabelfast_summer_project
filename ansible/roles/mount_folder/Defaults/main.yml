@@ -1,0 +1,12 @@
+---
+# defaults file for mount_drives
+ # Where will device be mounted EG /mnt/efs
+mount_path: []
+ # Name of mounted device
+mount_source: []
+ # mounted device file system
+filesystem: []
+ # Mount Options for device
+mount_options: []
+ # present/mounted/absent/unmounted
+state: []

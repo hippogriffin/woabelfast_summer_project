@@ -130,3 +130,7 @@ variable "preview_web_servers_sg" {
 variable "preview_rds_elb" {
   default = "preview_rds"
 }
+
+variable "kainos_cidr" {
+  default = "195.89.171.5/32"
+}

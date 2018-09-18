@@ -37,6 +37,7 @@ resource "aws_elb" "preview_webserver_elb" {
   name                        = "${local.preview_webserver_elb}"
   subnets                     = ["${aws_subnet.preview_public_subnet-1a.id}", "${aws_subnet.preview_public_subnet-1b.id}"]
   instances                   = ["${aws_instance.proxy-servers.*.id}"]
+  security_groups             = ["${aws_security_group.preview_elb_public_sg.id}"]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true

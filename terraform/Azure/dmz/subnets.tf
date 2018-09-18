@@ -1,5 +1,5 @@
 # Create subnet for jumpbox
-resource "azurerm_subnet" "jumpbox_subnet" {
+resource "azurerm_subnet" "dmz_subnet" {
   name                 = "${var.jumpbox_subnet_name}"
   resource_group_name  = "${var.dmz_rg_name}"
   virtual_network_name = "${var.dmz_vnet_name}"

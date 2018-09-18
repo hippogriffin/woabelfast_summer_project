@@ -14,6 +14,6 @@ variable "location" {
     default = "ukwest"
 }
 
-variable "jumpbox_subnet_name" {
-    default = "jumpbox_subnet"
+variable "dmz_subnet_name" {
+    default = "dmz_subnet"
 }

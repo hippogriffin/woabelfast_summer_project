@@ -27,6 +27,14 @@ variable "proxy_vm_size" {
   default = "Standard_B1s"
 }
 
+variable "proxy_ip_configuration" {
+  type = "map"
+  default = {
+    "name"                          = "preview_proxy_ip"
+    "private_ip_address_allocation" = "dynamic"
+  }
+}
+
 variable "proxy_storage_image_reference" {
   type = "map"
   default = {

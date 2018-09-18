@@ -12,9 +12,9 @@ resource "azurerm_network_interface" "preview-proxy" {
     resource_group_name = "${azurerm_resource_group.preview_rg.name}"
 
   ip_configuration {
-    name                          = "preview_proxy_ip"
+    name                          = "${var.proxy_ip_configuration.[name]}"
     subnet_id                     = "${azurerm_subnet.preview_subnet.id}"
-    private_ip_address_allocation = "dynamic"
+    private_ip_address_allocation = "${var.proxy_ip_configuration.[private_ip_address_allocation]}"
   }
 }
 

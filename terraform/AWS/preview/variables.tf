@@ -21,6 +21,7 @@ variable "mgmt_sub" {
 variable "preview_public_sub" {
   default = "10.122.100.0/24"
 }
+
 variable "preview_public_sub_1a" {
   default = "10.122.102.0/24"
 }
@@ -28,6 +29,7 @@ variable "preview_public_sub_1a" {
 variable "preview_public_sub_1b" {
   default = "10.122.101.0/24"
 }
+
 #DB Server
 variable "preview_db_sg" {
   default = "db_rds_sg"
@@ -89,19 +91,17 @@ variable "avail_zone_b" {
   default = "eu-west-1b"
 }
 
-
-locals  {
+locals {
   preview_wp_server_names = "${var.environment}_${var.preview_wp_server_name}_%02d"
-  preview_wp_server_ips = "10.122.2.%02d"
+  preview_wp_server_ips   = "10.122.2.%02d"
   preview_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d"
-  preview_webserver_ips = "10.122.1.%02d"
-  preview_webserver_elb = "${var.environment}-webserver-elb"
-  preview_wp_server_elb = "${var.environment}-wp-server-elb"
-  preview_rds_server_elb = "${var.environment}-rds-elb"
-  preview_wp_env_role = "${var.environment}_${var.preview_wp_server_name}"
-  preview_proxy_env_role = "${var.environment}_${var.preview_webserver_name}"
+  preview_webserver_ips   = "10.122.1.%02d"
+  preview_webserver_elb   = "${var.environment}-webserver-elb"
+  preview_wp_server_elb   = "${var.environment}-wp-server-elb"
+  preview_rds_server_elb  = "${var.environment}-rds-elb"
+  preview_wp_env_role     = "${var.environment}_${var.preview_wp_server_name}"
+  preview_proxy_env_role  = "${var.environment}_${var.preview_webserver_name}"
 }
-
 
 #EC2 instance variables
 
@@ -118,7 +118,7 @@ variable "wordpress_instance_type" {
 }
 
 variable "preview_webserver_name" {
-  default = "webserver"
+  default = "webservers"
 }
 
 # Web Servers

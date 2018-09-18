@@ -13,3 +13,7 @@ variable "dmz_rg_name" {
 variable "location" {
     default = "ukwest"
 }
+
+variable "kainos_ip" {
+  default = "195.89.171.5"
+}

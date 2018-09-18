@@ -11,5 +11,5 @@ variable "dmz_rg_name" {
 }
 
 variable "location" {
-    default = "West UK"
+    default = "ukwest"
 }

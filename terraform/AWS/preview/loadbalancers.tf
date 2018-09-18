@@ -1,8 +1,9 @@
 # ELB for WordPress Servers
 
 resource "aws_elb" "preview_wordpress_elb" {
-  name    = "preview-wordpress-elb"
-  subnets = ["${aws_instance.wordpress.*.subnet_id}"]
+  name            = "preview-wordpress-elb"
+  subnets         = ["${aws_instance.wordpress.*.subnet_id}"]
+  security_groups = ["${aws_security_group.wp_servers.id}"]
 
   listener {
     instance_port     = 80

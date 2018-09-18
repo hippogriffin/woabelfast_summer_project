@@ -74,6 +74,13 @@ resource "aws_security_group" "wp_servers" {
   vpc_id      = "${aws_vpc.preview_vpc.id}"
 
   ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    self      = true
+  }
+
+  ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"

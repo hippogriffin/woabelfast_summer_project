@@ -19,7 +19,6 @@ variable "prefix" {
   default = "wordpress"
 }
 
-
 variable "preview_proxy_cidr" {
   default = "172.17.1.0/24"
 }
@@ -31,3 +30,6 @@ variable "preview_wordpress_cidr" {
 variable "preview_db_cidr" {
   default = "172.17.3.0/24"
 }
+
+
+

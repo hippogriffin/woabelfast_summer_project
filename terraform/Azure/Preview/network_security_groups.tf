@@ -44,3 +44,35 @@ resource "azurerm_network_security_group" "preview_db_sg" {
     environment = "Preview"
   }
 }
+
+# Network security group for public loadbalancer
+resource "azurerm_network_security_group" "preview_sg_lb" {
+  name                = "${azurerm_network_security_group.test.name}"
+  location            = "${azurerm_resource_group.preview_rg.location}"
+  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+
+    security_rule {
+    name                       = "port80_inbound"
+    priority                   = 100 
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "80"
+    destination_port_range     = "80"
+    source_address_prefix      = "${var.kainos_ip}"
+    destination_address_prefixes = ["172.17.100.0/24","172.17.101.0/24"]
+  }
+
+    security_rule {
+    name                       = "port443_inbound"
+    priority                   = 101 
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "443"
+    destination_port_range     = "443"
+    source_address_prefix      = "${var.kainos_ip}"
+    destination_address_prefix = ["172.17.100.0/24","172.17.101.0/24"]
+  }
+
+}

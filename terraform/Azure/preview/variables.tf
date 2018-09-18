@@ -15,14 +15,6 @@ variable "proxy_avset" {
   default = "proxy_avset"
 }
 
-variable "proxy_username" {
-  default = "username"
-}
-
-variable "proxy_password" {
-  default = "password"
-}
-
 variable "proxy_server_name" {
   default = "preview-proxy-03"
 }

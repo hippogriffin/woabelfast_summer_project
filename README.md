@@ -164,7 +164,7 @@ This would also be used in a real project when you are requiring different confi
 
 To add anything to sysctl just add it below <b>sysctl:</b>
 
-Example:
+##### Example:
 
 ```
  sysctl:
@@ -219,7 +219,7 @@ This can be configured using group_vars.
 Configurable variables can be found in:
 roles_galaxy/geerlingguy.firewall/defaults/main.yml
 
-### Example
+##### Example
     firewall_allowed_tcp_port:
       - "22"
       - "80"
@@ -231,7 +231,7 @@ Yum repositories can be adde using the yum_repos role.
 
 These are created using the variable yum_repo_files wihch can be configured in vars.
 
-### Example
+##### Example
     yum_repo_files:
       - name: nginx
         description: nginx repo
@@ -243,10 +243,14 @@ Additional repositories can be added with a new list.
 
 This will create a repo file for nginx. A populated example can be found in defaults/main.yml
 
-# Creating VPC Resources
+# Terraform
+
+## AWS
+
+### Creating VPC Resources
 Under Environments & within dmz, management & preview folders, add the following to the vpc.tf file of each, making changes where appropriate:
 
-### Example
+##### Example
     # Preview VPC 
     resource "aws_vpc" "preview_vpc" {
         cidr_block = "10.122.0.0/24"
@@ -261,26 +265,24 @@ Under Environments & within dmz, management & preview folders, add the following
 
 Add the following to the variables.tf file of each Environment:
 
-### Example
+##### Example
 
     variable "environment" {
     default = "dmz"
     }
-    
-# Terraform
 
-# DMZ
+### DMZ
 
 
-## Internet Gateway
+#### Internet Gateway
 
 An Internet Gateway has been created for the DMZ environment
 
-## DMZ Subnet
+#### DMZ Subnet
 
 The DMZ subnet cidr has been defined in the variables.tf file in the DMZ folder. Additional jumpboxes must be added to this subnet. 
 
-## DMZ Security Group
+#### DMZ Security Group
 
 This Security group allows traffic from Kainos to the jumpbox.
 
@@ -288,20 +290,19 @@ Additional inbound rules can be added by including new ingress rules in security
 
 This group should be applied to all jumpboxes.
 
-## DMZ Key Pair
+#### DMZ Key Pair
 
 The public key to be used for all hosts in the DMZ environment is found in keypair.tf.  
 
-## Private DNS 
+#### Private DNS 
 
 Hosted zone created for enviroment.woabelfast.local all code can be found in main.tf for each enviroment using a vpc we can traffic information between the devices.
 
 This has since been changed.  A file called dns.tf was created containing the hosted zone and the private DNS record.
 
+### Management
 
-# Management
-
-## Management Instances
+#### Management Instances
 
 Management instances are configured in the management/instance.tf file
 
@@ -309,19 +310,19 @@ Variables for these instances are stored in the management/variables.tf file
 
 All instances should be added to the management subnet
 
-## DMZ to Management VPC Peering Connection
+#### DMZ to Management VPC Peering Connection
 
 vpcpeering.tf contains code to create peering connections between DMZ and Management VPCs in both directions.
 
 Route tables also updated / created to define routes between the two VPCs i.e. traffic from DMZ to Management subnet goes to the VPC Peer and vice versa.
 
-# Preview
+### Preview
 
-## Wordpress Subnet
+#### Wordpress Subnet
 
 The subnet for the wordpress server in the preview environment is called preview_wordpress.  The default CIDR block for this subnet is specified within preview/variables.tf
 
-## Wordpress Security Group
+#### Wordpress Security Group
 
 This security group allows ssh traffic from the dmz subnet and allows web traffic from the proxy subnet.
 
@@ -329,13 +330,13 @@ Additional inbound rules can be added by including new ingress rules in security
 
 This group should be applied to all wordpress servers.
 
-## RDS Preview
+#### RDS Preview
 
 Provides an RDS instance resource. Created a rds.tf file as below.
 - In securitygroups.tf duplicate the security group & rename as backup.
 - In subnets.tf duplicate the subnet group & rename as backup, adding an availability zone to both.
 
-### Example
+##### Example
 
     resource "aws_db_instance" "preview_rds" {
         allocated_storage      = 10
@@ -360,11 +361,11 @@ Provides an RDS instance resource. Created a rds.tf file as below.
             }
         }
 
-## DMZ Key Pair
+#### DMZ Key Pair
 
 The public key to be used for all hosts in the DMZ environment is found in keypair.tf.  
 
-## Wordpress Instance
+#### Wordpress Instance
 
 Wordpress instances are configured in the */instance.tf file
 
@@ -376,7 +377,7 @@ All instances should be added to the *_wordpress subnet
 
 To add more servers, edit the variables.tf file and add a new line to the wp_server_ips variable and the wp_server_host_name local
 
-Example
+##### Example
 
     variable "wp_servers_ips" {
         default {
@@ -397,7 +398,7 @@ Example
         }
     }
 
-## VPC Peering
+#### VPC Peering
 
 There is a VPC peering connection between Preview and Management. This has been configured using vpc_peering.tf.
 
@@ -431,7 +432,7 @@ You can now use data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id to get 
     ### __IN VPC_PEERING CONFIG__
     peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}"
 
-# Dynamic Inventory Management 
+#### Dynamic Inventory Management 
 Ansible can pull inventory information from dynamic sources, including cloud sources. 
 The inventory scripts 'ec2.py' and 'ec2.ini' were added to the project. These query AWS for your running Amazon EC2 instances info.
 
@@ -442,13 +443,49 @@ Use the ansible-inventory command below to generate all the relevant info about 
         ansible-inventory --inventory-file=ec2.py --list
 
 
-# MySQL options for Azure
+## Azure
+
+### DMZ
+
+#### Backend
+
+Resource group, storage account and container specifically for tfstate files was created manually in Azure.
+
+Key created in code.
+
+##### Example
+
+resource_group_name  = "tfstate_rg"
+    storage_account_name = "woabelfasttfstate"
+    container_name       = "woabelfast-tfstate"
+    key                  = "dmz.terraform.tfstate"
+
+#### Virtual Network
+
+Resource group created manually in Azure and referenced.
+
+##### Example
+
+resource "azurerm_virtual_network" "dmz_vnet" {
+  name          = "${var.dmz_vnet_name}"
+  resource_group_name  = "${var.dmz_rg_name}"
+  address_space = ["${var.dmz_vnet_address_space}"]
+  location      = "${var.location}"
+}
+
+#### MySQL options for Azure
 
 The two most commonly used database systems for MySQL that are available on Azure are MariaDB and Azure Database for MySQL
 
 The service Azure Database for MySQL will take incremental backup’s every 5 minutes and a full back up every hour. Helping you keep peace of mind for your data.
 
 There is an option for Azure Database for Maria DB, relatively new to azure this should be similar to what developers would use on their local machines,Maria DB is a drop-in replacement for MySQL and all functions are compatible through both database systems. 
+
+# Preview Environment in Azure
+
+In Azure/preview, the resource group (rg.tf) and vnet have been set up with initial configuration.  These reference variables outlined in variables.tf.
+
+The network security group and subnets have been created for the external facing load balancer for Preview.  The NSG allows inbound traffic on port 80 and 443.
 
 
 

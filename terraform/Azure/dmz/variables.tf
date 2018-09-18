@@ -21,3 +21,12 @@ variable "dmz_subnet_name" {
 variable "kainos_ip" {
   default = "195.89.171.5"
 }
+
+variable "dmz_jumpbox_name" {
+    default = "dmz_jumpbox"
+}
+
+variable "nic_name" 
+{
+    default = "dmz_jumpbox_nic"
+}

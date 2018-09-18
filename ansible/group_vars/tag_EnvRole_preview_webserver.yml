@@ -3,7 +3,7 @@
 nginx_vhosts: 
  - listen: "80" # default: "80"
    server_name: "preview.woabelfast.co.uk" # default: N/A
-   root: "/etc/nginx/conf.d" # default: N/A
+   root: "/usr/share/nginx/preview.woabelfast.co.uk" # default: N/A
    index: "index.html index.htm" # default: "index.html index.htm"
    filename: "preview.woabelfast.co.uk.conf" # Can be used to set the filename of the vhost file.
    extra_parameters: |

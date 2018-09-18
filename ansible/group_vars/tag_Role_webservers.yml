@@ -2,7 +2,24 @@
 #Group vars for  webservers
 
 #Nginx Config
-nginx_vhosts: []
+nginx_vhosts: 
+ - listen: "80" # default: "80"
+   server_name: "preview.woabelfast.co.uk" # default: N/A
+   root: "/var/www/preview.woabelfast.co.uk" # default: N/A
+   index: "index.html index.htm" # default: "index.html index.htm"
+   filename: "preview.woabelfast.co.uk.conf" # Can be used to set the filename of the vhost file.
+   extra_parameters: |
+      location / {
+        proxy_pass http://preview-wordpress-elb-587527805.eu-west-1.elb.amazonaws.com
+      }
+
+nginx_upstreams:
+ - name: http://preview-wordpress-elb-587527805.eu-west-1.elb.amazonaws.com
+   strategy: "least_conn"
+   servers: {
+     "preview_webserver_01.woabelfast.local",
+     "preview_webserver_02.woabelfast.local",
+   }
 
 #Firewall Config
 

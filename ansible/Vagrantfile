@@ -57,10 +57,10 @@ Vagrant.configure("2") do |config|
       c.vm.hostname = host[:hostname]
       c.vm.network  "private_network",ip: host[:ip] ,netmask: "255.255.255.0"
       c.vm.provision "shell", inline: <<-SHELL
-        if grep -qs '/dev/sda2 ' /proc/mounts; then
-          sudo umount /dev/sda2/
+        if grep -qs '/dev/sdb ' /proc/mounts; then
+          sudo umount /dev/sdb/
         fi
-        sudo mkfs.ext3 /dev/sda2
+        sudo mkfs.ext3 /dev/sdb -F
         SHELL
       c.vm.provision "ansible" do |ansible|
         ansible.playbook = "site.yml"
@@ -73,7 +73,7 @@ Vagrant.configure("2") do |config|
           wp_db_name: "wordpress",
           wp_db_user: "wpuser",
           wp_db_password: "123456789",
-          mount_source: "/dev/sda2",
+          mount_source: "/dev/sdb",
           filesystem: "ext3",
         } 
       end

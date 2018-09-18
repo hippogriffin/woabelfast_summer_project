@@ -8,5 +8,5 @@ nginx_vhosts:
    filename: "preview.woabelfast.co.uk.conf" # Can be used to set the filename of the vhost file.
    extra_parameters: |
       location / {
-        proxy_pass http://preview-wordpress-elb-587527805.eu-west-1.elb.amazonaws.com:80
+        proxy_pass http://preview-wp-server-elb.woabelfast.local:80
       }

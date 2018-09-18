@@ -118,7 +118,7 @@ variable "wordpress_instance_type" {
 }
 
 variable "preview_webserver_name" {
-  default = "webservers"
+  default = "webserver"
 }
 
 # Web Servers

@@ -14,8 +14,9 @@ variable "environment" {
  variable "proxy_avset" {
   default = "proxy_avset"
 }
- variable "proxy_server_name" {
-  default = "preview-proxy-03"
+
+variable "count" {
+  default = "2"
 }
  variable "proxy_vm_size" {
   default = "Standard_B1s"
@@ -39,7 +40,6 @@ variable "environment" {
  variable "proxy_storage_os_disk" {
   type = "map"
   default = {
-    "name"              = "proxy_os_disk"
     "caching"           = "ReadWrite"
     "create_option"     = "FromImage"
     "managed_disk_type" = "Standard_LRS"
@@ -48,8 +48,35 @@ variable "environment" {
  variable "proxy_os_profile" {
   type = "map"
   default = {
-    "computer_name"  = "preview-proxy-03"
     "admin_username" = "deploymentuser"
     "admin_password" = "deploymentpassword"
   }
 } 
+
+variable "prefix" {
+  default = "wordpress"
+}
+ variable "preview_proxy_cidr" {
+  default = "172.17.1.0/24"
+}
+ variable "preview_wordpress_cidr" {
+  default = "172.17.2.0/24"
+}
+ variable "preview_db_cidr" {
+  default = "172.17.3.0/24"
+} 
+
+variable "preview_webserver_name" {
+  default = "webserver"
+}
+
+locals {
+ preview_webserver_ips   = "172.18.0.%02d"
+
+ preview_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d"
+
+ proxy_nic_name = "preview-proxy-nic-"
+
+ preview_webserver_os_disk = "${var.environment}_${var.preview_webserver_name}_%02d"
+
+}

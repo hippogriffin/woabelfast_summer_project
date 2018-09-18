@@ -11,5 +11,9 @@ variable "dmz_rg_name" {
 }
 
 variable "location" {
-    default = "West UK"
+    default = "ukwest"
+}
+
+variable "jumpbox_subnet_name" {
+    default = "jumpbox_subnet"
 }

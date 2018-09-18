@@ -6,7 +6,7 @@ nginx_vhosts:
    root: "/usr/share/nginx/preview.woabelfast.co.uk" # default: N/A
    index: "index.html index.htm" # default: "index.html index.htm"
    filename: "preview.woabelfast.co.uk" # Can be used to set the filename of the vhost file.
-   state: present
+   state: "present"
    extra_parameters: |
       location / {
         proxy_pass http://preview-wp-server-elb.woabelfast.local:80;

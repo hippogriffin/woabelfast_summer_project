@@ -485,6 +485,9 @@ There is an option for Azure Database for Maria DB, relatively new to azure this
 
 In Azure/preview, the resource group (rg.tf) and vnet have been set up with initial configuration.  These reference variables outlined in variables.tf.
 
+The network security group and subnets have been created for the external facing load balancer for Preview.  The NSG allows inbound traffic on port 80 and 443.
+
+
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

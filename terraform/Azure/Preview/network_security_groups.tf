@@ -1,8 +1,8 @@
 
 resource "azurerm_network_security_group" "preview_db_sg" {
   name                = "dmz_sg"
-  location            = "${azurerm_resource_group.preview.location}"
-  resource_group_name = "${azurerm_resource_group.preview.name}"
+  location            = "${azurerm_resource_group.preview_rg.location}"
+  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
 
   security_rule {
     name                       = "preview_db_ssh_sr"

@@ -33,7 +33,7 @@ variable "count" {
   default = {
     "publisher" = "OpenLogic"
     "offer"     = "CentOS"
-    "sku"       = "7.3"
+    "sku"       = "7-CI"
     "version"   = "latest"
   }
 }
@@ -73,12 +73,12 @@ variable "preview_webserver_name" {
 locals {
  preview_webserver_ips   = "172.18.0.%02d"
 
- preview_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d"
+ preview_webserver_names = "${var.environment}-${var.preview_webserver_name}-%02d"
 
- proxy_nic_name = "preview-proxy-nic-"
+ proxy_nic_name = "preview-proxy-nic-%02d"
 
+  preview_webserver_os_disk = "${var.environment}-${var.preview_webserver_name}-%02d"
 
-
-preview_webserver_os_disk = "${var.environment}_${var.preview_webserver_name}_%02d"
+  proxy_ip_name = "preview-proxy-ip-%02d"
 
 }

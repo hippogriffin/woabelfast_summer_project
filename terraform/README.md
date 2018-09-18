@@ -63,3 +63,13 @@ Allows SSH traffic from dmz subnet to management subnet
 
 ### Added Subnet for DB
 - No real config as of yet
+
+# Azure 
+
+## Adding Security Group
+
+### DMZ 
+Allows SSH connection from Kainos IP. 
+ 
+### Preview
+Allow SSH and open port 3306 for MySQL

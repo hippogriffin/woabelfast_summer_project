@@ -12,7 +12,7 @@ resource "azurerm_network_security_group" "preview_db_sg" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "195.89.171.5"
+    source_address_prefix      = "${var.kainos_ip}"
     destination_address_prefix = "*"
   }
 
@@ -24,7 +24,7 @@ resource "azurerm_network_security_group" "preview_db_sg" {
     protocol                   = "TCP"
     source_port_range          = "3306"
     destination_port_range     = "3306"
-    source_address_prefix      = "195.89.171.5"
+    source_address_prefix      = "${var.kainos_ip}"
     destination_address_prefix = "*"
   }
 

@@ -68,4 +68,8 @@ Allows SSH traffic from dmz subnet to management subnet
 
 ## Adding Security Group
 
+### DMZ 
 Allows SSH connection from Kainos IP. 
+ 
+### Preview
+Allow SSH and open port 3306 for MySQL

@@ -18,10 +18,6 @@ variable "dmz_subnet_name" {
     default = "dmz_subnet"
 }
 
-variable "jumpbox_subnet_name" {
-    default = "jumpbox_subnet"
-}
-
 variable "kainos_ip" {
   default = "195.89.171.5"
 }

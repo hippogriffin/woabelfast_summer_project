@@ -1,10 +1,12 @@
 
 resource "azurerm_virtual_machine" "wordpress" {
-  name                  = "${var.prefix}-vm"
+  name                  = "${format("${local.preview_wordpress_name}", count.index + 1)}"
+  count                 = "${var.count}"
   location              = "${azurerm_resource_group.preview_rg.location}"
   resource_group_name   = "${azurerm_resource_group.preview_rg.name}"
-  network_interface_ids = ["${azurerm_network_interface.preview_nic.id}"]
-  vm_size               = "Standard_DS1_v2"
+  network_interface_ids = ["${element(azurerm_network_interface.preview_wordpress_nic.*.id, count.index + 3)}"]
+  availability_set_id = "${azurerm_availability_set.wordpress_avset.id}"
+  vm_size               = "${var.wordpress_vm_size}"
 
 storage_image_reference {
     publisher = "OpenLogic"
@@ -14,15 +16,15 @@ storage_image_reference {
 }
 
 storage_os_disk {
-    name              = "os_storage_1"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+    name              = "${format("${local.preview_wordpress_webserver_os_disk}", count.index + 1)}"
+    caching           = "${lookup(var.wordpress_storage_os_disk, "caching")}"
+    create_option     = "${lookup(var.wordpress_storage_os_disk, "create_option")}"
+    managed_disk_type = "${lookup(var.wordpress_storage_os_disk, "managed_disk_type")}"
   }
 
 os_profile {
-    computer_name  = "wordpress-vm"
-    admin_username = "deploymentuser"
+    computer_name  = "${format("wordpress-vm-%02d", count.index + 1)}"
+    admin_username = "${lookup(var.proxy_os_profile, "admin_username")}"
   }
 
    os_profile_linux_config {
@@ -36,13 +38,15 @@ os_profile {
 
 }
 
-resource "azurerm_network_interface" "preview_nic" {
-  name                = "NetworkInterfacePreview"
+resource "azurerm_network_interface" "preview_wordpress_nic" {
+  name                = "${format("${local.preview_wordpress_nic_name}", count.index + 3)}"
+  count               = "${var.count}"
   location            = "${azurerm_resource_group.preview_rg.location}"
   resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  network_security_group_id = "${azurerm_network_security_group.preview_sg_lb.id}"
 
   ip_configuration {
-    name                          = "testconfiguration1"
+    name                          = "${format("${local.wordpress_ip_name}", count.index + 1)}"
     subnet_id                     = "${azurerm_subnet.preview_wordpress_subnet.id}"
     private_ip_address_allocation = "dynamic"
   }

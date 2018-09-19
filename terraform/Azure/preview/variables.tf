@@ -15,12 +15,21 @@ variable "environment" {
   default = "proxy_avset"
 }
 
+ variable "wordpress_avset" {
+  default = "wordpress_avset"
+}
+
 variable "count" {
   default = "2"
 }
  variable "proxy_vm_size" {
   default = "Standard_B1s"
 }
+
+ variable "wordpress_vm_size" {
+  default = "Standard_B1s"
+}
+
  variable "proxy_ip_configuration" {
   type = "map"
   default = {
@@ -34,9 +43,11 @@ variable "count" {
     "publisher" = "OpenLogic"
     "offer"     = "CentOS"
     "sku"       = "7.3"
+    "sku"       = "7-CI"
     "version"   = "latest"
   }
 }
+
  variable "proxy_os_profile" {
   type = "map"
   default = {
@@ -49,9 +60,18 @@ variable "count" {
   default = {
     "caching"           = "ReadWrite"
     "create_option"     = "FromImage"
+    "managed_disk_type" = "Standard_LRS"
   }
 }
  
+  variable "wordpress_storage_os_disk" {
+  type = "map"
+  default = {
+    "caching"           = "ReadWrite"
+    "create_option"     = "FromImage"
+    "managed_disk_type" = "Standard_LRS"
+  }
+}
 variable "prefix" {
   default = "wordpress"
 }
@@ -69,14 +89,34 @@ variable "preview_webserver_name" {
   default = "webserver"
 }
 
+ variable "preview_wordpress_cidr" {
+  default = "172.17.2.0/24"
+}
+ variable "preview_db_cidr" {
+  default = "172.17.3.0/24"
+} 
+
+variable "preview_webserver_name" {
+  default = "webserver"
+}
+
+
 locals {
  preview_webserver_ips   = "172.18.0.%02d"
 
- preview_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d"
+ preview_webserver_names = "${var.environment}-proxy-${var.preview_webserver_name}-%02d"
 
  proxy_nic_name = "preview-proxy-nic-%02d"
 
-  preview_webserver_os_disk = "${var.environment}_${var.preview_webserver_name}_%02d"
+  preview_webserver_os_disk = "${var.environment}-${var.preview_webserver_name}-%02d"
+
+  preview_wordpress_webserver_os_disk = "${var.environment}-wordpress-os-disk-%02d"
 
   proxy_ip_name = "preview-proxy-ip-%02d"
+
+  preview_wordpress_nic_name = "preview-wordpress-nic-%02d"
+
+  wordpress_ip_name = "preview-wordpress-ip-%02d"
+
+  preview_wordpress_name = "preview-wordpress-%02d"
 }

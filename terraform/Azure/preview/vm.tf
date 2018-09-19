@@ -1,6 +1,6 @@
 
 resource "azurerm_virtual_machine" "wordpress" {
-  name                  = "${format("${local.preview_wordpress_name}", count.index + 1)}"
+  name                  = "${format("${local.preview_wordpress_name}", count.index + 3)}"
   count                 = "${var.count}"
   location              = "${azurerm_resource_group.preview_rg.location}"
   resource_group_name   = "${azurerm_resource_group.preview_rg.name}"
@@ -16,7 +16,7 @@ storage_image_reference {
 }
 
 storage_os_disk {
-    name              = "${format("${local.preview_wordpress_webserver_os_disk}", count.index + 1)}"
+    name              = "${format("${local.preview_wordpress_webserver_os_disk}", count.index + 3)}"
     caching           = "${lookup(var.wordpress_storage_os_disk, "caching")}"
     create_option     = "${lookup(var.wordpress_storage_os_disk, "create_option")}"
     managed_disk_type = "${lookup(var.wordpress_storage_os_disk, "managed_disk_type")}"
@@ -46,7 +46,7 @@ resource "azurerm_network_interface" "preview_wordpress_nic" {
   network_security_group_id = "${azurerm_network_security_group.preview_sg_lb.id}"
 
   ip_configuration {
-    name                          = "${format("${local.wordpress_ip_name}", count.index + 1)}"
+    name                          = "${format("${local.wordpress_ip_name}", count.index + 3)}"
     subnet_id                     = "${azurerm_subnet.preview_wordpress_subnet.id}"
     private_ip_address_allocation = "dynamic"
   }

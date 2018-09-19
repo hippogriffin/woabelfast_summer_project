@@ -51,6 +51,21 @@ variable "jenkins_name" {
     default = "jenkins"
 }
 
+variable "strongswan_ami" {
+  default = "ami-0181f8d9b6f098ec4"
+}
+variable "strongswan_instance_type" {
+  default = "t2.micro"
+}
+
+variable "strongswan_name" {
+    default = "strongswan"
+}
+
+variable "strongswan_private_ip" {
+  default = "10.121.0.164"
+}
+
 ### Better naming convention required
 
 variable "security_group_name" {
@@ -63,5 +78,7 @@ variable "mgmt_key_name" {
 
 locals {
   jenkins_host_name = "${var.environment}_${var.jenkins_name}"
+  strongswan_host_name = "${var.environment}_${var.strongswan_name}"
+  strongswan_eip_name  = "${local.strongswan_host_name}_eip"
 
 }

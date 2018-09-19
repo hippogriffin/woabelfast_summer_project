@@ -13,3 +13,14 @@ resource "aws_route53_record" "mgmt_private_dns_records" {
     "${aws_instance.Jenkins.private_ip}",
   ]
 }
+
+resource "aws_route53_record" "mgmt_private_dns_records_strongswan" {
+  zone_id = "${aws_route53_zone_association.mgmt_private_zone.zone_id}"
+  name = "${var.strongswan_name}"
+  type = "A"
+  ttl = "300"
+
+  records = [
+    "${aws_instance.strongswan.private_ip}",
+  ]
+}

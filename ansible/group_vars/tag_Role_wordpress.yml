@@ -9,8 +9,9 @@ firewall_allowed_tcp_ports:
   - "22"
   - "80"
 
-#PHP.ini config
+nginx_remove_default_vhost: true
 
+#PHP.ini config
 php_ini_cgi_value: "0"
 php_ini_path: /etc/php.ini
 php_ini_cgi_string: ;cgi.fix_pathinfo=1
@@ -51,7 +52,7 @@ wordpress_owner: nginx
 wordpress_group: nginx
 
 ##php-fpm config
-php_server_name: "phpserver.{{ domain }}"
+php_server_name: "phpserver.{{ wordpress_server_name }}"
 php_root: "/mnt/efs/woabelfast/{{ php_server_name }}"
 php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2
@@ -63,7 +64,7 @@ php_access_log: /var/log/nginx/php_access.log
 php_error_log: /var/log/nginx/php_error.log
 
 #phpMyadmin config
-phpmyadmin_server_name: "phpmyadmin.{{ domain }}"
+phpmyadmin_server_name: "phpmyadmin.{{ wordpress_server_name }}"
 phpmyadmin_root: /usr/share/phpMyAdmin
 phpmyadmin_dest: /etc/nginx/conf.d/phpMyAdmin.conf
 phpmyadmin_index: "index  index.php"

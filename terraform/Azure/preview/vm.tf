@@ -23,7 +23,6 @@ storage_os_disk {
 os_profile {
     computer_name  = "wordpress-vm"
     admin_username = "deploymentuser"
-    custom_data    = "${file("cloud_init_add_user.yaml")}"
   }
 
    os_profile_linux_config {

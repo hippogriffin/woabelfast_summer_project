@@ -1,4 +1,5 @@
 ---
+domain: woabelfast.co.uk
 
 users:
   - username: jackk
@@ -7,7 +8,7 @@ users:
     uid: 1005
     ssh_key:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDpIu2nc2VMBU4+/TPNXlR+1lQygojMaGpPJDGhv3EXSmcekSkv1IgTLmUOxMomRZEz3lfQm/M5RSJm8foZw4dXRHyfIx8bgc+ErFIZwl8DDdLH/t7fOibjpFCMO0WcIVFkhzuFuAuSB3KuyVMdET0Wi4mBqEJagmTvX+mWjxDEG7QWCyS06sMYc2x4Vi/Ds5GP9NxoVbVUvJBVyXAiuRVEUrF+ZjBjBC4ALQCySucXIqlAACNEZPDQ6sgwnKOjfLlDhTI94aVX+ipTE+AliotPCMrUoxlgIsjdut0ttFeio9h2dGsukJKnkfiJKOWIk9KpAI2rYqoEw0imhkcMoR92nSLqlsaQfcBMKeXe5zZwszELjFln13fLAQqpWAgjW+u4qpbwG3hD0caLdpRWfycNmpDDsYis5U9Zz5sG+4kmWJLogJd2f6yjIb+HbGGNUx2cShPa2IeK4ZQcNxp07nRmiQHjkVMrSGjAIW2TeE5C06t4DR5zFPT0uQcJfzZtw1AqhJpY7aZlwLW20XjEhSGFaas2FH1DJpNAOXOh96nMvKXiLIk70k8/JLFUjdvEHPCBbOujvqhKotlX9vcNLQTBA4PZIRTRexdOm+kFqZrRo79eaKJDxyFl0bdK0+OukElUlEoWUMQK4W3+KzDaBO8wbQh08sSrBJ7atS9eF0ZPQ== First Key"
-  
+
   - username: brianmc
     name: Brian McGowan
     groups: ['webops_admins']
@@ -43,7 +44,7 @@ users:
     ssh_key:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbud7rESEJZskDeW4f1Wz6V6sj5kkKcy8nwbM7ELebRKwKlpAJGoDg/t2O5gLlHg0ghketEWYxa74XwNHt2twHdh2teVCcUkAEtQdxnJ1IjHVshNwvKOgNIRQ5bRJusiXugz4DyqE4APuQdvVFDvksc3V2YYztbkyGd7DR0MVRTWFKraERzPNjayLrqxvlMaZAC9xlL7VKJ7bA4pakZhL+2mZbS7wHC3V6bsQ0u8AjVZox49DoEY4R+bFMslaRKOKHzImPk840dqKWy8fOaJn3Yud6mcJVkkg6SH1tFAb32MMmr15n4Q7nDIsm6qLAkvoN+3MNIiuhf0tTo4ZChJtn march@audi.local"
 
-groups_to_create: 
+groups_to_create:
   - name: webops_admins
     gid: 10000
     sudo: true
@@ -54,5 +55,5 @@ users_deleted: []
   #  uid: 1002
 
 
-common_yum_installs: 
+common_yum_installs:
   - epel-release

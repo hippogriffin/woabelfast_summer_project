@@ -118,7 +118,7 @@ variable "wordpress_instance_type" {
 }
 
 variable "preview_webserver_name" {
-  default = "webservers"
+  default = "webserver"
 }
 
 # Web Servers
@@ -129,4 +129,8 @@ variable "preview_web_servers_sg" {
 #Preview RDS
 variable "preview_rds_elb" {
   default = "preview_rds"
+}
+
+variable "kainos_cidr" {
+  default = "195.89.171.5/32"
 }

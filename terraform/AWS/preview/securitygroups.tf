@@ -74,6 +74,13 @@ resource "aws_security_group" "wp_servers" {
   vpc_id      = "${aws_vpc.preview_vpc.id}"
 
   ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    self      = true
+  }
+
+  ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -153,5 +160,25 @@ resource "aws_security_group" "preview_web_servers" {
     Name        = "${var.preview_web_servers_sg}"
     Environment = "${var.environment}"
     terraform   = "true"
+  }
+}
+
+resource "aws_security_group" "preview_elb_public_sg" {
+  name        = "preview_public_elb_sg"
+  description = "public security group for Preview ELB"
+  vpc_id      = "${aws_vpc.preview_vpc.id}"
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["${var.kainos_cidr}"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }

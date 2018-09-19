@@ -32,10 +32,25 @@ variable "private_domain" {
     default = "woabelfast.local"
 }
 
+variable "strongswan_ami" {
+  default = "ami-0181f8d9b6f098ec4"
+}
+variable "strongswan_instance_type" {
+  default = "t2.micro"
+}
+
+variable "strongswan_name" {
+    default = "strongswan"
+}
+
 locals {
   bastion_host_name = "${var.environment}_${var.bastion_name}"
   bastion_eip_name  = "${local.bastion_host_name}_eip"
   jumpbox_dns_record = "${var.bastion_name}.${var.private_domain}"
+
+    strongswan_host_name = "${var.environment}_${var.strongswan_name}"
+  strongswan_eip_name  = "${local.strongswan_host_name}_eip"
+
 }
 
 ### Better Naming convention required

@@ -1,4 +1,4 @@
-# Preview Subnet
+# Preview Subnets
 
 resource "azurerm_subnet" "preview_subnet" {
   name                 = "preview_subnet"
@@ -24,6 +24,7 @@ resource "azurerm_subnet" "preview_wordpress_subnet" {
   virtual_network_name = "${azurerm_virtual_network.private_vnet.name}"
   address_prefix       = "${var.preview_wordpress_cidr}"
   route_table_id       = "${azurerm_route_table.preview_route_table.id}"
+  service_endpoints    = ["Microsoft.Sql"]
 }
 
 # DB Subnet

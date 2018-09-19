@@ -23,7 +23,7 @@ storage_os_disk {
   }
 
 os_profile {
-    computer_name  = "${format("wordpress-vm-%02d", count.index + 1)}"
+    computer_name  = "${format("wordpress-vm-%02d", count.index + 3)}"
     admin_username = "${lookup(var.proxy_os_profile, "admin_username")}"
   }
 

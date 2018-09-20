@@ -22,7 +22,7 @@ hosts = [
     {name: 'db', ip: '10.122.3.6', memory: '512', cpu: '2', hostname: 'db.woabelfast.local', disk: "false"},
     {name: 'dmz-jumpbox', ip: '10.120.0.7', memory: '512', cpu: '2', hostname: 'dmz-jumpbox.woabelfast.local', disk: "false"},
     {name: 'management-jenkins', ip: '10.121.0.8', memory: '512', cpu: '2', hostname: 'management-jenkins.woabelfast.local', disk: "false"},
-    {name: 'dmz-strongswan', ip: '10.121.0.9', memory: '512', cpu: '2', hostname: 'strongswan.woabelfast.local', disk: "false"}
+    {name: 'dmz-strongswan', ip: '10.121.0.9', memory: '512', cpu: '2', hostname: 'dmz-strongswan.woabelfast.local', disk: "false"}
   ]
 
 groups = {

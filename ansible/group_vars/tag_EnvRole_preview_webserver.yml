@@ -1,17 +1,19 @@
 # nginx vhost
 
-nginx_vhosts: 
- - listen: "80 default_server" # default: "80"
-   server_name: "preview.woabelfast.co.uk" # default: N/A
-   root: "/usr/share/nginx/preview.woabelfast.co.uk" # default: N/A
-   index: "index.html index.htm" # default: "index.html index.htm"
-   filename: "preview.woabelfast.co.uk" # Can be used to set the filename of the vhost file.
-   state: "present"
-   extra_parameters: |
-      location / {
-        proxy_pass http://preview-wp-server-elb.woabelfast.local:80;
-      }
-      location /elb_status {
-        access_log off;
-        return 200;
-      }
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "preview.woabelfast.co.uk"
+    root: "/usr/share/nginx/preview.woabelfast.co.uk"
+    index: "index.html index.htm"
+    access_log: "/var/log/nginx/preview.access.log"
+    error_log: "/var/log/nginx/preview.error.log"
+    extra_parameters: |
+        location / {
+          proxy_pass http://preview-wp-server-elb.woabelfast.local:80;
+          proxy_set_header Host      $host;
+          proxy_set_header X-Real-IP $remote_addr;
+        }
+        location /elb_status {
+          access_log off;
+          return 200;
+        }

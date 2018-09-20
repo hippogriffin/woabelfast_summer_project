@@ -17,7 +17,7 @@ resource "aws_elb" "preview_wordpress_elb" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:80/"
+    target              = "HTTP:80/elb_status"
     interval            = 30
   }
 

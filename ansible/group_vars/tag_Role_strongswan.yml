@@ -1,0 +1,25 @@
+firewall_allowed_tcp_ports:
+  - "22"
+  - "4500"
+  - "500"
+
+custom_yum_installs:
+  - strongswan
+
+conn:
+  - authby: secret
+    type: tunnel
+    leftsendcert: never
+    left: [IP Address of this Server]
+    leftsubnet: 10.120.0.0/16
+    right: [IP Address of Azure Gateway]
+    rightsubnet: 172.16.0.0/16
+    keyexchange: ikev2
+    ikelifetime: 10800s
+    keylife: 57m
+    keyingtries: 1
+    rekeymargin: 3m
+    compress: no
+    auto: route
+    psk: [presharedkey]
+

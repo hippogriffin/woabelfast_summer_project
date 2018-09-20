@@ -19,3 +19,5 @@
 
 - src: geerlingguy.mysql
   version: 2.9.0
+
+- src: janneojala.strongswan

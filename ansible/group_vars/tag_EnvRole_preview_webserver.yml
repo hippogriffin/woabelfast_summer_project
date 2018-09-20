@@ -1,7 +1,7 @@
 # nginx vhost
 
 nginx_vhosts: 
- - listen: "80" # default: "80"
+ - listen: "80 default_server" # default: "80"
    server_name: "preview.woabelfast.co.uk" # default: N/A
    root: "/usr/share/nginx/preview.woabelfast.co.uk" # default: N/A
    index: "index.html index.htm" # default: "index.html index.htm"
@@ -9,5 +9,11 @@ nginx_vhosts:
    state: "present"
    extra_parameters: |
       location / {
+        access_log off;
+        return 200;
         proxy_pass http://preview-wp-server-elb.woabelfast.local:80;
+      }
+      location /elb_status {
+        access_log off;
+        return 200;
       }

@@ -50,7 +50,7 @@ resource "azurerm_network_security_group" "preview_db_sg" {
 
 # Network security group for public loadbalancer
 resource "azurerm_network_security_group" "preview_sg_lb" {
-  name                = "${azurerm_network_security_group.preview_sg_lb.name}"
+  name                = "preview_sg_lb"
   location            = "${azurerm_resource_group.preview_rg.location}"
   resource_group_name = "${azurerm_resource_group.preview_rg.name}"
 

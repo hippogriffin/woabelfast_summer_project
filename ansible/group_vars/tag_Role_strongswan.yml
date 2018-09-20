@@ -18,7 +18,7 @@ strongswan_conn:
       esp: aes256gcm16-modp2048!
       ikelifetime: 24h
     left:
-      address: 10.120.0.75
+      address: "{{ hostvars['dmz_strongswan'].ansible_host }}"
       subnet: 10.120.0.0/24
       protoport: 47
       id: my

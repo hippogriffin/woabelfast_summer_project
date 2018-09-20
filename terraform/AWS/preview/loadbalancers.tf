@@ -1,9 +1,10 @@
 # ELB for WordPress Servers
-
 resource "aws_elb" "preview_wordpress_elb" {
-  name            = "preview-wordpress-elb"
-  subnets         = ["${aws_instance.wordpress.*.subnet_id}"]
+  name    = "preview-wordpress-elb"
+  subnets = ["${aws_instance.wordpress.*.subnet_id}"]
   security_groups = ["${aws_security_group.wp_servers.id}"]
+  internal = true
+
 
   listener {
     instance_port     = 80
@@ -43,6 +44,8 @@ resource "aws_elb" "preview_webserver_elb" {
   idle_timeout                = 400
   connection_draining         = true
   connection_draining_timeout = 400
+  internal =false
+
 
   listener {
     instance_port     = 80

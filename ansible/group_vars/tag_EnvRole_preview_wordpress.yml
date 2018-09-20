@@ -10,7 +10,7 @@ state: mounted
 
 
 nginx_vhosts:
-  - listen: "80"
+  - listen: "80 default_server" 
     server_name: "{{ wordpress_server_name }}" # default: N/A
     root: "{{ wordpress_root }}" # default: N/A
     index: "{{ wordpress_index }}" # default: "index.html index.htm"

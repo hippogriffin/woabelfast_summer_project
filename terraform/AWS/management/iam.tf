@@ -70,12 +70,12 @@ resource "aws_iam_user_policy" "jenkins" {
         "Action": [
             "ec2:*",
             "iam:*",
-            "efs:*",
             "rds:*",
-            "elb:*",
             "route53:*",
             "acm:*",
-            "s3:*"
+            "s3:*",
+            "elasticloadbalancing:*",
+            "elasticfilesystem:*"
         ],
         "Effect": "Allow",
         "Resource": "*"

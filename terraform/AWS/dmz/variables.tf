@@ -32,13 +32,6 @@ variable "private_domain" {
     default = "woabelfast.local"
 }
 
-variable "strongswan_ami" {
-  default = "ami-0181f8d9b6f098ec4"
-}
-variable "strongswan_instance_type" {
-  default = "t2.micro"
-}
-
 variable "strongswan_name" {
     default = "strongswan"
 }

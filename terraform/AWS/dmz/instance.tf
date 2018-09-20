@@ -32,8 +32,8 @@ resource "aws_eip" "jumpbox_eip" {
 }
 
 resource "aws_instance" "strongswan" {
-    ami = "${var.strongswan_ami}"
-    instance_type = "${var.strongswan_instance_type}"
+    ami = "${var.ami}"
+    instance_type = "${var.instance_type}"
     subnet_id = "${aws_subnet.dmz_subnet.id}"
     vpc_security_group_ids = ["${aws_security_group.dmz_sg.id}"]
     user_data = "${file("scripts/init.cfg")}"

@@ -39,6 +39,11 @@ nginx_vhosts:
               include /etc/nginx/fastcgi_params;
               }
 
+        location /elb_status {
+              access_log off;
+              return 200;
+        }
+
   - listen: "80"
     server_name: "{{ php_server_name }}" # default: N/A
     root: "{{ php_root }}" # default: N/A

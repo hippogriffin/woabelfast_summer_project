@@ -1,7 +1,7 @@
 # nginx vhost
 
 nginx_vhosts: 
- - listen: "80" # default: "80"
+ - listen: "80 default_server" # default: "80"
    server_name: "preview.woabelfast.co.uk" # default: N/A
    root: "/usr/share/nginx/preview.woabelfast.co.uk" # default: N/A
    index: "index.html index.htm" # default: "index.html index.htm"

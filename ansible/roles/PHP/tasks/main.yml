@@ -45,7 +45,10 @@
     line: "{{ php_ini_cgi }}"
 
 - name: create woabelfast.co.uk directory
-  file: path=/mnt/efs/woabelfast/"{{ server_hostname }}" state=directory
+  file: path=/mnt/efs/woabelfast/{{ item }} state=directory
+  with_items:
+    - "{{ php_server_name }}"
+    - "{{ server_hostname }}"
 
 - name: ensure index.php file exists
   copy:
@@ -55,7 +58,7 @@
     group: nginx
     owner: nginx
     mode: 0644
-    
+
 - name: create php info page
   lineinfile:
     path: "{{ phpfpm_dest }}"

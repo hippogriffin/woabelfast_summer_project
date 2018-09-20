@@ -15,3 +15,14 @@ resource "aws_route53_record" "dmz_dns_record" {
   ttl     = "300"
   records = ["${aws_instance.jumpbox.private_ip}"]
 }
+
+resource "aws_route53_record" "private_dns_records_strongswan" {
+  zone_id = "${aws_route53_zone.private_dns.zone_id}"
+  name = "${var.strongswan_name}"
+  type = "A"
+  ttl = "300"
+
+  records = [
+    "${aws_instance.strongswan.private_ip}",
+  ]
+}

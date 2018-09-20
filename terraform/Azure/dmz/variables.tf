@@ -40,9 +40,17 @@ variable "aws_strongswan" {
 }
 
 variable "vpn_client_config" {
+    default = "172.20.2.0/24"
+}
+
+variable "vpn_gw_config" {
     default = "172.16.254.0/24"
 }
 
-variable "vpn_client_subnet_name" {
+variable "vpn_gw_subnet_name" {
     default = "GatewaySubnet"
+}
+
+variable "vpn_client_subnet_name" {
+    default = "ClientSubnet"
 }

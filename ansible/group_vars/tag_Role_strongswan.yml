@@ -18,8 +18,8 @@ strongswan_conn:
       esp: aes256gcm16-modp2048!
       ikelifetime: 24h
     left:
-      address: 10.120.0.9
-      subnet: 10.120.0.0/16
+      address: 10.120.0.75
+      subnet: 10.120.0.0/24
       protoport: 47
       id: my
       updown: /usr/lib/ipsec/_updown_nat

@@ -25,9 +25,11 @@ variable "count" {
  variable "proxy_vm_size" {
   default = "Standard_B1s"
 }
+
  variable "wordpress_vm_size" {
   default = "Standard_B1s"
 }
+
  variable "proxy_ip_configuration" {
   type = "map"
   default = {
@@ -40,10 +42,12 @@ variable "count" {
   default = {
     "publisher" = "OpenLogic"
     "offer"     = "CentOS"
+    "sku"       = "7.3"
     "sku"       = "7-CI"
     "version"   = "latest"
   }
 }
+
  variable "proxy_os_profile" {
   type = "map"
   default = {
@@ -74,6 +78,7 @@ variable "prefix" {
  variable "preview_proxy_cidr" {
   default = "172.17.1.0/24"
 }
+
  variable "preview_wordpress_cidr" {
   default = "172.17.2.0/24"
 }
@@ -84,6 +89,7 @@ variable "prefix" {
 variable "preview_webserver_name" {
   default = "webserver"
 }
+
 
 locals {
  preview_webserver_ips   = "172.18.0.%02d"
@@ -103,6 +109,4 @@ locals {
   wordpress_ip_name = "preview-wordpress-ip-%02d"
 
   preview_wordpress_name = "preview-wordpress-%02d"
-
-
 }

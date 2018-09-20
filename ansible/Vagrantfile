@@ -21,13 +21,15 @@ hosts = [
 
     {name: 'db', ip: '10.122.3.6', memory: '512', cpu: '2', hostname: 'db.woabelfast.local', disk: "false"},
     {name: 'dmz-jumpbox', ip: '10.120.0.7', memory: '512', cpu: '2', hostname: 'dmz-jumpbox.woabelfast.local', disk: "false"},
-    {name: 'management-jenkins', ip: '10.121.0.8', memory: '512', cpu: '2', hostname: 'management-jenkins.woabelfast.local', disk: "false"}
-]
+    {name: 'management-jenkins', ip: '10.121.0.8', memory: '512', cpu: '2', hostname: 'management-jenkins.woabelfast.local', disk: "false"},
+    {name: 'strongswan', ip: '10.121.0.9', memory: '512', cpu: '2', hostname: 'strongswan.woabelfast.local', disk: "false"}
+  ]
 
 groups = {
     "tag_Role_bastion" => ["dmz-jumpbox"],
     "tag_Role_jenkins" => ["management-jenkins"],
     "tag_Role_db" => ["db"],
+    "tag_Role_strongswan" => ["strongswan"],
 
     "tag_EnvRole_preview_webserver" => ["preview-proxy01", "preview-proxy02"],
     "tag_EnvRole_preview_wordpress" => ["preview-wordpress01", "preview-wordpress02"],

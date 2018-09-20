@@ -7,7 +7,6 @@ filesystem: nfs4
  # present/mounted/absent/unmounted
 state: mounted
 
-environment: preview
 
 
 nginx_vhosts:

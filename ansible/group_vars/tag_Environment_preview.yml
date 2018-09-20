@@ -2,7 +2,7 @@
 env: preview
 
 #wordpress db config
-wp_db_host: 10.122.3.6
+wp_db_host: preview-rds.c5jsvywcu4tw.eu-west-1.rds.amazonaws.com
 wp_db_name: !vault |
             $ANSIBLE_VAULT;1.1;AES256
             39623662353638366137313039343962643732616565393531366662633437643235343631316230

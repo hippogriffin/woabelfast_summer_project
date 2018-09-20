@@ -9,8 +9,6 @@ nginx_vhosts:
    state: "present"
    extra_parameters: |
       location / {
-        access_log off;
-        return 200;
         proxy_pass http://preview-wp-server-elb.woabelfast.local:80;
       }
       location /elb_status {

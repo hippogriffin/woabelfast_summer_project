@@ -9,7 +9,7 @@
     - geerlingguy.firewall
     - singleplatform-eng.users
     - yum_packages
-    
+
 - name: Install NGINX on proxy
   hosts: tag_Role_webserver
   become: true
@@ -25,7 +25,7 @@
     - mount_folder
     - PHP
     - wordpress
-    
+
 - name: configure jenkins
   hosts: tag_Role_jenkins
   become: true
@@ -36,7 +36,7 @@
 - name: Install and Configure mySQl on DB server
   hosts: tag_Role_db
   become: true
-  roles: 
+  roles:
     - geerlingguy.mysql
 
 - name: configure bastion servers
@@ -45,3 +45,10 @@
   roles:
     - geerlingguy.nginx
     - selinux
+
+- name: configure strongswan
+  hosts: tag_Role_strongswan
+  become: true
+  roles: 
+    - strongswan
+

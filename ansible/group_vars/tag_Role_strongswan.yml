@@ -6,20 +6,28 @@ firewall_allowed_tcp_ports:
 custom_yum_installs:
   - strongswan
 
-conn:
-  - authby: secret
-    type: tunnel
-    leftsendcert: never
-    left: [IP Address of this Server]
-    leftsubnet: 10.120.0.0/16
-    right: [IP Address of Azure Gateway]
-    rightsubnet: 172.16.0.0/16
-    keyexchange: ikev2
-    ikelifetime: 10800s
-    keylife: 57m
-    keyingtries: 1
-    rekeymargin: 3m
-    compress: no
-    auto: route
-    psk: [presharedkey]
+strongswan_conn:
+  - name: strongswan
+    conn:
+      auto: route
+      type: tunnel
+      authby: psk
+      keyexchange: ikev2
+      lifetime: 3h
+      ike: aes256gcm16-modp2048!
+      esp: aes256gcm16-modp2048!
+      ikelifetime: 24h
+    left:
+      address: 10.120.0.9
+      subnet: 10.120.0.0/16
+      protoport: 47
+      id: my
+      updown: /usr/lib/ipsec/_updown_nat
+    right:
+      address: 51.141.117.196
+      subnet: 172.16.254.0/24
+      protoport: 47
+      id: your
+      updown: /usr/lib/ipsec/_updown_nat
+    secret: something_needs_to_go_here
 

@@ -58,12 +58,14 @@ Vagrant.configure("2") do |config|
       c.vm.box = "centos/7"
       c.vm.hostname = host[:hostname]
       c.vm.network  "private_network",ip: host[:ip] ,netmask: "255.255.255.0"
-      c.vm.provision "shell", inline: <<-SHELL
-        if grep -qs '/dev/sdb ' /proc/mounts; then
-          sudo umount /dev/sdb/
-        fi
-        sudo mkfs.ext3 /dev/sdb -F
-        SHELL
+      if host[:disk] == "true"
+        c.vm.provision "shell", inline: <<-SHELL
+          if grep -qs '/dev/sdb ' /proc/mounts; then
+            sudo umount /dev/sdb/
+          fi
+          sudo mkfs.ext3 /dev/sdb -F
+          SHELL
+        end
       c.vm.provision "ansible" do |ansible|
         ansible.playbook = "site.yml"
         ansible.vault_password_file = ".vault_pass"

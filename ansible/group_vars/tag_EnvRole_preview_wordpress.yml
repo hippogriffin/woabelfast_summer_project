@@ -1,7 +1,7 @@
  # Where will device be mounted EG /mnt/efs
 mount_path: /mnt/efs
  # Name of mounted device
-mount_source: fs-edf5d824.efs.eu-west-1.amazonaws.com/
+mount_source: fs-edf5d824.efs.eu-west-1.amazonaws.com:/
  # mounted device file system
 filesystem: nfs4
  # present/mounted/absent/unmounted

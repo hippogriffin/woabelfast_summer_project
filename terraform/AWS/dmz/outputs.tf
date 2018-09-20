@@ -17,3 +17,8 @@ output "dmz_route_table_id" {
 output "private_zone_id" {
   value = "${aws_route53_zone.private_dns.zone_id}"
 }
+
+# Creating an output for strongswan instance for use in mgmt routing
+output "strongswan_instance_id" {
+  value = "${aws_instance.strongswan.zone_id}"
+}

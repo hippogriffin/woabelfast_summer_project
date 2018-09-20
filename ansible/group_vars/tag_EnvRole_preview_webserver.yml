@@ -8,8 +8,12 @@ nginx_vhosts:
    filename: "preview.woabelfast.co.uk" # Can be used to set the filename of the vhost file.
    state: "present"
    extra_parameters: |
-      location /elb-status {
+      location / {
         access_log off;
         return 200;
         proxy_pass http://preview-wp-server-elb.woabelfast.local:80;
+      }
+      location /elb_status {
+        access_log off;
+        return 200;
       }

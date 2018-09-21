@@ -10,7 +10,7 @@ resource "aws_route53_zone" "private_dns" {
 
 resource "aws_route53_record" "dmz_dns_record" {
   zone_id = "${aws_route53_zone.private_dns.zone_id}"
-  name    = "${local.jumpbox_dns_record}"
+  name    = "${local.bastion_aws_dns_name}"
   type    = "A"
   ttl     = "300"
   records = ["${aws_instance.jumpbox.private_ip}"]
@@ -18,7 +18,7 @@ resource "aws_route53_record" "dmz_dns_record" {
 
 resource "aws_route53_record" "private_dns_records_strongswan" {
   zone_id = "${aws_route53_zone.private_dns.zone_id}"
-  name = "${var.strongswan_name}"
+  name = "${local.strongswan_aws_dns_name}"
   type = "A"
   ttl = "300"
 

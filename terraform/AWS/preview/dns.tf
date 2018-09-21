@@ -7,7 +7,7 @@ resource "aws_route53_zone_association" "preview_private_zone" {
 
 resource "aws_route53_record" "preview_private_dns_records_webserver" {
   zone_id = "${aws_route53_zone_association.preview_private_zone.zone_id}"
-  name = "${format("${local.preview_webserver_names}", count.index + 1)}"
+  name = "${format("${local.preview_aws_dns_webserver_names}", count.index + 1)}"
   type = "A"
   ttl = "300"
   count = "${var.instance_count}"
@@ -19,7 +19,7 @@ resource "aws_route53_record" "preview_private_dns_records_webserver" {
 
 resource "aws_route53_record" "preview_private_dns_records_wordpress" {
   zone_id = "${aws_route53_zone_association.preview_private_zone.zone_id}"
-  name = "${format("${local.preview_wp_server_names}", count.index + 1)}"
+  name = "${format("${local.preview_aws_dns_wp_names}", count.index + 1)}"
   type = "A"
   ttl = "300"
   count = "${var.instance_count}"

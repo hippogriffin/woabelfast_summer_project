@@ -63,4 +63,6 @@ variable "mgmt_key_name" {
 
 locals {
   jenkins_host_name = "${var.environment}_${var.jenkins_name}"
+
+  jenkins_aws_dns_name = "${var.jenkins_name}.aws"
 }

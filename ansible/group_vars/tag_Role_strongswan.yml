@@ -21,10 +21,9 @@ strongswan_conn:
     keyingtries: 1
     compress: no
     rekeymargin: 3m
-    #left: "{{ hostvars['dmz_strongswan'].ansible_host }}"
     left:
-      address: 18.202.142.67
-      id: 18.202.142.67
+      address: "{{ hostvars['dmz_strongswan'].ansible_host }}"
+      id: "{{ hostvars['dmz_strongswan'].ansible_host }}"
       subnet: 10.120.0.0/16
       sendcert: never
     right:

@@ -1,7 +1,7 @@
  # Where will device be mounted EG /mnt/efs
-mount_path: /mnt/efs/
+mount_path: /mnt/efs
  # Name of mounted device
-mount_source: fs-edf5d824.efs.eu-west-1.amazonaws.com
+mount_source: 10.122.2.70:/ 
  # mounted device file system
 filesystem: nfs4
  # present/mounted/absent/unmounted
@@ -38,6 +38,11 @@ nginx_vhosts:
               fastcgi_param PATH_INFO               $fastcgi_script_name;
               include /etc/nginx/fastcgi_params;
               }
+
+        location /elb_status {
+              access_log off;
+              return 200;
+        }
 
   - listen: "80"
     server_name: "{{ php_server_name }}" # default: N/A

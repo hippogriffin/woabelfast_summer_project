@@ -6,7 +6,7 @@ output "dmz_rg_id"
 
 output "dmz_vnet_id" 
 {
-  value = "${basename(azurerm_virtual_network.dmz_vnet.id)}"
+  value = "${azurerm_virtual_network.dmz_vnet.id}"
 }
 
 output "dmz_vnet_gw_id" 

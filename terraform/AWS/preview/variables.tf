@@ -104,7 +104,7 @@ locals {
 
   preview_aws_dns_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d.aws"
 
-  preview_aws_dns_wp_names = "${var.environment}_${var.preview_webserver_name}_%02d.aws"
+  preview_aws_dns_wp_names = "${var.environment}_${var.preview_wp_server_name}_%02d.aws"
 
 
 }

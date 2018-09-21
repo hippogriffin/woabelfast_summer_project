@@ -8,26 +8,23 @@ custom_yum_installs:
 
 strongswan_conn:
   - name: strongswan
-    conn:
-      auto: route
-      type: tunnel
-      authby: psk
-      keyexchange: ikev2
-      lifetime: 3h
-      ike: aes256gcm16-modp2048!
-      esp: aes256gcm16-modp2048!
-      ikelifetime: 24h
-    left:
-      address: "{{ hostvars['dmz_strongswan'].ansible_host }}"
-      subnet: 10.120.0.0/24
-      protoport: 47
-      id: my
-      updown: /usr/lib/ipsec/_updown_nat
-    right:
-      address: 51.141.117.196
-      subnet: 172.16.254.0/24
-      protoport: 47
-      id: your
-      updown: /usr/lib/ipsec/_updown_nat
+    conn: azure
+    auto: start
+    type: tunnel
+    authby: secret
+    keyexchange: ikev2
+    lifetime: 3h
+    ike: 3des-sha1-modp1024,aes128-sha1-modp1024
+    esp: 3des-sha1,aes128-sha1
+    ikelifetime: 10800s
+    keylife: 57m
+    keyingtries: 1
+    left: "{{ hostvars['dmz_strongswan'].ansible_host }}"
+    leftsubnet: 10.120.0.0/16
+    sendcert: never
+    right: 51.141.117.196
+    rightsubnet: 172.16.0.0/16
     secret: something_needs_to_go_here
+    compress: no
+    rekeymargin: 3m
 

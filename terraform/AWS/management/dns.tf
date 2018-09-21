@@ -5,7 +5,7 @@ resource "aws_route53_zone_association" "mgmt_private_zone" {
 
 resource "aws_route53_record" "mgmt_private_dns_records" {
   zone_id = "${aws_route53_zone_association.mgmt_private_zone.zone_id}"
-  name = "${var.jenkins_name}"
+  name = "${local.jenkins_aws_dns_name}"
   type = "A"
   ttl = "300"
 

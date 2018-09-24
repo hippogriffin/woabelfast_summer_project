@@ -8,22 +8,22 @@ custom_yum_installs:
 
 strongswan_conn:
   - name: strongswan
-    conn: azure
-    auto: start
-    type: tunnel
-    authby: secret
-    keyexchange: ikev2
-    lifetime: 3h
-    ike: 3des-sha1-modp1024,aes128-sha1-modp1024
-    esp: 3des-sha1,aes128-sha1
-    ikelifetime: 10800s
-    keylife: 57m
-    keyingtries: 1
-    compress: no
-    rekeymargin: 3m
+    conn:
+      auto: route
+      type: tunnel
+      authby: secret
+      keyexchange: ikev2
+      lifetime: 3h
+      ike: 3des-sha1-modp1024,aes128-sha1-modp1024
+      esp: 3des-sha1,aes128-sha1
+      ikelifetime: 10800s
+      keylife: 57m
+      keyingtries: 1
+      compress: no
+      rekeymargin: 3m
     left:
-      address: "{{ hostvars['dmz_strongswan'].ansible_host }}"
-      id: "{{ hostvars['dmz_strongswan'].ansible_host }}"
+      address: 18.202.142.67 #"{{ hostvars['dmz_strongswan'].ansible_host }}"
+      id: 18.202.142.67 #"{{ hostvars['dmz_strongswan'].ansible_host }}"
       subnet: 10.120.0.0/16
       sendcert: never
     right:

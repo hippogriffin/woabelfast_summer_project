@@ -19,3 +19,9 @@ resource "aws_route_table_association" "dmz_subnet_association" {
     subnet_id = "${aws_subnet.dmz_subnet.id}"
     route_table_id = "${aws_route_table.dmz_route_table.id}"
 }
+
+resource "aws_route" "dmz_to_azure_private_route" {
+        route_table_id = "${aws_route_table.dmz_route_table.id}"
+        destination_cidr_block = "172.16.0.0/16"
+        instance_id = "${aws_instance.strongswan.id}"
+    }

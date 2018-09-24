@@ -7,7 +7,7 @@ resource "azurerm_local_network_gateway" "dmz_local_network_gw" {
 }
 
 resource "azurerm_public_ip" "dmz_public_ip" {
-  name                = "dmz_public_ip"
+  name                = "vnet_gw_public_ip"
   location            = "${azurerm_resource_group.dmz_rg.location}"
   resource_group_name = "${azurerm_resource_group.dmz_rg.name}"
 

@@ -48,6 +48,8 @@ locals {
 
   strongswan_aws_dns_name = "${var.strongswan_name}.aws"
 
+  bastion_azure_dns_name = "${var.bastion_name}.azure"
+
 }
 
 ### Better Naming convention required

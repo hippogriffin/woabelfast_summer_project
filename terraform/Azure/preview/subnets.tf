@@ -1,6 +1,6 @@
 # Proxy Subnet
 resource "azurerm_subnet" "preview_proxy_subnet" {
-  name                 = "preview_proxy_subnet"
+  name                 = "${var.environment}_proxy_subnet"
   resource_group_name  = "${azurerm_resource_group.preview_rg.name}"
   virtual_network_name = "${azurerm_virtual_network.preview_vnet.name}"
   address_prefix       = "${var.preview_proxy_cidr}"
@@ -8,7 +8,7 @@ resource "azurerm_subnet" "preview_proxy_subnet" {
 
 # Wordpress Subnet
 resource "azurerm_subnet" "preview_wordpress_subnet" {
-  name                 = "preview_wordpress_subnet"
+  name                 = "${var.environment}_wordpress_subnet"
   resource_group_name  = "${azurerm_resource_group.preview_rg.name}"
   virtual_network_name = "${azurerm_virtual_network.preview_vnet.name}"
   address_prefix       = "${var.preview_wordpress_cidr}"
@@ -18,7 +18,7 @@ resource "azurerm_subnet" "preview_wordpress_subnet" {
 
 # DB Subnet
 resource "azurerm_subnet" "preview_db_subnet" {
-  name                 = "preview_db_subnet"
+  name                 = "${var.environment}_db_subnet"
   resource_group_name  = "${azurerm_resource_group.preview_rg.name}"
   virtual_network_name = "${azurerm_virtual_network.preview_vnet.name}"
   address_prefix       = "${var.preview_db_cidr}"

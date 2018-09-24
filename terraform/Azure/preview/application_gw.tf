@@ -1,0 +1,64 @@
+resource "azurerm_public_ip" "preview_app_gw_public_ip" {
+  name                         = "${var.environment}_app_gw_public_ip"
+  location                     = "${azurerm_resource_group.preview_rg.location}"
+  resource_group_name          = "${azurerm_resource_group.preview_rg.name}"
+  public_ip_address_allocation = "dynamic"
+}
+
+# Create an application gateway/loadbalancer 
+resource "azurerm_application_gateway" "preview_app_gw" {
+  name                = "${var.environment}_app_gw"
+  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  location            = "${var.location}"
+
+  sku {
+    name           = "Standard_Small"
+    tier           = "Standard"
+    capacity       = 1
+  }
+
+  gateway_ip_configuration {
+    name         = "${var.environment}_gw_ip_config"
+    subnet_id    = "${azurerm_virtual_network.preview_vnet.id}/subnets/${azurerm_subnet.externallb_subnet_01.name}"
+  }
+
+  frontend_port {
+    name         = "${azurerm_virtual_network.preview_vnet.name}-feport" ## http
+    port         = 80
+  }
+
+  frontend_ip_configuration {
+    name                 = "${azurerm_virtual_network.preview_vnet.name}-feip"
+    public_ip_address_id = "${azurerm_public_ip.preview_app_gw_public_ip.id}"
+  }
+
+  backend_address_pool {
+    name            = "${azurerm_virtual_network.preview_vnet.name}-beap"
+    ip_address_list = ["${azurerm_network_interface.preview-proxy.*.private_ip_address}"]
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.preview_vnet.name}-be-htst"
+    cookie_based_affinity = "Disabled"
+    port                  = 80
+    protocol              = "Http"
+    request_timeout       = 1
+
+    # Probe
+  }
+
+  http_listener {
+    name                            = "${azurerm_virtual_network.preview_vnet.name}-httplstn"
+    frontend_ip_configuration_name  = "${azurerm_virtual_network.preview_vnet.name}-feip"
+    frontend_port_name              = "${azurerm_virtual_network.preview_vnet.name}-feport"
+    protocol                        = "Http"
+  }
+
+  request_routing_rule {
+    name                       = "${azurerm_virtual_network.preview_vnet.name}-rqrt"
+    rule_type                  = "Basic"
+    http_listener_name         = "${azurerm_virtual_network.preview_vnet.name}-httplstn"
+    backend_address_pool_name  = "${azurerm_virtual_network.preview_vnet.name}-beap"
+    backend_http_settings_name = "${azurerm_virtual_network.preview_vnet.name}-be-htst"
+  }
+}

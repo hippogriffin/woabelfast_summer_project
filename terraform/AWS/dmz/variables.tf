@@ -10,6 +10,10 @@ variable "mgmt_cidr" {
     default = "10.121.0.0/24"
 }
 
+variable "azure_cidr" {
+    default = "172.16.0.0/16"
+}
+
 variable "environment" {
     default = "dmz"
 }

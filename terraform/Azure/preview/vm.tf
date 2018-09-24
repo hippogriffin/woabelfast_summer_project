@@ -40,7 +40,6 @@ resource "azurerm_network_interface" "preview_wordpress_nic" {
   count                     = "${var.count}"
   location                  = "${azurerm_resource_group.preview_rg.location}"
   resource_group_name       = "${azurerm_resource_group.preview_rg.name}"
-  network_security_group_id = "${azurerm_network_security_group.preview_sg_lb.id}"
 
   ip_configuration {
     name                          = "${format("${local.wordpress_ip_name}", count.index + 3)}"
@@ -59,7 +58,6 @@ resource "azurerm_network_interface" "preview-proxy" {
     count                     = "${var.count}"
     location                  = "${azurerm_resource_group.preview_rg.location}"
     resource_group_name       = "${azurerm_resource_group.preview_rg.name}"
-    network_security_group_id = "${azurerm_network_security_group.preview_sg_lb.id}"
 
   ip_configuration {
     name                          = "${format("${local.proxy_ip_name}", count.index + 3)}"

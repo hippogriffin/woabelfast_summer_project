@@ -24,8 +24,8 @@ resource "azurerm_network_security_group" "dmz" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "Internet" 
-    destination_address_prefix = "10.120.0.0/24"
+    source_address_prefix      = "*" 
+    destination_address_prefix = "Internet"
   }
 
     security_rule {

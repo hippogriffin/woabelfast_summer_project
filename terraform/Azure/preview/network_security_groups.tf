@@ -50,7 +50,7 @@ resource "azurerm_network_security_group" "preview_db_sg" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "10.120.0.0/24" 
+    source_address_prefix      = "Internet" 
     destination_address_prefix = "10.120.0.0/24"
   }
 
@@ -62,7 +62,7 @@ resource "azurerm_network_security_group" "preview_db_sg" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "10.120.0.0/24" 
+    source_address_prefix      = "18.202.142.67" 
     destination_address_prefix = "10.120.0.0/24"
   }
 

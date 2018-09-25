@@ -37,6 +37,10 @@ variable "preview_cidr" {
   default = "10.122.0.0/16"
 }
 
+variable "azure_dmz_cidr" {
+  default = "172.16.0.0/16"
+}
+
 #EC2 instance variables
 
 variable "ami" {

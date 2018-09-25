@@ -5,11 +5,19 @@ variable "environment" {
  variable "location" {
   default = "ukwest"
 }
+
+variable "azure_dmz_cidr" {
+  default = "172.16.0.0/16"
+}
  variable "preview_cidr" {
   default = "172.17.0.0/16"
 }
  variable "kainos_ip" {	
   default = "195.89.171.5"	
+}
+
+variable "aws_mgmt_cidr" {
+    default = "10.121.0.0/24"
 }
  variable "proxy_avset" {
   default = "proxy_avset"
@@ -42,7 +50,6 @@ variable "count" {
   default = {
     "publisher" = "OpenLogic"
     "offer"     = "CentOS"
-    "sku"       = "7.3"
     "sku"       = "7-CI"
     "version"   = "latest"
   }

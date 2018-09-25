@@ -1,5 +1,5 @@
  resource "azurerm_route_table" "dmz_route_table" {
-  name                = "DMZ Route Table"
+  name                = "DMZ_Route_Table"
   location            = "${azurerm_resource_group.dmz_rg.location}"
   resource_group_name = "${azurerm_resource_group.dmz_rg.name}"
 

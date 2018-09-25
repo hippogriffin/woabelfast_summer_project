@@ -10,6 +10,10 @@ variable "mgmt_cidr" {
     default = "10.121.0.0/24"
 }
 
+variable "azure_cidr" {
+    default = "172.16.0.0/16"
+}
+
 variable "environment" {
     default = "dmz"
 }
@@ -47,6 +51,8 @@ locals {
   bastion_aws_dns_name = "${var.bastion_name}.aws"
 
   strongswan_aws_dns_name = "${var.strongswan_name}.aws"
+
+  bastion_azure_dns_name = "${var.bastion_name}.azure"
 
 }
 

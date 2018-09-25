@@ -14,7 +14,7 @@ resource "azurerm_network_security_group" "preview_db_sg" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "${var.kainos_ip}"
+    source_address_prefixes      = ["${var.kainos_ip}", "${var.azure_dmz_cidr}", "${var.aws_mgmt_cidr}"]
     destination_address_prefix = "*"
   }
 
@@ -94,7 +94,7 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "${var.kainos_ip}" ## <<< JUMPBOX IP Required here
+    source_address_prefixes      = ["${var.kainos_ip}", "${var.azure_dmz_cidr}", "${var.aws_mgmt_cidr}"] ## <<< JUMPBOX IP Required here
     destination_address_prefix = "*"
   }
 
@@ -129,7 +129,7 @@ resource "azurerm_network_security_group" "preview_webservers_sg" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "${var.kainos_ip}" ## <<< JUMPBOX IP Required here
+    source_address_prefixes      = ["${var.kainos_ip}", "${var.azure_dmz_cidr}", "${var.aws_mgmt_cidr}"] ## <<< JUMPBOX IP Required here
     destination_address_prefix = "*"
   }
 

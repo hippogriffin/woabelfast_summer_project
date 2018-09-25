@@ -42,7 +42,6 @@ variable "count" {
   default = {
     "publisher" = "OpenLogic"
     "offer"     = "CentOS"
-    "sku"       = "7.3"
     "sku"       = "7-CI"
     "version"   = "latest"
   }

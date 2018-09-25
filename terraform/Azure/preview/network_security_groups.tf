@@ -160,7 +160,7 @@ resource "azurerm_network_security_group" "preview_webservers_sg" {
 
     security_rule {
     name                       = "preview_aws_vpn_sr"
-    priority                   = 100 // this is the highest so may be subject to change
+    priority                   = 103 // this is the highest so may be subject to change
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "TCP"

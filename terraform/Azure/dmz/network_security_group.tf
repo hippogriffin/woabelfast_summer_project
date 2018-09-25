@@ -18,13 +18,13 @@ resource "azurerm_network_security_group" "dmz" {
 
     security_rule {
     name                       = "preview_aws_vpn_sr"
-    priority                   = 100 // this is the highest so may be subject to change
+    priority                   = 108 // this is the highest so may be subject to change
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "*" 
+    source_address_prefix      = "118.202.142.67" 
     destination_address_prefix = "Internet"
   }
 

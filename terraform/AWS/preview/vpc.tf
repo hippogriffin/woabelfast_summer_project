@@ -7,7 +7,7 @@ resource "aws_vpc" "preview_vpc" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "Preview VPC"
+    Name        = "Preview VPC"
     Environment = "${var.environment}"
     Terraform   = "true"
   }

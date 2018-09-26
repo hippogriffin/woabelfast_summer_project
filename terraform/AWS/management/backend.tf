@@ -2,7 +2,7 @@
 terraform {
   backend "s3" {
     bucket = "woa-belfast"
-    key = "management/woa.tfstate"
+    key    = "management/woa.tfstate"
     region = "eu-west-1"
   }
 }

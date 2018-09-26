@@ -35,8 +35,10 @@ os_profile {
   }
 
   tags{
-        EnvRole = "preview_webserver"
+        EnvRole = "preview_wordpress"
         environment = "${var.environment}"
+        Name = "${format("${local.preview_wordpress_tag_name}", count.index + 3)}"
+
   }
 }
 
@@ -50,10 +52,6 @@ resource "azurerm_network_interface" "preview_wordpress_nic" {
     name                          = "${format("${local.wordpress_ip_name}", count.index + 3)}"
     subnet_id                     = "${azurerm_subnet.preview_wordpress_subnet.id}"
     private_ip_address_allocation = "dynamic"
-  }
-
-  tags {
-    environment = "${var.environment}"
   }
 }
 
@@ -110,5 +108,6 @@ resource "azurerm_virtual_machine" "preview-proxy" {
   tags {
     environment = "${var.environment}"
     EnvRole = "preview_webserver"
+    Name = "${format("${local.preview_webserver_tag_names}", count.index + 3)}"
   }
 }

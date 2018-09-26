@@ -2,3 +2,4 @@
 - include_tasks: sudoers.yml
 - include_tasks: sysctl.yml
 - include_tasks: setHostname.yml
+- include_tasks: hosts.yml

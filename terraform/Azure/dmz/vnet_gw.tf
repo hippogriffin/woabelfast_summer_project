@@ -3,7 +3,7 @@ resource "azurerm_local_network_gateway" "dmz_local_network_gw" {
   resource_group_name = "${azurerm_resource_group.dmz_rg.name}"
   location            = "${azurerm_resource_group.dmz_rg.location}"
   gateway_address     = "${var.aws_strongswan}"
-  address_space       = ["${var.aws_dmz_cidr}"] 
+  address_space       = ["${var.aws_mgmt_cidr}"] 
 }
 
 resource "azurerm_public_ip" "dmz_public_ip" {

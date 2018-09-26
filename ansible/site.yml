@@ -5,7 +5,6 @@
   roles:
     - common
     - willshersystems.sshd
-    - NTP
     - geerlingguy.firewall
     - singleplatform-eng.users
     - yum_packages
@@ -48,7 +47,6 @@
   become: true
   roles:
     - geerlingguy.nginx
-    - selinux
 
 - name: configure strongswan
   hosts: tag_Role_strongswan

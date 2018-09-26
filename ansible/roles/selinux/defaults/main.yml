@@ -1,7 +1,0 @@
-selinux_boolean: []
-#  - name:
-#    persistent:
-#    state:
-#  - name:
-#    persistent:
-#    state:

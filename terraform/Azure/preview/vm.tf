@@ -48,7 +48,7 @@ resource "azurerm_network_interface" "preview_wordpress_nic" {
   }
 
   tags {
-    environment = "preview"
+    EnvRole = "preview_webserver"
   }
 }
 
@@ -104,5 +104,6 @@ resource "azurerm_virtual_machine" "preview-proxy" {
 
   tags {
     environment = "${var.environment}"
+    EnvRole = "preview_webserver"
   }
 }

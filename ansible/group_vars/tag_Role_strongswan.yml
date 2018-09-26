@@ -19,10 +19,9 @@ strongswan_conn:
       ikelifetime: 10800s
       keylife: 57m
       keyingtries: 1
-      compress: no
       rekeymargin: 3m
     left:
-      address: 52.18.188.26
+      address: local
       id: 52.18.188.26
       subnet: 10.121.0.0/24
       sendcert: never

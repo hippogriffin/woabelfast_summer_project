@@ -43,17 +43,18 @@ resource "azurerm_application_gateway" "preview_app_gw" {
     port                  = 80
     protocol              = "Http"
     request_timeout       = 1
-
-    probe {
-      name                = "${azurerm_virtual_network.preview_vnet.name}-probe"
-      protocol            = "Https"
-      path                = "/elb_status"
-      host                = "127.0.0.1"
-      interval            = 30
-      timeout             = 30
-      unhealthy_threshold = 3
-    }
+    probe_name            = "${azurerm_virtual_network.preview_vnet.name}-probe"
   }
+  
+  probe {
+    name                = "${azurerm_virtual_network.preview_vnet.name}-probe"
+    protocol            = "Http"
+    path                = "/elb_status"
+    host                = "127.0.0.1"
+    interval            = 30
+    timeout             = 30
+    unhealthy_threshold = 3
+    }
 
   http_listener {
     name                            = "${azurerm_virtual_network.preview_vnet.name}-httplstn"

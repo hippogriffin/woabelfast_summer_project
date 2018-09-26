@@ -36,7 +36,7 @@ variable "aws_dmz_cidr" {
 }
 
 variable "aws_mgmt_cidr" {
-  default = "10.121.0.0/24"
+  default = "10.121.0.0/16"
 }
 
 variable "aws_strongswan" {

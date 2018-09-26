@@ -42,7 +42,9 @@
     - geerlingguy.mysql
 
 - name: configure bastion servers
-  hosts: tag_Role_bastion
+  hosts: 
+    - tag_Role_bastion
+    - Role_bastion
   become: true
   roles:
     - geerlingguy.nginx

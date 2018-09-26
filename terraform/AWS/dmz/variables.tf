@@ -10,10 +10,6 @@ variable "mgmt_cidr" {
     default = "10.121.0.0/24"
 }
 
-variable "azure_cidr" {
-    default = "172.16.0.0/16"
-}
-
 variable "environment" {
     default = "dmz"
 }
@@ -36,23 +32,11 @@ variable "private_domain" {
     default = "woabelfast.local"
 }
 
-variable "strongswan_name" {
-    default = "strongswan"
-}
-
 locals {
   bastion_host_name = "${var.environment}_${var.bastion_name}"
   bastion_eip_name  = "${local.bastion_host_name}_eip"
   jumpbox_dns_record = "${var.bastion_name}.${var.private_domain}"
-
-  strongswan_host_name = "${var.environment}_${var.strongswan_name}"
-  strongswan_eip_name  = "${local.strongswan_host_name}_eip"
-
   bastion_aws_dns_name = "${var.bastion_name}.aws"
-
-  strongswan_aws_dns_name = "${var.strongswan_name}.aws"
-
-  bastion_azure_dns_name = "${var.bastion_name}.azure"
 
 }
 

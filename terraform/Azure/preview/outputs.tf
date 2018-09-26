@@ -12,5 +12,5 @@ output "azurerm_storage_share_url"
 # Create output for the azure agw load balancer ip to be used in AWS
 output "azure_app_gw_ip" 
 {
-  value = "${azurerm_public_ip.preview_app_gw_public_ip.id}"
+  value = "${azurerm_public_ip.preview_app_gw_public_ip.fqdn}"
 }

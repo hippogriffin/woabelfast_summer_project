@@ -38,6 +38,7 @@ os_profile {
         EnvRole = "preview_wordpress"
         environment = "${var.environment}"
         Name = "${format("${local.preview_wordpress_tag_name}", count.index + 3)}"
+        Role ="wordpress"
 
   }
 }
@@ -109,5 +110,6 @@ resource "azurerm_virtual_machine" "preview-proxy" {
     environment = "${var.environment}"
     EnvRole = "preview_webserver"
     Name = "${format("${local.preview_webserver_tag_names}", count.index + 3)}"
+    Role ="webserver"
   }
 }

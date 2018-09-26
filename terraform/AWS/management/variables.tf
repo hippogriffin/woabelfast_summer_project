@@ -47,12 +47,26 @@ variable "ami" {
   default = "ami-3548444c"
 }
 
-variable "jenkins_instance_type" {
+variable "instance_type" {
   default = "t2.micro"
 }
 
 variable "jenkins_name" {
     default = "jenkins"
+}
+
+variable "strongswan_name" {
+    default = "strongswan"
+}
+
+variable "bastion_name" {
+    default = "bastion"
+}
+
+#Azure CIDR variables
+
+variable "azure_cidr" {
+    default = "172.16.0.0/16"
 }
 
 ### Better naming convention required
@@ -69,4 +83,12 @@ locals {
   jenkins_host_name = "${var.environment}_${var.jenkins_name}"
 
   jenkins_aws_dns_name = "${var.jenkins_name}.aws"
+
+  strongswan_host_name = "${var.environment}_${var.strongswan_name}"
+
+  strongswan_eip_name  = "${local.strongswan_host_name}_eip"
+  
+  strongswan_aws_dns_name = "${var.strongswan_name}.aws"
+
+   bastion_azure_dns_name = "${var.bastion_name}.azure"
 }

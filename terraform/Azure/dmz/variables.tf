@@ -54,3 +54,7 @@ variable "vpn_gw_subnet_name" {
 variable "vpn_client_subnet_name" {
     default = "ClientSubnet"
 }
+
+variable "environment" {
+  default = "dmz"
+}

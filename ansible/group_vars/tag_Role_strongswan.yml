@@ -19,7 +19,6 @@ strongswan_conn:
       ikelifetime: 10800s
       keylife: 57m
       keyingtries: 1
-      compress: no
       rekeymargin: 3m
     left:
       address: 52.18.188.26

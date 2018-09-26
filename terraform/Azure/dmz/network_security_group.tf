@@ -36,7 +36,7 @@ resource "azurerm_network_security_group" "dmz" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "118.202.142.67" 
+    source_address_prefix      = "52.18.188.26" 
     destination_address_prefix = "*"
   }
 

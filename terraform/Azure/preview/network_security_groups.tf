@@ -166,7 +166,7 @@ resource "azurerm_network_security_group" "preview_webservers_sg" {
     protocol                   = "TCP"
     source_port_range          = "22"
     destination_port_range     = "22"
-    source_address_prefix      = "*" 
+    source_address_prefix      = "52.18.188.26" 
     destination_address_prefix = "10.120.0.0/24"
   }
 

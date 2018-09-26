@@ -16,7 +16,9 @@
     - geerlingguy.nginx
 
 - name: configure wordpress
-  hosts: tag_Role_wordpress
+  hosts: 
+    - tag_Role_wordpress
+    - Role_wordpress
   become: true
   roles:
     - yum_packages

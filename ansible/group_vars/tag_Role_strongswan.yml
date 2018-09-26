@@ -21,7 +21,7 @@ strongswan_conn:
       keyingtries: 1
       rekeymargin: 3m
     left:
-      address: 52.18.188.26
+      address: local
       id: 52.18.188.26
       subnet: 10.121.0.0/24
       sendcert: never

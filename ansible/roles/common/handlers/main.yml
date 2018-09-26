@@ -1,3 +1,11 @@
 ---
   - name: load sysctl config
     command: sysctl -p /etc/sysctl.d/00-custom-kernel.conf
+
+# handlers file for NTP
+
+#Restart NTP
+  - name: restart_ntp
+    service:
+      name: "{{ ntp_daemon }}"
+      state: restarted

@@ -48,7 +48,7 @@ resource "azurerm_virtual_machine" "jumpbox" {
         }
     }
     tags{
-      environment = "${var.environment}"
+      Environment = "${var.environment}"
     }    
 }
 

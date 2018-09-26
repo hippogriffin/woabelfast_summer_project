@@ -1,0 +1,14 @@
+---
+# tasks file for installing common & custom pip packages
+
+
+- name: common pip installs
+  pip:
+    name: "{{ item }}"
+  with_items: "{{ common_pip_installs }}"
+
+- name: custom pip installs
+  pip:
+    name: "{{ item }}"
+  with_items: "{{ custom_pip_installs }}"
+

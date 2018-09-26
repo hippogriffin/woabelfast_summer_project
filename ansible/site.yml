@@ -32,6 +32,7 @@
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
+    - pip_packages
 
 - name: Install and Configure mySQl on DB server
   hosts: tag_Role_db

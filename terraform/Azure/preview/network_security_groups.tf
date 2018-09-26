@@ -159,18 +159,6 @@ resource "azurerm_network_security_group" "preview_webservers_sg" {
   }
 
     security_rule {
-    name                       = "preview_aws_vpn_sr"
-    priority                   = 103 // this is the highest so may be subject to change
-    direction                  = "Outbound"
-    access                     = "Allow"
-    protocol                   = "TCP"
-    source_port_range          = "22"
-    destination_port_range     = "22"
-    source_address_prefix      = "*" 
-    destination_address_prefix = "Internet"
-  }
-
-    security_rule {
     name                       = "preview_aws_vpn_sr2"
     priority                   = 109 // this is the highest so may be subject to change
     direction                  = "Inbound"

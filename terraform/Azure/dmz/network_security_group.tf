@@ -37,7 +37,7 @@ resource "azurerm_network_security_group" "dmz" {
     source_port_range          = "22"
     destination_port_range     = "22"
     source_address_prefix      = "118.202.142.67" 
-    destination_address_prefix = "10.120.0.0/24"
+    destination_address_prefix = "*"
   }
 
 

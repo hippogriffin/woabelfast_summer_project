@@ -1,11 +1,9 @@
 # Remote State Backend
-data "terraform_remote_state" "dmz_remote_state" {
-  backend = "azurerm"
-
-  config {
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "tfstate_rg"
     storage_account_name = "woabelfasttfstate"
     container_name       = "woabelfast-tfstate"
     key                  = "dmz.terraform.tfstate"
-    resource_group_name  = "tfstate_rg"
   }
 }

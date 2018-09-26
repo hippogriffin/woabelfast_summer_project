@@ -1,0 +1,10 @@
+---
+#Group vars for  webservers
+
+#Firewall Config
+
+firewall_allowed_tcp_ports:
+  - "22"
+  - "80"
+
+nginx_remove_default_vhost: true

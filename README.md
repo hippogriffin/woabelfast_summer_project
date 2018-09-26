@@ -473,6 +473,22 @@ resource "azurerm_virtual_network" "dmz_vnet" {
   location      = "${var.location}"
 }
 
+#### Default routes
+
+Azure has a set of default routes for specific address prefixes. These include:
+
+Address Prefix              -- Next Hop Type
+Unique to Virtual Network   -- Virtual Network
+0.0.0.0/0                   -- Internet
+10.0.0.0/8                  -- None
+172.16.0.0/16               -- None
+192.168.0.0/16              -- None
+100.64.0.0/10               -- None
+
+Virtual Network: Routes traffic between address ranges within the address space of a virtual network.
+Internet: Routes traffic specified by the address prefix to the Internet.
+None: Traffic routed to the None next hop type is dropped, rather than routed outside the subnet. 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 are reserved for private use in RFC 1918. 100.64.0.0/10 is reserved in RFC 6598.
+
 #### MySQL options for Azure
 
 The two most commonly used database systems for MySQL that are available on Azure are MariaDB and Azure Database for MySQL

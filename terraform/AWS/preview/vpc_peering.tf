@@ -27,7 +27,7 @@ resource "aws_vpc_peering_connection" "DMZ" {
   auto_accept = true
 
   tags {
-    Name = "DMZ-to-Preview_Peer"
+    Name        = "DMZ-to-Preview_Peer"
     Environment = "${var.environment}"
     Terraform   = "true"
   }

@@ -38,7 +38,7 @@ os_profile {
         EnvRole = "preview_wordpress"
         Environment = "${var.environment}"
         Name = "${format("${local.preview_wordpress_tag_name}", count.index + 3)}"
-        Role ="wordpress"
+        Role = "wordpress"
 
   }
 }

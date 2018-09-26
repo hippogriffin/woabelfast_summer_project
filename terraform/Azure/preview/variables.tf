@@ -102,6 +102,8 @@ locals {
  preview_webserver_ips   = "172.18.0.%02d"
 
  preview_webserver_names = "${var.environment}-proxy-${var.preview_webserver_name}-%02d"
+  
+ preview_webserver_tag_names = "${var.environment}_${var.preview_webserver_name}_%02d"
 
  proxy_nic_name = "preview-proxy-nic-%02d"
 
@@ -116,4 +118,5 @@ locals {
   wordpress_ip_name = "preview-wordpress-ip-%02d"
 
   preview_wordpress_name = "preview-wordpress-%02d"
+  preview_wordpress_tag_name = "preview_wordpress_%02d"
 }

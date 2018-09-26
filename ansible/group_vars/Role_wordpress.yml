@@ -1,0 +1,114 @@
+#Group vars for wordpress servers
+
+custom_yum_installs:
+  - nfs-utils
+
+#Firewall Config
+
+firewall_allowed_tcp_ports:
+  - "22"
+  - "80"
+
+nginx_remove_default_vhost: true
+
+#PHP.ini config
+php_ini_cgi_value: "0"
+php_ini_path: /etc/php.ini
+php_ini_cgi_string: ;cgi.fix_pathinfo=1
+php_ini_cgi: ;cgi.fix_pathinfo=0
+
+#PHP Opcache config
+opcache_revalidate_freq_value: "0"
+opcache_validate_timestamps_value: "0"
+opcache_accelerated_files_value: "20000"
+opcache_memory_consumption_value: "128"
+opcache_interned_strings_buffer_value: "16"
+opcache_fast_shutdown_value: "1"
+
+#Nginx vhosts config
+nginx_conf_dir: /etc/nginx/conf.d/
+nginx_vhosts_conf: /etc/nginx/conf.d/wordpress.conf
+nginx_fastcgi_params: /etc/nginx/fastcgi_params
+
+#wordpress config
+
+wordpress_conf: /etc/nginx/conf.d/
+listen_port: 80
+wordpress_server_name: "{{ env }}.{{ domain }}"
+wordpress_root: "/usr/share/nginx/woabelfast/{{ wordpress_server_name }}"
+wordpress_logs: "/usr/share/nginx/woabelfast/{{ wordpress_server_name }}"
+wordpress_conf_dest: "/etc/nginx/conf.d/{{ wordpress_server_name }}.conf"
+wordpress_conf_name: "{{ wordpress_server_name }}.conf"
+wordpress_db_conf: "/usr/share/nginx/{{ wordpress_server_name }}/wp-config.php"
+wordpress_db_sample: "/usr/share/nginx/{{ wordpress_server_name }}/wp-config-sample.php"
+server_hostname: "{{ wordpress_server_name }}"
+wordpress_access_log: /var/log/nginx/wordpress_access.log
+wordpress_error_log: /var/log/nginx/wordpress_error.log
+wordpress_index: index index.php index.html index.htm
+wordpress_fastcgi_pass: localhost:9000
+modify_hostname: true
+wordpress_parent_path: /usr/share/nginx/woabelfast
+wordpress_owner: nginx
+wordpress_group: nginx
+
+##php-fpm config
+php_server_name: "phpserver.{{ wordpress_server_name }}"
+php_root: "/mnt/efs/woabelfast/{{ php_server_name }}"
+php_index_files: "index index.html index.htm index.php"
+php_conf_template: virtual.conf.j2
+php_conf: virtual.conf
+phpfpm_path: "/mnt/efs/woabelfast/{{ php_server_name }}/"
+phpfpm_dest: "/mnt/efs/woabelfast/{{ php_server_name }}/index.php"
+phpfpm_template: phpfpm.conf.j2
+php_access_log: /var/log/nginx/php_access.log
+php_error_log: /var/log/nginx/php_error.log
+
+#phpMyadmin config
+phpmyadmin_server_name: "phpmyadmin.{{ wordpress_server_name }}"
+phpmyadmin_root: /usr/share/phpMyAdmin
+phpmyadmin_dest: /etc/nginx/conf.d/phpMyAdmin.conf
+phpmyadmin_index: "index  index.php"
+phpmyadmin_conf_template: phpmyadmin.conf.j2
+phpmyadmin_fastcgi_params: "/etc/nginx/fastcgi_params"
+phpmyadmin_fastcgi: 127.0.0.1:9000
+phpmyadmin_fastcgi_index: "index.php"
+phpmyadmin_conf: phpMyAdmin.conf
+phpmyadmin_access_log: /var/log/nginx/phpmyadmin_access.log
+phpmyadmin_error_log: /var/log/nginx/phpmyadmin_error.log
+
+#wordpress db config
+wordpress_db_conf_template: "wp-config.php"
+
+#mysql / mariadb authentication file template
+cnf_template: my.cnf.j2
+
+#/etc/hosts path
+hosts_file: /etc/hosts
+
+#epel-release config
+epel_repo_path: /etc/yum.repos.d/epel.repo
+epel_repo_url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+epel_repo_gpg_key_url: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+epel_repo: epel-release
+
+# Variables listed here are applicable to all host groups
+wp_version: 4.6
+wp_sha256sum: c1856cf969b1e73025ba2c681491908c3a4a6c5a2333f4531bf9bfb90f634380
+
+# MySQL settings
+mysqlservice: mysqld
+mysql_port: 3306
+
+# This is used for the nginx server configuration, but access to the
+# WordPress site is not restricted by a named host.
+nginx_port: 80
+
+# Disable All Updates
+# By default automatic updates are enabled, set this value to true to disable all automatic updates
+auto_up_disable: false
+
+#Define Core Update Level
+# true  = Development, minor, and major updates are all enabled
+# false = Development, minor, and major updates are all disabled
+# minor = Minor updates are enabled, development, and major updates are disabled
+core_update_level: true

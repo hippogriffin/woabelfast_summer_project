@@ -36,7 +36,7 @@ variable "aws_dmz_cidr" {
 }
 
 variable "aws_strongswan" {
-  default = "18.202.142.67"
+  default = "52.18.188.26"
 }
 
 variable "vpn_client_config" {

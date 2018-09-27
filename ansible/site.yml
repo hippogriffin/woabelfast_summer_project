@@ -3,9 +3,8 @@
   become: true
   gather_facts: true
   roles:
-    - common
+    - { role: common, tags: 'base' }
     - willshersystems.sshd
-    - NTP
     - geerlingguy.firewall
     - singleplatform-eng.users
     - yum_packages
@@ -34,6 +33,7 @@
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
+    - pip_packages
 
 - name: Install and Configure mySQl on DB server
   hosts: tag_Role_db
@@ -42,11 +42,12 @@
     - geerlingguy.mysql
 
 - name: configure bastion servers
-  hosts: tag_Role_bastion
+  hosts: 
+    - tag_Role_bastion
+    - Role_bastion
   become: true
   roles:
     - geerlingguy.nginx
-    - selinux
 
 - name: configure strongswan
   hosts: tag_Role_strongswan

@@ -432,7 +432,7 @@ You can now use data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id to get 
     ### __IN VPC_PEERING CONFIG__
     peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}"
 
-#### Dynamic Inventory Management 
+## Dynamic Inventory Management 
 Ansible can pull inventory information from dynamic sources, including cloud sources. 
 The inventory scripts 'ec2.py' and 'ec2.ini' were added to the project. These query AWS for your running Amazon EC2 instances info.
 
@@ -443,7 +443,11 @@ Use the ansible-inventory command below to generate all the relevant info about 
         ansible-inventory --inventory-file=ec2.py --list
 
 
-## Azure
+### Azure
+The inventory scripts 'azure_rm.py' and 'azure_rm.ini' were also added.  The ansible-inventory command above can also be run for these files.  
+
+
+
 
 ### DMZ
 
@@ -472,6 +476,22 @@ resource "azurerm_virtual_network" "dmz_vnet" {
   address_space = ["${var.dmz_vnet_address_space}"]
   location      = "${var.location}"
 }
+
+#### Default routes
+
+Azure has a set of default routes for specific address prefixes. These include:
+
+Address Prefix              -- Next Hop Type
+Unique to Virtual Network   -- Virtual Network
+0.0.0.0/0                   -- Internet
+10.0.0.0/8                  -- None
+172.16.0.0/16               -- None
+192.168.0.0/16              -- None
+100.64.0.0/10               -- None
+
+Virtual Network: Routes traffic between address ranges within the address space of a virtual network.
+Internet: Routes traffic specified by the address prefix to the Internet.
+None: Traffic routed to the None next hop type is dropped, rather than routed outside the subnet. 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 are reserved for private use in RFC 1918. 100.64.0.0/10 is reserved in RFC 6598.
 
 #### MySQL options for Azure
 

@@ -1,7 +1,30 @@
----
-base_sudoer_groups:
-  - name: examplegroup
+--- 
+base_sudoer_groups: 
+    name: examplegroup
     sudo: true
 
-sysctl:
+selinux_boolean: []
+#  - name:
+#    persistent:
+#    state:
+#  - name:
+#    persistent:
+#    state:
+
+#Configure NTP
+ntp_enable: true
+ntp_timezone: "UTC"
+ntp_manage_config: true
+ntp_daemon: ntpd
+
+ntp_servers:
+ - 0.centos.pool.ntp.org iburst
+ - 1.centos.pool.ntp.org iburst
+ - 2.centos.pool.ntp.org iburst
+ - 3.centos.pool.ntp.org iburst
+
+ntp_restrict:
+  - 127.0.0.1
+
+sysctl: 
   net.ipv4.ip_forward: 1

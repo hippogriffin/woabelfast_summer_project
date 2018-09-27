@@ -3,3 +3,5 @@
 - include_tasks: sysctl.yml
 - include_tasks: setHostname.yml
 - include_tasks: hosts.yml
+- include_tasks: selinux.yml
+- include_tasks: ntp.yml

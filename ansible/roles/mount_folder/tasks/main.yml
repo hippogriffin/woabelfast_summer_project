@@ -20,13 +20,6 @@
       mode: 0755
     when: mount.stat.exists == false
 
-# edit /etc/fstab for cifs
-
-  - lineinfile:
-      path: "{{ fstab }}"
-      line: "{{ fstab_config }}"
-    when: mount == "cifs"
-
 # Creating Symbolic Link
   - file:
       dest: /usr/share/nginx/woabelfast

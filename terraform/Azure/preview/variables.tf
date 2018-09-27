@@ -2,51 +2,59 @@
 variable "environment" {
   default = "preview"
 }
- variable "location" {
+
+variable "location" {
   default = "ukwest"
 }
 
 variable "azure_dmz_cidr" {
   default = "172.16.0.0/16"
 }
- variable "preview_cidr" {
+
+variable "preview_cidr" {
   default = "172.17.0.0/16"
 }
- variable "kainos_ip" {	
-  default = "195.89.171.5"	
+
+variable "kainos_ip" {
+  default = "195.89.171.5"
 }
 
 variable "aws_mgmt_cidr" {
-    default = "10.121.0.0/24"
+  default = "10.121.0.0/24"
 }
- variable "proxy_avset" {
+
+variable "proxy_avset" {
   default = "proxy_avset"
 }
 
- variable "wordpress_avset" {
+variable "wordpress_avset" {
   default = "wordpress_avset"
 }
 
 variable "count" {
   default = "2"
 }
- variable "proxy_vm_size" {
+
+variable "proxy_vm_size" {
   default = "Standard_B1s"
 }
 
- variable "wordpress_vm_size" {
+variable "wordpress_vm_size" {
   default = "Standard_B1s"
 }
 
- variable "proxy_ip_configuration" {
+variable "proxy_ip_configuration" {
   type = "map"
+
   default = {
     "name"                          = "preview_proxy_ip"
     "private_ip_address_allocation" = "dynamic"
   }
 }
- variable "proxy_storage_image_reference" {
+
+variable "proxy_storage_image_reference" {
   type = "map"
+
   default = {
     "publisher" = "OpenLogic"
     "offer"     = "CentOS"
@@ -55,57 +63,66 @@ variable "count" {
   }
 }
 
- variable "proxy_os_profile" {
+variable "proxy_os_profile" {
   type = "map"
+
   default = {
     "admin_username" = "deploymentuser"
   }
 }
 
- variable "proxy_storage_os_disk" {
+variable "proxy_storage_os_disk" {
   type = "map"
+
   default = {
     "caching"           = "ReadWrite"
     "create_option"     = "FromImage"
     "managed_disk_type" = "Standard_LRS"
   }
 }
- 
-  variable "wordpress_storage_os_disk" {
+
+variable "wordpress_storage_os_disk" {
   type = "map"
+
   default = {
     "caching"           = "ReadWrite"
     "create_option"     = "FromImage"
     "managed_disk_type" = "Standard_LRS"
   }
 }
+
 variable "prefix" {
   default = "wordpress"
 }
- variable "preview_proxy_cidr" {
+
+variable "preview_proxy_cidr" {
   default = "172.17.1.0/24"
 }
 
- variable "preview_wordpress_cidr" {
+variable "preview_wordpress_cidr" {
   default = "172.17.2.0/24"
 }
- variable "preview_db_cidr" {
+
+variable "preview_db_cidr" {
   default = "172.17.3.0/24"
-} 
+}
 
 variable "preview_webserver_name" {
   default = "webserver"
 }
 
+variable "private_domain" {
+  default = "woabelfast.local"
+}
 
 locals {
- preview_webserver_ips   = "172.18.0.%02d"
+  preview_webserver_ips = "172.18.0.%02d"
 
- preview_webserver_names = "${var.environment}-proxy-${var.preview_webserver_name}-%02d"
-  
- preview_webserver_tag_names = "${var.environment}_${var.preview_webserver_name}_%02d"
+  preview_webserver_names = "${var.environment}-proxy-${var.preview_webserver_name}-%02d"
 
- proxy_nic_name = "preview-proxy-nic-%02d"
+  preview_webserver_tag_names = "${var.environment}_${var.preview_webserver_name}_%02d.azure.${var.private_domain}"
+
+  proxy_nic_name = "preview-proxy-nic-%02d"
 
   preview_webserver_os_disk = "${var.environment}-${var.preview_webserver_name}-%02d"
 
@@ -117,6 +134,6 @@ locals {
 
   wordpress_ip_name = "preview-wordpress-ip-%02d"
 
-  preview_wordpress_name = "preview-wordpress-%02d"
-  preview_wordpress_tag_name = "preview_wordpress_%02d"
+  preview_wordpress_name     = "preview-wordpress-%02d"
+  preview_wordpress_tag_name = "preview_wordpress_%02d.azure.${var.private_domain}"
 }

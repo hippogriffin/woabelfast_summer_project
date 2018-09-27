@@ -80,7 +80,7 @@ variable "mgmt_key_name" {
 }
 
 variable "private_domain" {
-  default = "woabelfast.local"
+  default = "woabelfast_local"
 }
 
 locals {

@@ -1,0 +1,6 @@
+---
+# defaults file for yum_packages
+
+common_pip_installs: []
+
+custom_pip_installs: []

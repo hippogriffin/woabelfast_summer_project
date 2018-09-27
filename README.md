@@ -432,7 +432,7 @@ You can now use data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id to get 
     ### __IN VPC_PEERING CONFIG__
     peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}"
 
-#### Dynamic Inventory Management 
+## Dynamic Inventory Management 
 Ansible can pull inventory information from dynamic sources, including cloud sources. 
 The inventory scripts 'ec2.py' and 'ec2.ini' were added to the project. These query AWS for your running Amazon EC2 instances info.
 
@@ -443,7 +443,11 @@ Use the ansible-inventory command below to generate all the relevant info about 
         ansible-inventory --inventory-file=ec2.py --list
 
 
-## Azure
+### Azure
+The inventory scripts 'azure_rm.py' and 'azure_rm.ini' were also added.  The ansible-inventory command above can also be run for these files.  
+
+
+
 
 ### DMZ
 

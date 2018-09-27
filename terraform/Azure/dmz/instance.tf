@@ -49,6 +49,7 @@ resource "azurerm_virtual_machine" "jumpbox" {
     }
     tags{
       Environment = "${var.environment}"
+      Name = "${local.dmz_tag_name}"
     }    
 }
 

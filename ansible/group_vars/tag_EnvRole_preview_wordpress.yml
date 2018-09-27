@@ -7,8 +7,6 @@ filesystem: nfs4
  # present/mounted/absent/unmounted
 state: mounted
 
-
-
 nginx_vhosts:
   - listen: "80 default_server" 
     server_name: "{{ wordpress_server_name }}" # default: N/A

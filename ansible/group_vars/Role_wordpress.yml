@@ -1,7 +1,7 @@
 #Group vars for wordpress servers
 
 custom_yum_installs:
-  - nfs-utils
+  - cifs-utils
 
 #Firewall Config
 
@@ -53,12 +53,13 @@ wordpress_group: nginx
 
 ##php-fpm config
 php_server_name: "phpserver.{{ wordpress_server_name }}"
-php_root: "/mnt/efs/woabelfast/{{ php_server_name }}"
+php_filesystem: "/mnt/azure-storage-share/woabelfast/"
+php_root: "/mnt/azure-storage-share/woabelfast/{{ php_server_name }}"
 php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2
 php_conf: virtual.conf
-phpfpm_path: "/mnt/efs/woabelfast/{{ php_server_name }}/"
-phpfpm_dest: "/mnt/efs/woabelfast/{{ php_server_name }}/index.php"
+phpfpm_path: "/mnt/azure-storage-share/woabelfast/{{ php_server_name }}/"
+phpfpm_dest: "/mnt/azure-storage-share/woabelfast/{{ php_server_name }}/index.php"
 phpfpm_template: phpfpm.conf.j2
 php_access_log: /var/log/nginx/php_access.log
 php_error_log: /var/log/nginx/php_error.log

@@ -12,20 +12,20 @@
 # mnt the filesystem folder
   - name: Check if filesystem folder exists
     stat: path="{{ mount_path }}"
-    register: mounted_filesystem
+    register: mount
 
   - file:
       path: "{{ mount_path }}"
       state: directory
       mode: 0755
-    when: mounted_filesystem.stat.exists == false
+    when: mount.stat.exists == false
 
 # edit /etc/fstab for cifs
 
   - lineinfile:
       path: "{{ fstab }}"
       line: "{{ fstab_config }}"
-    when: mounted_filesystem == "cifs"
+    when: mount == "cifs"
 
 # Creating Symbolic Link
   - file:
@@ -34,7 +34,7 @@
       state: link 
       force: yes
 
-# Mount drive
+# Mount drives
   - name: Mounting Device
     mount:
       path: "{{ mount_path }}"

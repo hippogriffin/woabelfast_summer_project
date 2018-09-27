@@ -92,7 +92,7 @@ variable "avail_zone_b" {
 }
 
 variable "private_domain" {
-  default = "woabelast.local"
+  default = "woabelfast.local"
 }
 
 locals {

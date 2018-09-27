@@ -577,7 +577,7 @@ class AzureInventory(object):
         self.group_by_security_group = True
         self.group_by_tag = True
         self.include_powerstate = True
-        self.use_private_ip = False
+        self.use_private_ip = True
 
         self._inventory = dict(
             _meta=dict(

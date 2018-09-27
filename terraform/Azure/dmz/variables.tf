@@ -62,3 +62,11 @@ variable "vpn_client_subnet_name" {
 variable "environment" {
   default = "dmz"
 }
+
+variable "private_domain" {
+  default = "woabelfast.local"
+}
+
+locals {
+    dmz_tag_name = "${var.dmz_jumpbox_name}.azure.${var.private_domain}"
+}

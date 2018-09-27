@@ -35,10 +35,10 @@ variable "private_domain" {
 }
 
 locals {
-  bastion_host_name    = "${var.environment}_${var.bastion_name}"
+  bastion_host_name    = "${var.environment}_${var.bastion_name}.aws.${var.private_domain}"
   bastion_eip_name     = "${local.bastion_host_name}_eip"
   jumpbox_dns_record   = "${var.bastion_name}.${var.private_domain}"
-  bastion_aws_dns_name = "${var.bastion_name}.aws"
+  bastion_aws_dns_name = "${var.bastion_name}.aws.${var.private_domain}"
 }
 
 ### Better Naming convention required

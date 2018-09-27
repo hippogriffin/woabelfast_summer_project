@@ -3,7 +3,7 @@
   become: true
   gather_facts: true
   roles:
-    - common
+    - { role: common, tags: 'base' }
     - willshersystems.sshd
     - geerlingguy.firewall
     - singleplatform-eng.users

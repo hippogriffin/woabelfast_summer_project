@@ -31,7 +31,7 @@ variable "bastion_name" {
 }
 
 variable "private_domain" {
-  default = "woabelfast.local"
+  default = "woabelfast_local"
 }
 
 locals {

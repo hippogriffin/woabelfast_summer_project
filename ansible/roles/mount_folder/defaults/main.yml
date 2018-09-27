@@ -10,4 +10,3 @@ filesystem: []
 mount_options: []
  # present/mounted/absent/unmounted
 state: []
-

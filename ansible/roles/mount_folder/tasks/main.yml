@@ -9,11 +9,11 @@
       mode: 0755
     when: woa.stat.exists == false
 
-# mnt/efs folder
-  - name: Check if mount location exists
+# mnt the filesystem folder
+  - name: Check if filesystem folder exists
     stat: path="{{ mount_path }}"
     register: mount
-    
+
   - file:
       path: "{{ mount_path }}"
       state: directory
@@ -21,11 +21,12 @@
     when: mount.stat.exists == false
 
 # Creating Symbolic Link
-  - file: 
+  - file:
       dest: /usr/share/nginx/woabelfast
       src: "{{ mount_path }}"
       state: link 
       force: yes
+
 # Mount drives
   - name: Mounting Device
     mount:
@@ -33,3 +34,4 @@
       src: "{{ mount_source }}"
       fstype: "{{ filesystem }}"
       state: "{{ state }}" 
+    

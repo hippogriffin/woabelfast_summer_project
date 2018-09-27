@@ -45,7 +45,7 @@
     line: "{{ php_ini_cgi }}"
 
 - name: create woabelfast.co.uk directory
-  file: path=/mnt/efs/woabelfast/{{ item }} state=directory
+  file: path={{ php_filesystem }}{{ item }} state=directory
   with_items:
     - "{{ php_server_name }}"
     - "{{ server_hostname }}"

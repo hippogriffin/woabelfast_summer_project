@@ -51,8 +51,9 @@ wordpress_parent_path: /usr/share/nginx/woabelfast
 wordpress_owner: nginx
 wordpress_group: nginx
 
-##php-fpm config
+#php-fpm config
 php_server_name: "phpserver.{{ wordpress_server_name }}"
+php_filesystem: "/mnt/efs/woabelfast/"
 php_root: "/mnt/efs/woabelfast/{{ php_server_name }}"
 php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2

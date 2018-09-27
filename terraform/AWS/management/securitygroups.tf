@@ -8,7 +8,7 @@ resource "aws_security_group" "mgmt_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.dmz_cidr}", "${var.azure_cidr}"]
+    cidr_blocks = ["${var.dmz_cidr}", "${var.azure_cidr}", "${var.mgmt_cidr}"]
   }
 
   ingress {

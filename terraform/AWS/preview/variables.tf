@@ -92,13 +92,13 @@ variable "avail_zone_b" {
 }
 
 variable "private_domain" {
-  default = "woabelast.local"
+  default = "woabelfast.local"
 }
 
 locals {
-  preview_wp_server_names = "${var.environment}_${var.preview_wp_server_name}_%02d.aws.${var.private_domain}"
+  preview_wp_server_names = "${var.environment}_${var.preview_wp_server_name}_%02d_aws_${var.private_domain}"
   preview_wp_server_ips   = "10.122.2.%02d"
-  preview_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d.aws.${var.private_domain}"
+  preview_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d_aws_${var.private_domain}"
   preview_webserver_ips   = "10.122.1.%02d"
   preview_webserver_elb   = "${var.environment}-webserver-elb"
   preview_wp_server_elb   = "${var.environment}-wp-server-elb"

@@ -50,8 +50,8 @@
     - geerlingguy.nginx
 
 - name: configure strongswan
-  hosts: tag_Role_strongswan
+  hosts: 
+    - tag_Role_strongswan
   become: true
   roles: 
     - strongswan
-

@@ -16,6 +16,31 @@ resource "azurerm_network_security_group" "dmz" {
     destination_address_prefix = "*"
   }
 
+    security_rule {
+    name                       = "preview_aws_vpn_sr"
+    priority                   = 108 // this is the highest so may be subject to change
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*" 
+    destination_address_prefix = "Internet"
+  }
+
+    security_rule {
+    name                       = "preview_aws_vpn_sr2"
+    priority                   = 109 // this is the highest so may be subject to change
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "52.18.188.26" 
+    destination_address_prefix = "*"
+  }
+
+
   tags {
     environment = "DMZ"
   }

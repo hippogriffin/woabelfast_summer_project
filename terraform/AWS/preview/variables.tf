@@ -105,8 +105,6 @@ locals {
   preview_aws_dns_webserver_names = "${var.environment}_${var.preview_webserver_name}_%02d.aws"
 
   preview_aws_dns_wp_names = "${var.environment}_${var.preview_wp_server_name}_%02d.aws"
-
-
 }
 
 #EC2 instance variables
@@ -139,4 +137,9 @@ variable "preview_rds_elb" {
 
 variable "kainos_cidr" {
   default = "195.89.171.5/32"
+}
+
+# AZURE app gateway ip address
+variable "azure_app_gw_ip" {
+  default = "795c6144-02a0-4cd6-b4f1-5ace1cceff75.cloudapp.net"
 }

@@ -33,6 +33,14 @@ os_profile {
             key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgYMNcDJKpkuXKaGsa2P9bZ0WTaB0H6iXvRNg0KCOD9DHTK9ljPLdETs5S2RNS/2aoLqsoVkR+3Sd1POYg9YVlOf9SYMjIQM3CYQkFW9ExfnlbOao6NlyJJXV9vLOu1lAIlMT7/UIU/6wdU4BgdIJW7WU9inY4R+j+5ss/tt/pkbYkh74mQf20Zj93ugXPaY87dz5Ij3SRYnpERjTo25Prdc75B4RG/2L3p5KNvD/OKUOkNZBSlH0tlo1hjQLa3DIaHZHu50XTpabFibBOjMC5MPCUp/WSNG5JXqiEJO+6wwFQW1uOQVxlviARr6sCZID5b6eJ8ElQEQ5HFH8ku+3x woabelfast_rsa_key"
         }
   }
+
+  tags{
+        EnvRole = "preview_wordpress"
+        Environment = "${var.environment}"
+        Name = "${format("${local.preview_wordpress_tag_name}", count.index + 3)}"
+        Role = "wordpress"
+
+  }
 }
 
 resource "azurerm_network_interface" "preview_wordpress_nic" {
@@ -45,10 +53,6 @@ resource "azurerm_network_interface" "preview_wordpress_nic" {
     name                          = "${format("${local.wordpress_ip_name}", count.index + 3)}"
     subnet_id                     = "${azurerm_subnet.preview_wordpress_subnet.id}"
     private_ip_address_allocation = "dynamic"
-  }
-
-  tags {
-    environment = "preview"
   }
 }
 
@@ -103,6 +107,9 @@ resource "azurerm_virtual_machine" "preview-proxy" {
   }
 
   tags {
-    environment = "${var.environment}"
+    Environment = "${var.environment}"
+    EnvRole = "preview_webserver"
+    Name = "${format("${local.preview_webserver_tag_names}", count.index + 3)}"
+    Role ="webserver"
   }
 }

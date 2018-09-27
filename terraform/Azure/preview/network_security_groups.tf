@@ -42,6 +42,7 @@ resource "azurerm_network_security_group" "preview_db_sg" {
     destination_address_prefix = "*"
   }
 
+
   tags {
     environment = "${var.environment}"
   }
@@ -156,8 +157,10 @@ resource "azurerm_network_security_group" "preview_webservers_sg" {
     source_address_prefix      = "${var.kainos_ip}"
     destination_address_prefix = "*"
   }
+
   
   tags {
     environment = "${var.environment}"
   }
 }
+

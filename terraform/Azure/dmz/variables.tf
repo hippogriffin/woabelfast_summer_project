@@ -35,8 +35,12 @@ variable "aws_dmz_cidr" {
   default = "10.120.0.0/24"
 }
 
+variable "aws_mgmt_cidr" {
+  default = "10.121.0.0/16"
+}
+
 variable "aws_strongswan" {
-  default = "18.202.142.67"
+  default = "52.18.188.26"
 }
 
 variable "vpn_client_config" {
@@ -53,4 +57,8 @@ variable "vpn_gw_subnet_name" {
 
 variable "vpn_client_subnet_name" {
     default = "ClientSubnet"
+}
+
+variable "environment" {
+  default = "dmz"
 }

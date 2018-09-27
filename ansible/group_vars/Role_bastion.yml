@@ -1,0 +1,17 @@
+---
+
+#Group vars for  bastion_servers
+
+firewall_allowed_tcp_ports:
+  - "22"
+  - "80"
+  - "8080"
+
+selinux_boolean: 
+  - name: httpd_can_network_connect
+    persistent: yes
+    state: yes
+
+custom_yum_installs:
+  - libselinux-python
+  - libsemanage-python

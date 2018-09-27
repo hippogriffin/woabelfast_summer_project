@@ -1,8 +1,7 @@
 #Group vars for wordpress servers
 
 custom_yum_installs:
-  #- nfs-utils
-  - cifs-utils
+  - nfs-utils
 
 #Firewall Config
 

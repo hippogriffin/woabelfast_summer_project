@@ -86,13 +86,7 @@ variable "private_domain" {
 locals {
   jenkins_host_name = "${var.environment}_${var.jenkins_name}.aws.${var.private_domain}"
 
-  jenkins_aws_dns_name = "${var.jenkins_name}.aws.${var.private_domain}"
-
   strongswan_host_name = "${var.environment}_${var.strongswan_name}.aws.${var.private_domain}"
 
   strongswan_eip_name = "${local.strongswan_host_name}_eip"
-
-  strongswan_aws_dns_name = "${var.strongswan_name}.aws.${var.private_domain}"
-
-  bastion_azure_dns_name = "${var.bastion_name}.azure.${var.private_domain}"
 }

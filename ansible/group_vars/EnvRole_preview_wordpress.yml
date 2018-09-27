@@ -8,10 +8,6 @@ filesystem: cifs
 state: mounted
  # configure mount options
 mount_options: vers=3.0,username=sharedstorageaccount,password=OIANlMdGFxcsym5bT1UfOlV/KUIN6K4zEc6VUUbLkpcXauyePdSJX2ae9KcBw+iLFyFhY8JLRTqj3bwOJ/Y7RQ==,dir_mode=0777,file_mode=0777
-
-fstab: /etc/fstab
-fstab_config: "{{ mount_source }} {{ mount_path }} {{ filesystem }} {{ mount_options }}"
-
 nginx_vhosts:
   - listen: "80 default_server" 
     server_name: "{{ wordpress_server_name }}" # default: N/A

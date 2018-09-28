@@ -58,7 +58,7 @@ resource "azurerm_application_gateway" "preview_app_gw" {
 
   ssl_certificate {
     name     = "${azurerm_virtual_network.preview_vnet.name}-cert"
-    data     = "${base64encode(file("files/keys/master.pfx"))}"
+    data     = "${base64encode(file("preview.woabelfast.co.uk.pfx"))}" 
     password = "password"
   }
 
@@ -67,7 +67,7 @@ resource "azurerm_application_gateway" "preview_app_gw" {
     frontend_ip_configuration_name  = "${azurerm_virtual_network.preview_vnet.name}-feip"
     frontend_port_name              = "${azurerm_virtual_network.preview_vnet.name}-feport"
     protocol                        = "Http"
-    ssl_certificate_name            = "certificate"
+    ssl_certificate_name            = "${azurerm_virtual_network.preview_vnet.name}-cert"
   }
 
   request_routing_rule {

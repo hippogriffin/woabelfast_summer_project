@@ -1,21 +1,21 @@
 variable "dmz_vnet_name" {
-    default = "dmz_vnet"
+  default = "dmz_vnet"
 }
 
 variable "dmz_vnet_address_space" {
-    default = "172.16.0.0/16"
+  default = "172.16.0.0/16"
 }
 
 variable "dmz_rg_name" {
-    default = "dmz_rg"
+  default = "dmz_rg"
 }
 
 variable "location" {
-    default = "ukwest"
+  default = "ukwest"
 }
 
 variable "dmz_subnet_name" {
-    default = "dmz_subnet"
+  default = "dmz_subnet"
 }
 
 variable "kainos_ip" {
@@ -23,12 +23,11 @@ variable "kainos_ip" {
 }
 
 variable "dmz_jumpbox_name" {
-    default = "dmz_jumpbox"
+  default = "dmz_jumpbox"
 }
 
-variable "nic_name" 
-{
-    default = "dmz_jumpbox_nic"
+variable "nic_name" {
+  default = "dmz_jumpbox_nic"
 }
 
 variable "aws_dmz_cidr" {
@@ -44,29 +43,25 @@ variable "aws_strongswan" {
 }
 
 variable "vpn_client_config" {
-    default = "172.20.2.0/24"
+  default = "172.20.2.0/24"
 }
 
 variable "vpn_gw_config" {
-    default = "172.16.254.0/24"
+  default = "172.16.254.0/24"
 }
 
 variable "vpn_gw_subnet_name" {
-    default = "GatewaySubnet"
+  default = "GatewaySubnet"
 }
 
 variable "vpn_client_subnet_name" {
-    default = "ClientSubnet"
+  default = "ClientSubnet"
 }
 
 variable "environment" {
   default = "dmz"
 }
 
-variable "private_domain" {
-  default = "woabelfast.local"
-}
-
 locals {
-    dmz_tag_name = "${var.dmz_jumpbox_name}.azure.${var.private_domain}"
+  bastion_name = "az-dmz-jb-01"
 }

@@ -134,8 +134,3 @@ locals {
   
   preview_wordpress_tag_name = "az-pw-wp-%02d"
 }
-
-# AZURE app gateway ip address
-variable "azure_app_gw_ip" {
-  default = "795c6144-02a0-4cd6-b4f1-5ace1cceff75.cloudapp.net"
-}

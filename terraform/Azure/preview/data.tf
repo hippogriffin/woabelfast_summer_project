@@ -10,16 +10,11 @@ data "terraform_remote_state" "dmz_remote_state" {
   }
 }
 
-# Grabbing data from AWS preview remote state file 
-data "terraform_remote_state" "aws_preview_remote_state" {
-  backend = "s3"
-   config {
-    bucket = "woa-belfast"
-    key    = "preview/woa.tfstate"
-    region = "eu-west-1"
-  }
-}
-
 data "aws_route53_zone" "selected" {
     name = "woabelfast.co.uk"
   }
+
+data "azurerm_public_ip" "preview_app_gw_public_ip" {
+    resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+    name = "${azurerm_public_ip.preview_app_gw_public_ip.name}"
+}

@@ -10,5 +10,5 @@ resource "aws_route53_record" "www-preview-agw" {
   }
 
   set_identifier = "preview-agw"
-  records        = ["${var.azure_app_gw_ip}"]
+  records        = ["${data.azurerm_public_ip.preview_app_gw_public_ip.fqdn}"]
 }

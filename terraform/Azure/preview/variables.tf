@@ -137,3 +137,8 @@ locals {
   preview_wordpress_name     = "preview-wordpress-%02d"
   preview_wordpress_tag_name = "preview_wordpress_%02d.azure.${var.private_domain}"
 }
+
+# AZURE app gateway ip address
+variable "azure_app_gw_ip" {
+  default = "795c6144-02a0-4cd6-b4f1-5ace1cceff75.cloudapp.net"
+}

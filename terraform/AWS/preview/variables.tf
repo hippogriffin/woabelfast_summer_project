@@ -138,8 +138,3 @@ variable "preview_rds_elb" {
 variable "kainos_cidr" {
   default = "195.89.171.5/32"
 }
-
-# AZURE app gateway ip address
-variable "azure_app_gw_ip" {
-  default = "795c6144-02a0-4cd6-b4f1-5ace1cceff75.cloudapp.net"
-}

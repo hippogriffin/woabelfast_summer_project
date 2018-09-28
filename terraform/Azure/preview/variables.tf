@@ -111,31 +111,28 @@ variable "preview_webserver_name" {
   default = "webserver"
 }
 
-variable "private_domain" {
-  default = "woabelfast.local"
-}
-
 locals {
   preview_webserver_ips = "172.18.0.%02d"
 
-  preview_webserver_names = "${var.environment}-proxy-${var.preview_webserver_name}-%02d"
+  preview_webserver_names = "az-pw-pxy-%02d"
 
-  preview_webserver_tag_names = "${var.environment}_${var.preview_webserver_name}_%02d.azure.${var.private_domain}"
+  preview_webserver_tag_names = "az-pw-pxy-%02d"
 
-  proxy_nic_name = "preview-proxy-nic-%02d"
+  proxy_nic_name = "az-pw_pxy_nic_%02d"
 
-  preview_webserver_os_disk = "${var.environment}-${var.preview_webserver_name}-%02d"
+  preview_webserver_os_disk = "az-pw-pxy-%02d-os-disk"
 
-  preview_wordpress_webserver_os_disk = "${var.environment}-wordpress-os-disk-%02d"
+  preview_wordpress_webserver_os_disk = "az-pw-wp-%02d"
 
-  proxy_ip_name = "preview-proxy-ip-%02d"
+  proxy_ip_name = "az-pw-pxy-ip-%02d"
 
-  preview_wordpress_nic_name = "preview-wordpress-nic-%02d"
+  preview_wordpress_nic_name = "az-pw-wp-nic-%02d"
 
-  wordpress_ip_name = "preview-wordpress-ip-%02d"
+  wordpress_ip_name = "az-pw-wp-ip-%02d"
 
-  preview_wordpress_name     = "preview-wordpress-%02d"
-  preview_wordpress_tag_name = "preview_wordpress_%02d.azure.${var.private_domain}"
+  preview_wordpress_name     = "az-pw-wp-%02d"
+  
+  preview_wordpress_tag_name = "az-pw-wp-%02d"
 }
 
 # AZURE app gateway ip address

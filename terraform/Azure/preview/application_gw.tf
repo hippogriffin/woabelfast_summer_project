@@ -24,7 +24,7 @@ resource "azurerm_application_gateway" "preview_app_gw" {
 
   frontend_port {
     name         = "${azurerm_virtual_network.preview_vnet.name}-feport" ## http
-    port         = 80
+    port         = 443
   }
 
   frontend_ip_configuration {
@@ -62,18 +62,18 @@ resource "azurerm_application_gateway" "preview_app_gw" {
     password = "password"
   }
 
-  http_listener {
-    name                            = "${azurerm_virtual_network.preview_vnet.name}-httplstn"
+  https_listener {
+    name                            = "${azurerm_virtual_network.preview_vnet.name}-httpslstn"
     frontend_ip_configuration_name  = "${azurerm_virtual_network.preview_vnet.name}-feip"
     frontend_port_name              = "${azurerm_virtual_network.preview_vnet.name}-feport"
-    protocol                        = "Http"
+    protocol                        = "Https"
     ssl_certificate_name            = "${azurerm_virtual_network.preview_vnet.name}-cert"
   }
 
   request_routing_rule {
     name                       = "${azurerm_virtual_network.preview_vnet.name}-rqrt"
     rule_type                  = "Basic"
-    http_listener_name         = "${azurerm_virtual_network.preview_vnet.name}-httplstn"
+    http_listener_name         = "${azurerm_virtual_network.preview_vnet.name}-httpslstn"
     backend_address_pool_name  = "${azurerm_virtual_network.preview_vnet.name}-beap"
     backend_http_settings_name = "${azurerm_virtual_network.preview_vnet.name}-be-htst"
   }

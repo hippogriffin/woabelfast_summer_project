@@ -48,9 +48,10 @@ resource "azurerm_virtual_machine" "jumpbox" {
     }
   }
 
-  tags {
-    Environment = "${var.environment}"
-  }
+    tags{
+      Environment = "${var.environment}"
+      Name = "${local.bastion_name}"
+    }    
 }
 
 resource "azurerm_public_ip" "jumpbox_public_ip" {

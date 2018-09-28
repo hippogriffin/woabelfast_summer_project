@@ -131,5 +131,6 @@ locals {
   wordpress_ip_name = "az-pw-wp-ip-%02d"
 
   preview_wordpress_name     = "az-pw-wp-%02d"
+  
   preview_wordpress_tag_name = "az-pw-wp-%02d"
 }

@@ -57,7 +57,7 @@ resource "aws_elb" "preview_webserver_elb" {
     instance_protocol  = "http"
     lb_port            = 443
     lb_protocol        = "https"
-    ssl_certificate_id = "${aws_acm_certificate_validation.cert.certificate_arn}"
+    ssl_certificate_id = "${aws_iam_server_certificate.preview_aws_cert.arn}"
   }
 
   health_check {

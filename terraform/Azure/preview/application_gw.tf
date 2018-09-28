@@ -56,11 +56,18 @@ resource "azurerm_application_gateway" "preview_app_gw" {
     unhealthy_threshold = 3
     }
 
+  ssl_certificate {
+    name     = "${azurerm_virtual_network.preview_vnet.name}-cert"
+    data     = "${base64encode(file("preview.woabelfast.co.uk.pfx"))}" 
+    password = "password"
+  }
+
   http_listener {
     name                            = "${azurerm_virtual_network.preview_vnet.name}-httplstn"
     frontend_ip_configuration_name  = "${azurerm_virtual_network.preview_vnet.name}-feip"
     frontend_port_name              = "${azurerm_virtual_network.preview_vnet.name}-feport"
     protocol                        = "Http"
+    ssl_certificate_name            = "${azurerm_virtual_network.preview_vnet.name}-cert"
   }
 
   request_routing_rule {

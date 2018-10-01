@@ -10,7 +10,9 @@
     - yum_packages
 
 - name: Install NGINX on proxy
-  hosts: tag_Role_webserver
+  hosts:
+    - tag_Role_wordpress
+    - Role_wordpress
   become: true
   roles:
     - geerlingguy.nginx

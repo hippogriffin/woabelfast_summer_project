@@ -1,1 +1,2 @@
-ansible_ssh_common_args: '-F /var/lib/jenkins/workspace/Ansibe_Azure_Scheduled_Deployment/ansible/azuressh.cfg'
+#ansible_ssh_common_args: '-F /var/lib/jenkins/workspace/Ansibe_Azure_Scheduled_Deployment/ansible/azuressh.cfg'
+ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q deploymentuser@az-dmz-jb-01"'

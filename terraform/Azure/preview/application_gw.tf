@@ -62,7 +62,7 @@ resource "azurerm_application_gateway" "preview_app_gw" {
     password = "password"
   }
 
-  https_listener {
+  http_listener {
     name                            = "${azurerm_virtual_network.preview_vnet.name}-httpslstn"
     frontend_ip_configuration_name  = "${azurerm_virtual_network.preview_vnet.name}-feip"
     frontend_port_name              = "${azurerm_virtual_network.preview_vnet.name}-feport"

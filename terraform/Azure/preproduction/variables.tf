@@ -1,4 +1,5 @@
 # Variables for the preproduction environment in Azure
+
 variable "environment" {
   default = "preproduction"
 }
@@ -9,11 +10,6 @@ variable "location" {
 
 variable "azure_dmz_cidr" {
   default = "172.16.0.0/16"
-}
-
-# IP needs to change per environment #
-variable "preproduction_cidr" {
-  default = "172.18.0.0/16"
 }
 
 variable "kainos_ip" {
@@ -96,55 +92,59 @@ variable "prefix" {
   default = "preproduction_wordpress"
 }
 
-# IP needs to change per environment #
-variable "externallb_subnet_01_ip" {
-  default = "172.18.100.0/24"
-}
-
-# IP needs to change per environment #
-variable "externallb_subnet_02_ip" {
-  default = "172.18.101.0/24"
-}
-
-# IP needs to change per environment #
-variable "preproduction_proxy_cidr" {
-  default = "172.18.1.0/24"
-}
-
-# IP needs to change per environment #
-variable "preproduction_wordpress_cidr" {
-  default = "172.18.2.0/24"
-}
-
-# IP needs to change per environment # 
-variable "preproduction_db_cidr" {
-  default = "172.18.3.0/24"
-}
-
 variable "preproduction_webserver_name" {
   default = "preproduction_webserver"
 }
 
+#######################################################
+
+## IPs required to change per environment ##
+variable "cidr" {
+  default = "172.18.0.0/16"
+}
+
+variable "proxy_cidr" {
+  default = "172.18.1.0/24"
+}
+
+variable "wordpress_cidr" {
+  default = "172.18.2.0/24"
+}
+
+variable "db_cidr" {
+  default = "172.18.3.0/24"
+}
+
+variable "externallb_subnet_01_ip" {
+  default = "172.18.100.0/24"
+}
+
+variable "externallb_subnet_02_ip" {
+  default = "172.18.101.0/24"
+}
+
+#######################################################
+
 locals {
-#  preproduction_webserver_ips = "172.18.0.%02d"
+# webserver_ips = "172.18.0.%02d"
 
-  preproduction_webserver_names = "az-pp-pxy-%02d"
+  webserver_names             = "az-pp-pxy-%02d"
 
-  preproduction_webserver_tag_names = "az-pp-pxy-%02d"
+  webserver_tag_names         = "az-pp-pxy-%02d"
 
-  proxy_nic_name = "az-pp_pxy_nic_%02d"
+  proxy_nic_name              = "az-pp_pxy_nic_%02d"
 
-  preproduction_webserver_os_disk = "az-pp-pxy-%02d-os-disk"
+  webserver_os_disk           = "az-pp-pxy-%02d-os-disk"
 
-  preproduction_wordpress_webserver_os_disk = "az-pp-wp-%02d"
+  wordpress_webserver_os_disk = "az-pp-wp-%02d"
 
-  proxy_ip_name = "az-pp-pxy-ip-%02d"
+  proxy_ip_name               = "az-pp-pxy-ip-%02d"
 
-  preproduction_wordpress_nic_name = "az-pp-wp-nic-%02d"
+  wordpress_nic_name          = "az-pp-wp-nic-%02d"
 
-  wordpress_ip_name = "az-pp-wp-ip-%02d"
+  wordpress_ip_name           = "az-pp-wp-ip-%02d"
 
-  preproduction_wordpress_name     = "az-pp-wp-%02d"
+  wordpress_name              = "az-pp-wp-%02d"
   
-  preproduction_wordpress_tag_name = "az-pp-wp-%02d"
+  wordpress_tag_name          = "az-pp-wp-%02d"
 }

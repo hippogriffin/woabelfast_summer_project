@@ -1,14 +1,14 @@
-resource "azurerm_public_ip" "preproduction_app_gw_public_ip" {
+resource "azurerm_public_ip" "app_gw_public_ip" {
   name                         = "${var.environment}_app_gw_public_ip"
-  location                     = "${azurerm_resource_group.preproduction_rg.location}"
-  resource_group_name          = "${azurerm_resource_group.preproduction_rg.name}"
+  location                     = "${azurerm_resource_group.rg.location}"
+  resource_group_name          = "${azurerm_resource_group.rg.name}"
   public_ip_address_allocation = "dynamic"
 }
 
 # Create an application gateway/loadbalancer 
-resource "azurerm_application_gateway" "preproduction_app_gw" {
+resource "azurerm_application_gateway" "app_gw" {
   name                = "${var.environment}_app_gw"
-  resource_group_name = "${azurerm_resource_group.preproduction_rg.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
   location            = "${var.location}"
 
   sku {
@@ -19,35 +19,35 @@ resource "azurerm_application_gateway" "preproduction_app_gw" {
 
   gateway_ip_configuration {
     name         = "${var.environment}_gw_ip_config"
-    subnet_id    = "${azurerm_virtual_network.preproduction_vnet.id}/subnets/${azurerm_subnet.externallb_subnet_01.name}"
+    subnet_id    = "${azurerm_virtual_network.vnet.id}/subnets/${azurerm_subnet.externallb_subnet_01.name}"
   }
 
   frontend_port {
-    name         = "${azurerm_virtual_network.preproduction_vnet.name}-feport" ## http
+    name         = "${azurerm_virtual_network.vnet.name}-feport" ## http
     port         = 443
   }
 
   frontend_ip_configuration {
-    name                 = "${azurerm_virtual_network.preproduction_vnet.name}-feip"
-    public_ip_address_id = "${azurerm_public_ip.preproduction_app_gw_public_ip.id}"
+    name                 = "${azurerm_virtual_network.vnet.name}-feip"
+    public_ip_address_id = "${azurerm_public_ip.app_gw_public_ip.id}"
   }
 
   backend_address_pool {
-    name            = "${azurerm_virtual_network.preproduction_vnet.name}-beap"
-    ip_address_list = ["${azurerm_network_interface.preproduction-proxy.*.private_ip_address}"]
+    name            = "${azurerm_virtual_network.vnet.name}-beap"
+    ip_address_list = ["${azurerm_network_interface.proxy.*.private_ip_address}"]
   }
 
   backend_http_settings {
-    name                  = "${azurerm_virtual_network.preproduction_vnet.name}-be-htst"
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst"
     cookie_based_affinity = "Disabled"
     port                  = 80
     protocol              = "Http"
     request_timeout       = 1
-    probe_name            = "${azurerm_virtual_network.preproduction_vnet.name}-probe"
+    probe_name            = "${azurerm_virtual_network.vnet.name}-probe"
   }
   
   probe {
-    name                = "${azurerm_virtual_network.preproduction_vnet.name}-probe"
+    name                = "${azurerm_virtual_network.vnet.name}-probe"
     protocol            = "Http"
     path                = "/elb_status"
     host                = "127.0.0.1"
@@ -57,24 +57,24 @@ resource "azurerm_application_gateway" "preproduction_app_gw" {
     }
 
   ssl_certificate {
-    name     = "${azurerm_virtual_network.preproduction_vnet.name}-cert"
+    name     = "${azurerm_virtual_network.vnet.name}-cert"
     data     = "${base64encode(file("preproduction.woabelfast.co.uk.pfx"))}" 
     password = "password"
   }
 
   http_listener {
-    name                            = "${azurerm_virtual_network.preproduction_vnet.name}-httpslstn"
-    frontend_ip_configuration_name  = "${azurerm_virtual_network.preproduction_vnet.name}-feip"
-    frontend_port_name              = "${azurerm_virtual_network.preproduction_vnet.name}-feport"
+    name                            = "${azurerm_virtual_network.vnet.name}-httpslstn"
+    frontend_ip_configuration_name  = "${azurerm_virtual_network.vnet.name}-feip"
+    frontend_port_name              = "${azurerm_virtual_network.vnet.name}-feport"
     protocol                        = "Https"
-    ssl_certificate_name            = "${azurerm_virtual_network.preproduction_vnet.name}-cert"
+    ssl_certificate_name            = "${azurerm_virtual_network.vnet.name}-cert"
   }
 
   request_routing_rule {
-    name                       = "${azurerm_virtual_network.preproduction_vnet.name}-rqrt"
+    name                       = "${azurerm_virtual_network.vnet.name}-rqrt"
     rule_type                  = "Basic"
-    http_listener_name         = "${azurerm_virtual_network.preproduction_vnet.name}-httpslstn"
-    backend_address_pool_name  = "${azurerm_virtual_network.preproduction_vnet.name}-beap"
-    backend_http_settings_name = "${azurerm_virtual_network.preproduction_vnet.name}-be-htst"
+    http_listener_name         = "${azurerm_virtual_network.vnet.name}-httpslstn"
+    backend_address_pool_name  = "${azurerm_virtual_network.vnet.name}-beap"
+    backend_http_settings_name = "${azurerm_virtual_network.vnet.name}-be-htst"
   }
 }

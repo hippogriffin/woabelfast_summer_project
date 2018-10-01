@@ -1,13 +1,13 @@
-#Security Groups for the Preproduction Environment
+# Security Groups
 
 # DB server
-resource "azurerm_network_security_group" "preproduction_db_sg" {
+resource "azurerm_network_security_group" "db_sg" {
   name                = "db_sg"
-  location            = "${azurerm_resource_group.preproduction_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preproduction_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
   security_rule {
-    name                       = "preproduction_db_ssh_sr"
+    name                       = "${var.environment}_db_ssh_sr"
     priority                   = 100 // this is the highest so may be subject to change
     direction                  = "Inbound"
     access                     = "Allow"
@@ -19,7 +19,7 @@ resource "azurerm_network_security_group" "preproduction_db_sg" {
   }
 
    security_rule {
-    name                       = "preproduction_db_mysql_sr"
+    name                       = "${var.environment}_db_mysql_sr"
     priority                   = 101 
     direction                  = "Inbound"
     access                     = "Allow"
@@ -31,7 +31,7 @@ resource "azurerm_network_security_group" "preproduction_db_sg" {
   }
 
     security_rule {
-    name                       = "preproduction_db_sr"
+    name                       = "${var.environment}_db_sr"
     priority                   = 102 // this may be deleted
     direction                  = "Outbound"
     access                     = "Allow"
@@ -42,7 +42,6 @@ resource "azurerm_network_security_group" "preproduction_db_sg" {
     destination_address_prefix = "*"
   }
 
-
   tags {
     environment = "${var.environment}"
   }
@@ -50,10 +49,10 @@ resource "azurerm_network_security_group" "preproduction_db_sg" {
 
 
 # Network security group for public loadbalancer
-resource "azurerm_network_security_group" "preproduction_sg_lb" {
-  name                = "preproduction_sg_lb"
-  location            = "${azurerm_resource_group.preproduction_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preproduction_rg.name}"
+resource "azurerm_network_security_group" "sg_lb" {
+  name                = "${var.environment}_sg_lb"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
     security_rule {
     name                       = "port80_inbound"
@@ -82,13 +81,13 @@ resource "azurerm_network_security_group" "preproduction_sg_lb" {
 }
 
 # Wordpress server
-resource "azurerm_network_security_group" "preproduction_wordpress_sg" {
+resource "azurerm_network_security_group" "wordpress_sg" {
   name                = "wordpress_sg"
-  location            = "${azurerm_resource_group.preproduction_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preproduction_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
   security_rule {
-    name                       = "preproduction_wp_shh_sr"
+    name                       = "${var.environment}_wp_shh_sr"
     priority                   = 100 // this is the highest so may be subject to change
     direction                  = "Inbound"
     access                     = "Allow"
@@ -100,7 +99,7 @@ resource "azurerm_network_security_group" "preproduction_wordpress_sg" {
   }
 
   security_rule {
-    name                       = "preproduction_wp_http_sr"
+    name                       = "${var.environment}_wp_http_sr"
     priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
@@ -117,13 +116,13 @@ resource "azurerm_network_security_group" "preproduction_wordpress_sg" {
 }
 
 # Web Servers
-resource "azurerm_network_security_group" "preproduction_webservers_sg" {
+resource "azurerm_network_security_group" "webservers_sg" {
   name                = "webservers_sg"
-  location            = "${azurerm_resource_group.preproduction_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preproduction_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
   
   security_rule {
-    name                       = "preproduction_proxy_shh_sr"
+    name                       = "${var.environment}_proxy_shh_sr"
     priority                   = 100 // this is the highest so may be subject to change
     direction                  = "Inbound"
     access                     = "Allow"
@@ -135,7 +134,7 @@ resource "azurerm_network_security_group" "preproduction_webservers_sg" {
   }
 
   security_rule {
-    name                       = "preproduction_proxy_https_sr"
+    name                       = "${var.environment}_proxy_https_sr"
     priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
@@ -147,7 +146,7 @@ resource "azurerm_network_security_group" "preproduction_webservers_sg" {
   }
 
   security_rule {
-    name                       = "preproduction_proxy_http_sr"
+    name                       = "${var.environment}_proxy_http_sr"
     priority                   = 102
     direction                  = "Inbound"
     access                     = "Allow"
@@ -158,9 +157,7 @@ resource "azurerm_network_security_group" "preproduction_webservers_sg" {
     destination_address_prefix = "*"
   }
 
-  
   tags {
     environment = "${var.environment}"
   }
 }
-

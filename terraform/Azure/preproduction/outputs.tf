@@ -1,7 +1,7 @@
 # Create output for dmz environment to use for vnet peering
-output "preproduction_vnet_id" 
+output "vnet_id" 
 {
-  value = "${azurerm_virtual_network.preproduction_vnet.id}"
+  value = "${azurerm_virtual_network.vnet.id}"
 }
 
 output "azurerm_storage_share_url" 

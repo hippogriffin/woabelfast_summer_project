@@ -42,11 +42,12 @@ firewall_allowed_tcp_ports:
 java_packages: "java-1.8.0-openjdk.x86_64"
 
 custom_yum_installs:
-  - ansible
   - python
   - python-pip
 
 custom_pip_installs:
   - boto
+  - ansible
   - ansible[azure]
   - awscli
+  - azure-cli

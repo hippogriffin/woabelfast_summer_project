@@ -1,8 +1,8 @@
 # ELB for WordPress Servers
-resource "aws_elb" "preproduction_wordpress_elb" {
-  name            = "preproduction-wordpress-elb"
+resource "aws_elb" "wordpress_elb" {
+  name            = "${var.environment}-wordpress-elb"
   subnets         = ["${aws_instance.wordpress.*.subnet_id}"]
-  security_groups = ["${aws_security_group.preproduction_wp_servers.id}"]
+  security_groups = ["${aws_security_group.wp_servers.id}"]
   internal        = true
 
   listener {
@@ -27,18 +27,18 @@ resource "aws_elb" "preproduction_wordpress_elb" {
   connection_draining_timeout = 400
 
   tags {
-    Name        = "${local.preproduction_wp_server_elb}"
+    Name        = "${local.wp_server_elb}"
     terraform   = "true"
     Environment = "${var.environment}"
   }
 }
 
 # ELB for webservers
-resource "aws_elb" "preproduction_webserver_elb" {
-  name                        = "${local.preproduction_webserver_elb}"
-  subnets                     = ["${aws_subnet.preproduction_public_subnet-1a.id}", "${aws_subnet.preproduction_public_subnet-1b.id}"]
+resource "aws_elb" "webserver_elb" {
+  name                        = "${local.webserver_elb}"
+  subnets                     = ["${aws_subnet.public_subnet-1a.id}", "${aws_subnet.public_subnet-1b.id}"]
   instances                   = ["${aws_instance.proxy-servers.*.id}"]
-  security_groups             = ["${aws_security_group.preproduction_elb_public_sg.id}"]
+  security_groups             = ["${aws_security_group.elb_public_sg.id}"]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
@@ -57,7 +57,7 @@ resource "aws_elb" "preproduction_webserver_elb" {
     instance_protocol  = "http"
     lb_port            = 443
     lb_protocol        = "https"
-    ssl_certificate_id = "${aws_acm_certificate_validation.cert.certificate_arn}"
+    ssl_certificate_id = "${aws_iam_server_certificate.aws_cert.arn}"
   }
 
   health_check {
@@ -69,7 +69,7 @@ resource "aws_elb" "preproduction_webserver_elb" {
   }
 
   tags {
-    Name        = "${local.preproduction_webserver_elb}"
+    Name        = "${local.webserver_elb}"
     Terraform   = "true"
     Environment = "${var.environment}"
   }

@@ -1,7 +1,7 @@
-#VPC Peering configuration for Preproduction Environment
+#VPC Peering configuration
 
 resource "aws_vpc_peering_connection" "mgmt_to_preproduction" {
-  vpc_id      = "${aws_vpc.preproduction_vpc.id}"
+  vpc_id      = "${aws_vpc.vpc.id}"
   peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}"
   auto_accept = "true"
 
@@ -23,11 +23,11 @@ resource "aws_vpc_peering_connection" "mgmt_to_preproduction" {
 # DMZ VPC Peering Connection
 resource "aws_vpc_peering_connection" "DMZ" {
   peer_vpc_id = "${data.terraform_remote_state.dmz_remote_state.dmz_vpc_id}"
-  vpc_id      = "${aws_vpc.preproduction_vpc.id}"
+  vpc_id      = "${aws_vpc.vpc.id}"
   auto_accept = true
 
   tags {
-    Name        = "DMZ-to-Preproduction_Peer"
+    Name        = "DMZ-to-${var.environment}-Peer"
     Environment = "${var.environment}"
     Terraform   = "true"
   }

@@ -1,13 +1,13 @@
-# EC2 Instances in the Preproduction Environment
+# EC2 Instances
 
 resource "aws_instance" "wordpress" {
   ami                    = "${var.ami}"
   count                  = "${var.instance_count}"
   instance_type          = "${var.wordpress_instance_type}"
-  subnet_id              = "${aws_subnet.preproduction_wordpress.id}"
-  vpc_security_group_ids = ["${aws_security_group.preproduction_wp_servers.id}"]
-  private_ip             = "${format("${local.preproduction_wp_server_ips}", count.index + 10)}"
-  key_name               = "${aws_key_pair.preproduction_key.key_name}"
+  subnet_id              = "${aws_subnet.wordpress.id}"
+  vpc_security_group_ids = ["${aws_security_group.wp_servers.id}"]
+  private_ip             = "${format("${local.wp_server_ips}", count.index + 10)}"
+  key_name               = "${aws_key_pair.key.key_name}"
   user_data              = "${file("scripts/init.cfg")}"
 
   lifecycle {
@@ -15,10 +15,10 @@ resource "aws_instance" "wordpress" {
   }
 
   tags {
-    Name        = "${format("${local.preproduction_wp_server_names}", count.index + 1)}"
+    Name        = "${format("${local.wp_server_names}", count.index + 1)}"
     Environment = "${var.environment}"
-    Role        = "${var.preproduction_wp_server_name}"
-    EnvRole     = "${local.preproduction_wp_env_role}"
+    Role        = "${var.wp_server_name}"
+    EnvRole     = "${local.wp_env_role}"
   }
 }
 
@@ -26,10 +26,10 @@ resource "aws_instance" "proxy-servers" {
   ami                    = "${var.ami}"
   count                  = "${var.instance_count}"
   instance_type          = "${var.proxy_instance_type}"
-  subnet_id              = "${aws_subnet.preproduction_webserver_subnet.id}"
-  vpc_security_group_ids = ["${aws_security_group.preproduction_web_servers.id}"]
-  private_ip             = "${format("${local.preproduction_webserver_ips}", count.index + 10)}"
-  key_name               = "${aws_key_pair.preproduction_key.key_name}"
+  subnet_id              = "${aws_subnet.webserver_subnet.id}"
+  vpc_security_group_ids = ["${aws_security_group.web_servers.id}"]
+  private_ip             = "${format("${local.webserver_ips}", count.index + 10)}"
+  key_name               = "${aws_key_pair.key.key_name}"
   user_data              = "${file("scripts/init.cfg")}"
 
   lifecycle {
@@ -37,9 +37,9 @@ resource "aws_instance" "proxy-servers" {
   }
 
   tags {
-    Name        = "${format("${local.preproduction_webserver_names}", count.index + 1)}"
+    Name        = "${format("${local.webserver_names}", count.index + 1)}"
     Environment = "${var.environment}"
-    Role        = "${var.preproduction_webserver_name}"
-    EnvRole     = "${local.preproduction_proxy_env_role}"
+    Role        = "${var.webserver_name}"
+    EnvRole     = "${local.proxy_env_role}"
   }
 }

@@ -1,1 +1,1 @@
-ansible_ssh_common_args: '-F ../azuressh.cfg'
+ansible_ssh_common_args: '-F /var/lib/jenkins/workspace/Ansibe_Azure_Scheduled_Deployment/ansible/azuressh.cfg'

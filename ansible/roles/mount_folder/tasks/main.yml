@@ -34,4 +34,5 @@
       src: "{{ mount_source }}"
       fstype: "{{ filesystem }}"
       state: "{{ state }}" 
+      opts: "{{ mount_options }}"
     

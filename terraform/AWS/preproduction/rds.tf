@@ -21,7 +21,7 @@ resource "aws_db_instance" "rds" {
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name       = "main"
+  name       = "${var.environment}-main"
   subnet_ids = ["${aws_subnet.db_subnet.id}", "${aws_subnet.db_subnet_backup.id}"]
 
   tags {

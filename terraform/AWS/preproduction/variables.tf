@@ -98,9 +98,9 @@ variable "private_domain" {
 
 locals {
   wp_server_names = "aws-pp-wp-%02d"
-  wp_server_ips   = "10.123.2.%02d"
+  wp_server_ips   = "10.124.2.%02d"
   webserver_names = "aws-pp-pxy-%02d"
-  webserver_ips   = "10.123.1.%02d"
+  webserver_ips   = "10.124.1.%02d"
   webserver_elb   = "${var.environment}-webserver-elb"
   wp_server_elb   = "${var.environment}-wp-server-elb"
   wp_env_role     = "${var.environment}_${var.wp_server_name}"

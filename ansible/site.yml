@@ -25,9 +25,9 @@
   roles:
     - yum_packages
     - geerlingguy.nginx
-    - mount_folder
     - PHP
     - wordpress
+    - mount_folder
 
 - name: configure jenkins
   hosts: tag_Role_jenkins

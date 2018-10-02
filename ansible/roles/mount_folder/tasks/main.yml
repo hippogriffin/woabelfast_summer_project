@@ -1,10 +1,10 @@
 #woabelfast folder
   - name: Check if woabelfast exists
-    stat: path=/usr/share/nginx/woabelfast
+    stat: path="/usr/share/nginx/{{ wordpress_server_name }}"
     register: woa
 
   - file:
-      path: /usr/share/nginx/woabelfast
+      path: "/usr/share/nginx/{{ wordpress_server_name }}"
       state: directory
       mode: 0755
     when: woa.stat.exists == false
@@ -22,7 +22,7 @@
 
 # Creating Symbolic Link
   - file:
-      dest: /usr/share/nginx/woabelfast
+      dest: "/usr/share/nginx/{{ wordpress_server_name }}/wp-content"
       src: "{{ mount_path }}"
       state: link 
       force: yes

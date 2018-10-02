@@ -37,8 +37,8 @@ nginx_fastcgi_params: /etc/nginx/fastcgi_params
 wordpress_conf: /etc/nginx/conf.d/
 listen_port: 80
 wordpress_server_name: "{{ env }}.{{ domain }}"
-wordpress_root: "/usr/share/nginx/woabelfast/{{ wordpress_server_name }}"
-wordpress_logs: "/usr/share/nginx/woabelfast/{{ wordpress_server_name }}"
+wordpress_root: "/usr/share/nginx/{{ wordpress_server_name }}"
+wordpress_logs: "/usr/share/nginx/{{ wordpress_server_name }}"
 wordpress_conf_dest: "/etc/nginx/conf.d/{{ wordpress_server_name }}.conf"
 wordpress_conf_name: "{{ wordpress_server_name }}.conf"
 wordpress_db_conf: "/usr/share/nginx/{{ wordpress_server_name }}/wp-config.php"
@@ -49,19 +49,19 @@ wordpress_error_log: /var/log/nginx/wordpress_error.log
 wordpress_index: index index.php index.html index.htm
 wordpress_fastcgi_pass: localhost:9000
 modify_hostname: true
-wordpress_parent_path: /usr/share/nginx/woabelfast
+wordpress_parent_path: /usr/share/nginx/
 wordpress_owner: nginx
 wordpress_group: nginx
 
 ##php-fpm config
 php_server_name: "phpserver.{{ wordpress_server_name }}"
-php_filesystem: "/mnt/azure-storage-share/woabelfast/"
-php_root: "/mnt/azure-storage-share/woabelfast/{{ php_server_name }}"
+php_filesystem: "/usr/share/nginx/"
+php_root: "/usr/share/nginx/{{ php_server_name }}"
 php_index_files: "index index.html index.htm index.php"
 php_conf_template: virtual.conf.j2
 php_conf: virtual.conf
-phpfpm_path: "/mnt/azure-storage-share/woabelfast/{{ php_server_name }}/"
-phpfpm_dest: "/mnt/azure-storage-share/woabelfast/{{ php_server_name }}/index.php"
+phpfpm_path: "/usr/share/nginx/{{ php_server_name }}/"
+phpfpm_dest: "/usr/share/nginx/{{ php_server_name }}/index.php"
 phpfpm_template: phpfpm.conf.j2
 php_access_log: /var/log/nginx/php_access.log
 php_error_log: /var/log/nginx/php_error.log

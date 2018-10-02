@@ -64,6 +64,9 @@
     group: wordpress
     mode: 0644
 
+- name: Check if wpconfig exists
+  stat: path=/usr/share/nginx/woabelfast/preview.woabelfast.co.uk/wp-config.php
+  register: wpconfig
 
 - name: wpconfig
   copy:
@@ -73,12 +76,13 @@
     group: wordpress
     mode: 0644
     remote_src: yes
+  when: wpconfig.stat.exists == false
 
 - name: Update WordPress config file
   lineinfile:
-    dest=/usr/share/nginx/woabelfast/preview.woabelfast.co.uk/wp-config.php
-    regexp="{{ item.regexp }}"
-    line="{{ item.line }}"
+    dest: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk/wp-config.php
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
   with_items:
     - {'regexp': "define\\('DB_NAME', '(.)+'\\);", 'line': "define('DB_NAME', '{{wp_db_name}}');"}        
     - {'regexp': "define\\('DB_USER', '(.)+'\\);", 'line': "define('DB_USER', '{{wp_db_user}}');"}        
@@ -89,7 +93,7 @@
     - {'regexp': "define\\('WP_UPLOADS', '(.)+'\\);", 'line': "define('WP_UPLOADS', '{{wp_uploads}}');"}  
 
 - name: Change ownership of WordPress installation
-  file: 
+  file:
     path: "{{ wordpress_root }}"
     state: directory
     owner: wordpress

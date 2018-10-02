@@ -54,16 +54,6 @@
     group: wordpress
     mode: 0644
 
-- name: Change ownership of WordPress installation
-  file: 
-    path: "{{ wordpress_root }}"
-    state: directory
-    owner: wordpress
-    group: wordpress
-    mode: 0755
-    recurse: yes
-
-
 
 - name: wpconfig
   copy:
@@ -86,6 +76,15 @@
     - {'regexp': "define\\('DB_HOST', '(.)+'\\);", 'line': "define('DB_HOST', '{{wp_db_host}}');"}
     - {'regexp': "define\\('WP_HOME', '(.)+'\\);", 'line': "define('WP_HOME', '{{wp_home}}');"}
     - {'regexp': "define\\('WP_SITEURL', '(.)+'\\);", 'line': "define('WP_SITEURL', '{{wp_site_url}}');"}
-    - {'regexp': "define\\('WP_UPLOADS', '(.)+'\\);", 'line': "define('WP_UPLOADS', '{{wp_uploads}}');"}    
+    - {'regexp': "define\\('WP_UPLOADS', '(.)+'\\);", 'line': "define('WP_UPLOADS', '{{wp_uploads}}');"}  
+
+- name: Change ownership of WordPress installation
+  file: 
+    path: "{{ wordpress_root }}"
+    state: directory
+    owner: wordpress
+    group: wordpress
+    mode: 0755
+    recurse: yes  
 
 - include: services.yml

@@ -2,6 +2,8 @@
 
 custom_yum_installs:
   - cifs-utils
+  - samba-common
+  - samba-client
 
 #Firewall Config
 

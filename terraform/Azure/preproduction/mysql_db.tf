@@ -23,7 +23,7 @@ resource "azurerm_mysql_server" "mysql_server" {
 
 resource "azurerm_mysql_database" "mysql_db" {
   name                = "${var.environment}_db"
-  resource_group_name = "${azurerm_resource_group.g.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
   server_name         = "${azurerm_mysql_server.mysql_server.name}"
   charset             = "utf8"
   collation           = "utf8_unicode_ci"

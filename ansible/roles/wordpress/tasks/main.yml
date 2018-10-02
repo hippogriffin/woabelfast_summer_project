@@ -64,7 +64,7 @@
     remote_src: yes
   when: config.stat.exists == false
 
-  - name: Update WordPress config file
+- name: Update WordPress config file
   lineinfile:
     dest: "{{ wordpress_root }}/wp-config.php"
     regexp: "{{ item.regexp }}"

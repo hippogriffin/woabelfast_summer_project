@@ -66,7 +66,7 @@
 
 - name: Check if wpconfig exists
   stat: path=/usr/share/nginx/woabelfast/preview.woabelfast.co.uk/wp-config.php
-  register: wpconfig
+  register: config
 
 - name: wpconfig
   copy:
@@ -76,7 +76,7 @@
     group: wordpress
     mode: 0644
     remote_src: yes
-  when: wpconfig.stat.exists == false
+  when: config.stat.exists == false
 
 - name: Update WordPress config file
   lineinfile:

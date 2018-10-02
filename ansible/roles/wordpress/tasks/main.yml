@@ -24,17 +24,15 @@
 - name: download wordpress
   get_url:
     url: https://wordpress.org/latest.tar.gz
-    dest: /tmp/wordpress.tar.gz
+    dest: ~/wordpress.tar.gz
     validate_certs: no
-  become: true
 
 - name: extract wordpress archive
   unarchive:
-    src: /tmp/wordpress.tar.gz
+    src: ~/wordpress.tar.gz
     dest: "{{ wordpress_root }}"
     copy: no
     extra_opts: [--strip-components=1]
-  become: true
 
 - name: Add group "wordpress"
   group: name=wordpress
@@ -57,7 +55,15 @@
     mode: 0644
 
 - name: Change ownership of WordPress installation
-  file: path="{{ wordpress_root }}" owner=wordpress group=wordpress state=directory recurse=yes
+  file: 
+    path: "{{ wordpress_root }}"
+    state: directory
+    owner: wordpress
+    group: wordpress
+    mode: 0755
+    recurse: yes
+
+
 
 - name: wpconfig
   copy:

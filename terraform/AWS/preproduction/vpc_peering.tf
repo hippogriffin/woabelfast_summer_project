@@ -1,6 +1,6 @@
 #VPC Peering configuration
 
-resource "aws_vpc_peering_connection" "mgmt_to_preproduction" {
+resource "aws_vpc_peering_connection" "mgmt_to_env" {
   vpc_id      = "${aws_vpc.vpc.id}"
   peer_vpc_id = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_vpc_id}"
   auto_accept = "true"

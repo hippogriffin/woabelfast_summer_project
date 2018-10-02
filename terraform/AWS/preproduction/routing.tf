@@ -24,29 +24,29 @@ resource "aws_route" "private_route" {
   nat_gateway_id         = "${aws_nat_gateway.natgw.id}"
 }
 
-# Creating a route for vpc_peering between Preproduction and Management
-resource "aws_route" "preproduction_to_mgmt" {
+# Creating a route for vpc_peering between the Enviornment and Management
+resource "aws_route" "env_to_mgmt" {
   route_table_id            = "${aws_route_table.private_route_table.id}"
   destination_cidr_block    = "${var.mgmt_sub}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.mgmt_to_preproduction.id}"
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.mgmt_to_env.id}"
 }
 
 # ################################################################
-# Creating a route for vpc_peering between Management and Preproduction
-resource "aws_route" "mgmt_to_preproduction" {
+# Creating a route for vpc_peering between Management and the Environment
+resource "aws_route" "mgmt_to_env" {
   route_table_id            = "${data.terraform_remote_state.woa-belfast-mgmt.mgmt_route_table_id}"
   destination_cidr_block    = "${aws_vpc.vpc.cidr_block}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.mgmt_to_preproduction.id}"
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.mgmt_to_env.id}"
 }
 
-# Creating a route for vpc_peering between Preproduction and DMZ
-resource "aws_route" "preproduction_to_dmz" {
+# Creating a route for vpc_peering between the Enviornment and DMZ
+resource "aws_route" "env_to_dmz" {
   route_table_id            = "${aws_route_table.private_route_table.id}"
   destination_cidr_block    = "${var.dmz_sub}"
   vpc_peering_connection_id = "${aws_vpc_peering_connection.DMZ.id}"
 }
 
-resource "aws_route" "dmz_to_preproduction" {
+resource "aws_route" "dmz_to_env" {
   route_table_id            = "${data.terraform_remote_state.dmz_remote_state.dmz_route_table_id}"
   destination_cidr_block    = "${aws_vpc.vpc.cidr_block}"
   vpc_peering_connection_id = "${aws_vpc_peering_connection.DMZ.id}"

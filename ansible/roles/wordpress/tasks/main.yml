@@ -34,7 +34,7 @@
   when: wp_status.stat.exists == false
 
 - name: Check if Wordpress has been extracted
-  stat: path="{{ wordpress_root }}/wp-admin"
+  stat: path="{{ wordpress_root }}/wp-config-sample.php"
   register: extracted
 
 - name: extract wordpress archive

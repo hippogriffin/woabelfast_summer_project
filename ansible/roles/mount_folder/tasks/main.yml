@@ -22,7 +22,7 @@
 
 # Creating Symbolic Link
   - file:
-      dest: "/usr/share/nginx/{{ wordpress_server_name }}/wp-content"
+      dest: "/usr/share/nginx/{{ wordpress_server_name }}/wp-content/media"
       src: "{{ mount_path }}"
       state: link 
       force: yes

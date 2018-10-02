@@ -4,6 +4,6 @@ terraform {
     resource_group_name  = "tfstate_rg"
     storage_account_name = "woabelfasttfstate"
     container_name       = "woabelfast-tfstate"
-    key                  = "${var.environment}.terraform.tfstate"
+    key                  = "preproduction.terraform.tfstate"
   }
 }

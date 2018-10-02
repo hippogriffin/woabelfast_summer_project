@@ -7,6 +7,7 @@
 - name: disable selinux
   selinux:
     state: permissive
+    policy: targeted
 
 - name: Create wordpress root and logs directories
   file: path="{{ item }}" state=directory

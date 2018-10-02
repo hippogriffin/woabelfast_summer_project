@@ -87,4 +87,12 @@
     mode: 0755
     recurse: yes  
 
+- name: Making content folder
+  file:
+    path: "{{ wordpress_root }}/{{ wp_uploads }}"
+    state: directory
+    owner: wordpress
+    group: wordpress
+    mode: 0755
+
 - include: services.yml

@@ -6,7 +6,7 @@ resource "azurerm_availability_set" "proxy_avset" {
   managed = true
 
   tags {
-    environment = "Preview"
+    environment = "${var.environment}"
   }
 }
 
@@ -18,6 +18,6 @@ resource "azurerm_availability_set" "wordpress_avset" {
   managed = true
 
   tags {
-    environment = "Preview"
+    environment = "${var.environment}"
   }
 }

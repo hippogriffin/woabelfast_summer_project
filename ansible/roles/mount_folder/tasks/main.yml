@@ -1,10 +1,10 @@
 #woabelfast folder
   - name: Check if woabelfast exists
-    stat: path=/usr/share/nginx/woabelfast
+    stat: path="/usr/share/nginx/{{ wordpress_server_name }}"
     register: woa
 
   - file:
-      path: /usr/share/nginx/woabelfast
+      path: "/usr/share/nginx/{{ wordpress_server_name }}"
       state: directory
       mode: 0755
     when: woa.stat.exists == false
@@ -20,12 +20,12 @@
       mode: 0755
     when: mount.stat.exists == false
 
-# Creating Symbolic Link
-  - file:
-      dest: /usr/share/nginx/woabelfast
-      src: "{{ mount_path }}"
-      state: link 
-      force: yes
+## Creating Symbolic Link
+#  - file:
+#      dest: "/usr/share/nginx/{{ wordpress_server_name }}/wp-content/media"
+#      src: "{{ mount_path }}"
+#      state: link 
+#      force: yes
 
 # Mount drives
   - name: Mounting Device
@@ -34,4 +34,5 @@
       src: "{{ mount_source }}"
       fstype: "{{ filesystem }}"
       state: "{{ state }}" 
+      opts: "{{ mount_options }}"
     

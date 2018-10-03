@@ -50,3 +50,4 @@ custom_pip_installs:
   - boto
   - ansible[azure]
   - awscli
+  - azure-cli

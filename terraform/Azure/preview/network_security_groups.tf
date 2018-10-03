@@ -26,7 +26,7 @@ resource "azurerm_network_security_group" "preview_db_sg" {
     protocol                   = "TCP"
     source_port_range          = "*"
     destination_port_range     = "3306"
-    source_address_prefix      = "${var.preview_webserver_name}"
+    source_address_prefix      = "${var.preview_wordpress_cidr}"
     destination_address_prefix = "*"
   }
 

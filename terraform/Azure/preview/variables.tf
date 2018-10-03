@@ -11,6 +11,7 @@ variable "azure_dmz_cidr" {
   default = "172.16.0.0/16"
 }
 
+# IP needs to change per environment #
 variable "preview_cidr" {
   default = "172.17.0.0/16"
 }
@@ -95,14 +96,17 @@ variable "prefix" {
   default = "wordpress"
 }
 
+# IP needs to change per environment #
 variable "preview_proxy_cidr" {
   default = "172.17.1.0/24"
 }
 
+# IP needs to change per environment #
 variable "preview_wordpress_cidr" {
   default = "172.17.2.0/24"
 }
 
+# IP needs to change per environment #
 variable "preview_db_cidr" {
   default = "172.17.3.0/24"
 }
@@ -112,7 +116,7 @@ variable "preview_webserver_name" {
 }
 
 locals {
-  preview_webserver_ips = "172.18.0.%02d"
+#  preview_webserver_ips = "172.18.0.%02d"
 
   preview_webserver_names = "az-pw-pxy-%02d"
 

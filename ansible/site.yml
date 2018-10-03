@@ -10,7 +10,9 @@
     - yum_packages
 
 - name: Install NGINX on proxy
-  hosts: tag_Role_webserver
+  hosts:
+    - tag_Role_wordpress
+    - Role_wordpress
   become: true
   roles:
     - geerlingguy.nginx
@@ -23,9 +25,9 @@
   roles:
     - yum_packages
     - geerlingguy.nginx
-    - mount_folder
     - PHP
     - wordpress
+    - mount_folder
 
 - name: configure jenkins
   hosts: tag_Role_jenkins

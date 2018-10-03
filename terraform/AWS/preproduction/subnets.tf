@@ -1,73 +1,73 @@
-#Configuring Preproduction Subnets for Wordpress
+#Configuring Subnets for Wordpress
 
-resource "aws_subnet" "preproduction_wordpress" {
-  vpc_id     = "${aws_vpc.preproduction_vpc.id}"
-  cidr_block = "${var.preproduction_wordpress_cidr}"
+resource "aws_subnet" "wordpress" {
+  vpc_id     = "${aws_vpc.vpc.id}"
+  cidr_block = "${var.wordpress_cidr}"
 
   tags {
-    Name        = "Preproduction WordPress Server"
-    environment = "preproduction"
+    Name        = "${var.environment} WordPress Server"
+    environment = "${var.environment}"
     terraform   = "true"
   }
 }
 
-# Preproduction Subnet 
+# Subnet 
 
-resource "aws_subnet" "preproduction_webserver_subnet" {
-  vpc_id     = "${aws_vpc.preproduction_vpc.id}"
-  cidr_block = "${var.preproduction_webserver_cidr}"
+resource "aws_subnet" "webserver_subnet" {
+  vpc_id     = "${aws_vpc.vpc.id}"
+  cidr_block = "${var.webserver_cidr}"
 
   tags {
-    Name        = "Preproduction Web Server"
-    environment = "preproduction"
+    Name        = "${var.environment} Web Server"
+    environment = "${var.environment}"
     terraform   = "true"
   }
 }
 
-resource "aws_subnet" "preproduction_db_subnet" {
-  vpc_id            = "${aws_vpc.preproduction_vpc.id}"
-  cidr_block        = "${var.preproduction_db_cidr}"
+resource "aws_subnet" "db_subnet" {
+  vpc_id            = "${aws_vpc.vpc.id}"
+  cidr_block        = "${var.db_cidr}"
   availability_zone = "${var.avail_zone_a}"
 
   tags {
-    Name        = "Preproduction DB Subnet"
-    environment = "preproduction"
+    Name        = "${var.environment} DB Subnet"
+    environment = "${var.environment}"
     terraform   = "true"
   }
 }
 
-resource "aws_subnet" "preproduction_db_subnet_backup" {
-  vpc_id            = "${aws_vpc.preproduction_vpc.id}"
-  cidr_block        = "${var.preproduction_db_cidr_bkup}"
+resource "aws_subnet" "db_subnet_backup" {
+  vpc_id            = "${aws_vpc.vpc.id}"
+  cidr_block        = "${var.db_cidr_bkup}"
   availability_zone = "${var.avail_zone_b}"
 
   tags {
-    Name        = "Preproduction DB Subnet Backup"
-    environment = "preproduction"
+    Name        = "${var.environment} DB Subnet Backup"
+    environment = "${var.environment}"
     terraform   = "true"
   }
 }
 
-resource "aws_subnet" "preproduction_public_subnet-1b" {
-  vpc_id            = "${aws_vpc.preproduction_vpc.id}"
-  cidr_block        = "${var.preproduction_public_sub_1b}"
+resource "aws_subnet" "public_subnet-1b" {
+  vpc_id            = "${aws_vpc.vpc.id}"
+  cidr_block        = "${var.public_sub_1b}"
   availability_zone = "${var.avail_zone_b}"
 
   tags {
-    Name        = "Preproduction Public Subnet 1b"
-    environment = "preproduction"
+    Name        = "${var.environment} Public Subnet 1b"
+    environment = "${var.environment}"
     terraform   = "true"
   }
 }
 
-resource "aws_subnet" "preproduction_public_subnet-1a" {
-  vpc_id            = "${aws_vpc.preproduction_vpc.id}"
-  cidr_block        = "${var.preproduction_public_sub_1a}"
+resource "aws_subnet" "public_subnet-1a" {
+  vpc_id            = "${aws_vpc.vpc.id}"
+  cidr_block        = "${var.public_sub_1a}"
   availability_zone = "${var.avail_zone_a}"
 
   tags {
-    Name        = "Preproduction Public Subnet 1a"
-    environment = "preproduction"
+    Name        = "${var.environment} Public Subnet 1a"
+    environment = "${var.environment}"
     terraform   = "true"
   }
 }

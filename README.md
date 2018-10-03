@@ -507,6 +507,16 @@ In Azure/preview, the resource group (rg.tf) and vnet have been set up with init
 
 The network security group and subnets have been created for the external facing load balancer for Preview.  The NSG allows inbound traffic on port 80 and 443.
 
+# Support 
+
+Two scripts were added which start up or shutdown any virtual machines in the specified environments. 
+
+The scripts have been parameterised so when running them make sure to specify the environment you wish to perform the action on, e.g...
+
+        ./shutdown_instances preproduction
+
+Relevant jobs were added to Jenkins which starts up all instances at 8.30am everyday, and shuts them down at 5.30pm. 
+
 
 
 # Training and Resources 

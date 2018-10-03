@@ -1,13 +1,13 @@
  # Where will device be mounted EG /mnt/azure-storage-share
-mount_path: /mnt/azure-storage-share
+mount_path: /usr/share/nginx/{{ wordpress_server_name }}/wp-content/
  # Name of mounted device
-mount_source: //sharedstorageaccount.file.core.windows.net/azure-storage-share
+mount_source: //sharedstorageaccount.file.core.windows.net/azure-storage-share/preview-wp
  # mounted device file system
 filesystem: cifs
  # present/mounted/absent/unmounted
 state: mounted
  # configure mount options
-mount_options: vers=3.0,username=sharedstorageaccount,password=OIANlMdGFxcsym5bT1UfOlV/KUIN6K4zEc6VUUbLkpcXauyePdSJX2ae9KcBw+iLFyFhY8JLRTqj3bwOJ/Y7RQ==,dir_mode=0777,file_mode=0777,sec=ntlmssp
+mount_options: vers=3.0,username=sharedstorageaccount,password=KTjLvC5t0AQsv/utTdZ8SvoT5qPXlC8mM/PZ4YRl7vGhL36kC0AR6P9chrXwe3ir5DkAZoyEcSvq5IzodXScZQ==,defaults,uid=1000,gid=1000
 nginx_vhosts:
   - listen: "80 default_server" 
     server_name: "{{ wordpress_server_name }}" # default: N/A

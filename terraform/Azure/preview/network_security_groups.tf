@@ -152,7 +152,7 @@ resource "azurerm_network_security_group" "preview_webservers_sg" {
     protocol                   = "TCP"
     source_port_range          = "*"
     destination_port_range     = "443"
-    source_address_prefix      = ["${var.kainos_ip}", "172.17.100.0/24", "172.17.101.0/24"]
+    source_address_prefixes    = ["${var.kainos_ip}", "172.17.100.0/24", "172.17.101.0/24"]
     destination_address_prefix = "*"
   }
 
@@ -164,7 +164,7 @@ resource "azurerm_network_security_group" "preview_webservers_sg" {
     protocol                   = "TCP"
     source_port_range          = "*"
     destination_port_range     = "80"
-    source_address_prefix      = ["${var.kainos_ip}", "172.17.100.0/24", "172.17.101.0/24"]
+    source_address_prefixes    = ["${var.kainos_ip}", "172.17.100.0/24", "172.17.101.0/24"]
     destination_address_prefix = "*"
   }
 

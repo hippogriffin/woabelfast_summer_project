@@ -57,9 +57,3 @@ resource "aws_route" "mgmt_to_azure_private_route" {
   destination_cidr_block = "172.16.0.0/16"
   instance_id            = "${aws_instance.strongswan.id}"
 }
-
-resource "aws_route" "mgmt_to_azure_public_route" {
-  route_table_id         = "${aws_route_table.mgmt_public_route_table.id}"
-  destination_cidr_block = "172.16.0.0/16"
-  instance_id            = "${aws_instance.strongswan.id}"
-}

@@ -7,6 +7,6 @@ mount_source: []
  # mounted device file system
 filesystem: []
  # Mount Options for device
-mount_options: []
+mount_options:
  # present/mounted/absent/unmounted
 state: []

@@ -1,5 +1,5 @@
  # Where will device be mounted EG /mnt/azure-storage-share
-mount_path: /mnt/azure-storage-share/
+mount_path: /usr/share/nginx/{{ wordpress_server_name }}/wp-content/
  # Name of mounted device
 mount_source: //sharedstorageaccount.file.core.windows.net/azure-storage-share/preview-wp
  # mounted device file system

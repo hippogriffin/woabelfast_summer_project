@@ -1,5 +1,5 @@
  # Where will device be mounted EG /mnt/efs
-mount_path: /mnt/efs
+mount_path: /usr/share/nginx/{{ wordpress_server_name }}/wp-content/
  # Name of mounted device
 mount_source: 10.122.2.70:/ 
  # mounted device file system

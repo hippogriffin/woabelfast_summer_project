@@ -6,7 +6,8 @@
 
 - name: disable selinux
   selinux:
-    state: disabled
+    state: permissive
+    policy: targeted
 
 - name: Create wordpress root and logs directories
   file: path="{{ item }}" state=directory
@@ -15,26 +16,28 @@
     - "{{ wordpress_logs }}"
   notify: "restart nginx and php-fpm"
 
-- name:  update /etc/hosts with server name
-  lineinfile:
-    path: "{{ hosts_file }}"
-    line: "^{{ ansible_host }} {{ inventory_hostname }}"
-  notify: "restart nginx and php-fpm"
+- name: Check if wordpress has already been downloaded
+  stat: path=~/wordpress.tar.gz
+  register: wp_status
 
 - name: download wordpress
   get_url:
     url: https://wordpress.org/latest.tar.gz
-    dest: /tmp/wordpress.tar.gz
+    dest: ~/wordpress.tar.gz
     validate_certs: no
-  become: true
+  when: wp_status.stat.exists == false
+
+- name: Check if Wordpress has been extracted
+  stat: path="{{ wordpress_root }}/wp-config-sample.php"
+  register: extracted
 
 - name: extract wordpress archive
   unarchive:
-    src: /tmp/wordpress.tar.gz
+    src: ~/wordpress.tar.gz
     dest: "{{ wordpress_root }}"
     copy: no
     extra_opts: [--strip-components=1]
-  become: true
+  when: extracted.stat.exists == false
 
 - name: Add group "wordpress"
   group: name=wordpress
@@ -47,32 +50,25 @@
   register: "wp_salt"
   become: no
 
-- name: ensure wordpress.conf file exists
-  copy:
-    content: ""
-    dest: "{{ wordpress_conf_dest }}"
-    force: no
-    owner: wordpress
-    group: wordpress
-    mode: 0644
-
-- name: Change ownership of WordPress installation
-  file: path="{{ wordpress_root }}" owner=wordpress group=wordpress state=directory recurse=yes
+- name: Check if wpconfig exists
+  stat: path="{{ wordpress_root }}/wp-config.php"
+  register: config
 
 - name: wpconfig
   copy:
-    src: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk/wp-config-sample.php
-    dest: /usr/share/nginx/woabelfast/preview.woabelfast.co.uk/wp-config.php
+    src: "{{ wordpress_root }}/wp-config-sample.php"
+    dest: "{{ wordpress_root }}/wp-config.php"
     owner: wordpress
     group: wordpress
     mode: 0644
     remote_src: yes
+  when: config.stat.exists == false
 
 - name: Update WordPress config file
   lineinfile:
-    dest=/usr/share/nginx/woabelfast/preview.woabelfast.co.uk/wp-config.php
-    regexp="{{ item.regexp }}"
-    line="{{ item.line }}"
+    dest: "{{ wordpress_root }}/wp-config.php"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
   with_items:
     - {'regexp': "define\\('DB_NAME', '(.)+'\\);", 'line': "define('DB_NAME', '{{wp_db_name}}');"}        
     - {'regexp': "define\\('DB_USER', '(.)+'\\);", 'line': "define('DB_USER', '{{wp_db_user}}');"}        
@@ -80,6 +76,23 @@
     - {'regexp': "define\\('DB_HOST', '(.)+'\\);", 'line': "define('DB_HOST', '{{wp_db_host}}');"}
     - {'regexp': "define\\('WP_HOME', '(.)+'\\);", 'line': "define('WP_HOME', '{{wp_home}}');"}
     - {'regexp': "define\\('WP_SITEURL', '(.)+'\\);", 'line': "define('WP_SITEURL', '{{wp_site_url}}');"}
-    - {'regexp': "define\\('WP_UPLOADS', '(.)+'\\);", 'line': "define('WP_UPLOADS', '{{wp_uploads}}');"}    
+    - {'regexp': "define\\('WP_UPLOADS', '(.)+'\\);", 'line': "define('WP_UPLOADS', '{{wp_uploads}}');"}  
+
+- name: Change ownership of WordPress installation
+  file:
+    path: "{{ wordpress_root }}"
+    state: directory
+    owner: wordpress
+    group: wordpress
+    mode: 0755
+    recurse: yes  
+
+- name: Making content folder
+  file:
+    path: "{{ wordpress_root }}/{{ wp_uploads }}"
+    state: directory
+    owner: wordpress
+    group: wordpress
+    mode: 0755
 
 - include: services.yml

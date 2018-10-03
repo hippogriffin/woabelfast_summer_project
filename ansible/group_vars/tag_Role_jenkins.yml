@@ -47,5 +47,7 @@ custom_yum_installs:
 
 custom_pip_installs:
   - boto
+  - ansible
   - ansible[azure]
   - awscli
+  - azure-cli

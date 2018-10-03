@@ -121,7 +121,7 @@ variable "wordpress_instance_type" {
 }
 
 variable "webserver_name" {
-  default = "preproduction_webserver"
+  default = "webserver"
 }
 
 # Web Servers

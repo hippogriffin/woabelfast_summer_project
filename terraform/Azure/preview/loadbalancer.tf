@@ -6,7 +6,7 @@ resource "azurerm_lb" "loadbalancer" {
     frontend_ip_configuration {
     name                          = "${var.environment}_lb_private_ip"
     subnet_id                     = "${azurerm_subnet.preview_wordpress_subnet.id}"
-    private_ip_address            = "172.17.2.255"
+    private_ip_address            = "172.17.2.250"
     private_ip_address_allocation = "static"
   }
 }

@@ -1,8 +1,8 @@
 resource "azurerm_virtual_machine" "wordpress" {
   name                  = "${format("${local.preview_wordpress_name}", count.index + 3)}"
   count                 = "${var.count}"
-  location              = "${azurerm_resource_group.preview_rg.location}"
-  resource_group_name   = "${azurerm_resource_group.preview_rg.name}"
+  location              = "${azurerm_resource_group.rg.location}"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
   network_interface_ids = ["${element(azurerm_network_interface.preview_wordpress_nic.*.id, count.index + 3)}"]
   availability_set_id   = "${azurerm_availability_set.wordpress_avset.id}"
   vm_size               = "${var.wordpress_vm_size}"
@@ -46,8 +46,8 @@ resource "azurerm_virtual_machine" "wordpress" {
 resource "azurerm_network_interface" "preview_wordpress_nic" {
   name                = "${format("${local.preview_wordpress_nic_name}", count.index + 3)}"
   count               = "${var.count}"
-  location            = "${azurerm_resource_group.preview_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
   ip_configuration {
     name                          = "${format("${local.wordpress_ip_name}", count.index + 3)}"
@@ -59,22 +59,23 @@ resource "azurerm_network_interface" "preview_wordpress_nic" {
 resource "azurerm_network_interface" "preview-proxy" {
   name                = "${format("${local.proxy_nic_name}", count.index + 3)}"
   count               = "${var.count}"
-  location            = "${azurerm_resource_group.preview_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
   ip_configuration {
-    name                          = "${format("${local.proxy_ip_name}", count.index + 3)}"
-    subnet_id                     = "${azurerm_subnet.preview_proxy_subnet.id}"
-    private_ip_address_allocation = "dynamic"
+    name                                    = "${format("${local.proxy_ip_name}", count.index + 3)}"
+    subnet_id                               = "${azurerm_subnet.preview_proxy_subnet.id}"
+    private_ip_address_allocation           = "dynamic"
+    load_balancer_backend_address_pools_ids = "${azurerm_lb_backend_address_pool.lb_beap.id}"
   }
 }
 
 resource "azurerm_virtual_machine" "preview-proxy" {
   name                  = "${format("${local.preview_webserver_names}", count.index + 3)}"
   count                 = "${var.count}"
-  location              = "${azurerm_resource_group.preview_rg.location}"
+  location              = "${azurerm_resource_group.rg.location}"
   availability_set_id   = "${azurerm_availability_set.proxy_avset.id}"
-  resource_group_name   = "${azurerm_resource_group.preview_rg.name}"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
   network_interface_ids = ["${element(azurerm_network_interface.preview-proxy.*.id, count.index + 3)}"]
   vm_size               = "${var.proxy_vm_size}"
 

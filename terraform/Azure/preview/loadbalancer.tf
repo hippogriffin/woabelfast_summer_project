@@ -5,7 +5,7 @@ resource "azurerm_lb" "loadbalancer" {
 
     frontend_ip_configuration {
     name                  = "${var.environment}_lb_public_ip"
-    private_ip_address_id = "dynamic"
+    private_ip_address    = "172.17.2.255"
   }
 }
 
@@ -20,14 +20,16 @@ resource "azurerm_lb_rule" "lb_rule" {
   loadbalancer_id                = "${azurerm_lb.loadbalancer.id}"
   name                           = "${var.environment}_lb_rule"
   protocol                       = "Tcp"
-  frontend_port                  = 3389
-  backend_port                   = 3389
+  frontend_port                  = 80
+  backend_port                   = 80
   frontend_ip_configuration_name = "${var.environment}_lb_public_ip"
 }
 
 resource "azurerm_lb_probe" "lb_probe" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
   loadbalancer_id     = "${azurerm_lb.loadbalancer.id}"
+  protocol            = "http"
   name                = "${var.environment}_lb_probe"
-  port                = 22
+  port                = 80
+  request_path        = "/elb_status" // Required if protocol is set to Http. Otherwise, it is not allowed
 }

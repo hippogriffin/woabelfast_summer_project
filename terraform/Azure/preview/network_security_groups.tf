@@ -3,8 +3,8 @@
 # DB server
 resource "azurerm_network_security_group" "preview_db_sg" {
   name                = "db_sg"
-  location            = "${azurerm_resource_group.preview_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
   security_rule {
     name                       = "preview_db_ssh_sr"
@@ -50,8 +50,8 @@ resource "azurerm_network_security_group" "preview_db_sg" {
 # Network security group for public loadbalancer
 resource "azurerm_network_security_group" "preview_sg_lb" {
   name                = "preview_sg_lb"
-  location            = "${azurerm_resource_group.preview_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
     security_rule {
     name                       = "port80_inbound"
@@ -94,8 +94,8 @@ resource "azurerm_network_security_group" "preview_sg_lb" {
 # Wordpress server
 resource "azurerm_network_security_group" "preview_wordpress_sg" {
   name                = "wordpress_sg"
-  location            = "${azurerm_resource_group.preview_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
   security_rule {
     name                       = "preview_wp_shh_sr"
@@ -129,8 +129,8 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
 # Web Servers
 resource "azurerm_network_security_group" "preview_webservers_sg" {
   name                = "webservers_sg"
-  location            = "${azurerm_resource_group.preview_rg.location}"
-  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 
   security_rule {
     name                       = "preview_proxy_shh_sr"

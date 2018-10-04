@@ -1,14 +1,14 @@
 resource "azurerm_public_ip" "preview_app_gw_public_ip" {
   name                         = "${var.environment}_app_gw_public_ip"
-  location                     = "${azurerm_resource_group.preview_rg.location}"
-  resource_group_name          = "${azurerm_resource_group.preview_rg.name}"
+  location                     = "${azurerm_resource_group.rg.location}"
+  resource_group_name          = "${azurerm_resource_group.rg.name}"
   public_ip_address_allocation = "dynamic"
 }
 
 # Create an application gateway/loadbalancer 
 resource "azurerm_application_gateway" "preview_app_gw" {
   name                = "${var.environment}_app_gw"
-  resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
   location            = "${var.location}"
 
   sku {

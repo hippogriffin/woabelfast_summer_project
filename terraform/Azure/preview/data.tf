@@ -15,6 +15,6 @@ data "aws_route53_zone" "selected" {
   }
 
 data "azurerm_public_ip" "preview_app_gw_public_ip" {
-    resource_group_name = "${azurerm_resource_group.preview_rg.name}"
+    resource_group_name = "${azurerm_resource_group.rg.name}"
     name = "${azurerm_public_ip.preview_app_gw_public_ip.name}"
 }

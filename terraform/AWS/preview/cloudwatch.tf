@@ -39,6 +39,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu" {
   threshold                 = "80"
   alarm_description         = "This metric monitors ec2 cpu utilization"
   treat_missing_data        = "ignore"
+  alarm_actions             = [ "${aws_sns_topic.alarm.arn}" ]
 
   dimensions {
     InstanceId = "i-02e4e2fa53aa4d685" //preview wordpress server
@@ -55,6 +56,7 @@ resource "aws_cloudwatch_metric_alarm" "health" {
   statistic                 = "Average"
   threshold                 = "1"
   alarm_description         = "This metric monitors ec2 health status"
+  alarm_actions             = [ "${aws_sns_topic.alarm.arn}" ]
 
   dimensions {
     InstanceId = "i-02e4e2fa53aa4d685" //preview wordpress server

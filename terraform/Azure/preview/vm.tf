@@ -50,9 +50,10 @@ resource "azurerm_network_interface" "preview_wordpress_nic" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   ip_configuration {
-    name                          = "${format("${local.wordpress_ip_name}", count.index + 3)}"
-    subnet_id                     = "${azurerm_subnet.preview_wordpress_subnet.id}"
-    private_ip_address_allocation = "dynamic"
+    name                                    = "${format("${local.wordpress_ip_name}", count.index + 3)}"
+    subnet_id                               = "${azurerm_subnet.preview_wordpress_subnet.id}"
+    private_ip_address_allocation           = "dynamic"
+    load_balancer_backend_address_pools_ids = ["${azurerm_lb_backend_address_pool.lb_beap.id}"]
   }
 }
 
@@ -63,10 +64,9 @@ resource "azurerm_network_interface" "preview-proxy" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   ip_configuration {
-    name                                    = "${format("${local.proxy_ip_name}", count.index + 3)}"
-    subnet_id                               = "${azurerm_subnet.preview_proxy_subnet.id}"
-    private_ip_address_allocation           = "dynamic"
-    load_balancer_backend_address_pools_ids = "${azurerm_lb_backend_address_pool.lb_beap.id}"
+    name                          = "${format("${local.proxy_ip_name}", count.index + 3)}"
+    subnet_id                     = "${azurerm_subnet.preview_proxy_subnet.id}"
+    private_ip_address_allocation = "dynamic"
   }
 }
 

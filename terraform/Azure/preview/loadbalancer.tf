@@ -4,8 +4,9 @@ resource "azurerm_lb" "loadbalancer" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
     frontend_ip_configuration {
-    name                  = "${var.environment}_lb_public_ip"
-    private_ip_address    = "172.17.2.255"
+    name                          = "${var.environment}_lb_public_ip"
+    private_ip_address            = "172.17.2.255"
+    private_ip_address_allocation = "static"
   }
 }
 

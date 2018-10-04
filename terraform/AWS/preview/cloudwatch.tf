@@ -1,6 +1,7 @@
 resource "aws_sns_topic" "alarm" {
   name = "alarms-topic"
   delivery_policy = <<EOF
+
 {
   "http": {
     "defaultHealthyRetryPolicy": {
@@ -20,7 +21,8 @@ resource "aws_sns_topic" "alarm" {
 }
 EOF
   provisioner "local-exec" {
-    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email}"
+
+    command = "aws sns subscribe --region eu-west-1 --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email}"
   }
 
 }

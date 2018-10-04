@@ -138,3 +138,7 @@ variable "preview_rds_elb" {
 variable "kainos_cidr" {
   default = "195.89.171.5/32"
 }
+
+variable "alarms_email" {
+  default = "march@kainos.com"
+}

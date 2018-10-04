@@ -2,12 +2,12 @@
 
 jenkins_plugins:
   - ansible
-  - cloudbees-folder-plugin
-  - categorized-view-plugin
-  - dashboard-view-plugin
-  - disable-failed-job-plugin
-  - job-configuration-history-plugin
-  - configuration-slicing-plugin
+  - cloudbees-folder
+  - categorized-view
+  - dashboard-view
+  - disable-failed-job
+  - job-configuration-history
+  - configuration-slicing
   - cloudbees-credentials
   - ansicolor
   - slack

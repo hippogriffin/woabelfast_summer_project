@@ -44,6 +44,7 @@ java_packages: "java-1.8.0-openjdk.x86_64"
 custom_yum_installs:
   - python
   - python-pip
+  - git
 
 custom_pip_installs:
   - boto

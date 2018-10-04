@@ -74,7 +74,9 @@ resource "aws_iam_user_policy" "jenkins" {
             "acm:*",
             "s3:*",
             "elasticloadbalancing:*",
-            "elasticfilesystem:*"
+            "elasticfilesystem:*",
+            "SNS:*",
+            "CloudWatch:*"
         ],
         "Effect": "Allow",
         "Resource": "*"

@@ -4,7 +4,8 @@ resource "azurerm_lb" "loadbalancer" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
     frontend_ip_configuration {
-    name                          = "${var.environment}_lb_public_ip"
+    name                          = "${var.environment}_lb_private_ip"
+    subnet_id                     = "${azurerm_subnet.preview_wordpress_subnet.name}"
     private_ip_address            = "172.17.2.255"
     private_ip_address_allocation = "static"
   }
@@ -23,7 +24,7 @@ resource "azurerm_lb_rule" "lb_rule" {
   protocol                       = "Tcp"
   frontend_port                  = 80
   backend_port                   = 80
-  frontend_ip_configuration_name = "${var.environment}_lb_public_ip"
+  frontend_ip_configuration_name = "${var.environment}_lb_private_ip"
 }
 
 resource "azurerm_lb_probe" "lb_probe" {

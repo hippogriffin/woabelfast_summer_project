@@ -9,7 +9,7 @@ nginx_vhosts:
     error_log: "/var/log/nginx/preview.error.log"
     extra_parameters: |
         location / {
-          proxy_pass http://172.17.2.255;
+          proxy_pass http://172.17.2.250;
           proxy_set_header Host      $host;
           proxy_set_header X-Real-IP $remote_addr;
         }

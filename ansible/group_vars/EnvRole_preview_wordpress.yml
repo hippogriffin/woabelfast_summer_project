@@ -7,7 +7,7 @@ filesystem: cifs
  # present/mounted/absent/unmounted
 state: mounted
  # configure mount options
-mount_options: vers=3.0,username=sharedstorageaccount,password=KTjLvC5t0AQsv/utTdZ8SvoT5qPXlC8mM/PZ4YRl7vGhL36kC0AR6P9chrXwe3ir5DkAZoyEcSvq5IzodXScZQ==,defaults,uid=1000,gid=1000
+mount_options: vers=3.0,username=sharedstorageaccount,password=E68LH/ISQCltKJXv1wqP/mPwVPuJoFJT97T6uIQn9kvAWLL2s/xVhIYE+lbx2anRk6eC6+EDAsq78K6++CbzlQ==,defaults,uid=1000,gid=1000
 nginx_vhosts:
   - listen: "80 default_server" 
     server_name: "{{ wordpress_server_name }}" # default: N/A

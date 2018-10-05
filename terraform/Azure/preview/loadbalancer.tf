@@ -24,7 +24,7 @@ resource "azurerm_lb_rule" "lb_rule" {
   protocol                       = "Tcp"
   frontend_port                  = 80
   backend_port                   = 80
-  probe_id                       = "${azurerm_lb_probe.lb_probe.name}"
+  probe_id                       = "${azurerm_lb_probe.lb_probe.id}"
   frontend_ip_configuration_name = "${var.environment}_lb_private_ip"
 }
 

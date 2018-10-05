@@ -26,7 +26,6 @@
 
 - name: install php, phpmyadmin and zendopcache components from epel
   yum: pkg={{item}} state=installed
-  enablerepo: epel
   with_items:
     - php
     - phpmyadmin

@@ -26,6 +26,7 @@ resource "azurerm_lb_rule" "lb_rule" {
   backend_port                   = 80
   probe_id                       = "${azurerm_lb_probe.lb_probe.id}"
   frontend_ip_configuration_name = "${var.environment}_lb_private_ip"
+  backend_address_pool_id        = "${azurerm_lb_backend_address_pool.lb_beap.id}"
 }
 
 resource "azurerm_lb_probe" "lb_probe" {

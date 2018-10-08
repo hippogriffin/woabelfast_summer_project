@@ -35,3 +35,21 @@ for i in "${azure_array[@]}"
 do
     az vm stop --resource-group $1_rg --name $i
 done
+
+####################
+# Output
+####################
+
+echo AWS instances shutdown...
+for i in "${aws_array[@]}"
+do
+    echo $i
+done
+
+echo ------------------------------
+
+echo Azure instances shutdown...
+for i in "${azure_array[@]}"
+do
+    echo $i
+done

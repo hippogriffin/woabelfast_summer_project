@@ -34,3 +34,22 @@ for i in "${azure_array[@]}"
 do
     az vm start --resource-group $1_rg --name $i
 done
+
+
+####################
+# Output
+####################
+
+echo AWS instances started...
+for i in "${aws_array[@]}"
+do
+    echo $i
+done
+
+echo ---------------------------
+
+echo Azure instances started...
+for i in "${azure_array[@]}"
+do
+    echo $i
+done

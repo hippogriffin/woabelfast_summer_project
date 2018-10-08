@@ -33,23 +33,6 @@ done < <( az resource list --resource-group $1_rg --resource-type Microsoft.Comp
 for i in "${azure_array[@]}"
 do
     az vm start --resource-group $1_rg --name $i
-done
-
-
-####################
-# Output
-####################
-
-echo AWS instances started...
-for i in "${aws_array[@]}"
-do
-    echo $i
-done
-
-echo ---------------------------
-
-echo Azure instances started...
-for i in "${azure_array[@]}"
-do
+    echo Azure instance started...
     echo $i
 done

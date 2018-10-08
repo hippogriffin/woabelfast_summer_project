@@ -117,7 +117,7 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
     protocol                   = "TCP"
     source_port_range          = "*"
     destination_port_range     = "80"
-    source_address_prefix      = "${var.preview_proxy_cidr}"
+    source_address_prefix      = "AzureLoadBalancer"
     destination_address_prefix = "*"
   }
 

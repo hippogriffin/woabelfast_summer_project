@@ -110,7 +110,7 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
   }
 
   security_rule {
-    name                       = "preview_wp_http_sr"
+    name                       = "preview_wp_lb_sr"
     priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
@@ -118,6 +118,18 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
     source_port_range          = "*"
     destination_port_range     = "80"
     source_address_prefix      = "AzureLoadBalancer"
+    destination_address_prefix = "*"
+  }
+
+    security_rule {
+    name                       = "preview_wp_http_sr"
+    priority                   = 102
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "${var.preview_proxy_cidr}"
     destination_address_prefix = "*"
   }
 

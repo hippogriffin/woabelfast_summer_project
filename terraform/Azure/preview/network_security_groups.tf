@@ -133,6 +133,19 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
     destination_address_prefix = "*"
   }
 
+    security_rule {
+    name                       = "preview_wp_sr"
+    priority                   = 103
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+
   tags {
     environment = "${var.environment}"
   }

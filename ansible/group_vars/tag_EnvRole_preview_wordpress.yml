@@ -10,7 +10,7 @@ state: mounted
 mount_options: nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport
 
 nginx_vhosts:
-  - listen: "80 default_server" 
+  - listen: "80 default_server"
     server_name: "{{ wordpress_server_name }}" # default: N/A
     root: "{{ wordpress_root }}" # default: N/A
     index: "{{ wordpress_index }}" # default: "index.html index.htm"
@@ -20,29 +20,30 @@ nginx_vhosts:
     state: "present" # To remove the vhost configuration.
     extra_parameters: |
       location / {
+        index index.php index.html index.htm;
 
-      if (-f $request_filename) {
-              expires 30d;
-              break;
-      }
+        if (-f $request_filename) {
+                expires 30d;
+                break;
+        }
 
-      if (!-e $request_filename) {
-              rewrite ^(.+)$ /index.php?q=$1 last;
-              }
+        if (!-e $request_filename) {
+          rewrite ^(.+)$ /index.php?q=$1 last;
+        }
       }
 
       location ~ .php$ {
-              fastcgi_pass   localhost:9000;  # port where FastCGI processes were spawned
+              fastcgi_pass   127.0.0.1:9000;  # port where FastCGI processes were spawned
               fastcgi_index  index.php;
               fastcgi_param  SCRIPT_FILENAME   {{ wordpress_root }}$fastcgi_script_name;  # same path as above
               fastcgi_param PATH_INFO               $fastcgi_script_name;
               include /etc/nginx/fastcgi_params;
               }
 
-        location /elb_status {
+      location /elb_status {
               access_log off;
               return 200;
-        }
+      }
 
   - listen: "80"
     server_name: "{{ php_server_name }}" # default: N/A
@@ -54,24 +55,15 @@ nginx_vhosts:
     state: "present" # To remove the vhost configuration.
     extra_parameters: |
       location / {
-
-      if (-f $request_filename) {
-              expires 30d;
-              break;
+        index index.html index.htm index.php;
       }
 
-      if (!-e $request_filename) {
-              rewrite ^(.+)$ /index.php?q=$1 last;
-              }
-      }
-
-      location ~ .php$ {
-              fastcgi_pass   localhost:9000;  # port where FastCGI processes were spawned
-              fastcgi_index  index.php;
-              fastcgi_param  SCRIPT_FILENAME   {{ php_root }}$fastcgi_script_name;  # same path as above
-              fastcgi_param PATH_INFO               $fastcgi_script_name;
+      location ~ \.php$ {
               include /etc/nginx/fastcgi_params;
-              }
+              fastcgi_pass 127.0.0.1:9000;
+              fastcgi_index index.php;
+              fastcgi_param SCRIPT_FILENAME {{ php_root }}$fastcgi_script_name;
+      }
 
   - listen: "80"
     server_name: "{{ phpmyadmin_server_name }}" # default: N/A
@@ -83,21 +75,26 @@ nginx_vhosts:
     state: "present" # To remove the vhost configuration.
     extra_parameters: |
       location / {
-
-      if (-f $request_filename) {
-              expires 30d;
-              break;
+        index  index.php;
       }
 
-      if (!-e $request_filename) {
-              rewrite ^(.+)$ /index.php?q=$1 last;
-              }
+      location ~* ^.+.(jpg|jpeg|gif|css|png|js|ico|xml)$ {
+        access_log        off;
+        expires           30d;
       }
 
-      location ~ .php$ {
-              fastcgi_pass   localhost:9000;  # port where FastCGI processes were spawned
-              fastcgi_index  index.php;
-              fastcgi_param  SCRIPT_FILENAME   {{ phpmyadmin_root }}$fastcgi_script_name;  # same path as above
-              fastcgi_param PATH_INFO               $fastcgi_script_name;
+      location ~ /\.ht {
+              deny  all;
+      }
+
+      location ~ /(libraries|setup/frames|setup/libs) {
+              deny all;
+              return 404;
+      }
+
+      location ~ \.php$ {
               include /etc/nginx/fastcgi_params;
-              }
+              fastcgi_pass 127.0.0.1:9000;
+              fastcgi_index index.php;
+              fastcgi_param SCRIPT_FILENAME {{ phpmyadmin_root }}$fastcgi_script_name;
+      }

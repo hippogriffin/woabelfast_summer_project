@@ -2,12 +2,12 @@
 
 jenkins_plugins:
   - ansible
-  - cloudbees-folder
-  - categorized-view
-  - dashboard-view
-  - disable-failed-job
-  - job-configuration-history
-  - configuration-slicing
+  - cloudbees-folder-plugin
+  - categorized-view-plugin
+  - dashboard-view-plugin
+  - disable-failed-job-plugin
+  - job-configuration-history-plugin
+  - configuration-slicing-plugin
   - cloudbees-credentials
   - ansicolor
   - slack
@@ -44,11 +44,10 @@ java_packages: "java-1.8.0-openjdk.x86_64"
 custom_yum_installs:
   - python
   - python-pip
-  - git
 
 custom_pip_installs:
   - boto
   - ansible
   - ansible[azure]
   - awscli
-  - azure-cli
+  - azure-cli 

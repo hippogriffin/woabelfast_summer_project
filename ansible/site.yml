@@ -57,3 +57,26 @@
   become: true
   roles: 
     - strongswan
+
+  - name: configure zabix agents
+    role: dj-wasabi.zabbix-agent
+       zabbix_agent_server: 192.168.33.30
+       zabbix_agent_serveractive: 192.168.33.30
+       zabbix_url: http://zabbix.example.com
+       zabbix_api_use: true 
+       zabbix_api_user: Admin
+       zabbix_api_pass: zabbix
+       zabbix_create_host: present
+       zabbix_host_groups:
+         - Linux Servers
+       zabbix_link_templates:
+         - Template OS Linux
+         - Apache APP Template
+       zabbix_macros:
+         - macro_key: apache_type
+           macro_value: reverse_proxy
+    hosts:
+      - tag_Role_preview_webserver
+      - tag_Role_preview_wordpress
+      - Role_preview_webserver
+      - Role_preview_webserver

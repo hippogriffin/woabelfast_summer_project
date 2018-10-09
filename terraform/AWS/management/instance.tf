@@ -52,3 +52,24 @@ resource "aws_eip" "strongswan_eip" {
     Environment = "${var.environment}"
   }
 }
+
+resource "aws_instance" "zabbix" {
+  ami                    = "${var.ami}"
+  instance_type          = "${var.instance_type}"
+  subnet_id              = "${aws_subnet.mgmt_public_subnet.id}"
+  vpc_security_group_ids = ["${aws_security_group.mgmt_sg.id}"]
+  user_data              = "${file("scripts/init.cfg")}"
+
+  lifecycle {
+    ignore_changes = ["user_data"]
+  }
+
+  source_dest_check = false
+
+  tags {
+    Name        = "${local.zabbix_host_name}"
+    Environment = "${var.environment}"
+    Role        = "${var.zabbix_name}"
+    EnvRole     = "${local.zabbix_host_name}"
+  }
+}

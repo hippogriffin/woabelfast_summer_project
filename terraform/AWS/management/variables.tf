@@ -63,6 +63,10 @@ variable "bastion_name" {
   default = "bastion"
 }
 
+variable "zabbix_name" {
+  default = "zabbix"
+}
+
 #Azure CIDR variables
 
 variable "azure_cidr" {
@@ -89,4 +93,7 @@ locals {
   strongswan_host_name = "aws-mgmt-vpn-01"
 
   strongswan_eip_name = "${local.strongswan_host_name}_eip"
+
+  zabbix_host_name = "aws-mgmt-zb-01"
+
 }

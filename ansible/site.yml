@@ -57,3 +57,14 @@
   become: true
   roles: 
     - strongswan
+
+- name: configure zabbix
+  hosts:
+    - tag_Role_zabbix
+  become: true
+  roles:
+    - geerlingguy.apache
+    - geerlingguy.mysql
+    - geerlingguy.postgresql
+    - dj-wasabi.zabbix-server
+    - dj-wasabi.zabbix-web

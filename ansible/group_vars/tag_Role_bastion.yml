@@ -26,6 +26,10 @@ nginx_vhosts:
             add_header 'X-SSH-Endpoint' 'aws-mgmt-ci-01:50022' always;
       }
 
+apache_vhosts:
+  - servername: zabbix.woabelfast.co.uk
+    apache_vhost_listen_ip: '*'
+    apache_vhost_listen_port: 80
 
 firewall_allowed_tcp_ports:
   - "22"

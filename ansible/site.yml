@@ -59,18 +59,18 @@
     - strongswan
 
   - name: configure zabix agents
+    hosts:
+    - tag_Role_preview_webserver
+    - tag_Role_preview_wordpress
+    - Role_preview_webserver
+    - Role_preview_webserver
     role: dj-wasabi.zabbix-agent
-       zabbix_agent_server: 192.168.33.30
-       zabbix_agent_serveractive: 192.168.33.30
-       zabbix_url: http://zabbix.example.com
+       zabbix_agent_server: aws-mgmt-zb-01
+       zabbix_agent_serveractive: aws-mgmt-zb-01
+       zabbix_url: http://zabbix.woabelfast.co.uk
        zabbix_api_use: true 
        zabbix_api_user: Admin
        zabbix_api_pass: zabbix
        zabbix_create_host: present
        zabbix_link_templates:
          - Template OS Linux
-    hosts:
-      - tag_Role_preview_webserver
-      - tag_Role_preview_wordpress
-      - Role_preview_webserver
-      - Role_preview_webserver

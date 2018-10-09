@@ -19,3 +19,6 @@
 
 - src: geerlingguy.mysql
   version: 2.9.0
+
+- src: dj-wasabi.zabbix-agent
+  version: 1.4.0

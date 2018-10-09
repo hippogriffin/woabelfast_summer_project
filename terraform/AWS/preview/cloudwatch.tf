@@ -31,12 +31,12 @@ EOF
 resource "aws_cloudwatch_metric_alarm" "cpu" {
   alarm_name                = "web-cpu-alarm"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
-  evaluation_periods        = "2"
+  evaluation_periods        = "1"
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
   period                    = "120"
   statistic                 = "Average"
-  threshold                 = "30"
+  threshold                 = "80"
   alarm_description         = "This metric monitors ec2 cpu utilization"
   treat_missing_data        = "ignore"
   alarm_actions             = [ "${aws_sns_topic.alarm.arn}" ]

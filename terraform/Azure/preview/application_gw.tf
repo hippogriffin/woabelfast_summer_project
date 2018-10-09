@@ -42,7 +42,7 @@ resource "azurerm_application_gateway" "preview_app_gw" {
     cookie_based_affinity = "Disabled"
     port                  = 80
     protocol              = "Http"
-    request_timeout       = 1
+    request_timeout       = 60
     probe_name            = "${azurerm_virtual_network.preview_vnet.name}-probe"
   }
   

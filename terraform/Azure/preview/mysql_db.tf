@@ -3,9 +3,9 @@ resource "azurerm_mysql_server" "preview_mysql_server" {
   location                     = "${azurerm_resource_group.rg.location}"
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   administrator_login          = "wpuser"
-  administrator_login_password = "K@1n0$W3b0p$"
+  administrator_login_password = "Password123"
   version                      = "5.7"
-  ssl_enforcement              = "Enabled"
+  ssl_enforcement              = "Disabled"
 
   sku {
     name     = "B_Gen5_2"

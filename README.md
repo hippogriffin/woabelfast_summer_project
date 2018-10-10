@@ -518,6 +518,9 @@ The scripts have been parameterised so when running them make sure to specify th
 Relevant jobs were added to Jenkins which starts up all instances at 8.30am everyday, and shuts them down at 5.30pm. 
 
 
+# Monitoring Soultions
+
+For training purposes we are using FreshPing this is because it is a free service that allows us to check if sites are up or down. In a real world situation it would be recommended to use Pingdom. Pingdom is packed with more tools that also allow you to check the performance of a website. There are other licensed alternatives that provide more tools for testing so it is whatever suits the project. Both tools allow integration with common communication methods such as email, slack and sms.
 
 # Training and Resources 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html

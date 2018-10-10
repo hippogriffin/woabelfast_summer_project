@@ -4,6 +4,14 @@ resource "aws_security_group" "mgmt_sg" {
   description = "Allows SSH to and from dmz subnet and preview subnet"
   vpc_id      = "${aws_vpc.mgmt_vpc.id}"
 
+
+    ingress {
+    from_port   = 10050
+    to_port     = 10051
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0./3"]
+  }
+
   ingress {
     from_port   = 22
     to_port     = 22

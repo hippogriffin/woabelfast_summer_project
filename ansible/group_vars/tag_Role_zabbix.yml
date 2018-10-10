@@ -1,18 +1,7 @@
 ---
 
-# postgresql_users:
-#   - name: zabbix-server
-#     password: zabbix-server
-
 zabbix_url: zabbix.woabelfast.co.uk
 zabbix_timezone: Europe/London
-# zabbix_server_database: pgsql
-# zabbix_server_database_long: postgresql
-
-# postgresql_db:
-#   - name: zabbix
-#     port: '5432'
-#     state: present 
 
 selinux_allow_zabbix_can_network: True
 selinux_allow_zabbix_can_http: True

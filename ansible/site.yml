@@ -67,4 +67,5 @@
     - geerlingguy.postgresql
     - dj-wasabi.zabbix-server
     - dj-wasabi.zabbix-web
+    - dj-wasabi.zabbix-agent
 

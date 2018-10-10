@@ -10,7 +10,10 @@ selinux_allow_zabbix_can_http: True
 postgresql_enablerepo: "epel"
 
 
-
-
+firewall_allowed_tcp_ports:
+  - "22"
+  - "80"
+  - "10050"
+  - "10051"
 
 

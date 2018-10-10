@@ -38,6 +38,10 @@ jenkins_admin_password: !vault |
 firewall_allowed_tcp_ports:
   - "22"
   - "8080"
+  - "10050"
+  - "10051"
+
+  
 
 java_packages: "java-1.8.0-openjdk.x86_64"
 

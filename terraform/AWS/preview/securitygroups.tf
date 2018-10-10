@@ -172,7 +172,7 @@ resource "aws_security_group" "preview_elb_public_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["${var.kainos_cidr}"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

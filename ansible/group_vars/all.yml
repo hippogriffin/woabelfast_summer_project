@@ -57,7 +57,6 @@ users_deleted: []
 
 common_yum_installs:
   - epel-release
-
     
 zabbix_agent_server: aws-mgmt-zb-01
 zabbix_agent_serveractive: aws-mgmt-zb-01

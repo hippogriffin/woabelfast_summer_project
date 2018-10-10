@@ -1,0 +1,16 @@
+---
+
+zabbix_url: zabbix.woabelfast.co.uk
+zabbix_timezone: Europe/London
+
+selinux_allow_zabbix_can_network: True
+selinux_allow_zabbix_can_http: True
+
+# Epel
+postgresql_enablerepo: "epel"
+
+
+
+
+
+

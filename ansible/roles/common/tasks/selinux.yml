@@ -4,3 +4,8 @@
     persistent: "{{ item.persistent }}"
     state: "{{ item.state }}"
   with_items: "{{ selinux_boolean }}"
+
+- name: disable selinux
+  selinux:
+    state: permissive
+    policy: targeted

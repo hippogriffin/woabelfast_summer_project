@@ -74,6 +74,14 @@ resource "azurerm_application_gateway" "preview_app_gw" {
     backend_http_settings_name = "${azurerm_virtual_network.preview_vnet.name}-be-htst"
   }
 
+   request_routing_rule {
+    name                       = "${azurerm_virtual_network.preview_vnet.name}-rqrt"
+    rule_type                  = "Basic"
+    http_listener_name         = "${azurerm_virtual_network.preview_vnet.name}-httpslstn"
+    backend_address_pool_name  = "${azurerm_virtual_network.preview_vnet.name}-beap"
+    backend_http_settings_name = "${azurerm_virtual_network.preview_vnet.name}-be-htst"
+  }
+
   probe {
     name                = "${azurerm_virtual_network.preview_vnet.name}-probe"
     protocol            = "Http"

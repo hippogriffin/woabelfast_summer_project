@@ -38,3 +38,19 @@ resource "aws_security_group" "mgmt_sg" {
     Environment = "${var.environment}"
   }
 }
+
+resource "aws_security_group" "mgmt_zabbix_sg" {
+  name        = "mgmt_zabbix_sg"
+  description = "Security group for zabbix to talk to agents"
+  vpc_id      = "${aws_vpc.mgmt_vpc.id}"
+
+    ingress {
+    from_port   = 10050
+    to_port     = 10050
+    protocol    = "tcp"
+    cidr_blocks = ["${var.dmz_cidr}"]
+  }
+}
+
+
+

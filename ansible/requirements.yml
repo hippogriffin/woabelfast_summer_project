@@ -21,7 +21,7 @@
   version: 2.9.0
 
 - src: dj-wasabi.zabbix-server
-  version: 0.8.0
+  version: 1.2.0
 
 - src: dj-wasabi.zabbix-web
   version: 1.2.0

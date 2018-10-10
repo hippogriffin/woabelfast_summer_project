@@ -34,4 +34,6 @@ done < <( az resource list --resource-group $1_rg --resource-type Microsoft.Comp
 for i in "${azure_array[@]}"
 do
     az vm stop --resource-group $1_rg --name $i
+    echo Azure instance shutdown...
+    echo $i
 done

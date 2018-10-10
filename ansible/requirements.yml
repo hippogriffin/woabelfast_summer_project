@@ -28,3 +28,7 @@
 
 - src: geerlingguy.postgresql
   version: 1.4.3
+
+- src: dj-wasabi.zabbix-agent
+  version: 1.4.0
+

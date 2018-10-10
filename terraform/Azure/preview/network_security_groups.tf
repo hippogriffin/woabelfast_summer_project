@@ -61,7 +61,7 @@ resource "azurerm_network_security_group" "preview_sg_lb" {
     protocol                   = "TCP"
     source_port_range          = "*"
     destination_port_range     = "80"
-    source_address_prefix      = "${var.kainos_ip}"
+    source_address_prefix      = "Internet"
     destination_address_prefixes = ["172.17.100.0/24","172.17.101.0/24"]
   }
 
@@ -73,7 +73,7 @@ resource "azurerm_network_security_group" "preview_sg_lb" {
     protocol                   = "TCP"
     source_port_range          = "*"
     destination_port_range     = "443"
-    source_address_prefix      = "${var.kainos_ip}"
+    source_address_prefix      = "Internet"
     destination_address_prefixes = ["172.17.100.0/24","172.17.101.0/24"]
   }
 
@@ -110,8 +110,20 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
   }
 
   security_rule {
-    name                       = "preview_wp_http_sr"
+    name                       = "preview_wp_lb_sr"
     priority                   = 101
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "AzureLoadBalancer"
+    destination_address_prefix = "*"
+  }
+
+    security_rule {
+    name                       = "preview_wp_http_sr"
+    priority                   = 102
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "TCP"
@@ -120,6 +132,19 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
     source_address_prefix      = "${var.preview_proxy_cidr}"
     destination_address_prefix = "*"
   }
+
+    security_rule {
+    name                       = "preview_wp_sr"
+    priority                   = 103
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
 
   tags {
     environment = "${var.environment}"

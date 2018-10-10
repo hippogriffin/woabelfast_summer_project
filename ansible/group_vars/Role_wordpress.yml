@@ -16,8 +16,8 @@ nginx_remove_default_vhost: true
 #PHP.ini config
 php_ini_cgi_value: "0"
 php_ini_path: /etc/php.ini
-php_ini_cgi_string: ;cgi.fix_pathinfo=1
-php_ini_cgi: ;cgi.fix_pathinfo=0
+php_ini_cgi_string: cgi.fix_pathinfo=
+php_ini_cgi: cgi.fix_pathinfo=0
 
 #PHP Opcache config
 opcache_revalidate_freq_value: "0"

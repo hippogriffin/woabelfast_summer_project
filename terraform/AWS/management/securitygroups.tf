@@ -46,7 +46,3 @@ resource "aws_security_group" "mgmt_sg" {
     Environment = "${var.environment}"
   }
 }
-
-
-
-

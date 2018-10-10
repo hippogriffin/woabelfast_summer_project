@@ -9,7 +9,7 @@ resource "aws_security_group" "mgmt_sg" {
     from_port   = 10050
     to_port     = 10051
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0./3"]
+    cidr_blocks = ["10.0.0.0/8"]
   }
 
   ingress {

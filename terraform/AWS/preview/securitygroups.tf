@@ -84,7 +84,7 @@ resource "aws_security_group" "wp_servers" {
     from_port   = 10050
     to_port     = 10051
     protocol    = "tcp"
-    cidr_blocks = ["10.120.0.148"]
+    cidr_blocks = ["10.120.0.148/32"]
   }
 
   ingress {
@@ -167,7 +167,7 @@ resource "aws_security_group" "preview_web_servers" {
     from_port   = 10050
     to_port     = 10051
     protocol    = "tcp"
-    cidr_blocks = ["10.120.0.148"]
+    cidr_blocks = ["10.120.0.148/32"]
   }
 
   tags {

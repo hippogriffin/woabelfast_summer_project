@@ -75,7 +75,7 @@ resource "azurerm_application_gateway" "preview_app_gw" {
   }
 
    request_routing_rule {
-    name                       = "${azurerm_virtual_network.preview_vnet.name}-rqrt"
+    name                       = "${azurerm_virtual_network.preview_vnet.name}-rqrt2"
     rule_type                  = "Basic"
     http_listener_name         = "${azurerm_virtual_network.preview_vnet.name}-httpslstn"
     backend_address_pool_name  = "${azurerm_virtual_network.preview_vnet.name}-beap"

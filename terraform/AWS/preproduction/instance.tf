@@ -9,6 +9,7 @@ resource "aws_instance" "wordpress" {
   private_ip             = "${format("${local.wp_server_ips}", count.index + 10)}"
   key_name               = "${aws_key_pair.key.key_name}"
   user_data              = "${file("scripts/init.cfg")}"
+  availability_zone      = "${var.avail_zone_a}"
 
   lifecycle {
     ignore_changes = ["user_data"]
@@ -31,6 +32,7 @@ resource "aws_instance" "proxy-servers" {
   private_ip             = "${format("${local.webserver_ips}", count.index + 10)}"
   key_name               = "${aws_key_pair.key.key_name}"
   user_data              = "${file("scripts/init.cfg")}"
+  availability_zone      = "${var.avail_zone_a}"
 
   lifecycle {
     ignore_changes = ["user_data"]

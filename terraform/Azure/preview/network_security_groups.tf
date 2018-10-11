@@ -145,6 +145,18 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
     destination_address_prefix = "*"
   }
 
+    security_rule {
+    name                       = "preview_wp_zb_sr"
+    priority                   = 103
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "10050-10051"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
 
   tags {
     environment = "${var.environment}"
@@ -190,6 +202,18 @@ resource "azurerm_network_security_group" "preview_webservers_sg" {
     source_port_range          = "*"
     destination_port_range     = "80"
     source_address_prefixes    = ["${var.kainos_ip}", "172.17.100.0/24", "172.17.101.0/24"]
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "preview_wp_zb_sr"
+    priority                   = 103
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "10050-10051"
+    source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 

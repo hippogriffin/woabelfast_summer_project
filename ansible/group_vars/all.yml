@@ -63,3 +63,6 @@ zabbix_agent_serveractive: aws-mgmt-zb-01
 zabbix_url: http://zabbix.woabelfast.co.uk
 zabbix_create_host: present
 
+firewall_allowed_tcp_ports:
+  - "10050"
+  - "10051"

@@ -147,7 +147,7 @@ resource "azurerm_network_security_group" "preview_wordpress_sg" {
 
     security_rule {
     name                       = "preview_wp_zb_sr"
-    priority                   = 103
+    priority                   = 104
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "TCP"

@@ -58,8 +58,8 @@ users_deleted: []
 common_yum_installs:
   - epel-release
     
-zabbix_agent_server: aws-mgmt-zb-01
-zabbix_agent_serveractive: aws-mgmt-zb-01
+zabbix_agent_server: 10.121.0.113
+zabbix_agent_serveractive: 10.121.0.113
 zabbix_url: http://zabbix.woabelfast.co.uk
 zabbix_create_host: present
 

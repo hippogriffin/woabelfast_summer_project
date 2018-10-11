@@ -196,23 +196,3 @@ resource "aws_security_group" "preview_elb_public_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-resource "aws_security_group" "preview_elb_public_sg" {
-  name        = "preview_public_elb_sg"
-  description = "public security group for Preview ELB"
-  vpc_id      = "${aws_vpc.preview_vpc.id}"
-
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}

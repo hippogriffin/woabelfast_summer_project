@@ -1,9 +1,9 @@
 resource "azurerm_virtual_machine" "wordpress" {
-  name                  = "${format("${local.wordpress_name}", count.index + 3)}"
+  name                  = "${format("${local.preproduction_wordpress_name}", count.index + 3)}"
   count                 = "${var.count}"
   location              = "${azurerm_resource_group.rg.location}"
   resource_group_name   = "${azurerm_resource_group.rg.name}"
-  network_interface_ids = ["${element(azurerm_network_interface.wordpress_nic.*.id, count.index + 3)}"]
+  network_interface_ids = ["${element(azurerm_network_interface.preproduction_wordpress_nic.*.id, count.index + 3)}"]
   availability_set_id   = "${azurerm_availability_set.wordpress_avset.id}"
   vm_size               = "${var.wordpress_vm_size}"
 
@@ -15,7 +15,7 @@ resource "azurerm_virtual_machine" "wordpress" {
   }
 
   storage_os_disk {
-    name              = "${format("${local.wordpress_webserver_os_disk}", count.index + 3)}"
+    name              = "${format("${local.preproduction_wordpress_webserver_os_disk}", count.index + 3)}"
     caching           = "${lookup(var.wordpress_storage_os_disk, "caching")}"
     create_option     = "${lookup(var.wordpress_storage_os_disk, "create_option")}"
     managed_disk_type = "${lookup(var.wordpress_storage_os_disk, "managed_disk_type")}"
@@ -36,46 +36,47 @@ resource "azurerm_virtual_machine" "wordpress" {
   }
 
   tags {
-    EnvRole     = "${var.environment}_wordpress"
+    EnvRole     = "preproduction_wordpress"
     Environment = "${var.environment}"
-    Name        = "${format("${local.wordpress_tag_name}", count.index + 3)}"
+    Name        = "${format("${local.preproduction_wordpress_tag_name}", count.index + 3)}"
     Role        = "wordpress"
   }
 }
 
-resource "azurerm_network_interface" "wordpress_nic" {
-  name                = "${format("${local.wordpress_nic_name}", count.index + 3)}"
+resource "azurerm_network_interface" "preproduction_wordpress_nic" {
+  name                = "${format("${local.preproduction_wordpress_nic_name}", count.index + 3)}"
   count               = "${var.count}"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   ip_configuration {
-    name                          = "${format("${local.wordpress_ip_name}", count.index + 3)}"
-    subnet_id                     = "${azurerm_subnet.wordpress_subnet.id}"
-    private_ip_address_allocation = "dynamic"
+    name                                    = "${format("${local.preproduction_wordpress_ip_name}", count.index + 3)}"
+    subnet_id                               = "${azurerm_subnet.preproduction_wordpress_subnet.id}"
+    private_ip_address_allocation           = "dynamic"
+    load_balancer_backend_address_pools_ids = ["${azurerm_lb_backend_address_pool.lb_beap.id}"]
   }
 }
 
-resource "azurerm_network_interface" "proxy" {
-  name                = "${format("${local.proxy_nic_name}", count.index + 3)}"
+resource "azurerm_network_interface" "preproduction-proxy" {
+  name                = "${format("${local.preproduction_proxy_nic_name}", count.index + 3)}"
   count               = "${var.count}"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   ip_configuration {
-    name                          = "${format("${local.proxy_ip_name}", count.index + 3)}"
-    subnet_id                     = "${azurerm_subnet.proxy_subnet.id}"
+    name                          = "${format("${local.preproduction_proxy_ip_name}", count.index + 3)}"
+    subnet_id                     = "${azurerm_subnet.preproduction_proxy_subnet.id}"
     private_ip_address_allocation = "dynamic"
   }
 }
 
-resource "azurerm_virtual_machine" "proxy" {
-  name                  = "${format("${local.webserver_names}", count.index + 3)}"
+resource "azurerm_virtual_machine" "preproduction-proxy" {
+  name                  = "${format("${local.preproduction_webserver_names}", count.index + 3)}"
   count                 = "${var.count}"
   location              = "${azurerm_resource_group.rg.location}"
   availability_set_id   = "${azurerm_availability_set.proxy_avset.id}"
   resource_group_name   = "${azurerm_resource_group.rg.name}"
-  network_interface_ids = ["${element(azurerm_network_interface.proxy.*.id, count.index + 3)}"]
+  network_interface_ids = ["${element(azurerm_network_interface.preproduction-proxy.*.id, count.index + 3)}"]
   vm_size               = "${var.proxy_vm_size}"
 
   storage_image_reference {
@@ -86,14 +87,14 @@ resource "azurerm_virtual_machine" "proxy" {
   }
 
   storage_os_disk {
-    name              = "${format("${local.webserver_os_disk}", count.index + 3)}"
+    name              = "${format("${local.preproduction_webserver_os_disk}", count.index + 3)}"
     caching           = "${lookup(var.proxy_storage_os_disk, "caching")}"
     create_option     = "${lookup(var.proxy_storage_os_disk, "create_option")}"
     managed_disk_type = "${lookup(var.proxy_storage_os_disk, "managed_disk_type")}"
   }
 
   os_profile {
-    computer_name  = "${format("${local.webserver_names}", count.index + 3)}"
+    computer_name  = "${format("${local.preproduction_webserver_names}", count.index + 3)}"
     admin_username = "${lookup(var.proxy_os_profile, "admin_username")}"
   }
 
@@ -108,8 +109,8 @@ resource "azurerm_virtual_machine" "proxy" {
 
   tags {
     Environment = "${var.environment}"
-    EnvRole     = "${var.environment}_webserver"
-    Name        = "${format("${local.webserver_tag_names}", count.index + 3)}"
+    EnvRole     = "preproduction_webserver"
+    Name        = "${format("${local.preproduction_webserver_tag_names}", count.index + 3)}"
     Role        = "webserver"
   }
 }

@@ -1,8 +1,9 @@
 #Configuring Subnets for Wordpress
 
 resource "aws_subnet" "wordpress" {
-  vpc_id     = "${aws_vpc.vpc.id}"
-  cidr_block = "${var.wordpress_cidr}"
+  vpc_id            = "${aws_vpc.vpc.id}"
+  cidr_block        = "${var.wordpress_cidr}"
+  availability_zone = "${var.avail_zone_a}"
 
   tags {
     Name        = "${var.environment} WordPress Server"
@@ -14,8 +15,9 @@ resource "aws_subnet" "wordpress" {
 # Subnet 
 
 resource "aws_subnet" "webserver_subnet" {
-  vpc_id     = "${aws_vpc.vpc.id}"
-  cidr_block = "${var.webserver_cidr}"
+  vpc_id            = "${aws_vpc.vpc.id}"
+  cidr_block        = "${var.webserver_cidr}"
+  availability_zone = "${var.avail_zone_a}"
 
   tags {
     Name        = "${var.environment} Web Server"

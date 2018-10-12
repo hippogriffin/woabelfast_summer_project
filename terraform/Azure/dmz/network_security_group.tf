@@ -40,6 +40,18 @@ resource "azurerm_network_security_group" "dmz" {
     destination_address_prefix = "*"
   }
 
+    security_rule {
+    name                       = "preview_zabbix_sr"
+    priority                   = 110 // this is the highest so may be subject to change
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "10050-10051"
+    source_address_prefix      = "*" 
+    destination_address_prefix = "*"
+  }
+
 
   tags {
     environment = "DMZ"

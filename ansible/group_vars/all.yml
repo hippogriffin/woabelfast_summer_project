@@ -63,6 +63,3 @@ zabbix_agent_serveractive: 10.121.0.113
 zabbix_url: http://zabbix.woabelfast.co.uk
 zabbix_create_host: present
 
-firewall_allowed_tcp_ports:
-  - "10050"
-  - "10051"

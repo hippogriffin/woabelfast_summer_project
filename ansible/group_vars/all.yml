@@ -62,4 +62,5 @@ zabbix_agent_server: 10.121.0.113
 zabbix_agent_serveractive: 10.121.0.113
 zabbix_url: http://zabbix.woabelfast.co.uk
 zabbix_create_host: present
+zabbix_selinux: True
 

@@ -5,7 +5,7 @@ resource "azurerm_subnet" "preview_proxy_subnet" {
   virtual_network_name = "${azurerm_virtual_network.preview_vnet.name}"
   route_table_id       = "${azurerm_route_table.preview_route_table.id}"
   address_prefix       = "${var.preview_proxy_cidr}"
-  network_security_group_id = "${azurerm_network_security_group.preview_webservers_sg}"
+  network_security_group_id = "${azurerm_network_security_group.preview_webservers_sg.id}"
 
 }
 

@@ -1,5 +1,5 @@
-resource "azurerm_route_table" "route_table" {
-  name                = "${var.environment}_route_table"
+resource "azurerm_route_table" "preproduction_route_table" {
+  name                = "preproduction_route_table"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 

@@ -99,19 +99,19 @@ variable "preproduction_webserver_name" {
 #######################################################
 
 ## IPs required to change per environment ##
-variable "cidr" {
+variable "preproduction_cidr" {
   default = "172.18.0.0/16"
 }
 
-variable "proxy_cidr" {
+variable "preproduction_proxy_cidr" {
   default = "172.18.1.0/24"
 }
 
-variable "wordpress_cidr" {
+variable "preproduction_wordpress_cidr" {
   default = "172.18.2.0/24"
 }
 
-variable "db_cidr" {
+variable "preproduction_db_cidr" {
   default = "172.18.3.0/24"
 }
 
@@ -128,23 +128,23 @@ variable "externallb_subnet_02_ip" {
 locals {
 # webserver_ips = "172.18.0.%02d"
 
-  webserver_names             = "az-pp-pxy-%02d"
+  preproduction_webserver_names             = "az-pp-pxy-%02d"
 
-  webserver_tag_names         = "az-pp-pxy-%02d"
+  preproduction_webserver_tag_names         = "az-pp-pxy-%02d"
 
-  proxy_nic_name              = "az-pp_pxy_nic_%02d"
+  preproduction_proxy_nic_name              = "az-pp_pxy_nic_%02d"
 
-  webserver_os_disk           = "az-pp-pxy-%02d-os-disk"
+  preproduction_webserver_os_disk           = "az-pp-pxy-%02d-os-disk"
 
-  wordpress_webserver_os_disk = "az-pp-wp-%02d"
+  preproduction_wordpress_webserver_os_disk = "az-pp-wp-%02d"
 
-  proxy_ip_name               = "az-pp-pxy-ip-%02d"
+  preproduction_proxy_ip_name               = "az-pp-pxy-ip-%02d"
 
-  wordpress_nic_name          = "az-pp-wp-nic-%02d"
+  preproduction_wordpress_nic_name          = "az-pp-wp-nic-%02d"
 
-  wordpress_ip_name           = "az-pp-wp-ip-%02d"
+  preproduction_wordpress_ip_name           = "az-pp-wp-ip-%02d"
 
-  wordpress_name              = "az-pp-wp-%02d"
+  preproduction_wordpress_name              = "az-pp-wp-%02d"
   
-  wordpress_tag_name          = "az-pp-wp-%02d"
+  preproduction_wordpress_tag_name          = "az-pp-wp-%02d"
 }

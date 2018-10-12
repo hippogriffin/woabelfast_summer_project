@@ -37,9 +37,9 @@ groups = {
     "tag_EnvRole_preview_wordpress" => ["preview-wordpress01", "preview-wordpress02"],
     "tag_Environment_preview:children" => ["tag_EnvRole_preview_webserver", "tag_EnvRole_preview_wordpress"],
 
-    "tag_EnvRole_preprod_webserver" => ["preprod-proxy01", "preprod-proxy02"],
-    "tag_EnvRole_preprod_wordpress" => ["preprod-wordpress01", "preprod-wordpress02"],
-    "tag_Environment_preprod:children" => ["tag_EnvRole_preprod_webserver", "tag_EnvRole_preprod_wordpress"],
+    "tag_EnvRole_preproduction_webserver" => ["preprod-proxy01", "preprod-proxy02"],
+    "tag_EnvRole_preproduction_wordpress" => ["preprod-wordpress01", "preprod-wordpress02"],
+    "tag_Environment_preproduction:children" => ["tag_EnvRole_preprod_webserver", "tag_EnvRole_preprod_wordpress"],
 
     "tag_EnvRole_production_webserver" => ["production-proxy01", "production-proxy02"],
     "tag_EnvRole_production_wordpress" => ["production-wordpress01", "production-wordpress02"],

@@ -1,0 +1,19 @@
+# nginx vhost
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "preproduction.woabelfast.co.uk"
+    root: "/usr/share/nginx/preproduction.woabelfast.co.uk"
+    index: "index.html index.htm"
+    access_log: "/var/log/nginx/preproduction.access.log"
+    error_log: "/var/log/nginx/preproduction.error.log"
+    extra_parameters: |
+        location / {
+          proxy_pass http://preproduction-wp-server-elb.woabelfast.local:80;
+          proxy_set_header Host      $host;
+          proxy_set_header X-Real-IP $remote_addr;
+        }
+        location /elb_status {
+          access_log off;
+          return 200;
+        }

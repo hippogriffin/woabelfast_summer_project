@@ -3,7 +3,6 @@ resource "azurerm_subnet" "preview_proxy_subnet" {
   name                 = "${var.environment}_proxy_subnet"
   resource_group_name  = "${azurerm_resource_group.rg.name}"
   virtual_network_name = "${azurerm_virtual_network.preview_vnet.name}"
-  route_table_id       = "${azurerm_route_table.preview_route_table.id}"
   address_prefix       = "${var.preview_proxy_cidr}"
   network_security_group_id = "${azurerm_network_security_group.preview_webservers_sg.id}"
 
@@ -15,7 +14,6 @@ resource "azurerm_subnet" "preview_wordpress_subnet" {
   resource_group_name  = "${azurerm_resource_group.rg.name}"
   virtual_network_name = "${azurerm_virtual_network.preview_vnet.name}"
   address_prefix       = "${var.preview_wordpress_cidr}"
-  route_table_id       = "${azurerm_route_table.preview_route_table.id}"
   service_endpoints    = ["Microsoft.Sql"]
   network_security_group_id = "${azurerm_network_security_group.preview_wordpress_sg.id}"
 }

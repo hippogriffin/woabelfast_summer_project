@@ -14,7 +14,7 @@ data "aws_route53_zone" "selected" {
     name = "woabelfast.co.uk"
   }
 
-data "azurerm_public_ip" "app_gw_public_ip" {
-    resource_group_name = "${azurerm_resource_group.rg.name}"
-    name                = "${azurerm_public_ip.app_gw_public_ip.name}"
+data "azurerm_public_ip" "preproduction_app_gw_ip" {
+    resource_group_name = "${azurerm_application_gateway.preproduction_app_gw.resource_group_name}"
+    name = "${azurerm_public_ip.preproduction_app_gw_public_ip.name}"
 }

@@ -2,6 +2,8 @@ firewall_allowed_tcp_ports:
   - "22"
   - "4500"
   - "500"
+  - "10050"
+  - "10051"
 
 custom_yum_installs:
   - strongswan

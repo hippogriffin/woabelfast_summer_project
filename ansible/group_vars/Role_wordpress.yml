@@ -10,6 +10,8 @@ custom_yum_installs:
 firewall_allowed_tcp_ports:
   - "22"
   - "80"
+  - "10050"
+  - "10051"
 
 nginx_remove_default_vhost: true
 
